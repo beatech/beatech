@@ -21,40 +21,49 @@
         <div id="header">
           <h1><%= link_to "BEATECH", :root %></h1>
           <div class="account">
-            <% if @current_member %>
+            <% if @current_user %>
+            <div class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.account %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">プロフィールを編集</a></li>
+                <li><a href="#">設定</a></li>
+                <li class="divider"></li>
+                <li><%= link_to 'ログアウト', session_path(@current_user.account), :method => :delete %></li>
+              </ul>
+            </div>
+            <% else %>
             <div class="dropdown pull-right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">ログイン<span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="#">アクション</a></li>
-                <li><a href="#">次のアクション</a></li>
-                <li><a href="#">その他のアクション</a></li>
+              <ul class="dropdown-menu" id="login">
+                <li>
+                <%= form_tag sessions_path do %>
+                <table id="login"><tbody>
+                  <tr><td><%= label_tag :account, 'BEATECH アカウント' %></td></tr>
+                  <tr><td><%= text_field_tag :account, params[:account] %></td></tr>
+                  <tr><td><%= label_tag :pass, 'パスワード' %></td>
+                  <tr><td><%= password_field_tag :pass, params[:pass] %></td></tr>
+                  <tr>
+                    <td><%= submit_tag "ログイン", :class => "btn" %></td>
+                  </tr>
+                </tbody></table>
+                <% end %>
+                </li>
                 <li class="divider"></li>
-                <li><a href="#">区切りリンク</a></li>
+                <li>
+                  または<br />
+                  <button class="btn btn-info">Twitterでログイン</button>
+                </li>
               </ul>
             </div>
-
-            <% else %>
-            <%= @current_member %>
-            <div class="btn-group">
-              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                ログイン
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <li>ああ</li>
-              </ul>
-            </div>
-
-            ログイン
             <% end %>
           </div>
         </div><!-- header end -->
         <div id="menu">
           <ul>
             <li><%= link_to "ホーム", :root %></li>
-            <li><a href="index.html">BEATECHとは</a></li>
-            <li><a href="index.html">入部希望者へ</a></li>
-            <li><a href="index.html">他大サークル様へ</a></li>
+            <% @header_menu.each do |menu| %>
+            <li><%= link_to menu.title, menu.url %></li>
+            <% end %>
           </ul>
         </div><!-- menu end -->
       </div>
@@ -63,35 +72,29 @@
           <div class="section">
             <h2>サークルメニュー</h2>
             <ul>
-              <li><a href="index.html">メンバー紹介</a></li>
-              <li><a href="index.html">活動記録</a></li>
-              <li><a href="index.html">入部方法</a></li>
+              <% @circle_menu.each do |menu| %>
+              <li><%= link_to menu.title, menu.url %></li>
+              <% end %>
             </ul>
           </div><!-- section end -->
           <div class="section">
             <h2>交流メニュー</h2>
             <ul>
-              <li><a href="index.html">成果報告</a></li>
-              <li><a href="index.html">部内大会</a></li>
-              <li><a href="index.html">部内KAC</a></li>
-              <li><a href="index.html">弐寺オリコ</a></li>
+              <% @communication_menu.each do |menu| %>
+              <li><%= link_to menu.title, menu.url %></li>
+              <% end %>
             </ul>
           </div><!-- section end -->
           <div class="section">
             <h2>音ゲーコンテンツ</h2>
             <ul>
-              <li><a href="index.html">RPS</a></li>
-              <li><a href="index.html">RPS登録方法</a></li>
-              <li><a href="index.html">音ゲー攻略</a></li>
-              <li><a href="index.html">ゲーセン情報</a></li>
-              <li><a href="index.html">ACコン製作記</a></li>
+              <% @contents_menu.each do |menu| %>
+              <li><%= link_to menu.title, menu.url %></li>
+              <% end %>
             </ul>
           </div><!-- section end -->
         </div><!-- subL end -->
         <div id="main">
-          <% if flash.notice %>
-          <p class="notice"><%= flash.notice %></p>
-          <% end %>
           <%= yield %>
         </div><!-- main end-->
       </div><!-- contents end -->

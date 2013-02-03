@@ -15,6 +15,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:account] = nil
-    render "new"
+    redirect_to :root
   end
 end

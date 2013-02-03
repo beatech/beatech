@@ -1,10 +1,13 @@
 Beatech::Application.routes.draw do
+  root :to => 'top#index'
+  
+  resources :pages
 #  resources :users
   resources :sessions
 
-
-  root :to => 'top#index' 
-
+  # Wiki
+  match ':url' => 'pages#show_page'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
