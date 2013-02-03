@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+@import url("bootstrap.min.css");
 
 /* ========BASIC======== */
 html {
@@ -105,23 +106,35 @@ h1,h2,h3,h4,h5,h6 {
     line-height:40px;
 }
 
-#header h1 a {
+#header a {
     color:#FFF;
     text-decoration:none;
 }
 
-#header h1 a:hover {
+#header a:hover {
     color:#ddd;
 }
 
 #header .account {
-    color:#ddd;
+    color:#FFF;
     position:absolute;
     top:10px;
     right:10px;
 }
 
+#header .caret {
+  border-top:   solid 4px #FFF;
+  border-left:  solid 4px transparent;
+  border-right: solid 4px transparent;
+}
 
+#header li a {
+    color:#000;
+}
+
+#header li a:hover {
+    color:#FFF;
+}
 
 /* ========MENU CUSTOMIZE======== */
 #menu ul {
@@ -161,11 +174,11 @@ h1,h2,h3,h4,h5,h6 {
 
 /* ========MAIN CONTENTS CUSTOMIZE======== */
 #main a {
-    color:#008000;
+/*    color:#008000; */
 }
 
 #main a:hover {
-    text-decoration:underline;
+/*    text-decoration:underline; */
 }
 
 #main h2 {
@@ -185,6 +198,7 @@ padding:2px 2px 2px 5px;
     padding:1px 3px;
     margin-bottom:5px;
     font-size:13px;
+    line-height:20px;
     border-left:3px solid #000;
     border-bottom:1px dotted #000;
 }
@@ -232,7 +246,8 @@ padding:2px 2px 2px 5px;
 }
 
 #subL h2 {
-    padding:3px 10px;
+    line-height:28px;
+    padding:0px 10px;
     font-size:14px;
     font-weight:bold;
     color:#fff;

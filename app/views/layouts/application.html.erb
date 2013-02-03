@@ -12,6 +12,7 @@
     <title><%= page_title %></title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "bootstrap" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
@@ -21,9 +22,29 @@
           <h1><%= link_to "BEATECH", :root %></h1>
           <div class="account">
             <% if @current_member %>
-            <%= @current_member %>
+            <div class="dropdown pull-right">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">ログイン<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">アクション</a></li>
+                <li><a href="#">次のアクション</a></li>
+                <li><a href="#">その他のアクション</a></li>
+                <li class="divider"></li>
+                <li><a href="#">区切りリンク</a></li>
+              </ul>
+            </div>
+
             <% else %>
             <%= @current_member %>
+            <div class="btn-group">
+              <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                ログイン
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li>ああ</li>
+              </ul>
+            </div>
+
             ログイン
             <% end %>
           </div>

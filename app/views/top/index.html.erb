@@ -8,3 +8,46 @@
   BEATECHアカウントを登録した後、Twitterアカウントと連携することでもデータを引き継ぐことが可能です。</p>
 
 <%= render :template => "sessions/new" %>
+
+<div class="btn-group">
+  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+    <li><a href="#">Something else here</a></li>
+    <li class="divider"></li>
+    <li><a href="#">Separated link</a></li>
+  </ul>
+</div><!-- /btn-group -->
+<ul class="nav secondary-nav session-dropdown" id="session">
+                    <li class="dropdown js-session">
+                      <a class="dropdown-toggle dropdown-signin" id="signin-link" href="#">
+                        <small>アカウントをお持ちの場合は</small> ログイン<span class="caret"></span>
+                      </a>
+                      <a class="dropdown-signup" id="signup-link" href="https://twitter.com/signup?context=login" data-nav="signup">
+                        <small>Twitter は初めてですか?</small><span class="emphasize"> 今すぐ登録 &raquo;</span>
+                      </a>
+                      <ul class="dropdown-menu dropdown-form" id="signin-dropdown">
+                        <li class="dropdown-caret right">
+                          <span class="caret-outer"></span>
+                          <span class="caret-inner"></span>
+                        </li>
+                        <li>
+                          <form action="https://twitter.com/sessions" class="js-signin signin" method="post">
+                    <fieldset class="textbox">
+    <label class="username js-username">
+      <span>ユーザー名、またはメールアドレス</span>
+      <input class="js-username-field email-input" type="text" name="session[username_or_email]" autocomplete="on">
+    </label>
+    <label class="password js-password">
+      <span>パスワード</span>
+      <input class="js-password-field" type="password" value="" name="session[password]">
+    </label>
+  </fieldset>
+  <fieldset class="subchck">
+    <label class="remember">
+      <input type="checkbox" value="1" name="remember_me" checked="checked">
+      <span>保存する</span>
+    </label>
+    <button type="submit" class="btn submit">ログイン</button>
+  </fieldset>
