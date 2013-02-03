@@ -61,8 +61,14 @@
         <div id="menu">
           <ul>
             <li><%= link_to "ホーム", :root %></li>
+            <% if @current_user %>
+            <% if @page %>
+            <li><%= link_to "編集", root_url + "edit/" + @page.url %></li>
+            <% end %>
+            <% else %>
             <% @header_menu.each do |menu| %>
-            <li><%= link_to menu.title, menu.url %></li>
+            <li><%= link_to menu.title, root_url + menu.url %></li>
+            <% end %>
             <% end %>
           </ul>
         </div><!-- menu end -->
@@ -73,7 +79,7 @@
             <h2>サークルメニュー</h2>
             <ul>
               <% @circle_menu.each do |menu| %>
-              <li><%= link_to menu.title, menu.url %></li>
+              <li><%= link_to menu.title, root_url + menu.url %></li>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -81,7 +87,7 @@
             <h2>交流メニュー</h2>
             <ul>
               <% @communication_menu.each do |menu| %>
-              <li><%= link_to menu.title, menu.url %></li>
+              <li><%= link_to menu.title, root_url + menu.url %></li>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -89,7 +95,7 @@
             <h2>音ゲーコンテンツ</h2>
             <ul>
               <% @contents_menu.each do |menu| %>
-              <li><%= link_to menu.title, menu.url %></li>
+              <li><%= link_to menu.title, root_url + menu.url %></li>
               <% end %>
             </ul>
           </div><!-- section end -->

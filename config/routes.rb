@@ -1,11 +1,12 @@
 Beatech::Application.routes.draw do
-  root :to => 'top#index'
+  root :to => 'pages#frontpage'
   
   resources :pages
 #  resources :users
   resources :sessions
 
   # Wiki
+  match 'edit/:url' => 'pages#edit_page'
   match ':url' => 'pages#show_page'
   
   # The priority is based upon order of creation:

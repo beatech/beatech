@@ -33,12 +33,24 @@ class PagesController < ApplicationController
     end
   end
 
+  def frontpage
+    @page = Page.find_by_url("frontpage")
+    raise FOrbidden unless @page
+    @text = @page.text
+    @text = @text.gsub(/\n/, "<br />")
+    render "show_page"
+  end
+
   def show_page
     @page = Page.find_by_url(params[:url])
+    raise Forbidden unless @page
+    @text = @page.text
+    @text = @text.gsub(/\n/, "<br />")
+  end  
 
-    unless @page     
-      render :text => 'ページが見つかりません'
-    end
+  def edit_page
+    @page = Page.find_by_url(params[:url])
+    raise Forbidden unless @page
   end
 
   # GET /pages/1/edit

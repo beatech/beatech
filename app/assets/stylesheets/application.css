@@ -87,7 +87,6 @@ h1,h2,h3,h4,h5,h6 {
     width:960px;
 }
 
-/* 回り込み解除 */
 #contents:after {
     content:"";
     display:block;

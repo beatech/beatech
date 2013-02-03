@@ -22,4 +22,8 @@ class ApplicationController < ActionController::Base
     @contents_menu = Page.find(:all, :conditions => { :menu => 3})
     @header_menu = Page.find(:all, :conditions => { :menu => 4})
   end
+
+  def edit_link
+    "aaaa"
+  end
 end
