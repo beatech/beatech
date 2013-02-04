@@ -26,6 +26,7 @@ class PagesController < ApplicationController
   # GET /pages/new.json
   def new
     @page = Page.new
+    @page.limit = 0
 
     respond_to do |format|
       format.html # new.html.erb
@@ -35,9 +36,9 @@ class PagesController < ApplicationController
 
   def frontpage
     @page = Page.find_by_url("frontpage")
-    raise FOrbidden unless @page
+    raise Forbidden unless @page
     @text = @page.text
-    @text = @text.gsub(/\n/, "<br />")
+    @text = convert_wiki(@text)
     render "show_page"
   end
 
@@ -45,8 +46,35 @@ class PagesController < ApplicationController
     @page = Page.find_by_url(params[:url])
     raise Forbidden unless @page
     @text = @page.text
-    @text = @text.gsub(/\n/, "<br />")
-  end  
+    @text = convert_wiki(@text)
+  end
+
+  def convert_wiki(text)
+    text.gsub!(/<(.+?)>/, '\1')
+    text.gsub!(/\[\[(.+?)>(.+?)\]\]/, '<a href="\2">\1</a>')
+    text.gsub!(/\[\[(.+?):(.+?)\]\]/, '<a href="\2">\1</a>')
+    lines = text.split("\n")    
+
+    html = ""
+    lines.each do |line|
+      if /^\*\*\*/ =~ line
+        line.gsub!(/^\*\*\*/, "")
+        line = "<h4>" + line + "</h4>"
+      elsif /^\*\*/ =~ line
+        line.gsub!(/^\*\*/, "")
+        line = "<h3>" + line + "</h3>"
+      elsif /^\*/ =~ line
+        line.gsub!(/^\*/, "")
+        line = "<h2>" + line + "</h2>"
+      else
+        line += "<br>"
+      end
+        
+      html += line
+    end
+
+    return html
+  end
 
   def edit_page
     @page = Page.find_by_url(params[:url])
@@ -65,13 +93,13 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, :notice => 'Page was successfully created.' }
-        format.json { render :json => @page, :status => :created, :location => @page }
+        format.html { redirect_to root_url + @page.url, :notice => 'ページの作成に成功しました。' }
+        # format.json { render :json => root_url, :status => :created, :location => @page }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @page.errors, :status => :unprocessable_entity }
+        # format.json { render :json => @page.errors, :status => :unprocessable_entity }
       end
-    end
+    end                        
   end
 
   # PUT /pages/1
@@ -81,11 +109,11 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to @page, :notice => 'Page was successfully updated.' }
-        format.json { head :no_content }
+        format.html { redirect_to root_url + @page.url, :notice => 'ページを更新しました。' }
+        # format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @page.errors, :status => :unprocessable_entity }
+        # format.json { render :json => @page.errors, :status => :unprocessable_entity }
       end
     end
   end

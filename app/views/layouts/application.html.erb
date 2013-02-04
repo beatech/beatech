@@ -19,11 +19,11 @@
     <div id="top">
       <div id="box">
         <div id="header">
-          <h1><%= link_to "BEATECH", :root %></h1>
+          <h1 id="text-dropshadow"><%= link_to "BEATECH", :root %></h1>
           <div class="account">
             <% if @current_user %>
             <div class="dropdown pull-right">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= @current_user.account %> <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="text-dropshadow"><%= @current_user.account %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">プロフィールを編集</a></li>
                 <li><a href="#">設定</a></li>
@@ -33,7 +33,7 @@
             </div>
             <% else %>
             <div class="dropdown pull-right">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">ログイン<span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="text-dropshadow">ログイン<span class="caret"></span></a>
               <ul class="dropdown-menu" id="login">
                 <li>
                 <%= form_tag sessions_path do %>
@@ -62,7 +62,8 @@
           <ul>
             <li><%= link_to "ホーム", :root %></li>
             <% if @current_user %>
-            <% if @page %>
+            <li><%= link_to "ページ新規作成", root_url + "newpage" %></li>
+            <% if @page && @page.url%>
             <li><%= link_to "編集", root_url + "edit/" + @page.url %></li>
             <% end %>
             <% else %>
@@ -100,8 +101,23 @@
             </ul>
           </div><!-- section end -->
         </div><!-- subL end -->
+        
+        <% if flash[:notice] %>
+        <div id="main-alert">
+          <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%= flash[:notice] %>
+          </div>
+        </div>
+        <% end %>
+
         <div id="main">
-          <%= yield %>
+          <% if @page && @page.title %>
+          <h1><%= @page.title %></h1>
+          <% end %>
+          <div id="inner-main">
+            <%= yield %>
+          </div>
         </div><!-- main end-->
       </div><!-- contents end -->
       <div id="pageTop">

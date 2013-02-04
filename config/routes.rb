@@ -7,6 +7,7 @@ Beatech::Application.routes.draw do
 
   # Wiki
   match 'edit/:url' => 'pages#edit_page'
+  match 'newpage' => 'pages#new'
   match ':url' => 'pages#show_page'
   
   # The priority is based upon order of creation:

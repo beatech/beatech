@@ -16,7 +16,7 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :url %>
+    <%= f.label "ページアドレス(英数推奨)" %>
     <%= f.text_field :url %>
   </div>
   <div class="field">
@@ -26,7 +26,7 @@
 
   <div class="field">
     <%= f.label "本文" %>
-    <%= f.text_area :text, :class => "span8", :rows => "16" %>
+    <%= f.text_area :text, :class => "span8", :rows => "16", :maxlength => "30000"%>
   </div>
   <div class="actions">
     <%= f.submit "ページの更新", :class => "btn" %>

@@ -13,6 +13,6 @@ num = titles.size - 1
                :url => urls[idx],
                :menu => menus[idx].to_i,
                :limit => limits[idx].to_i,
-               :text => "<h2>" + titles[idx] + "</h2>" 
+               :text => "**" + titles[idx]
                )
 end
