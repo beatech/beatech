@@ -46,14 +46,32 @@ class PagesController < ApplicationController
             line = "<li>" + line + "</li>"
           end
           mode = M_UL
-        elsif /^\|/ =~ line      # |
-          line.gsub!(/^\|/, "<td>")
-          line.gsub!(/\|$/, "</td>")
-          line.gsub!(/\|/, "</td><td>")
+        elsif /^\|/ =~ line      # |          
+          line.strip!
+          bThead = false
+          if /h$/ =~ line
+            line.gsub!(/h$/, "")
+            bThead = true
+          end
+
+          if bThead == true
+            line.gsub!(/^\|/, "<th>")
+            line.gsub!(/\|$/, "</th>")
+            line.gsub!(/\|/, "</th><th>")
+          else
+            line.gsub!(/^\|/, "<td>")
+            line.gsub!(/\|$/, "</td>")
+            line.gsub!(/\|/, "</td><td>")
+          end
           line = "<tr>" + line + "</tr>"
           if mode != M_TABLE
             html = add_finish_tag(mode, html)
-            line = '<table border="1"><tbody>' + line
+            html += '<table class="style-table">'
+            if bThead == true
+              line = '<thead>' + line + '</thead><tbody>'
+            else              
+              line = '<tbody>' + line
+            end
           end
           mode = M_TABLE
         else

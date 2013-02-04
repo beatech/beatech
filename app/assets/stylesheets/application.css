@@ -43,11 +43,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 ul, ol {
-    margin: 0 0 0px 20px;
-}
-
-.alert {
-    margin-bottom: 10px;
+    margin: 0 0 5px 20px;
 }
 
 /* ========TEMPLATE LAYOUT======== */
@@ -205,7 +201,6 @@ ul, ol {
     color:#ddd;
 }
 
-/* 回り込み解除 */
 #menu ul:after {
     content:"";
     display:block;
@@ -358,4 +353,46 @@ ul, ol {
     font-style:normal;
     font-size:11px;
     border-top:1px solid #ccc;
+}
+
+/* ========ADDITIONAL LAYOUT======== */
+.style-table {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+
+table tr:nth-child(odd) td {
+    background: #fff;
+}
+
+table tr:nth-child(even) td {
+    background: #f3f3f3;
+}
+
+.style-table thead th {
+
+	background: #f6f6f6;    
+
+	background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+	background: linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  
+	color: #666;
+	white-space: nowrap;
+}
+
+table tr:hover td{
+    background: #fdfbe0;
+}
+
+.style-table td, th {
+    padding: 5px 10px;
+	  border: 1px solid #aaa;
+}
+
+.alert {
+    margin-bottom: 10px;
 }
