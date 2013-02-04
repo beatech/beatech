@@ -1,5 +1,90 @@
 # -*- coding: utf-8 -*-
 class PagesController < ApplicationController
+  
+  # Definition of the Mode
+  M_START = 0
+  M_UL = 1
+  M_P = 2
+  M_TABLE = 3
+
+  def convert_wiki(text)
+    text.gsub!(/<(.+?)>/, '\1')                              # remove <tag>
+    text.gsub!(/\[\[(.+?)>(.+?)\]\]/, '<a href="\2">\1</a>') # [[>]]
+    text.gsub!(/\[\[(.+?):(.+?)\]\]/, '<a href="\2">\1</a>') # [[:]]
+    text.gsub!(/[^"](http:\/\/[0-9A-Za-z\.\/#]+)/, '<a href="\1">\1</a>') # http://
+
+    html = ""
+    mode = M_START
+    lines = text.split("\n")
+    lines.each do |line|
+      # Non-Combo Part
+      if /^\*/ =~ line || /----+/ =~ line
+        html = add_finish_tag(mode, html)
+        
+        if /^\*\*\*/ =~ line      # ***
+          line.gsub!(/^\*\*\*/, "") 
+          line = "<h4>" + line + "</h4>"
+        elsif /^\*\*/ =~ line     # **
+          line.gsub!(/^\*\*/, "")
+          line = "<h3>" + line + "</h3>"
+        elsif /^\*/ =~ line       # *
+          line.gsub!(/^\*/, "")
+          line = "<h2>" + line + "</h2>"
+        elsif /----+/ =~ line     # ----
+          line.gsub!(/----+/, '<hr>')
+        end
+        mode = M_START
+        
+      # Combo Part
+      else        
+        if /^-[^-]/ =~ line    # -
+          line.gsub!(/^-/, "")          
+          if mode != M_UL
+            html = add_finish_tag(mode, html)
+            line = "<ul><li>" + line + "</li>"
+          else
+            line = "<li>" + line + "</li>"
+          end
+          mode = M_UL
+        elsif /^\|/ =~ line      # |
+          line.gsub!(/^\|/, "<td>")
+          line.gsub!(/\|$/, "</td>")
+          line.gsub!(/\|/, "</td><td>")
+          line = "<tr>" + line + "</tr>"
+          if mode != M_TABLE
+            html = add_finish_tag(mode, html)
+            line = '<table border="1"><tbody>' + line
+          end
+          mode = M_TABLE
+        else
+          if mode != M_P
+            html = add_finish_tag(mode, html)
+            line = "<p>" + line
+          end
+          line += "<br>"
+          mode = M_P
+        end
+      end
+      
+      html += line
+    end
+
+    html = add_finish_tag(mode, html)
+    
+    return html
+  end
+
+  def add_finish_tag(mode, html)
+    if mode == M_UL
+      html += "</ul>"
+    elsif mode == M_P
+      html += "</p>"
+    elsif mode == M_TABLE
+      html += "</tbody></table>"
+    end
+    return html
+  end
+  
   # GET /pages
   # GET /pages.json
   def index
@@ -47,33 +132,6 @@ class PagesController < ApplicationController
     raise Forbidden unless @page
     @text = @page.text
     @text = convert_wiki(@text)
-  end
-
-  def convert_wiki(text)
-    text.gsub!(/<(.+?)>/, '\1')
-    text.gsub!(/\[\[(.+?)>(.+?)\]\]/, '<a href="\2">\1</a>')
-    text.gsub!(/\[\[(.+?):(.+?)\]\]/, '<a href="\2">\1</a>')
-    lines = text.split("\n")    
-
-    html = ""
-    lines.each do |line|
-      if /^\*\*\*/ =~ line
-        line.gsub!(/^\*\*\*/, "")
-        line = "<h4>" + line + "</h4>"
-      elsif /^\*\*/ =~ line
-        line.gsub!(/^\*\*/, "")
-        line = "<h3>" + line + "</h3>"
-      elsif /^\*/ =~ line
-        line.gsub!(/^\*/, "")
-        line = "<h2>" + line + "</h2>"
-      else
-        line += "<br>"
-      end
-        
-      html += line
-    end
-
-    return html
   end
 
   def edit_page

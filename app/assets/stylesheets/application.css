@@ -22,6 +22,10 @@ br {
     letter-spacing:normal;
 }
 
+hr {
+    border-top:1px dotted #000;
+}
+
 a {
     color:#333;
 }
@@ -36,6 +40,10 @@ img {
 
 h1,h2,h3,h4,h5,h6 {
     margin:0;
+}
+
+ul, ol {
+    margin: 0 0 0px 20px;
 }
 
 .alert {
