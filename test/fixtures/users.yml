@@ -2,8 +2,18 @@
 
 one:
   account: MyString
+  name: MyString
   password_digest: MyString
+  uid: 1
+  year: 1
+  state: 1
+  profile: MyString
 
 two:
   account: MyString
+  name: MyString
   password_digest: MyString
+  uid: 1
+  year: 1
+  state: 1
+  profile: MyString

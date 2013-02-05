@@ -25,8 +25,8 @@
             <div class="dropdown pull-right">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="text-dropshadow"><%= @current_user.account %> <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="#">プロフィールを編集</a></li>
-                <li><a href="#">設定</a></li>
+                <li><%= link_to "プロフィールを編集", root_url + "settings/profile" %></li>
+                <li><%= link_to "パスワード変更", root_url + "settings/password" %></li>
                 <li class="divider"></li>
                 <li><%= link_to 'ログアウト', session_path(@current_user.account), :method => :delete %></li>
               </ul>
@@ -50,8 +50,8 @@
                 </li>
                 <li class="divider"></li>
                 <li>
-                  または<br />
-                  <button class="btn btn-info">Twitterでログイン</button>
+                  または<br /><span>
+                  <a href="/auth/twitter" class="btn btn-info">Twitterでログイン</a></span>
                 </li>
               </ul>
             </div>
@@ -80,7 +80,9 @@
             <h2>サークルメニュー</h2>
             <ul>
               <% @circle_menu.each do |menu| %>
+              <% if @current_user == nil || menu.url != "registration" %>
               <li><%= link_to menu.title, root_url + menu.url %></li>
+              <% end %>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -114,6 +116,8 @@
         <div id="main">
           <% if @page && @page.title %>
           <h1><%= @page.title %></h1>
+          <% elsif @title %>
+          <h1><%= @title %></h1>
           <% end %>
           <div id="inner-main">
             <%= yield %>

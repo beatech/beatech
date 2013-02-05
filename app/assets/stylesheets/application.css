@@ -137,11 +137,27 @@ ul, ol {
 
 #header a {
     color:#FFF;
-    text-decoration:none;
-
 }
 
-#header a:hover {
+#header h1 a {
+    color:#FFF;
+    text-decoration:none;
+}
+
+#header li a {
+    color:#000;
+    text-decoration:none;
+}
+
+#header span a {
+    color:#FFF;
+}
+
+#header li a:hover {
+    color:#fff;
+}
+
+#header h1 a:hover {
     color:#ddd;
 }
 
@@ -156,14 +172,6 @@ ul, ol {
   border-top:   solid 4px #FFF;
   border-left:  solid 4px transparent;
   border-right: solid 4px transparent;
-}
-
-#header li a {
-    color:#000;
-}
-
-#header li a:hover {
-    color:#FFF;
 }
 
 /* ========MENU CUSTOMIZE======== */
@@ -361,11 +369,11 @@ ul, ol {
     border-collapse: collapse;
 }
 
-table tr:nth-child(odd) td {
+.style-table table tr:nth-child(odd) td {
     background: #fff;
 }
 
-table tr:nth-child(even) td {
+.style-table table tr:nth-child(even) td {
     background: #f3f3f3;
 }
 
@@ -384,7 +392,7 @@ table tr:nth-child(even) td {
 	white-space: nowrap;
 }
 
-table tr:hover td{
+.style-table table tr:hover td{
     background: #fdfbe0;
 }
 

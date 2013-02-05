@@ -1,6 +1,19 @@
+# -*- coding: utf-8 -*-
 class SessionsController < ApplicationController
   def index
     render 'new'
+  end
+
+  def twitter_create
+    auth = request.env["omniauth.auth"]
+    user = User.find_by_uid(auth["uid"])
+
+    if user
+      session[:account] = user.account
+      redirect_to root_url
+    else
+      redirect_to "/registration", :notice => "ご使用のアカウント(" + auth["info"]["nickname"] + ")はBEATECHアカウントに関連付けられていないようです。お手数ですが、まずBEATECHアカンウントを作成してください。"
+    end
   end
 
   def create

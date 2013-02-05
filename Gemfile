@@ -39,3 +39,4 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 # gem 'ruby-debug'
 
 gem "omniauth"
+gem "omniauth-twitter"

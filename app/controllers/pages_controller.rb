@@ -130,6 +130,7 @@ class PagesController < ApplicationController
   def new
     @page = Page.new
     @page.limit = 0
+    @title = "ページの新規作成"
 
     respond_to do |format|
       format.html # new.html.erb

@@ -1,5 +1,52 @@
-<h1>New user</h1>
+<%= form_for @user, :url => {:action => 'create_user'} do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-<%= render 'form' %>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-<%= link_to 'Back', users_path %>
+  <div class="field">
+    <%= f.label "BEATECH アカウント" %>
+    <%= f.text_field :account %>
+  </div>
+  <div class="field">
+    <%= f.label "名前" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label "パスワード" %>
+    <%= f.text_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label "パスワード確認" %>
+    <%= f.text_field :password_confirmation %>
+  </div>
+
+  <!--
+  <div class="field">
+    <%= f.label :uid %>
+    <%= f.number_field :uid %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br />
+    <%= f.number_field :year %>
+  </div>
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.number_field :state %>
+  </div>
+  <div class="field">
+    <%= f.label :profile %><br />
+    <%= f.text_field :profile %>
+  </div>
+  -->
+  <div class="actions">
+    <%= f.submit "入部する", :class => "btn" %>
+  </div>
+<% end %>

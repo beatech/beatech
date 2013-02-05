@@ -1,9 +1,25 @@
 Beatech::Application.routes.draw do
   root :to => 'pages#frontpage'
-  
+
+  # Overrides
+  match "/registration" => "users#new"
+  match "/registration/create" => "users#create_user"
+
+  # Users
+  match "/users/:account" => "users#showprofile"
+   
   resources :pages
-#  resources :users
+  resources :users
   resources :sessions
+
+  # Settings
+  match "/settings/profile" => "users#editprofile"
+  match "/settings/password" => "users#editpassword"
+  match "/settings/update/profile" => "users#update_profile"
+  match "/settings/update/password" => "users#update_password"
+
+  # Authentication
+  match "/auth/twitter/callback" => "sessions#twitter_create"
 
   # Wiki
   match 'edit/:url' => 'pages#edit_page'
