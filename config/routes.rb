@@ -4,13 +4,13 @@ Beatech::Application.routes.draw do
   # Overrides
   match "/registration" => "users#new"
   match "/registration/create" => "users#create_user"
-
-  # Users
-  match "/users/:account" => "users#showprofile"
    
   resources :pages
   resources :users
   resources :sessions
+
+  # Users
+  match "/users/:account" => "users#showprofile"
 
   # Settings
   match "/settings/profile" => "users#editprofile"
