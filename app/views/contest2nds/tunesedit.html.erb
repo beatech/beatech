@@ -1,7 +1,8 @@
 <h2><%= @order %>組の選曲の編集</h2>
 
 <%= form_tag :action => :tunesupdate do %>
-  <% @tunes.each_with_index do |@tune, i| %>
+<% i = 0 %>
+  <% @tunes.each do |@tune| %>
     <% team_char = 'A' %>
     <% team_char = 'B' if i == 1 %>
     <% team_char = 'C' if i == 2 %>
@@ -17,6 +18,7 @@
     <%= hidden_field "tune[]", :order, :index => i %>
     <%= hidden_field "tune[]", :team, :index => i %>
     <br>
+    <% i += 1 %>
   <% end %>
   
   <div class="actions">
