@@ -8,13 +8,14 @@
     <h4><%= team_char %>チーム</h4>
     <div class="field">
       曲名<br>
-      <%= text_field "tune[]", :name, :index => i %>
+      <%= text_field "tune[]", :music, :index => i %>
     </div>
     <div class="field">
       ノーツ数<br>
       <%= number_field "tune[]", :notes, :index => i %>
     </div>
     <%= hidden_field "tune[]", :order, :index => i %>
+    <%= hidden_field "tune[]", :team, :index => i %>
     <br>
   <% end %>
   
