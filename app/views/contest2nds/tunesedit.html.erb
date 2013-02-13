@@ -2,7 +2,8 @@
 
 <%= form_tag :action => :tunesupdate do %>
 <% i = 0 %>
-  <% @tunes.each do |@tune| %>
+  <% @tunes.each do |tune| %>
+  @tune = tune
     <% team_char = 'A' %>
     <% team_char = 'B' if i == 1 %>
     <% team_char = 'C' if i == 2 %>
