@@ -12,6 +12,7 @@ class CreateContest2nds < ActiveRecord::Migration
       t.integer :c_bp
       t.string :music
       t.integer :notes
+      t.string :url
 
       t.timestamps
     end

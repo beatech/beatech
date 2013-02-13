@@ -1,0 +1,25 @@
+<h1>Listing contestdates</h1>
+
+<table>
+  <tr>
+    <th>Order</th>
+    <th>Place</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @contestdates.each do |contestdate| %>
+  <tr>
+    <td><%= contestdate.order %></td>
+    <td><%= contestdate.place %></td>
+    <td><%= link_to 'Show', contestdate %></td>
+    <td><%= link_to 'Edit', edit_contestdate_path(contestdate) %></td>
+    <td><%= link_to 'Destroy', contestdate, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Contestdate', new_contestdate_path %>

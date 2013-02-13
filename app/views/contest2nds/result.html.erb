@@ -1,0 +1,252 @@
+<h4>目次</h4>
+<ul>
+  <li><a href="#rule">ルール</a></li>
+  <li><a href="#team">チーム分け<% if @current_user %>(対戦結果編集)<% end %></a></li>
+  <li><a href="#tunes">選曲</a></li>
+  <li><a href="#result">試合結果</a></li>
+</ul>
+<br>
+<h4 id="rule">ルール</h4>
+<p>参加する部員を3つのチームに分け、実力の近い人同士で3人のグループを作って対戦します。
+<br>チーム全体の合計EX SCOREによって勝敗を決定します。
+<br>スコアの集計にリザルト画面を利用するので、リザルトの撮影は忘れないでください。
+<br>選曲はそれぞれのチームから、1人1曲ずつ計3曲を指定します。
+<br>禁止オプションはオートスクラッチ、レガシーです。
+<br>また、開催場所・日程は様々な都合上、各グループごとに決定して行ないます。
+<br>観戦は自由ですが、あまり関係のない人に迷惑がかからないよう空気を読んで行ないましょう。
+<br>
+<br></p>
+
+<h4 id="team">チーム分け<% if @current_user %>(対戦結果編集)<% end %></h4>
+<% if @current_user %>
+<p>対戦結果の編集はこの表の名前をクリックして行なってください。</p>
+<% end %>
+
+<table class="style-table">
+  <thead>
+  <tr>
+    <th>対戦組</th>
+    <th>Aチーム</th>
+    <th>Bチーム</th>
+    <th>Cチーム</th>
+    <th>日程・会場</th>
+    <% if @current_user %>
+    <th>会場編集</th>
+    <% end %>
+  </tr>
+  </thead>
+<tbody>
+<% (@contestdates.size).times do |i| %>
+  <tr>
+    <td><%= @contestdates[i].order %>組</td>
+    <td><%= @a_team[i].name %></td>
+    <td><%= @b_team[i].name %></td>
+    <td><%= @c_team[i].name %></td>
+    <td><%= @contestdates[i].place %></td>
+    <% if @current_user %>
+    <td><%= link_to 'Edit', edit_contestdate_path(@contestdates[i]) %></td>
+    <% end %>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<br />
+<br />
+
+<h4 id="tunes">選曲</h4>
+
+<table class="style-table">
+  <thead>
+  <tr>
+    <th>対戦組</th>
+    <th colspan="2">Aチーム</th>
+    <th colspan="2">Bチーム</th>
+    <th colspan="2">Cチーム</th>
+    <% if @current_user %>
+    <th>編集</th>
+    <% end %>
+  </tr>
+  </thead>
+<tbody>
+<% (@contestdates.size).times do |i| %>
+  <tr>
+    <td><%= @contestdates[i].order %>組</td>
+    <td nowrap><small><%= @a_team[i].name %></small></td>
+    <td><small>BLACK.by X-Cross Fade(A)</small></td>
+    <td nowrap><small><%= @b_team[i].name %></small></td>
+    <td><small>BLACK.by X-Cross Fade(A)</small></td>
+    <td nowrap><small><%= @c_team[i].name %></small></td>
+    <td><small>凛として咲く花の如く(H)</small></td>
+    <% if @current_user %>
+    <td><%= link_to 'Edit', root_url + 'contest2nd/tunesedit/' + (i + 1).to_s %></td>
+    <% end %>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<br />
+<br />
+
+
+<h4 id="result">試合結果</h4>
+<p>名前をクリックするとその人のプレー動画を見ることができます。
+<% if @current_user %>
+<br>試合結果の編集は<a href="#team">こちら</a>から行なってください。
+<% end %>
+</p>
+<ul><li>EX SCORE</li></ul>
+<table class="style-table">
+  <thead>
+    <tr>
+      <th colspan="5">Aチーム</th>
+      <th colspan="5">Bチーム</th>
+      <th colspan="5">Cチーム</th>
+    </tr>
+    <tr>
+      <% 3.times do %>
+      <th>名前</th>
+      <th>A曲</th>
+      <th>B曲</th>
+      <th>C曲</th>
+      <th>合計</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% (@a_team.size).times do |i| %>
+    <tr>
+
+      <td><%= @a_team[i].name %></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td><%= @b_team[i].name %></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td><%= @c_team[i].name %></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<br />
+
+<ul><li>スコアレート</li></ul>
+<table class="style-table">
+  <thead>
+    <tr>
+      <th colspan="5">Aチーム</th>
+      <th colspan="5">Bチーム</th>
+      <th colspan="5">Cチーム</th>
+    </tr>
+    <tr>
+      <% 3.times do %>
+      <th>名前</th>
+      <th>A曲</th>
+      <th>B曲</th>
+      <th>C曲</th>
+      <th>合計</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% 3.times do %>
+      <td>のりみそ</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>9000</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+
+<ul><li>MISS COUNT</li></ul>
+<table class="style-table">
+  <thead>
+    <tr>
+      <th colspan="5">Aチーム</th>
+      <th colspan="5">Bチーム</th>
+      <th colspan="5">Cチーム</th>
+    </tr>
+    <tr>
+      <% 3.times do %>
+      <th>名前</th>
+      <th>A曲</th>
+      <th>B曲</th>
+      <th>C曲</th>
+      <th>合計</th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <% 3.times do %>
+      <td>のりみそ</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>3000</td>
+      <td>9000</td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+<br />
+
+<!--
+<table class="style-table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Team</th>
+    <th>Order</th>
+    <th>A score</th>
+    <th>A bp</th>
+    <th>B score</th>
+    <th>B bp</th>
+    <th>C score</th>
+    <th>C bp</th>
+    <th>Music</th>
+    <th>Notes</th>
+    <th></th>
+  </tr>
+  </thead>
+<tbody>
+<% @contest2nds.each do |contest2nd| %>
+  <tr>
+    <td><%= contest2nd.name %></td>
+    <td><%= contest2nd.team %></td>
+    <td><%= contest2nd.order %></td>
+    <td><%= contest2nd.a_score %></td>
+    <td><%= contest2nd.a_bp %></td>
+    <td><%= contest2nd.b_score %></td>
+    <td><%= contest2nd.b_bp %></td>
+    <td><%= contest2nd.c_score %></td>
+    <td><%= contest2nd.c_bp %></td>
+    <td><%= contest2nd.music %></td>
+    <td><%= contest2nd.notes %></td>
+    <td><%= link_to 'Edit', edit_contest2nd_path(contest2nd) %></td>
+  </tr>
+<% end %>
+-->
+</tbody>
+</table>
+
+<br />
+
+<!--<%= link_to 'New Contest2nd', new_contest2nd_path %>-->

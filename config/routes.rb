@@ -1,16 +1,20 @@
 Beatech::Application.routes.draw do
-  resources :contest2nds
-
-
   root :to => 'pages#frontpage'
+  
+  resources :pages
+  resources :users
+  resources :sessions
+  resources :contest2nds
+  resources :contestdates
 
   # Overrides
   match "/registration" => "users#new"
   match "/registration/create" => "users#create_user"
-   
-  resources :pages
-  resources :users
-  resources :sessions
+
+  # Contest2nd
+  match "/contest2nd" => "contest2nds#result"
+  match "/contest2nd/tunesedit/:order" => "contest2nds#tunesedit"
+  match "/contest2nd/tunesupdate" => "contest2nds#tunesupdate"
 
   # Users
   match "/users/:account" => "users#showprofile"

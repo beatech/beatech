@@ -1,6 +1,6 @@
-<h1>Listing contest2nds</h1>
 
-<table>
+<table class="style-table">
+  <thead>
   <tr>
     <th>Name</th>
     <th>Team</th>
@@ -13,11 +13,11 @@
     <th>C bp</th>
     <th>Music</th>
     <th>Notes</th>
-    <th></th>
-    <th></th>
+    <th>Url</th>
     <th></th>
   </tr>
-
+  </thead>
+<tbody>
 <% @contest2nds.each do |contest2nd| %>
   <tr>
     <td><%= contest2nd.name %></td>
@@ -31,13 +31,15 @@
     <td><%= contest2nd.c_bp %></td>
     <td><%= contest2nd.music %></td>
     <td><%= contest2nd.notes %></td>
-    <td><%= link_to 'Show', contest2nd %></td>
+    <td><%= contest2nd.url %></td>
+<!--    <td><%= link_to 'Show', contest2nd %></td> -->
     <td><%= link_to 'Edit', edit_contest2nd_path(contest2nd) %></td>
-    <td><%= link_to 'Destroy', contest2nd, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+<!--    <td><%= link_to 'Destroy', contest2nd, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>-->
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Contest2nd', new_contest2nd_path %>
+<!--<%= link_to 'New Contest2nd', new_contest2nd_path %>-->

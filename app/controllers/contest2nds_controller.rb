@@ -1,8 +1,45 @@
+# -*- coding: utf-8 -*-
 class Contest2ndsController < ApplicationController
+  def result
+    @contest2nds = Contest2nd.all
+    @contestdates = Contestdate.all
+    @a_team = Contest2nd.find(:all, :conditions => {:team => 'A'})
+    @b_team = Contest2nd.find(:all, :conditions => {:team => 'B'})
+    @c_team = Contest2nd.find(:all, :conditions => {:team => 'C'})
+    @title = '第二回部内大会'
+  end
+
+  def tunesedit
+    @order = params[:order]
+    @tunes = Array.new
+    @a_team = Contest2nd.find(:all, :conditions => {:team => 'A', :order => @order})
+    @tunes[0] = @a_team[0]
+    @b_team = Contest2nd.find(:all, :conditions => {:team => 'B', :order => @order})
+    @tunes[1] = @b_team[0]
+    @c_team = Contest2nd.find(:all, :conditions => {:team => 'C', :order => @order})
+    @tunes[2] = @c_team[0]
+  end
+
+  def tunesupdate
+    @contest2nd = Contest2nd.find(params[:id])
+
+    respond_to do |format|
+      if @contest2nd.update_attributes(params[:contest2nd])
+        format.html { redirect_to @contest2nd, :notice => 'Contest2nd was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render :action => "edit" }
+        format.json { render :json => @contest2nd.errors, :status => :unprocessable_entity }
+      end
+    end
+    
+  end
+  
   # GET /contest2nds
   # GET /contest2nds.json
   def index
     @contest2nds = Contest2nd.all
+    @title = 'データ編集'
 
     respond_to do |format|
       format.html # index.html.erb
