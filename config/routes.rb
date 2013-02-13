@@ -1,4 +1,7 @@
 Beatech::Application.routes.draw do
+  resources :contest2nds
+
+
   root :to => 'pages#frontpage'
 
   # Overrides

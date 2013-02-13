@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  team: MyString
+  order: 1
+  a_score: 1
+  a_bp: 1
+  b_score: 1
+  b_bp: 1
+  c_score: 1
+  c_bp: 1
+  music: MyString
+  notes: 1
+
+two:
+  name: MyString
+  team: MyString
+  order: 1
+  a_score: 1
+  a_bp: 1
+  b_score: 1
+  b_bp: 1
+  c_score: 1
+  c_bp: 1
+  music: MyString
+  notes: 1

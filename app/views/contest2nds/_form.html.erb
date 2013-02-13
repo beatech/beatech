@@ -1,0 +1,61 @@
+<%= form_for(@contest2nd) do |f| %>
+  <% if @contest2nd.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@contest2nd.errors.count, "error") %> prohibited this contest2nd from being saved:</h2>
+
+      <ul>
+      <% @contest2nd.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :team %><br />
+    <%= f.text_field :team %>
+  </div>
+  <div class="field">
+    <%= f.label :order %><br />
+    <%= f.number_field :order %>
+  </div>
+  <div class="field">
+    <%= f.label :a_score %><br />
+    <%= f.number_field :a_score %>
+  </div>
+  <div class="field">
+    <%= f.label :a_bp %><br />
+    <%= f.number_field :a_bp %>
+  </div>
+  <div class="field">
+    <%= f.label :b_score %><br />
+    <%= f.number_field :b_score %>
+  </div>
+  <div class="field">
+    <%= f.label :b_bp %><br />
+    <%= f.number_field :b_bp %>
+  </div>
+  <div class="field">
+    <%= f.label :c_score %><br />
+    <%= f.number_field :c_score %>
+  </div>
+  <div class="field">
+    <%= f.label :c_bp %><br />
+    <%= f.number_field :c_bp %>
+  </div>
+  <div class="field">
+    <%= f.label :music %><br />
+    <%= f.text_field :music %>
+  </div>
+  <div class="field">
+    <%= f.label :notes %><br />
+    <%= f.number_field :notes %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
