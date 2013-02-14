@@ -52,7 +52,7 @@ class Contest2ndsController < ApplicationController
       
       total_bp = b.a_bp + b.b_bp + b.c_bp
       b["total_bp"] = total_bp
-      @a_total_bp += total_bp
+      @b_total_bp += total_bp
       
       b["a_rate"] = 0
       b["b_rate"] = 0
@@ -87,7 +87,7 @@ class Contest2ndsController < ApplicationController
       c["b_rate"] = c.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
       c["c_rate"] = c.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       c["total_rate"] = c["a_rate"] + c["b_rate"] + c["c_rate"]
-      @b_total_rate += c["total_rate"]
+      @c_total_rate += c["total_rate"]
            
       c["a_rate"] = (c["a_rate"] / 10).to_s + '.' + (c["a_rate"] % 10).to_s
       c["b_rate"] = (c["b_rate"] / 10).to_s + '.' + (c["b_rate"] % 10).to_s
