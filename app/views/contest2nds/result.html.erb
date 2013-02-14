@@ -184,7 +184,8 @@
   </tbody>
 </table>
 <br />
-<!--
+
+
 <ul><li>スコアレート</li></ul>
 <table class="style-table">
   <thead>
@@ -205,19 +206,49 @@
   </thead>
 
   <tbody>
+    <% (@a_team.size).times do |i| %>
     <tr>
-      <% 3.times do %>
-      <td>のりみそ</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>3000</td>
-      <td>9000</td>
-      <% end %>
+      <td>
+        <% if @a_team[i].url != nil && @a_team[i].url.length > 0 %>
+        <%= link_to @a_team[i].name, @a_team[i].url %>
+        <% else %>
+        <%= @a_team[i].name %>
+        <% end %>
+      </td>
+      <td><%= @a_team[i]["a_rate"] %></td>
+      <td><%= @a_team[i]["b_rate"] %></td>
+      <td><%= @a_team[i]["c_rate"] %></td>
+      <td><%= @a_team[i]["total_rate"] %></td>
+
+      <td>
+        <% if @b_team[i].url != nil && @b_team[i].url.length > 0 %>
+        <%= link_to @b_team[i].name, @b_team[i].url %>
+        <% else %>
+        <%= @b_team[i].name %>
+        <% end %>
+      </td>
+      <td><%= @b_team[i]["a_rate"] %></td>
+      <td><%= @b_team[i]["b_rate"] %></td>
+      <td><%= @b_team[i]["c_rate"] %></td>
+      <td><%= @b_team[i]["total_rate"] %></td>
+      
+      <td>
+        <% if @c_team[i].url != nil && @c_team[i].url.length > 0 %>
+        <%= link_to @c_team[i].name, @c_team[i].url %>
+        <% else %>
+        <%= @c_team[i].name %>
+        <% end %>
+      </td>
+      <td><%= @c_team[i]["a_rate"] %></td>
+      <td><%= @c_team[i]["b_rate"] %></td>
+      <td><%= @c_team[i]["c_rate"] %></td>
+      <td><%= @c_team[i]["total_rate"] %></td>
     </tr>
+    <% end %>
   </tbody>
 </table>
 <br />
--->
+
 
 <ul><li>MISS COUNT</li></ul>
 <table class="style-table">

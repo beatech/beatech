@@ -20,7 +20,7 @@ class Contest2ndsController < ApplicationController
     @c_total_bp = 0
 
     # 合計計算
-    @a_team.each do |a|
+    @a_team.each_with_index do |a, i|
       total_score = a.a_score + a.b_score + a.c_score
       a["total_score"] = total_score
       @a_total_score += total_score
@@ -28,9 +28,18 @@ class Contest2ndsController < ApplicationController
       total_bp = a.a_bp + a.b_bp + a.c_bp
       a["total_bp"] = total_bp
       @a_total_bp += total_bp
+
+      a["a_rate"] = 0
+      a["b_rate"] = 0
+      a["c_rate"] = 0
+
+      a["a_rate"] = a.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
+      a["b_rate"] = a.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
+      a["c_rate"] = a.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      a["total_rate"] = a["a_rate"] + a["b_rate"] + a["c_rate"]
     end
 
-    @b_team.each do |b|
+    @b_team.each_with_index do |b, i|
       total_score = b.a_score + b.b_score + b.c_score
       b["total_score"] = total_score
       @b_total_score += total_score
@@ -38,9 +47,18 @@ class Contest2ndsController < ApplicationController
       total_bp = b.a_bp + b.b_bp + b.c_bp
       b["total_bp"] = total_bp
       @a_total_bp += total_bp
+      
+      b["a_rate"] = 0
+      b["b_rate"] = 0
+      b["c_rate"] = 0
+
+      b["a_rate"] = b.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
+      b["b_rate"] = b.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
+      b["c_rate"] = b.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      b["total_rate"] = b["a_rate"] + b["b_rate"] + b["c_rate"]
     end
 
-    @c_team.each do |c|
+    @c_team.each_with_index do |c, i|
       total_score = c.a_score + c.b_score + c.c_score
       c["total_score"] = total_score
       @c_total_score += total_score
@@ -48,6 +66,15 @@ class Contest2ndsController < ApplicationController
       total_bp = c.a_bp + c.b_bp + c.c_bp
       c["total_bp"] = total_bp
       @c_total_bp += total_bp
+            
+      c["a_rate"] = 0
+      c["b_rate"] = 0
+      c["c_rate"] = 0
+
+      c["a_rate"] = c.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
+      c["b_rate"] = c.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
+      c["c_rate"] = c.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      c["total_rate"] = c["a_rate"] + c["b_rate"] + c["c_rate"]
     end
     
     @title = '第二回部内大会'
