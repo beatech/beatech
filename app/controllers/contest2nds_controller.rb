@@ -33,10 +33,15 @@ class Contest2ndsController < ApplicationController
       a["b_rate"] = 0
       a["c_rate"] = 0
 
-      a["a_rate"] = a.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
-      a["b_rate"] = a.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
-      a["c_rate"] = a.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      a["a_rate"] = a.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      a["b_rate"] = a.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      a["c_rate"] = a.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       a["total_rate"] = a["a_rate"] + a["b_rate"] + a["c_rate"]
+
+      a["a_rate"] = (a["a_rate"] / 10).to_s + '.' + (a["a_rate"] % 10).to_s
+      a["b_rate"] = (a["b_rate"] / 10).to_s + '.' + (a["b_rate"] % 10).to_s
+      a["c_rate"] = (a["c_rate"] / 10).to_s + '.' + (a["c_rate"] % 10).to_s
+      a["total_rate"] = (a["total_rate"] / 10).to_s + '.' + (a["total_rate"] % 10).to_s
     end
 
     @b_team.each_with_index do |b, i|
@@ -51,11 +56,16 @@ class Contest2ndsController < ApplicationController
       b["a_rate"] = 0
       b["b_rate"] = 0
       b["c_rate"] = 0
-
-      b["a_rate"] = b.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
-      b["b_rate"] = b.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
-      b["c_rate"] = b.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      
+      b["a_rate"] = b.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      b["b_rate"] = b.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      b["c_rate"] = b.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       b["total_rate"] = b["a_rate"] + b["b_rate"] + b["c_rate"]
+     
+      b["a_rate"] = (b["a_rate"] / 10).to_s + '.' + (b["a_rate"] % 10).to_s
+      b["b_rate"] = (b["b_rate"] / 10).to_s + '.' + (b["b_rate"] % 10).to_s
+      b["c_rate"] = (b["c_rate"] / 10).to_s + '.' + (b["c_rate"] % 10).to_s
+      b["total_rate"] = (b["total_rate"] / 10).to_s + '.' + (b["total_rate"] % 10).to_s
     end
 
     @c_team.each_with_index do |c, i|
@@ -70,11 +80,16 @@ class Contest2ndsController < ApplicationController
       c["a_rate"] = 0
       c["b_rate"] = 0
       c["c_rate"] = 0
-
-      c["a_rate"] = c.a_score / @a_team[i].notes * 100 unless @a_team[i].notes == 0
-      c["b_rate"] = c.b_score / @b_team[i].notes * 100 unless @b_team[i].notes == 0
-      c["c_rate"] = c.c_score / @c_team[i].notes * 100 unless @c_team[i].notes == 0
+      
+      c["a_rate"] = c.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      c["b_rate"] = c.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      c["c_rate"] = c.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       c["total_rate"] = c["a_rate"] + c["b_rate"] + c["c_rate"]
+           
+      c["a_rate"] = (c["a_rate"] / 10).to_s + '.' + (c["a_rate"] % 10).to_s
+      c["b_rate"] = (c["b_rate"] / 10).to_s + '.' + (c["b_rate"] % 10).to_s
+      c["c_rate"] = (c["c_rate"] / 10).to_s + '.' + (c["c_rate"] % 10).to_s
+      c["total_rate"] = (c["total_rate"] / 10).to_s + '.' + (c["total_rate"] % 10).to_s
     end
     
     @title = '第二回部内大会'
