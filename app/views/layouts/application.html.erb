@@ -112,7 +112,7 @@
                 <ul>
               <% elsif last_date != menu.updated_at.to_date %>
                 </ul>
-                <%= menu.updated_at.to_date %>
+                <div style="margin-left: 10px; margin-top:5px;"><strong><%= menu.updated_at.to_date %></strong></div>
                 <ul>
               <% end %>
               <% menu.title = 'トップページ' if menu.url == 'frontpage' %>
