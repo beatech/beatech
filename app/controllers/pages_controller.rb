@@ -106,6 +106,8 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
+    admin_required
+    
     @pages = Page.all
 
     respond_to do |format|

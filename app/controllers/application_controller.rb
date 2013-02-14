@@ -16,14 +16,20 @@ class ApplicationController < ActionController::Base
     raise Forbidden unless @current_user
   end
 
+  def admin_required
+    unless @current_user
+      raise Forbidden
+    end
+    
+    unless @current_user.account == 'ikstrm'
+       raise Forbidden
+    end
+  end
+
   def load_pages
     @circle_menu = Page.find(:all, :conditions => { :menu => 1})
     @communication_menu = Page.find(:all, :conditions => { :menu => 2})
     @contents_menu = Page.find(:all, :conditions => { :menu => 3})
     @header_menu = Page.find(:all, :conditions => { :menu => 4})
-  end
-
-  def edit_link
-    "aaaa"
   end
 end

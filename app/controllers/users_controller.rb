@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    admin_required
+    
     @users = User.all
 
     respond_to do |format|
