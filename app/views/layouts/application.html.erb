@@ -102,6 +102,26 @@
               <% end %>
             </ul>
           </div><!-- section end -->
+          <div class="section">
+            <h2>最新の10件</h2>
+            <% last_date = nil %>
+            <% @recent_pages.each_with_index do |menu, i| %>
+              <% break if i == 10 %>
+              <% if i == 0 %>
+                <div style="margin-left: 10px; margin-top:5px;"><strong><%= menu.updated_at.to_date %></strong></div>
+                <ul>
+              <% elsif last_date != menu.updated_at.to_date %>
+                </ul>
+                <%= menu.updated_at.to_date %>
+                <ul>
+              <% end %>
+              <% menu.title = 'トップページ' if menu.url == 'frontpage' %>
+              <li><%= link_to menu.title, root_url + menu.url %><br></li>
+              <% last_date = menu.updated_at.to_date %>
+            <% end %>
+            </ul>
+          </div><!-- section end -->
+
         </div><!-- subL end -->
         
         <% if flash[:notice] %>
