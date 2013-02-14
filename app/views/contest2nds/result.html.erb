@@ -174,11 +174,11 @@
     </tr>
     <% end %>
     <tr>
-      <td>チーム合計</td>
+      <td nowrap>チーム合計</td>
       <td colspan="4"><%= @a_total_score %></td>
-      <td>チーム合計</td>
+      <td nowrap>チーム合計</td>
       <td colspan="4"><%= @b_total_score %></td>
-      <td>チーム合計</td>
+      <td nowrap>チーム合計</td>
       <td colspan="4"><%= @c_total_score %></td>
     </tr>
   </tbody>
@@ -245,6 +245,14 @@
       <td><%= @c_team[i]["total_rate"] %></td>
     </tr>
     <% end %>
+    <tr>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @a_total_rate %></td>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @b_total_rate %></td>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @c_total_rate %></td>
+    </tr>
   </tbody>
 </table>
 <br />
@@ -309,6 +317,14 @@
       <td><%= @c_team[i]["total_bp"] %></td>
     </tr>
     <% end %>
+    <tr>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @a_total_bp %></td>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @b_total_bp %></td>
+      <td nowrap>チーム合計</td>
+      <td colspan="4"><%= @c_total_bp %></td>
+    </tr>
   </tbody>
 </table>
 <br />

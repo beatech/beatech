@@ -37,6 +37,7 @@ class Contest2ndsController < ApplicationController
       a["b_rate"] = a.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
       a["c_rate"] = a.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       a["total_rate"] = a["a_rate"] + a["b_rate"] + a["c_rate"]
+      @a_total_rate += a["total_rate"]
 
       a["a_rate"] = (a["a_rate"] / 10).to_s + '.' + (a["a_rate"] % 10).to_s
       a["b_rate"] = (a["b_rate"] / 10).to_s + '.' + (a["b_rate"] % 10).to_s
@@ -61,6 +62,7 @@ class Contest2ndsController < ApplicationController
       b["b_rate"] = b.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
       b["c_rate"] = b.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       b["total_rate"] = b["a_rate"] + b["b_rate"] + b["c_rate"]
+      @b_total_rate += b["total_rate"]
      
       b["a_rate"] = (b["a_rate"] / 10).to_s + '.' + (b["a_rate"] % 10).to_s
       b["b_rate"] = (b["b_rate"] / 10).to_s + '.' + (b["b_rate"] % 10).to_s
@@ -85,12 +87,17 @@ class Contest2ndsController < ApplicationController
       c["b_rate"] = c.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
       c["c_rate"] = c.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       c["total_rate"] = c["a_rate"] + c["b_rate"] + c["c_rate"]
+      @b_total_rate += c["total_rate"]
            
       c["a_rate"] = (c["a_rate"] / 10).to_s + '.' + (c["a_rate"] % 10).to_s
       c["b_rate"] = (c["b_rate"] / 10).to_s + '.' + (c["b_rate"] % 10).to_s
       c["c_rate"] = (c["c_rate"] / 10).to_s + '.' + (c["c_rate"] % 10).to_s
       c["total_rate"] = (c["total_rate"] / 10).to_s + '.' + (c["total_rate"] % 10).to_s
     end
+
+    @a_total_rate = (@a_total_rate / 10).to_s + '.' + (@a_total_rate % 10).to_s
+    @b_total_rate = (@b_total_rate / 10).to_s + '.' + (@b_total_rate % 10).to_s
+    @c_total_rate = (@c_total_rate / 10).to_s + '.' + (@c_total_rate % 10).to_s
     
     @title = '第二回部内大会'
   end
