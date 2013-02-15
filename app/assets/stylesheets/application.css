@@ -85,7 +85,7 @@ ul, ol {
 #main {
     float:right;
     margin:0;
-    width:750px;
+    width:770px;
     border-radius: 3px;
     box-shadow: 1px 1px 3px #444;
     margin-bottom:10px;
@@ -105,7 +105,7 @@ ul, ol {
 
 #subL {
     float:left;
-    width:200px;
+    width:180px;
 }
 
 #footer {
