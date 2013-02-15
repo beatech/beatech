@@ -369,11 +369,11 @@ ul, ol {
     border-collapse: collapse;
 }
 
-.style-table table tr:nth-child(odd) td {
+table tr:nth-child(odd) td {
     background: #fff;
 }
 
-.style-table table tr:nth-child(even) td {
+table tr:nth-child(even) td {
     background: #f3f3f3;
 }
 
@@ -392,7 +392,7 @@ ul, ol {
 	white-space: nowrap;
 }
 
-.style-table table tr:hover td{
+table tr:hover td{
     background: #fdfbe0;
 }
 
