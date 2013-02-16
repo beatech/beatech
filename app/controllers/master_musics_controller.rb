@@ -13,6 +13,7 @@ class MasterMusicsController < ApplicationController
       (@music_by_game[i].size).times do |j|
         @voter_split = @music_by_game[i][j].voter.split(",")
         @music_by_game[i][j].number = @voter_split.size
+        @music_by_game[i][j].save
         (@voter_split.size).times do |k|
           if @current_user && @voter_split[k].index(@current_user.account) && @voter_split[k].length == @current_user.account.length
             @vote_for[i] = @music_by_game[i][j].id
@@ -21,7 +22,13 @@ class MasterMusicsController < ApplicationController
       end
       @music_by_game[i].sort!{|a,b| b.number <=> a.number}
     end
-    
+
+    @tops = Array.new
+    (@master_game.size).times do |i|
+      @tops[i] = MasterMusic.find(:all, :conditions => { :game => i, :number => @music_by_game[i][0].number})
+    end
+
+
   end
   
   def index

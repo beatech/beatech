@@ -41,7 +41,14 @@
     <% (@master_game.size).times do |i| %>
     <tr>
       <td><%= @master_game[i].title %></td>
-      <td><%= @music_by_game[i][0].title%></td>
+      <td>
+        <% (@tops[i].size).times do |j| %>
+          <% if j != 0 %>
+            ,
+          <% end %>
+          <%= @tops[i][j].title%>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>
