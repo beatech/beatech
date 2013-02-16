@@ -112,7 +112,9 @@
     </table>
 
     <% if @current_user %>
+    <% if @vote_for[i] == -1 %>
     <br><%= button_to "譜面を追加", root_url + 'master_musics/new/' + i.to_s, {:method => "get", :class => "btn"} %>
+    <% end %>
     <% end %>
   </div>
   <% end %>
