@@ -5,15 +5,22 @@ class MasterMusicsController < ApplicationController
     @master_music = MasterMusic.all
     @title = "BEATECH部内大会 Master部門"
 
+    @vote_for = Array.new
     @music_by_game = Array.new
     (@master_game.size).times do |i|
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})
+      @vote_for[i] = -1
       (@music_by_game[i].size).times do |j|
-        @music_by_game[i][j].number = @music_by_game[i][j].voter.split(",").size
+        @voter_split = @music_by_game[i][j].voter.split(",")
+        @music_by_game[i][j].number = @voter_split.size
+        (@voter_split.size).times do |k|
+          if @voter_split[k].index(@current_user.account) && @voter_split[k].length == @current_user.account.length
+            @vote_for[i] = @music_by_game[i][j].id
+          end          
+        end
       end
       @music_by_game[i].sort!{|a,b| b.number <=> a.number}
     end
-
     
   end
   

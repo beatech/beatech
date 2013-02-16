@@ -17,7 +17,7 @@
 </ul>
 <br>
 <p>
-  意見・要望のある方は@nya______n(ルールに関して)か@BEATECH(このページに関して)までお願いします。
+  意見・要望のある方は@nya______n(Master部門に関して)か@BEATECH(このページに関して)までお願いします。
 </p>
 <br>
 
@@ -93,11 +93,17 @@
           <td><%= @music_by_game[i][j].number %></td>
           <% if @current_user %>
           <td>
+            <% if @vote_for[i] != -1 %>
+              <% if @vote_for[i] == @music_by_game[i][j].id %>
+                投票済み
+              <% end %>
+            <% else %>
             <%= form_tag :action => :vote do%>
               <% @music = @music_by_game[i][j] %>
-              <%= hidden_field :music, :id %>
+              <%= hidden_field :music, :id %>              
               <%= submit_tag '投票', :class => 'btn', :id => 'no-margin' %>
-              <% end %>
+            <% end %>
+            <% end %>
           </td>
           <% end %>
         </tr>
