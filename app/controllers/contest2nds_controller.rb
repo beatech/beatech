@@ -139,7 +139,7 @@ class Contest2ndsController < ApplicationController
     end
 
     @page = Page.find_by_url('contest2nd')
-    @page.save
+    @page.touch
     redirect_to root_url + 'contest2nd', :notice => '曲名の編集に成功しました。'
   end
 
@@ -162,7 +162,7 @@ class Contest2ndsController < ApplicationController
     end
 
     @page = Page.find_by_url('contest2nd')
-    @page.save
+    @page.touch
     redirect_to root_url + 'contest2nd', :notice => '対戦結果の編集に成功しました。'
   end
   
