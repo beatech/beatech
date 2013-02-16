@@ -1,0 +1,10 @@
+<%= form_tag :action => :create do %>
+  <p>
+    希望譜面 例:冥(A)<br>
+    <%= text_field "music", :title %>    
+  </p>
+
+  <%= hidden_field :master_music, :game %>
+  
+  <%= submit_tag '投票', :class => 'btn' %>  
+<% end %>

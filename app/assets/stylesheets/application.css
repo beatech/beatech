@@ -26,11 +26,11 @@ hr {
     border-top:1px dotted #000;
 }
 
-a {
+#subL a {
     color:#333;
 }
 
-a:hover {
+#subL a:hover {
     color:#008000;
 }
 
@@ -82,7 +82,7 @@ ul, ol {
     margin-top:10px;
 }
 
-#main {
+.main {
     float:right;
     margin:0;
     width:770px;
@@ -218,18 +218,27 @@ ul, ol {
 }
 
 
-/* ========MAIN CONTENTS CUSTOMIZE======== */
-#main a {
-    color:#0000A0;
+/* ========MAIN CONTENTS CUSTOMIZE======== */    
+
+.main a {
+    color:#069;
     text-decoration:underline; 
 }
 
-#main a:hover {
+.active a {
+    text-decoration:none;
+}
+
+form {
+    margin:0;
+}
+
+.main a:hover {
     color:#008000;
     text-decoration:underline; 
 }
 
-#main h1 {
+.main h1 {
     border-radius: 3px 3px 0px 0px;
     line-height:28px;
     padding:0px 10px;
@@ -245,7 +254,7 @@ ul, ol {
     background: linear-gradient(top, #7295b5 0%, #006fb3 47%, #147bb6 70%, #02a8e4 100%);
 }
 
-#main h2 {
+.main h2 {
     box-shadow: 1px 1px 3px #444;
     margin-bottom:5px;
     padding:2px 2px 2px 5px;
@@ -256,7 +265,7 @@ ul, ol {
     background:url("/assets/bg_h2.gif");
 }
 
-#main h3 {
+.main h3 {
     margin-left:0px;
     padding:1px 3px;
     margin-bottom:5px;
@@ -266,7 +275,7 @@ ul, ol {
     border-bottom:1px dotted #000;
 }
 
-#main h4 {
+.main h4 {
     margin-bottom:2px;
     padding:3px;
     font-size:13px;
@@ -274,25 +283,25 @@ ul, ol {
     background:#ddd;
 }
 
-#main h5 {
+.main h5 {
     margin-bottom:2px;
     font-size:13px;
     line-height:1.4;
     border-bottom:2px solid #333;
 }
 
-#main h6 {
+.main h6 {
     margin-bottom:2px;
     font-size:13px;
     line-height:1.4;
 }
 
-#main p{
+.main p{
     margin:0 0 1em 5px;
     line-height:1.4;
 }
 
-#main dd{
+.main dd{
     padding:0;
     margin:0 0 1em 1em;
     padding:3px;

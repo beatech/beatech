@@ -8,6 +8,7 @@ class MasterGamesController < ApplicationController
 
   def new
     @master_game = MasterGame.new
+    @master_music = MasterGame.new
     @title = "対戦機種の追加"
   end
 
@@ -15,8 +16,22 @@ class MasterGamesController < ApplicationController
   end
 
   def create
-    @master_game = MasterGame.new(params[:master_page])
-    @page.save
+    @master_game = MasterGame.new
+    @master_game.title = params[:game][:title]
+    @master_game.voter = @current_user.account if @current_user
+    @master_game.save
+    
+    @master_music = MasterMusic.new
+    @master_music.title = params[:music][:title]
+    @master_music.game = @master_game.id - 1
+    @master_music.voter = @current_user.account if @current_user
+
+    @master_music.save
+    if @master_game.title.length > 0 && @master_music.title.length > 0
+      redirect_to root_url + 'master', :notice => '対戦機種を追加しました。'     
+    else
+      redirect_to root_url + 'master_games/new', :notice => '機種名と譜面両方入力が必要です。'     
+    end
   end
   
   def update

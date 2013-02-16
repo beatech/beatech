@@ -4,6 +4,7 @@ class CreateMasterMusics < ActiveRecord::Migration
       t.string :title
       t.integer :game
       t.string :voter
+      t.integer :number
 
       t.timestamps
     end

@@ -5,6 +5,7 @@ class MasterMusicsController < ApplicationController
     @master_music = MasterMusic.all
     @title = "BEATECH部内大会 Master部門"
 
+    @vote_for = Array.new
     @music_by_game = Array.new
     (@master_game.size).times do |i|
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})

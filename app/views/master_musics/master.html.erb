@@ -1,0 +1,114 @@
+<h4>概要</h4>
+<p>
+  BEATECH部内大会 Master部門とは、KONAMIのKAC Master部門をBEATECHでやろうという企画です。<br>
+  具体的には、BEATECH部員がプレーする全ての音ゲーを参加者が全てプレーし、総合力を競うものです。<br>
+  このページは現在、Master部門を開催する機種の募集と、採用曲の投票ページとなっています。
+</p>
+<br>
+
+<h4>ルール</h4>
+<p>
+  現行採用が見込まれているルールは以下の通りです。<br>
+</p>
+<ul>
+  <li>各音ゲーに関して、プレーした人全員を母数とした偏差値を算出し、その合計をスコアとする。</li>
+  <li>プレーしていない音ゲーがある場合は、その機種のスコアを0点とし、そのプレーヤーは偏差値算出の母数にも含めない。</li>
+  <li>各音ゲーでプレーする曲は１曲。</li>
+</ul>
+<br>
+<p>
+  意見・要望のある方は@nya______n(ルールに関して)か@BEATECH(このページに関して)までお願いします。
+</p>
+<br>
+
+<h4>機種投票</h4>
+<p>
+  以下以外にやりたい機種がある方は追加をお願いします。<br>
+  機種追加の際は採用曲の追加が必須となります。
+</p>
+<p>
+  追加された機種は必ず開催されますが、参考までに自分が好き・得意な音ゲーへの投票をお願いします。
+</p>
+
+<table class="style-table">
+  <thead>
+    <tr>
+      <th>機種名</th>
+      <th>暫定譜面</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% (@master_game.size).times do |i| %>
+    <tr>
+      <td><%= @master_game[i].title %></td>
+      <td><%= @music_by_game[i][0].title%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<% if @current_user %>
+<br><%= button_to "機種を追加", root_url + 'master_games/new', {:method => "get", :class => "btn"} %>
+<% end %>
+<br>
+
+<h4>譜面投票</h4>
+<p>
+  一つの機種につき一譜面投票が可能です。<br>
+  必ず曲名+譜面難易度で投票してください。<br>
+  初心者でもプレー可能+初プレー時に解禁されている譜面が推奨されます。
+</p>
+
+<ul class="nav nav-tabs">
+  <% (@master_game.size).times do |i| %>
+    <% if i == 0 %>
+      <li class="active"><%= link_to @master_game[i].title, '#menu' + i.to_s, :"data-toggle" => 'tab' %><li>
+    <% else %>
+      <li><%= link_to @master_game[i].title, '#menu' + i.to_s, :"data-toggle" => 'tab'%><li>    
+    <% end %>
+  <% end %>
+</ul>
+
+
+<div class="tab-content">
+  <% (@master_game.size).times do |i| %>
+  <% if i == 0 %>
+  <div class="tab-pane active" id="menu<%= i.to_s %>">
+  <% else %>
+  <div class="tab-pane" id="menu<%= i.to_s %>">
+  <% end %>
+    <table class="style-table">
+      <thead>
+        <tr>
+          <th>譜面</th>
+          <th>投票数</th>
+          <% if @current_user %>
+          <th>投票</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% (@music_by_game[i].size).times do |j| %>
+        <tr>
+          <td><%= @music_by_game[i][j].title %></td>
+          <td><%= @music_by_game[i][j].number %></td>
+          <% if @current_user %>
+          <td>
+            <%= form_tag :action => :vote do%>
+              <% @music = @music_by_game[i][j] %>
+              <%= hidden_field :music, :id %>
+              <%= submit_tag '投票', :class => 'btn', :id => 'no-margin' %>
+              <% end %>
+          </td>
+          <% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <% if @current_user %>
+    <br><%= button_to "譜面を追加", root_url + 'master_musics/new/' + i.to_s, {:method => "get", :class => "btn"} %>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+

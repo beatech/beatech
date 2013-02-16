@@ -1,0 +1,3 @@
+<%= form_for(@master_game) do |f| %>
+  
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213105655) do
+ActiveRecord::Schema.define(:version => 20130216130501) do
 
   create_table "contest2nds", :force => true do |t|
     t.string   "name"
@@ -32,6 +32,23 @@ ActiveRecord::Schema.define(:version => 20130213105655) do
   create_table "contestdates", :force => true do |t|
     t.integer  "order"
     t.string   "place"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "master_games", :force => true do |t|
+    t.string   "title"
+    t.string   "voter"
+    t.string   "top"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "master_musics", :force => true do |t|
+    t.string   "title"
+    t.integer  "game"
+    t.string   "voter"
+    t.integer  "number"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

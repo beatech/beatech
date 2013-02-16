@@ -10,9 +10,17 @@ Beatech::Application.routes.draw do
   # Overrides
   match "/registration" => "users#new"
   match "/registration/create" => "users#create_user"
+  match "/contest2nd" => "contest2nds#result"
+  match "/master" => "master_musics#master"
+
+  # Master
+  match "/master_musics/new/:id" => "master_musics#new"
+  resources :master_games
+  resources :master_musics
+  match "/master_games/vote" => "master_games#vote"
+  match "/master_musics/vote" => "master_musics#vote"
 
   # Contest2nd
-  match "/contest2nd" => "contest2nds#result"
   match "/contest2nd/tunesedit/:order" => "contest2nds#tunesedit"
   match "/contest2nd/scoreedit/:order" => "contest2nds#scoreedit"
   match "/contest2nd/tunesupdate" => "contest2nds#tunesupdate"
