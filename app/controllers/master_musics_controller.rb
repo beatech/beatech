@@ -14,7 +14,7 @@ class MasterMusicsController < ApplicationController
         @voter_split = @music_by_game[i][j].voter.split(",")
         @music_by_game[i][j].number = @voter_split.size
         (@voter_split.size).times do |k|
-          if @voter_split[k].index(@current_user.account) && @voter_split[k].length == @current_user.account.length
+          if @current_user && @voter_split[k].index(@current_user.account) && @voter_split[k].length == @current_user.account.length
             @vote_for[i] = @music_by_game[i][j].id
           end          
         end
