@@ -19,7 +19,7 @@
 
 <h4 id="team">チーム分け<% if @current_user %>(対戦結果編集)<% end %></h4>
 <% if @current_user %>
-<p>対戦結果の編集はこの表の名前をクリックして行なってください。</p>
+<p>対戦結果の編集はこの表から各組ごとに行なってください。</p>
 <% end %>
 
 <table class="style-table">
@@ -29,6 +29,9 @@
     <th>Aチーム</th>
     <th>Bチーム</th>
     <th>Cチーム</th>
+    <% if @current_user %>
+    <th>結果編集</th>
+    <% end %>
     <th>日程・会場</th>
     <% if @current_user %>
     <th>会場編集</th>
@@ -40,26 +43,17 @@
   <tr>
     <td><%= @contestdates[i].order %>組</td>
     <td>
-      <% if @current_user %>
-      <%= link_to @a_team[i].name, root_url + 'contest2nds/' + @a_team[i].id.to_s + '/edit' %>
-      <% else %>
       <%= @a_team[i].name %>
-      <% end %>
     </td>
     <td>
-      <% if @current_user %>
-      <%= link_to @b_team[i].name, root_url + 'contest2nds/' + @b_team[i].id.to_s + '/edit' %>
-      <% else %>
       <%= @b_team[i].name %>
-      <% end %>    
     </td>
     <td>
-      <% if @current_user %>
-      <%= link_to @c_team[i].name, root_url + 'contest2nds/' + @c_team[i].id.to_s + '/edit' %>
-      <% else %>
       <%= @c_team[i].name %>
-      <% end %>        
     </td>
+    <% if @current_user %>
+    <td><%= link_to 'Edit', root_url + 'contest2nd/scoreedit/' + (i + 1).to_s %></td>
+    <% end %>
     <td><%= @contestdates[i].place %></td>
     <% if @current_user %>
     <td><%= link_to 'Edit', edit_contestdate_path(@contestdates[i]) %></td>

@@ -14,7 +14,9 @@ Beatech::Application.routes.draw do
   # Contest2nd
   match "/contest2nd" => "contest2nds#result"
   match "/contest2nd/tunesedit/:order" => "contest2nds#tunesedit"
+  match "/contest2nd/scoreedit/:order" => "contest2nds#scoreedit"
   match "/contest2nd/tunesupdate" => "contest2nds#tunesupdate"
+  match "/contest2nd/scoreupdate" => "contest2nds#scoreupdate"
 
   # Users
   match "/users/:account" => "users#showprofile"

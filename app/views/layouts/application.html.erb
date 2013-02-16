@@ -37,15 +37,12 @@
               <ul class="dropdown-menu" id="login">
                 <li>
                 <%= form_tag sessions_path do %>
-                <table id="login"><tbody>
-                  <tr><td><%= label_tag :account, 'BEATECH アカウント' %></td></tr>
-                  <tr><td><%= text_field_tag :account, params[:account] %></td></tr>
-                  <tr><td><%= label_tag :pass, 'パスワード' %></td>
-                  <tr><td><%= password_field_tag :pass, params[:pass] %></td></tr>
-                  <tr>
-                    <td><%= submit_tag "ログイン", :class => "btn" %></td>
-                  </tr>
-                </tbody></table>
+
+                  <%= label_tag :account, 'BEATECH アカウント' %>
+                  <%= text_field_tag :account, params[:account], :class => 'span3' %>
+                  <%= label_tag :pass, 'パスワード' %>
+                  <%= password_field_tag :pass, params[:pass], :class => 'span3' %>
+                  <%= submit_tag "ログイン", :class => "btn" %>
                 <% end %>
                 </li>
                 <li class="divider"></li>

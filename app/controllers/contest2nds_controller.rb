@@ -113,6 +113,17 @@ class Contest2ndsController < ApplicationController
     @tunes[2] = @c_team[0]
   end
 
+  def scoreedit
+    @order = params[:order]
+    @tunes = Array.new
+    @a_team = Contest2nd.find(:all, :conditions => {:team => 'A', :order => @order})
+    @tunes[0] = @a_team[0]
+    @b_team = Contest2nd.find(:all, :conditions => {:team => 'B', :order => @order})
+    @tunes[1] = @b_team[0]
+    @c_team = Contest2nd.find(:all, :conditions => {:team => 'C', :order => @order})
+    @tunes[2] = @c_team[0]
+  end
+
   def tunesupdate
     @tunes = params[:tune]
     @tunes.each do |tune|
@@ -126,7 +137,33 @@ class Contest2ndsController < ApplicationController
       contest.music = data["music"]
       contest.save
     end
+
+    @page = Page.find_by_url('contest2nd')
+    @page.save
     redirect_to root_url + 'contest2nd', :notice => '曲名の編集に成功しました。'
+  end
+
+  def scoreupdate
+    @tunes = params[:tune]
+    @tunes.each do |tune|
+      data = tune[1]
+      @order = data["order"]
+      @team = data["team"]
+      
+      contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
+      contest = contests[0]
+      contest.a_score = data["a_score"] unless data["a_score"]
+      contest.a_bp = data["a_bp"] unless data["a_score"]
+      contest.b_score = data["b_score"] unless data["a_score"]
+      contest.b_bp = data["b_bp"] unless data["a_score"]
+      contest.c_score = data["c_score"] unless data["a_score"]
+      contest.c_bp = data["c_bp"] unless data["a_score"]
+      contest.save
+    end
+
+    @page = Page.find_by_url('contest2nd')
+    @page.save
+    redirect_to root_url + 'contest2nd', :notice => '対戦結果の編集に成功しました。'
   end
   
   # GET /contest2nds

@@ -96,7 +96,7 @@ ul, ol {
 #main-alert {
     float:right;
     margin:0;
-    width:750px;
+    width:770px;
 }
 
 #inner-main {
@@ -403,4 +403,14 @@ table tr:hover td{
 
 .alert {
     margin-bottom: 10px;
+}
+
+#no-margin {
+    margin: 0;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
