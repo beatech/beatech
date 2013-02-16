@@ -1,0 +1,2 @@
+module MasterGamesHelper
+end

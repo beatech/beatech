@@ -1,0 +1,2 @@
+class MasterMusicsController < ApplicationController
+end

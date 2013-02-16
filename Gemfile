@@ -38,7 +38,5 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 # To use debugger
 # gem 'ruby-debug'
 
-gem "twitter"
-
 gem "omniauth"
 gem "omniauth-twitter"

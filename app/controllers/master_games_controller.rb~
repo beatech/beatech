@@ -1,0 +1,2 @@
+class MasterGamesController < ApplicationController
+end
