@@ -152,12 +152,12 @@ class Contest2ndsController < ApplicationController
       
       contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
       contest = contests[0]
-      contest.a_score = data["a_score"] unless data["a_score"]
-      contest.a_bp = data["a_bp"] unless data["a_score"]
-      contest.b_score = data["b_score"] unless data["a_score"]
-      contest.b_bp = data["b_bp"] unless data["a_score"]
-      contest.c_score = data["c_score"] unless data["a_score"]
-      contest.c_bp = data["c_bp"] unless data["a_score"]
+      contest.a_score = data["a_score"] if data["a_score"]
+      contest.a_bp = data["a_bp"] if data["a_score"]
+      contest.b_score = data["b_score"] if data["a_score"]
+      contest.b_bp = data["b_bp"] if data["a_score"]
+      contest.c_score = data["c_score"] if data["a_score"]
+      contest.c_bp = data["c_bp"] if data["a_score"]
       contest.save
     end
 
