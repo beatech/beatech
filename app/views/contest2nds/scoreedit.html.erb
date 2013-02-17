@@ -1,5 +1,5 @@
 <h2><%= @order %>組の対戦結果の編集</h2>
-<p>曲名の編集は<%= link_to 'こちら', root_url + 'contest2nd/tuneedit/' + @order.to_s %></p>
+<p>曲名の編集は<%= link_to 'こちら', root_url + 'contest2nd/tunesedit/' + @order.to_s %></p>
 
 <%= form_tag :action => :scoreupdate do %>
   <% @tunes.each_with_index do |tune, i| %>
@@ -29,6 +29,9 @@
           <td><%= number_field "tune", :c_score, :index => i, :class => 'span1', :id => 'no-margin' %></td>
           <td><%= number_field "tune", :c_bp, :index => i, :class => 'span1', :id => 'no-margin' %></td>
         </tr>
+        <tr>
+          <td>動画URL</td>
+          <td colspan="3"><%= text_field "tune", :url, :index => i, :class => 'span5', :id => 'no-margin' %></td>
       </tbody>
     </table>
     

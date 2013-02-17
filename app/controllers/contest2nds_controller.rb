@@ -158,6 +158,7 @@ class Contest2ndsController < ApplicationController
       contest.b_bp = data["b_bp"] if data["a_score"]
       contest.c_score = data["c_score"] if data["a_score"]
       contest.c_bp = data["c_bp"] if data["a_score"]
+      contest.url = data["url"] if data["url"]
       contest.save
     end
 
