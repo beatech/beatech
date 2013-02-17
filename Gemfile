@@ -41,4 +41,4 @@ gem 'bcrypt-ruby', '~> 3.0.1'
 gem "omniauth"
 gem "omniauth-twitter"
 
-gem "Twitter"
+gem "twitter"
