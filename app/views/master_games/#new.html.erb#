@@ -7,10 +7,6 @@
     候補譜面(あとから5個まで候補を挙げられます) 例:冥(A)<br>
     <%= text_field "music", :title %>
   </p>
-  <p>
-    譜面参考URL (候補譜面の曲や難易度がわかる動画などのURL)<br>
-    <%= text_field "music", :url %>
-  </p>
   
   <%= submit_tag '機種の追加', :class => 'btn' %>  
 <% end %>

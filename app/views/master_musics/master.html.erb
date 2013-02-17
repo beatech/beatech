@@ -91,6 +91,7 @@
           <th>投票数</th>
           <% if @current_user %>
           <th>投票</th>
+          <th>編集</th>
           <th>削除</th>
           <% end %>
         </tr>
@@ -98,7 +99,13 @@
       <tbody>
         <% (@music_by_game[i].size).times do |j| %>
         <tr>
-          <td><%= @music_by_game[i][j].title %></td>
+          <td>
+            <% if @music_by_game[i][j].url && @music_by_game[i][j].url.length > 0 %>
+            <%= link_to @music_by_game[i][j].title, @music_by_game[i][j].url %>
+            <% else %>
+            <%= @music_by_game[i][j].title %>
+            <% end %>
+          </td>
           <td><%= @music_by_game[i][j].number %></td>
           <% if @current_user %>
           <td>
@@ -115,6 +122,21 @@
                 <% @music = @music_by_game[i][j] %>
                 <%= hidden_field :music, :id %>              
                 <%= submit_tag '投票', :class => 'btn', :id => 'no-margin' %>
+              <% end %>
+            <% end %>
+          </td>
+          <td>
+            <% bAuthor = 0 %>
+            <% 5.times do |k| %>
+              <% if @author_for[i][k] == @music_by_game[i][j].id %>
+                <% bAuthor = 1 %>
+              <% end %>
+            <% end %>
+            <% if bAuthor == 1 %>
+              <%= form_tag :action => :edit do%>
+                <% @music = @music_by_game[i][j] %>
+                <%= hidden_field :music, :id %>              
+                <%= submit_tag '編集', :class => 'btn', :id => 'no-margin' %>
               <% end %>
             <% end %>
           </td>

@@ -1,4 +1,4 @@
-<%= form_tag :action => :create do %>
+<%= form_tag :action => :update do %>
   <p>
     希望譜面 例:冥(A)<br>
     <%= text_field "music", :title %>    
@@ -9,7 +9,8 @@
     <%= text_field "music", :url %>
   </p>
 
-  <%= hidden_field :master_music, :game %>
+  <%= hidden_field "music", :game %>
+  <%= hidden_field "music", :id %>
   
-  <%= submit_tag '譜面の追加', :class => 'btn' %>  
+  <%= submit_tag '編集', :class => 'btn' %>  
 <% end %>

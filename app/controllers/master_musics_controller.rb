@@ -64,11 +64,14 @@ class MasterMusicsController < ApplicationController
   end
 
   def edit
+    @music = MasterMusic.find(params[:music][:id])
+    @title = @music.title + "の編集"
   end
 
   def create
     @master_music = MasterMusic.new
     @master_music.title = params[:music][:title]
+    @master_music.url = params[:music][:url]
     @master_music.game = params[:master_music][:game].to_i
     @master_music.author = @current_user.account if @current_user
     @master_music.voter = ''
@@ -77,11 +80,21 @@ class MasterMusicsController < ApplicationController
     if @master_music.title.length > 0
       redirect_to root_url + 'master', :notice => '希望譜面を追加しました。'
     else
-      redirect_to root_url + 'master_musics/new', :notice => '対戦譜面を入力してください。'
-    end   
+      redirect_to root_url + 'master_musics/new', :notice => '譜面名を入力してください。'
+    end
   end
 
   def update
+    @master_music = MasterMusic.find(params[:music][:id])
+    @master_music.title = params[:music][:title]
+    @master_music.url = params[:music][:url]
+    @master_music.save
+    
+    if @master_music.title.length > 0
+      redirect_to root_url + 'master', :notice => '希望譜面を編集しました。'
+    else
+      redirect_to root_url + 'master_musics/update', :notice => '譜面名を入力してください。'
+    end
   end
 
   def destroy

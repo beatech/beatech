@@ -23,6 +23,7 @@ class MasterGamesController < ApplicationController
     
     @master_music = MasterMusic.new
     @master_music.title = params[:music][:title]
+    @master_music.url = params[:music][:url]
     @master_music.game = @master_game.id - 1
     @master_music.author = @current_user.account if @current_user
     @master_music.voter = ''
