@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216130501) do
+ActiveRecord::Schema.define(:version => 20130217030033) do
 
   create_table "contest2nds", :force => true do |t|
     t.string   "name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20130216130501) do
     t.integer  "number"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "author"
   end
 
   create_table "pages", :force => true do |t|

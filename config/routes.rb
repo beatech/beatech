@@ -18,7 +18,9 @@ Beatech::Application.routes.draw do
   resources :master_games
   resources :master_musics
   match "/master_games/vote" => "master_games#vote"
+  match "/master_musics/unvote" => "master_musics#unvote"
   match "/master_musics/vote" => "master_musics#vote"
+  match "/master_musics/destroy" => "master_musics#destroy"
 
   # Contest2nd
   match "/contest2nd/tunesedit/:order" => "contest2nds#tunesedit"

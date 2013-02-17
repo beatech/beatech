@@ -1,0 +1,4 @@
+class AddAuthorToMasterMusics < ActiveRecord::Migration
+  def change
+  end
+end

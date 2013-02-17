@@ -24,7 +24,8 @@ class MasterGamesController < ApplicationController
     @master_music = MasterMusic.new
     @master_music.title = params[:music][:title]
     @master_music.game = @master_game.id - 1
-    @master_music.voter = @current_user.account if @current_user
+    @master_music.author = @current_user.account if @current_user
+    @master_music.voter = ''
 
     @master_music.save
     if @master_game.title.length > 0 && @master_music.title.length > 0
