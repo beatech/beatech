@@ -23,7 +23,7 @@ class MasterMusicsController < ApplicationController
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})
       (@music_by_game[i].size).times do |j|
         # 自分が提案したものか調べる
-        if @music_by_game[i][j].author == @current_user.account
+        if @current_user && @music_by_game[i][j].author == @current_user.account
           @author_for[i][@author_count[i]] = @music_by_game[i][j].id # 提案したIDを保存
           @author_count[i] += 1
         end
