@@ -19,3 +19,4 @@ database.yml
 omniauth.rb
 .DS_Store
 .#*
+*.rb~
