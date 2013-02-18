@@ -142,9 +142,12 @@ class PagesController < ApplicationController
 
   def frontpage
     @page = Page.find_by_url("frontpage")
-    raise Forbidden unless @page
-    @text = @page.text
-    @text = convert_wiki(@text)
+    if @page
+      @text = @page.text
+      @text = convert_wiki(@text)
+    else
+      @text = "No frontpage"
+    end
     render "show_page"
   end
 
