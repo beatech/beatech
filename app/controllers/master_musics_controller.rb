@@ -77,6 +77,9 @@ class MasterMusicsController < ApplicationController
     @master_music.voter = ''
     @master_music.save
 
+    @page = Page.find_by_url('master')
+    @page.touch
+
     if @master_music.title.length > 0
       redirect_to root_url + 'master', :notice => '希望譜面を追加しました。'
     else
@@ -89,6 +92,9 @@ class MasterMusicsController < ApplicationController
     @master_music.title = params[:music][:title]
     @master_music.url = params[:music][:url]
     @master_music.save
+
+    @page = Page.find_by_url('master')
+    @page.touch
     
     if @master_music.title.length > 0
       redirect_to root_url + 'master', :notice => '希望譜面を編集しました。'
@@ -100,6 +106,10 @@ class MasterMusicsController < ApplicationController
   def destroy
     @master_music = MasterMusic.find(params[:music][:id])
     @master_music.destroy
+
+    @page = Page.find_by_url('master')
+    @page.touch
+
     redirect_to root_url + 'master', :notice => @master_music.title + 'を削除しました。'     
   end
 
@@ -107,6 +117,10 @@ class MasterMusicsController < ApplicationController
     @master_music = MasterMusic.find(params[:music][:id])
     @master_music.voter = @master_music.voter + @current_user.account + ','
     @master_music.save
+
+    @page = Page.find_by_url('master')
+    @page.touch
+    
     redirect_to root_url + 'master', :notice => @master_music.title + 'に投票しました。'     
   end
 
@@ -114,6 +128,10 @@ class MasterMusicsController < ApplicationController
     @master_music = MasterMusic.find(params[:music][:id])
     @master_music.voter = @master_music.voter.gsub(@current_user.account + ',', '')
     @master_music.save
+
+    @page = Page.find_by_url('master')
+    @page.touch
+    
     redirect_to root_url + 'master', :notice => @master_music.title + 'への投票を取り消しました。'     
   end
 end

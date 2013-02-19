@@ -29,6 +29,10 @@ class MasterGamesController < ApplicationController
     @master_music.voter = ''
 
     @master_music.save
+
+    @page = Page.find_by_url('master')
+    @page.touch
+
     if @master_game.title.length > 0 && @master_music.title.length > 0
       redirect_to root_url + 'master', :notice => '対戦機種を追加しました。'     
     else
@@ -46,5 +50,8 @@ class MasterGamesController < ApplicationController
     @master_game = MasterGame.find(params[:id])
     # master_game.voterに追加する
     @master_game.save
+    
+    @page = Page.find_by_url('master')
+    @page.touch
   end
 end
