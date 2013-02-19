@@ -149,15 +149,15 @@ class Contest2ndsController < ApplicationController
       data = tune[1]
       @order = data["order"]
       @team = data["team"]
-      
+
       contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
       contest = contests[0]
-      contest.a_score = data["a_score"] if data["a_score"]
-      contest.a_bp = data["a_bp"] if data["a_bp"]      
-      contest.b_score = data["b_score"] if data["b_score"]      
-      contest.b_bp = data["b_bp"] if data["b_bp"]
-      contest.c_score = data["c_score"] if data["c_score"]      
-      contest.c_bp = data["c_bp"] if data["c_bp"]
+      contest.a_score = data["a_score"] if data["a_score"].length > 0
+      contest.a_bp = data["a_bp"] if data["a_bp"].length > 0
+      contest.b_score = data["b_score"] if data["b_score"].length > 0
+      contest.b_bp = data["b_bp"] if data["b_bp"].length > 0
+      contest.c_score = data["c_score"] if data["c_score"].length > 0
+      contest.c_bp = data["c_bp"] if data["c_bp"].length > 0
       contest.url = data["url"] if data["url"]      
       contest.save
     end
