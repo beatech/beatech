@@ -152,6 +152,7 @@ class Contest2ndsController < ApplicationController
       
       contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
       contest = contests[0]
+
       if data["a_score"]
         contest.a_score = data["a_score"]
       else
