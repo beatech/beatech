@@ -152,49 +152,13 @@ class Contest2ndsController < ApplicationController
       
       contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
       contest = contests[0]
-
-      if data["a_score"]
-        contest.a_score = data["a_score"]
-      else
-        contest.a_score = 0
-      end
-
-      if data["a_score"]
-        contest.a_bp = data["a_bp"]
-      else
-        contest.a_bp = 0
-      end
-
-      if data["a_score"]
-        contest.b_score = data["b_score"]
-      else
-        contest.b_score = 0
-      end
-      
-      if data["a_score"]
-        contest.b_bp = data["b_bp"]
-      else
-        contest.b_bp = 0
-      end
-      
-      if data["a_score"]
-        contest.c_score = data["c_score"]
-      else
-        contest.c_score = 0
-      end
-
-      if data["a_score"]
-        contest.c_bp = data["c_bp"]
-      else
-        contest.c_bp = 0
-      end
-
-      if data["url"]
-        contest.url = data["url"]
-      else
-        contest.url = 0
-      end
-      
+      contest.a_score = data["a_score"] if data["a_score"]
+      contest.a_bp = data["a_bp"] if data["a_bp"]      
+      contest.b_score = data["b_score"] if data["b_score"]      
+      contest.b_bp = data["b_bp"] if data["b_bp"]
+      contest.c_score = data["c_score"] if data["c_score"]      
+      contest.c_bp = data["c_bp"] if data["c_bp"]
+      contest.url = data["url"] if data["url"]      
       contest.save
     end
 
