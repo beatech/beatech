@@ -1,0 +1,2 @@
+class MasterScoresController < ApplicationController
+end

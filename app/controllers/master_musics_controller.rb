@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 class MasterMusicsController < ApplicationController
   def master
+    @page = Page.find_by_url("master")
+    controller = PagesController.new
+    @text = controller.convert_wiki(@page.text)
+    
     @master_game = MasterGame.all
     @master_music = MasterMusic.all
     @title = "BEATECH部内大会 Master部門"

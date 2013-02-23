@@ -17,6 +17,7 @@ Beatech::Application.routes.draw do
   match "/master_musics/new/:id" => "master_musics#new"
   resources :master_games
   resources :master_musics
+  resources :master_users
   match "/master_games/vote" => "master_games#vote"
   match "/master_musics/unvote" => "master_musics#unvote"
   match "/master_musics/vote" => "master_musics#vote"
