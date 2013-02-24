@@ -69,6 +69,13 @@
       <tbody>
         <tr>
           <td>
+            <% if master_user && last_score == master_user.total_standard_score %>
+            <%= last_rank %>
+            <% else %>
+            <%= i + 1 %>
+            <% last_rank = i + 1 %>
+            <% end %>
+            <% last_score = master_user.total_standard_score %>
           </td>
           <td>
           </td>
