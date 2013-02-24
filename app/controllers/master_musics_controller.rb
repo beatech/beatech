@@ -1,10 +1,27 @@
 # -*- coding: utf-8 -*-
 class MasterMusicsController < ApplicationController
   def master
+    # エントリー
+    @bEntried = false
+    @bEntriable = false
+    if @current_user
+      if MasterUser.find_by_account(@current_user.account)
+        @bEntried = true
+      else
+        @bEntriable = true
+      end
+    end
+
+    # 参加者表示
+    @master_users = MasterUser.all
+    @master_users.sort!{|a,b| b.total_standard_score <=> a.total_standard_score}    
+    
+    # ページ表示
     @page = Page.find_by_url("master")
     controller = PagesController.new
     @text = controller.convert_wiki(@page.text)
-    
+
+    # 以下は投票用
     @master_game = MasterGame.all
     @master_music = MasterMusic.all
     @title = "BEATECH部内大会 Master部門"
@@ -49,8 +66,6 @@ class MasterMusicsController < ApplicationController
     (@master_game.size).times do |i|
       @tops[i] = MasterMusic.find(:all, :conditions => { :game => i, :number => @music_by_game[i][0].number})
     end
-
-
   end
   
   def index

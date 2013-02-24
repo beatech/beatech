@@ -1,0 +1,27 @@
+<%= form_tag :action => :update do %>
+  <table class="style-table">
+    <thead>
+      <tr>
+        <th>機種</th><th>曲</th><th>スコア</th><th>リザルト画像URL</th></tr>
+    </thead>
+    <tbody>
+      <% @master_scores.each_with_index do |master_score, i| %>
+      <% @master_score = master_score %>
+      <tr>
+        <td><%= master_score.game_title %></td>
+        <td><%= master_score.music_title %></td>
+        <td><%= number_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
+        <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br>
+  
+  <div class="actions">
+    <%= submit_tag '編集', :class => 'btn'%>
+  </div>
+<% end %>
+
+<br>
+<%= link_to 'Back', root_url + 'master' %>

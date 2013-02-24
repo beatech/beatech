@@ -11,13 +11,23 @@ class MasterUsersController < ApplicationController
   def create
     @master_user = MasterUser.new
     @master_user.name = params[:user][:name]
-    @master_user.account = @current_user.account if @current_user
-    @master_user.save
-    
     if @master_user.name.length > 0
+      @master_user.account = @current_user.account if @current_user
+      @master_user.save
+
+      @master_games = MasterGame.all
+      @master_games.each_with_index do |master_game, i|
+        @master_score = MasterScore.new
+        @master_score.account = @current_user.account if @current_user
+        @master_score.score = 0
+        @master_score.game = i + 1
+        @master_score.url = ''
+        @master_score.save
+      end
+      
       redirect_to root_url + 'master', :notice => 'Master部門エントリーしました。'     
     else
-      redirect_to root_url + 'master_uesrs/new', :notice => '名前を入力してください。'     
+      redirect_to root_url + 'master_users/new', :notice => '名前を入力してください。'     
     end
   end
 
@@ -33,4 +43,5 @@ class MasterUsersController < ApplicationController
 
   def show
   end
+
 end

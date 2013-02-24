@@ -1,18 +1,69 @@
 <%= raw @text %>
-<h4>機種投票</h4>
-<p>
-  以下以外にやりたい機種がある方は追加をお願いします。<br>
-  機種追加の際は採用曲の追加が必須となります。
-</p>
-<p>
-  追加された機種は必ず開催されますが、参考までに自分が好き・得意な音ゲーへの投票をお願いします。
-</p>
 
+<% if @bEntriable == true %>
+<h4>エントリー</h4>
+<p>マスター部門に参加するには以下からエントリーしてください。</p>
+<%= button_to "エントリーする", root_url + 'master_users/new', {:method => "get", :class => "btn"} %>
+<br>
+<% end %>
+
+<% if @bEntried == true %>
+<h4>結果編集</h4>
+<p>あなたの現在のスコアを編集するには以下から編集してください。</p>
+<%= button_to "スコア編集", root_url + 'master_scores/edit', {:method => "get", :class => "btn"} %>
+<br>
+<% end %>
+
+<h4>結果</h4>
+<table class="style-table">
+  <thead>
+    <tr>
+      <th>順位</th>
+      <th>名前</th>
+      <th>合計</th>
+      <% (@master_game.size).times do |i| %>
+      <th>
+        <%= @master_game[i].short_title %>
+      </th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>    
+    <% @master_users.each_with_index do |master_user, i| %>
+      <% account = master_user.account %>
+      <tr>
+        <td>
+          <%= i + 1 %>
+        </td>
+        <td>
+          <%= master_user.name %>
+        </td>
+        <td>
+          <%= sprintf("%.1f", master_user.total_standard_score) %><br>
+        </td>
+        <% (@master_game.size).times do |i| %>
+          <td>
+            <%= sprintf("%.1f", @master_game[i].standard_score_by_account(account)) %><br>
+            <% if @master_game[i].url_by_account(account) && @master_game[i].url_by_account(account).length > 0 %>
+            (<%= link_to @master_game[i].music_score_by_account(account), @master_game[i].url_by_account(account) %>)
+            <% else %>
+            (<%= @master_game[i].music_score_by_account(account) %>)
+            <% end %>
+          </td>
+        <% end %>
+      </tr>  
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<h4>曲投票結果</h4>
+<p>以下の曲目をプレーしていただきます。</p>
 <table class="style-table">
   <thead>
     <tr>
       <th>機種名</th>
-      <th>暫定譜面</th>
+      <th>譜面</th>
     </tr>
   </thead>
   <tbody>
@@ -31,6 +82,7 @@
     <% end %>
   </tbody>
 </table>
+<!--
 <% if @current_user %>
 <br><%= button_to "機種を追加", root_url + 'master_games/new', {:method => "get", :class => "btn"} %>
 <% end %>
@@ -148,3 +200,4 @@
   <% end %>
 </div>
 
+  -->
