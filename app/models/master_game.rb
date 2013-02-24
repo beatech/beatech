@@ -97,7 +97,12 @@ class MasterGame < ActiveRecord::Base
         num += 1
       end
     end
-    return sum / num
+    
+    if num != 0
+      return sum / num
+    else
+      return 0
+    end
   end
 
   def variance
@@ -110,7 +115,12 @@ class MasterGame < ActiveRecord::Base
         num += 1
       end
     end
-    return sum / num
+
+    if num != 0
+      return sum / num
+    else
+      return 0
+    end
   end
 
   def standard_deviation
