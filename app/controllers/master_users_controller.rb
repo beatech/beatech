@@ -24,6 +24,9 @@ class MasterUsersController < ApplicationController
         @master_score.url = ''
         @master_score.save
       end
+
+      @page = Page.find_by_url('master')
+      @page.touch
       
       redirect_to root_url + 'master', :notice => 'Master部門エントリーしました。'     
     else
