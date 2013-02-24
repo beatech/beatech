@@ -51,6 +51,25 @@
       </tbody>
     </table>
     <br>
+    
+    <h4>結果</h4>
+    <table class="style-table">
+      <thead>
+        <tr>
+          <th>順位</th>
+          <th>名前</th>
+          <th>合計</th>
+          <% (@master_game.size).times do |i| %>
+          <th>
+            <%= @master_game[i].short_title %>
+          </th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+    <br>
 <!--
     <% if @current_user %>
     <br><%= button_to "機種を追加", root_url + 'master_games/new', {:method => "get", :class => "btn"} %>
