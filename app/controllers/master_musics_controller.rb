@@ -19,7 +19,7 @@ class MasterMusicsController < ApplicationController
     # ページ表示
     @page = Page.find_by_url("master")
     controller = PagesController.new
-    @text = controller.convert_wiki(@page.text)
+    @text = controller.convert_wiki(@page.text) if @page && @page.text
 
     # 以下は投票用
     @master_game = MasterGame.all
