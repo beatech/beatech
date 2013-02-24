@@ -61,7 +61,7 @@
           <th>合計</th>
           <% (@master_game.size).times do |i| %>
           <th>
-            <%= @master_game[i].short_title.gsub(/\s/, '<br>') %>
+            <%= raw @master_game[i].short_title.gsub(/\s/, '<br>') %>
           </th>
           <% end %>
         </tr>
