@@ -67,6 +67,40 @@
         </tr>
       </thead>
       <tbody>
+        <% last_score = -1 %>
+        <% last_rank = 1 %>
+        <% if @master_users %>
+        <% @master_users.each_with_index do |master_user, i| %>
+        <% account = master_user.account %>
+        <tr>
+          <td>
+            <% if master_user && last_score == master_user.total_standard_score %>
+            <%= last_rank %>
+            <% else %>
+            <%= i + 1 %>
+            <% last_rank = i + 1 %>
+            <% end %>
+            <% last_score = master_user.total_standard_score %>
+          </td>
+          <td>
+            <%= master_user.name %>
+          </td>
+          <td>
+            <%= sprintf("%.1f", master_user.total_standard_score) %><br>
+          </td>
+          <% (@master_game.size).times do |i| %>
+          <td>
+            <%= sprintf("%.1f", @master_game[i].standard_score_by_account(account)) %><br>
+            <% if @master_game[i].url_by_account(account) && @master_game[i].url_by_account(account).length > 0 %>
+            (<%= link_to @master_game[i].music_score_by_account(account), @master_game[i].url_by_account(account) %>)
+            <% else %>
+            (<%= @master_game[i].music_score_by_account(account) %>)
+            <% end %>
+          </td>
+          <% end %>
+        </tr>
+        <% end %>
+        <% end %>
       </tbody>
     </table>
     <br>
