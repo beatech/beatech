@@ -51,57 +51,6 @@
       </tbody>
     </table>
     <br>
-    
-    <h4>結果</h4>
-    <table class="style-table">
-      <thead>
-        <tr>
-          <th>順位</th>
-          <th>名前</th>
-          <th>合計</th>
-          <% (@master_game.size).times do |i| %>
-          <th>
-            <%= @master_game[i].short_title %>
-          </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% last_score = -1 %>
-        <% last_rank = 1 %>
-        <% @master_users.each_with_index do |master_user, i| %>
-        <% account = master_user.account %>
-        <tr>
-          <td>
-            <% if last_score == master_user.total_standard_score %>
-            <%= last_rank %>
-            <% else %>
-            <%= i + 1 %>
-            <% last_rank = i + 1 %>
-            <% end %>
-            <% last_score = master_user.total_standard_score %>
-          </td>
-          <td>
-            <%= master_user.name %>
-          </td>
-          <td>
-            <%= sprintf("%.1f", master_user.total_standard_score) %><br>
-          </td>
-          <% (@master_game.size).times do |i| %>
-          <td>
-            <%= sprintf("%.1f", @master_game[i].standard_score_by_account(account)) %><br>
-            <% if @master_game[i].url_by_account(account) && @master_game[i].url_by_account(account).length > 0 %>
-            (<%= link_to @master_game[i].music_score_by_account(account), @master_game[i].url_by_account(account) %>)
-            <% else %>
-            (<%= @master_game[i].music_score_by_account(account) %>)
-            <% end %>
-          </td>
-          <% end %>
-        </tr>  
-        <% end %>
-      </tbody>
-    </table>
-    <br>
 <!--
     <% if @current_user %>
     <br><%= button_to "機種を追加", root_url + 'master_games/new', {:method => "get", :class => "btn"} %>
@@ -109,6 +58,111 @@
     <br>-->
   </div>
   <div class="tab-pane" id="top3">
+    <ul class="nav nav-pills">
+      <% (@master_game.size).times do |i| %>
+      <% if i == 0 %>
+      <li class="active"><%= link_to @master_game[i].title, '#menu' + i.to_s, :"data-toggle" => 'tab' %></li>
+      <% else %>
+      <li><%= link_to @master_game[i].title, '#menu' + i.to_s, :"data-toggle" => 'tab'%></li>    
+      <% end %>
+      <% end %>
+    </ul>
+
+
+    <div class="tab-content">
+      <% (@master_game.size).times do |i| %>
+      <% if i == 0 %>
+      <div class="tab-pane active" id="menu<%= i.to_s %>">
+        <% else %>
+        <div class="tab-pane" id="menu<%= i.to_s %>">
+          <% end %>
+          <table class="style-table">
+            <thead>
+              <tr>
+                <th>譜面</th>
+                <th>投票数</th><!--
+                                   <% if @current_user %>
+                <th>投票</th>
+                <th>編集</th>
+                <th>削除</th>
+                <% end %>-->
+              </tr>
+            </thead>
+            <tbody>
+              <% (@music_by_game[i].size).times do |j| %>
+              <tr>
+                <td>
+                  <% if @music_by_game[i][j].url && @music_by_game[i][j].url.length > 0 %>
+                  <%= link_to @music_by_game[i][j].title, @music_by_game[i][j].url %>
+                  <% else %>
+                  <%= @music_by_game[i][j].title %>
+                  <% end %>
+                </td>
+                <td><%= @music_by_game[i][j].number %></td><!--
+                                                               <% if @current_user %>
+                <td>
+                  <% if @vote_for[i] != 0 %>
+                  <% if @music_by_game[i][j].id == @vote_for[i] %>
+                  <%= form_tag :action => :unvote do%>
+                  <% @music = @music_by_game[i][j] %>
+                  <%= hidden_field :music, :id %>              
+                  <%= submit_tag '取消', :class => 'btn', :id => 'no-margin' %>
+                  <% end %>
+                  <% end %>
+                  <% else %>
+                  <%= form_tag :action => :vote do%>
+                  <% @music = @music_by_game[i][j] %>
+                  <%= hidden_field :music, :id %>              
+                  <%= submit_tag '投票', :class => 'btn', :id => 'no-margin' %>
+                  <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <% bAuthor = 0 %>
+                  <% 5.times do |k| %>
+                  <% if @author_for[i][k] == @music_by_game[i][j].id %>
+                  <% bAuthor = 1 %>
+                  <% end %>
+                  <% end %>
+                  <% if bAuthor == 1 %>
+                  <%= form_tag :action => :edit do%>
+                  <% @music = @music_by_game[i][j] %>
+                  <%= hidden_field :music, :id %>              
+                  <%= submit_tag '編集', :class => 'btn', :id => 'no-margin' %>
+                  <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <% bAuthor = 0 %>
+                  <% 5.times do |k| %>
+                  <% if @author_for[i][k] == @music_by_game[i][j].id %>
+                  <% bAuthor = 1 %>
+                  <% end %>
+                  <% end %>
+                  <% if bAuthor == 1 %>
+                  <%= form_tag :action => :destroy do%>
+                  <% @music = @music_by_game[i][j] %>
+                  <%= hidden_field :music, :id %>              
+                  <%= submit_tag '削除', :class => 'btn', :id => 'no-margin' %>
+                  <% end %>
+                  <% end %>
+                </td>
+                <% end %>-->
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <!--
+              <% if @current_user %>
+              <% if @author_count[i] < 5 %>
+                 <br><%= button_to "譜面を追加", root_url + 'master_musics/new/' + i.to_s, {:method => "get", :class => "btn"} %>
+              <% end %>
+              <% end %>
+              -->
+
+        </div>
+        <% end %>
+      </div>
 
     </div>
   </div>
