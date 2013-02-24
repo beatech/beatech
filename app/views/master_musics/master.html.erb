@@ -57,7 +57,7 @@
 </table>
 <br>
 
-<h4>曲投票結果</h4>
+<h4>採用曲</h4>
 <p>以下の曲目をプレーしていただきます。</p>
 <table class="style-table">
   <thead>
@@ -82,19 +82,13 @@
     <% end %>
   </tbody>
 </table>
-<!--
+
 <% if @current_user %>
 <br><%= button_to "機種を追加", root_url + 'master_games/new', {:method => "get", :class => "btn"} %>
 <% end %>
 <br>
 
-<h4>譜面投票</h4>
-<p>
-  一つの機種につき一譜面投票が可能です。投票は取り消すことができ、何度でもやり直しができます。<br>
-  必ず曲名+譜面難易度で投票してください。<br>
-  初心者でもプレー可能+初プレー時に解禁されている譜面が推奨されます。<br>
-  譜面候補の追加は5譜面まで可能です。
-</p>
+<h4>投票結果</h4>
 
 <ul class="nav nav-tabs">
   <% (@master_game.size).times do |i| %>
@@ -118,12 +112,12 @@
       <thead>
         <tr>
           <th>譜面</th>
-          <th>投票数</th>
+          <th>投票数</th><!--
           <% if @current_user %>
           <th>投票</th>
           <th>編集</th>
           <th>削除</th>
-          <% end %>
+          <% end %>-->
         </tr>
       </thead>
       <tbody>
@@ -136,7 +130,7 @@
             <%= @music_by_game[i][j].title %>
             <% end %>
           </td>
-          <td><%= @music_by_game[i][j].number %></td>
+          <td><%= @music_by_game[i][j].number %></td><!--
           <% if @current_user %>
           <td>
             <% if @vote_for[i] != 0 %>
@@ -185,19 +179,20 @@
               <% end %>
             <% end %>
           </td>
-          <% end %>
+          <% end %>-->
         </tr>
         <% end %>
       </tbody>
     </table>
-
+<!--
     <% if @current_user %>
       <% if @author_count[i] < 5 %>
         <br><%= button_to "譜面を追加", root_url + 'master_musics/new/' + i.to_s, {:method => "get", :class => "btn"} %>
       <% end %>
     <% end %>
+    -->
+
   </div>
   <% end %>
 </div>
 
-  -->
