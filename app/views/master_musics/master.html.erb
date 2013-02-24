@@ -59,6 +59,11 @@
           <th>順位</th>
           <th>名前</th>
           <th>合計</th>
+          <% (@master_game.size).times do |i| %>
+          <th>
+            <%= @master_game[i].short_title %>
+          </th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
