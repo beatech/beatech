@@ -79,10 +79,11 @@
             <%= master_user.name %>
           </td>
           <td>
+            <%= account %>
           </td>
           <% (@master_game.size).times do |i| %>
           <td>
-            <%= @master_game[i].title %>
+            <%= @master_game[i].standard_score_by_account(account) %>
           </td>
           <% end %>
         </tr>
