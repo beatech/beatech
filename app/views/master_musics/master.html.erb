@@ -67,12 +67,21 @@
         </tr>
       </thead>
       <tbody>
-        <% last_score = -1 %>
-        <% last_rank = 1 %>
-        <% if @master_users %>
-        <% @master_users.each_with_index do |master_user, i| %>
-        <% account = master_user.account %>
         <tr>
+          <td>
+            <% if master_user && last_score == master_user.total_standard_score %>
+            <%= last_rank %>
+            <% else %>
+            <%= i + 1 %>
+            <% last_rank = i + 1 %>
+            <% end %>
+            <% last_score = master_user.total_standard_score %>
+          </td>
+          <td>
+            <% if master_user %>
+            <%= master_user.name %>
+            <% end %>
+          </td>
           <td>
             <% if master_user %>
             <%= sprintf("%.1f", master_user.total_standard_score) %><br>
