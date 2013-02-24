@@ -66,11 +66,15 @@ class MasterGame < ActiveRecord::Base
   def music_score_by_account(account)
     @master_scores = MasterScore.find(:all, :conditions => {:account => account, :game => self.id})
     @master_score = @master_scores[0]
-    return @master_score.score
+    if @master_score
+      return @master_score.score
+    else
+      return 0
+    end
   end
 
   def standard_score_by_account(account)
-    return 1
+    return music_score_by_account(account)
 =begin    
     gap = 0
     if standard_deviation != 0
