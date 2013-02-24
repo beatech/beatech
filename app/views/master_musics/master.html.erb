@@ -83,10 +83,14 @@
             <% last_score = master_user.total_standard_score %>
           </td>
           <td>
+            <% if master_user %>
             <%= master_user.name %>
+            <% end %>
           </td>
           <td>
+            <% if master_user %>
             <%= sprintf("%.1f", master_user.total_standard_score) %><br>
+            <% end %>
           </td>
           <% (@master_game.size).times do |i| %>
           <td>
