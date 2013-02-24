@@ -74,8 +74,6 @@ class MasterGame < ActiveRecord::Base
   end
 
   def standard_score_by_account(account)
-    return music_score_by_account(account)
-=begin    
     gap = 0
     if standard_deviation != 0
       gap = 10 * (music_score_by_account(account) - average) / standard_deviation
@@ -86,7 +84,7 @@ class MasterGame < ActiveRecord::Base
     else
       return 0
     end
-=end    
+
   end
 
   def average
