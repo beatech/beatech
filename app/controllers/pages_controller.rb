@@ -14,7 +14,7 @@ class PagesController < ApplicationController
     text.gsub!(/#youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+?)\)/, '<iframe width="560" height="315" src="http://www.youtube.com/embed/\1" frameborder="0" allowfullscreen></iframe>') # #youtube()
     text.gsub!(/#image\((.+?)\)/, '<img src="\1">') #        #image()
     text.gsub!(/#image-resize\((.+?),(.+?),(.+?)\)/, '<img src="\1" width="\2" height="\3">') # #image()
-    text.gsub!(/[^"](http:\/\/[0-9A-Za-z\.\/#]+)/, '<a href="\1">\1</a>') # http://
+    text.gsub!(/([^"])(http:\/\/[0-9A-Za-z\.\/#]+)/, '\1<a href="\2">\2</a>') # http://
     text.gsub!(/&color\((.+?),(.+?)\){(.+?)};/, '<span style="color:\1; background-color:\2">\3</span>')       # &color
     text.gsub!(/&color\((.+?)\){(.+?)};/, '<font color="\1">\2</font>')       # &color
     text.gsub!(/&size\((.+?)\){(.+?)};/, '<font size="\1">\2</font>')       # &size
