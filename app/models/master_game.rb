@@ -25,6 +25,14 @@ class MasterGame < ActiveRecord::Base
       title = "太鼓"
     when "jubeat"
       title = "jubeat"
+    when "SOUND VOLTEX"
+      title = "SDVX"
+    when "DanceEvolution ARCADE"
+      title = "DE"
+    when "Dance Dance Revolution DP"
+      title = "DDR DP"
+    when "Project DIVA Arcade"
+      title = "DIVA"
     end
     return title
   end
