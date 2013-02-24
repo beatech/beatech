@@ -59,33 +59,15 @@
           <th>順位</th>
           <th>名前</th>
           <th>合計</th>
-          <% (@master_game.size).times do |i| %>
-          <th>
-            <%= @master_game[i].short_title %>
-          </th>
-          <% end %>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>
-            <% if master_user && last_score == master_user.total_standard_score %>
-            <%= last_rank %>
-            <% else %>
-            <%= i + 1 %>
-            <% last_rank = i + 1 %>
-            <% end %>
-            <% last_score = master_user.total_standard_score %>
           </td>
           <td>
-            <% if master_user %>
-            <%= master_user.name %>
-            <% end %>
           </td>
           <td>
-            <% if master_user %>
-            <%= sprintf("%.1f", master_user.total_standard_score) %><br>
-            <% end %>
           </td>
           <% (@master_game.size).times do |i| %>
           <td>
@@ -98,8 +80,6 @@
           </td>
           <% end %>
         </tr>
-        <% end %>
-        <% end %>
       </tbody>
     </table>
     <br>
