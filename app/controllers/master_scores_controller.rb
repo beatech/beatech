@@ -50,7 +50,7 @@ class MasterScoresController < ApplicationController
       account = master_user.account
       @master_games.each do |master_game|
         @master_score = MasterScore.where(:account => account, :game => master_game.id).first
-        @master_score.standard_score = master_game.music_score_by_account(account)
+        @master_score.standard_score = master_game.standard_score_by_account(account)
         @master_score.save
       end
     end    
