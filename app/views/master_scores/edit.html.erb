@@ -13,6 +13,7 @@
         <% if i == 2 || i == 3 || i == 12 %>
         <td><%= text_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
         <% else %>
+        <% @master_score.score = @master_score.score.to_i %>
         <td><%= number_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
         <% end %>
         <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
