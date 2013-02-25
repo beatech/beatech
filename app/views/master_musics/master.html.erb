@@ -114,7 +114,6 @@
             <tr>
               <th>順位</th>
               <th>名前</th>
-              <th>合計</th>
               <% (@master_game.size).times do |i| %>
               <th>
                 <%= raw @master_game[i].short_title.gsub(/\s/, '<br>') %>
@@ -139,9 +138,6 @@
               </td>
               <td>
                 <%= master_user.name %>
-              </td>
-              <td>
-                <%= sprintf("%.1f", master_user.total_standard_score) %><br>
               </td>
               <% @master_game.each do |master_game| %>
               <td>
