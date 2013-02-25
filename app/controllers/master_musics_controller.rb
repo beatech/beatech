@@ -33,38 +33,13 @@ class MasterMusicsController < ApplicationController
     @master_music = MasterMusic.all
     @title = "BEATECH部内大会 Master部門"
 
-    @author_for = Array.new
-    @author_count = Array.new
-    @vote_for = Array.new
-
     @music_by_game = Array.new
     (@master_game.size).times do |i|
-      # 各ゲームに関して初期化するべきもの
-      @author_for[i] = Array.new
-      @author_count[i] = 0
-      @vote_for[i] = 0
-      5.times do |k|
-        @author_for[i][k] = 0
-      end
-
-      # 曲ごとにループ
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})
       (@music_by_game[i].size).times do |j|
-        # 自分が提案したものか調べる
-        if @current_user && @music_by_game[i][j].author == @current_user.account
-          @author_for[i][@author_count[i]] = @music_by_game[i][j].id # 提案したIDを保存
-          @author_count[i] += 1
-        end
-        
-        # 投票してるか調べる
         @voter_split = @music_by_game[i][j].voter.split(",")
         @music_by_game[i][j].number = @voter_split.size 
-        @music_by_game[i][j].save # あとで並列してるものを調べるため
-        (@voter_split.size).times do |k|
-          if @current_user && @voter_split[k].index(@current_user.account) && @voter_split[k].length == @current_user.account.length
-            @vote_for[i] = @music_by_game[i][j].id # 投票してたらidをいれる
-          end
-        end
+        @music_by_game[i][j].save
       end
       @music_by_game[i].sort!{|a,b| b.number <=> a.number}
     end
