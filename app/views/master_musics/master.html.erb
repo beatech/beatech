@@ -18,12 +18,8 @@
   <li><%= link_to "投票結果", '#top3', :"data-toggle" => 'tab' %></li>
 </ul>
 
-<div class="tab-content">
-  <div class="tab-pane" id="top2">
-    <%= raw @text %>
-  </div>
-  
-  <div class="tab-pane active" id="top2">
+<div class="tab-content">  
+  <div class="tab-pane active" id="top1">
 
     <h4>曲目</h4>
     <p>以下の譜面をプレーしていただきます。</p>
@@ -109,6 +105,11 @@
     <% end %>
     <br>-->
   </div>
+  
+  <div class="tab-pane" id="top2">
+    <%= raw @text %>
+  </div>
+
   <div class="tab-pane" id="top3">
     <ul class="nav nav-pills">
       <% (@master_game.size).times do |i| %>
