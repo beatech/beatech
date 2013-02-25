@@ -32,79 +32,143 @@
       </thead>
       <tbody>
         <% (@master_game.size).times do |i| %>
-        <tr>
-          <td><%= @master_game[i].title %></td>
-          <td>
-            <% (@tops[i].size).times do |j| %>
-            <% if j != 0 %>
-            ,
-            <% end %>
-            <%= @tops[i][j].title%>
-            <% end %>
-          </td>
-        </tr>
+          <tr>
+            <td><%= @master_game[i].title %></td>
+            <td>
+              <% (@tops[i].size).times do |j| %>
+                <% if j != 0 %>
+                ,
+                <% end %>
+              <%= @tops[i][j].title%>
+              <% end %>
+            </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
     <br>
     
     <h4>結果</h4>
-    <table class="style-table">
-      <thead>
-        <tr>
-          <th>順位</th>
-          <th>名前</th>
-          <th>合計</th>
-          <% (@master_game.size).times do |i| %>
-          <th>
-            <%= raw @master_game[i].short_title.gsub(/\s/, '<br>') %>
-          </th>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <% last_score = -1 %>
-        <% last_rank = 1 %>
-        <% @master_users.each_with_index do |master_user, i| %>
-        <% account = master_user.account %>
-        <tr>
-          <td>
-            <% if last_score == master_user.total_standard_score %>
-            <%= last_rank %>
-            <% else %>
-            <%= i + 1 %>
-            <% last_rank = i + 1 %>
-            <% end %>
-            <% last_score = master_user.total_standard_score %>
-          </td>
-          <td>
-            <%= master_user.name %>
-          </td>
-          <td>
-            <%= sprintf("%.1f", master_user.total_standard_score) %><br>
-          </td>
-          <% @master_game.each do |master_game| %>
-          <td>
-            <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+    <ul class="nav nav-tabs">
+      <li class="active"><%= link_to "偏差値", '#standard-score', :"data-toggle" => 'tab' %></li>
+      <li><%= link_to "スコア", '#score', :"data-toggle" => 'tab' %></li>
+    </ul>
 
-            <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
-            <% score = @master_score.score.to_i %>
-            <% else %>
-            <% score = @master_score.score %>
+    
+    <div class="tab-content">  
+      <div class="tab-pane active" id="standard-score">
+
+
+        <table class="style-table">
+          <thead>
+            <tr>
+              <th>順位</th>
+              <th>名前</th>
+              <th>合計</th>
+              <% (@master_game.size).times do |i| %>
+                <th>
+                  <%= raw @master_game[i].short_title.gsub(/\s/, '<br>') %>
+                </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% last_score = -1 %>
+            <% last_rank = 1 %>
+            <% @master_users.each_with_index do |master_user, i| %>
+              <% account = master_user.account %>
+              <tr>
+                <td>
+                  <% if last_score == master_user.total_standard_score %>
+                    <%= last_rank %>
+                  <% else %>
+                    <%= i + 1 %>
+                    <% last_rank = i + 1 %>
+                  <% end %>
+                  <% last_score = master_user.total_standard_score %>
+                </td>
+                <td>
+                  <%= master_user.name %>
+                </td>
+                <td>
+                  <%= sprintf("%.1f", master_user.total_standard_score) %><br>
+                </td>
+                <% @master_game.each do |master_game| %>
+                  <td>
+                    <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+                    
+                    <%= sprintf("%.1f", @master_score.standard_score) %>                   
+                  </td>
+                <% end %>
+              </tr>  
             <% end %>
-            
-            <% if @master_score.url && @master_score.url.length > 0 %>
-            <p><a href="<%= @master_score.url %>" rel="tooltip" title="<%= score.to_s %>"><%= sprintf("%.1f", @master_score.standard_score) %></a></p>
-            <% else %>
-            <p><a href="#" rel="tooltip" title="<%= score.to_s %> 画像なし"><%= sprintf("%.1f", @master_score.standard_score) %></a></p>
+          </tbody>
+        </table>
+        <br>
+        
+      </div>
+
+      <div class="tab-pane" id="score">
+        <table class="style-table">
+          <thead>
+            <tr>
+              <th>順位</th>
+              <th>名前</th>
+              <th>合計</th>
+              <% (@master_game.size).times do |i| %>
+              <th>
+                <%= raw @master_game[i].short_title.gsub(/\s/, '<br>') %>
+              </th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <% last_score = -1 %>
+            <% last_rank = 1 %>
+            <% @master_users.each_with_index do |master_user, i| %>
+            <% account = master_user.account %>
+            <tr>
+              <td>
+                <% if last_score == master_user.total_standard_score %>
+                <%= last_rank %>
+                <% else %>
+                <%= i + 1 %>
+                <% last_rank = i + 1 %>
+                <% end %>
+                <% last_score = master_user.total_standard_score %>
+              </td>
+              <td>
+                <%= master_user.name %>
+              </td>
+              <td>
+                <%= sprintf("%.1f", master_user.total_standard_score) %><br>
+              </td>
+              <% @master_game.each do |master_game| %>
+              <td>
+                <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+
+                <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
+                <% score = @master_score.score.to_i %>
+                <% else %>
+                <% score = @master_score.score %>
+                <% end %>
+                
+                <% if @master_score.url && @master_score.url.length > 0 %>
+                <a href="<%= @master_score.url %>"><%= score %></a>
+                <% else %>
+                <%= score %>
+                <% end %>
+              </td>
+              <% end %>
+            </tr>  
             <% end %>
-          </td>
-          <% end %>
-        </tr>  
-        <% end %>
-      </tbody>
-    </table>
-    <br>
+          </tbody>
+        </table>
+        <br>
+        
+      </div>
+
+    </div>
   </div>
   
   <div class="tab-pane" id="top2">
@@ -160,11 +224,3 @@
   </div>
 </div>
 
-
-
-<script>
-  $(function(){
-    $('a[rel=tooltip]').tooltip({placement:'bottom'});
-    $('a[rel=popover]').popover();
-  });
-</script>
