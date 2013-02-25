@@ -10,7 +10,11 @@
       <tr>
         <td><%= master_score.game_title %></td>
         <td><%= master_score.music_title %></td>
+        <% if i == 2 || i == 3 || i == 12 %>
         <td><%= text_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
+        <% else %>
+        <td><%= number_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
+        <% end %>
         <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
       </tr>
       <% end %>
