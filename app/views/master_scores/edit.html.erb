@@ -10,7 +10,7 @@
       <tr>
         <td><%= master_score.game_title %></td>
         <td><%= master_score.music_title %></td>
-        <td><%= number_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
+        <td><%= text_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
         <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
       </tr>
       <% end %>
