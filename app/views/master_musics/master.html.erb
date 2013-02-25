@@ -13,17 +13,17 @@
 <% end %>
 
 <ul class="nav nav-tabs">
-  <li class="active"><%= link_to "概要", '#top1', :"data-toggle" => 'tab' %></li>
-  <li><%= link_to "ランキング", '#top2', :"data-toggle" => 'tab' %></li>
+  <li class="active"><%= link_to "ランキング", '#top1', :"data-toggle" => 'tab' %></li>
+  <li><%= link_to "概要", '#top2', :"data-toggle" => 'tab' %></li>
   <li><%= link_to "投票結果", '#top3', :"data-toggle" => 'tab' %></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="top1">
+  <div class="tab-pane" id="top2">
     <%= raw @text %>
   </div>
   
-  <div class="tab-pane" id="top2">
+  <div class="tab-pane active" id="top2">
 
     <h4>曲目</h4>
     <p>以下の譜面をプレーしていただきます。</p>
@@ -87,13 +87,14 @@
           <td>
             <%= sprintf("%.1f", master_user.total_standard_score) %><br>
           </td>
-          <% (@master_game.size).times do |i| %>
+          <% @master_game.each do |master_game| %>
           <td>
-            <%= sprintf("%.1f", @master_game[i].standard_score_by_account(account)) %><br>
-            <% if @master_game[i].url_by_account(account) && @master_game[i].url_by_account(account).length > 0 %>
-            (<%= link_to @master_game[i].music_score_by_account(account), @master_game[i].url_by_account(account) %>)
+            <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+            <%= sprintf("%.1f", @master_score.standard_score) %><br>
+            <% if @master_score.url && @master_score.url.length > 0 %>
+            (<%= link_to @master_score.score, @master_score.url %>)
             <% else %>
-            (<%= @master_game[i].music_score_by_account(account) %>)
+            (<%= @master_score.score %>)
             <% end %>
           </td>
           <% end %>

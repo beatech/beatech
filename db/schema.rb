@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130225163354) do
+ActiveRecord::Schema.define(:version => 20130225174415) do
 
   create_table "contest2nds", :force => true do |t|
     t.string   "name"
@@ -59,9 +59,10 @@ ActiveRecord::Schema.define(:version => 20130225163354) do
     t.string   "account"
     t.integer  "game"
     t.float    "score"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "url"
+    t.float    "standard_score"
   end
 
   create_table "master_users", :force => true do |t|

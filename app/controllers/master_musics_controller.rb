@@ -1,6 +1,13 @@
 # -*- coding: utf-8 -*-
 class MasterMusicsController < ApplicationController
   def master
+    # なかったら初期化
+    @master_score = MasterScore.find(1)
+    if @master_score.standard_score == nil
+      master_controller = MasterScoresController.new
+      master_controller.update_scores
+    end
+    
     # エントリー
     @bEntried = false
     @bEntriable = false
