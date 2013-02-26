@@ -20,6 +20,7 @@ class MasterUsersController < ApplicationController
         @master_score = MasterScore.new
         @master_score.account = @current_user.account if @current_user
         @master_score.score = 0
+        @master_score.standard_score = 0
         @master_score.game = i + 1
         @master_score.url = ''
         @master_score.save
