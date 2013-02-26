@@ -167,7 +167,7 @@
               </td>
               <% @master_game.each do |master_game| %>
               <td>
-                <%= master_game.average %>
+                <%= sprintf("%.1f", master_game.average) %>
               </td>
               <% end %>
             </tr>
