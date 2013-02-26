@@ -158,6 +158,19 @@
               <% end %>
             </tr>  
             <% end %>
+            <tr>
+              <td>
+                -
+              </td>
+              <td>
+                平均
+              </td>
+              <% @master_game.each do |master_game| %>
+              <td>
+                <%= master_game.average %>
+              </td>
+              <% end %>
+            </tr>
           </tbody>
         </table>
         <br>
