@@ -167,7 +167,11 @@
               </td>
               <% @master_game.each do |master_game| %>
               <td>
-                <%= sprintf("%.1f", master_game.average) %>
+                <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
+                <%= sprintf("%d", master_game.average) %>
+                <% else %>
+                <%= sprintf("%.2f", master_game.average) %>
+                <% end %>                
               </td>
               <% end %>
             </tr>
