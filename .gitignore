@@ -15,6 +15,7 @@
 /tmp
 
 db/seeds.rb
+db/schema.rb
 database.yml
 omniauth.rb
 .DS_Store
