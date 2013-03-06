@@ -77,9 +77,9 @@
             <h2>サークルメニュー</h2>
             <ul>
               <% @circle_menu.each do |menu| %>
-              <% if @current_user == nil || menu.url != "registration" %>
-              <li><%= link_to menu.title, root_url + menu.url %></li>
-              <% end %>
+                <% if @current_user == nil || menu.url != "registration" %>
+                  <li><%= page_link(menu.title, menu.url) %></li>
+                <% end %>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -87,7 +87,7 @@
             <h2>交流メニュー</h2>
             <ul>
               <% @communication_menu.each do |menu| %>
-              <li><%= link_to menu.title, root_url + menu.url %></li>
+                <li><%= page_link(menu.title, menu.url) %></li>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -95,7 +95,7 @@
             <h2>音ゲーコンテンツ</h2>
             <ul>
               <% @contents_menu.each do |menu| %>
-              <li><%= link_to menu.title, root_url + menu.url %></li>
+                <li><%= page_link(menu.title, menu.url) %></li>
               <% end %>
             </ul>
           </div><!-- section end -->
@@ -113,7 +113,7 @@
                 <ul>
               <% end %>
               <% menu.title = 'トップページ' if menu.url == 'frontpage' %>
-              <li><%= link_to menu.title, root_url + menu.url %><br></li>
+              <li><%= page_link(menu.title, menu.url) %><br></li>
               <% last_date = menu.updated_at.to_date %>
             <% end %>
             </ul>
