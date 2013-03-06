@@ -22,10 +22,14 @@ class PagesController < ApplicationController
 
     html = ""
     mode = M_START
+    expand_count = 0
     lines = text.split("\n")
     lines.each do |line|
+      # Comment out
+      line.gsub!(/\/\/.*$/, "")
+      
       # Non-Combo Part
-      if /^\*/ =~ line || /----+/ =~ line
+      if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line || /^&expand\(.+\){/ =~ line
         html = add_finish_tag(mode, html)
         
         if /^\*\*\*/ =~ line      # ***
@@ -37,8 +41,13 @@ class PagesController < ApplicationController
         elsif /^\*/ =~ line       # *
           line.gsub!(/^\*/, "")
           line = "<h2>" + line + "</h2>"
-        elsif /----+/ =~ line     # ----
-          line.gsub!(/----+/, '<hr>')
+        elsif /^----+/ =~ line     # ----
+          line.gsub!(/^----+/, '<hr>')
+        elsif /^&expand\(.+\){/ =~ line
+          line.gsub!(/^&expand\((.+)\){/, '<p class="dvtitle" onclick="ShowCBox(' + expand_count.to_s + ')" style="margin:0 0 3px 0">\1</p><div id="developbox' + expand_count.to_s + '" class="developbox" onclick="ShowCBox(' + expand_count.to_s + ')">')
+          expand_count += 1
+        elsif /^}/ =~ line     # };
+          line.gsub!(/^}/, '</div>')
         end
         mode = M_START
         

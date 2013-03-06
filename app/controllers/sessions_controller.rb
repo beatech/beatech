@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:account] = user.account
-      redirect_to root_url
+      redirect_to(:back)
     else
       redirect_to "/registration", :notice => "ご使用のアカウント(" + auth["info"]["nickname"] + ")はBEATECHアカウントに関連付けられていないようです。お手数ですが、まずBEATECHアカンウントを作成してください。"
     end
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:account], params[:pass])
     if user
       session[:account] = user.account
-      redirect_to :root
+      redirect_to(:back)
     else
       render 'login_failure'
     end
@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:account] = nil
-    redirect_to :root
+    redirect_to(:back)
   end
 end
