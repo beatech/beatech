@@ -26,7 +26,7 @@ class PagesController < ApplicationController
     lines = text.split("\n")
     lines.each do |line|
       # Comment out
-      line.gsub!(/\/\/.*$/, "")
+      line.gsub!(/([^:])\/\/.*$/, "\1")
       
       # Non-Combo Part
       if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line || /^&expand\(.+\){/ =~ line
