@@ -18,6 +18,7 @@
         <% end %>
         <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
       </tr>
+      <%= hidden_field "music_score", :account, :index => i %>
       <% end %>
     </tbody>
   </table>
