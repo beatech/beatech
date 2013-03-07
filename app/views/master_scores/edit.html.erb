@@ -15,8 +15,8 @@
         <% else %>
         <% @master_score.score = @master_score.score.to_i %>
         <td><%= number_field "master_score", :score, :index => i, :class => 'span2', :id => 'no-margin' %></td>
-        <%= hidden_field "master_score", :account, :index => i %>
         <% end %>
+        <%= hidden_field "master_score", :account, :index => i %>
         <td><%= text_field "master_score", :url, :index => i, :class => 'span3', :id => 'no-margin' %></td>
       </tr>
       <% end %>
