@@ -13,6 +13,16 @@ class MasterScoresController < ApplicationController
     @title = "マスター部門 スコア編集"
     @master_scores = MasterScore.find(:all, :conditions => {:account => @current_user.account})
   end
+
+  def edit_by_admin    
+    @title = "マスター部門 スコア編集"
+    @master_scores = MasterScore.find(:all, :conditions => {:account => params[:account]})
+    if @current_user.account == "ikstrm"
+      render "edit"
+    else
+      raise Forbidden
+    end
+  end
   
   def update
     # 入力の登録

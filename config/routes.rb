@@ -16,6 +16,7 @@ Beatech::Application.routes.draw do
   # Master
   match "/master_musics/new/:id" => "master_musics#new"
   match "/master_scores/edit" => "master_scores#edit"
+  match "/master_scores/edit/:account" => "master_scores#edit_by_admin"
   match "/master_scores/update" => "master_scores#update"
   resources :master_games
   resources :master_musics
