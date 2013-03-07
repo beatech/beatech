@@ -28,7 +28,7 @@ class MasterScoresController < ApplicationController
     # 入力の登録
     params[:master_score].each do |master_score|
       game = master_score[0].to_i + 1
-      @master_scores = MasterScore.find(:all, :conditions => {:account => master_score[1][:account], :game => game})
+      @master_scores = MasterScore.find(:all, :conditions => {:account => master_score[1][:account], :game => game})      
       @master_score = @master_scores[0]
       if @master_score
         @master_score.score = master_score[1][:score] 
