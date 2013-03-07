@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user
       session[:account] = user.account
-      redirect_to(:back)
+      redirect_to root_url
     else
       redirect_to "/registration", :notice => "ご使用のアカウント(" + auth["info"]["nickname"] + ")はBEATECHアカウントに関連付けられていないようです。お手数ですが、まずBEATECHアカンウントを作成してください。"
     end
