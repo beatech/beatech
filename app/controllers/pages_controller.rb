@@ -29,7 +29,8 @@ class PagesController < ApplicationController
       line.gsub!(/([^:])\/\/.*$/, "\1")
       
       # Non-Combo Part
-      if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line || /^&expand\(.+\){/ =~ line
+      if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line || /^&expand\(.+\){/ =~ line || /^&tab\(.+\)/ =~ line
+
         html = add_finish_tag(mode, html)
         
         if /^\*\*\*/ =~ line      # ***
@@ -48,6 +49,35 @@ class PagesController < ApplicationController
           expand_count += 1
         elsif /^}/ =~ line     # };
           line.gsub!(/^}/, '</div>')
+        elsif /^&tab\(.+\)/ =~ line
+          tabs = line.gsub(/^&tab\(/, "").gsub(/\)/, "").strip.split(",")
+          
+          line = '<ul class="nav nav-tabs">'
+          tab_name = 'tab'
+          tabs.each_with_index do |tab, i|
+            if i == 0
+              tab_name = tab.strip
+              line += '<li class="active"><a href="#' + tab_name + i.to_s + '" data-toggle="tab">' + Page.title_by_url(tab.strip) + '</a></li>'
+            else
+              line += '<li><a href="#' + tab_name + i.to_s + '" data-toggle="tab">' + Page.title_by_url(tab.strip) + '</a></li>'
+            end
+          end
+          line += '</ul>'
+
+          tabs.each_with_index do |tab, i|
+            if i == 0
+              line += '<div class="tab-content"><div class="tab-pane active" id="' + tab_name + i.to_s + '">'
+              @page = Page.find_by_url(tab.strip)
+              line += convert_wiki(@page.text)
+              line += '</div>'
+            else
+              line += '<div class="tab-pane" id="' + tab_name + i.to_s + '">'
+              @page = Page.find_by_url(tab.strip)
+              line += convert_wiki(@page.text)
+              line += '</div>'
+            end
+          end
+          line += '</div>'
         end
         mode = M_START
         
