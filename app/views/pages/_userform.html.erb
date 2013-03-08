@@ -21,7 +21,7 @@
   </div>
   <div class="field">
     <%= f.label "メニュー" %>
-    <%= f.number_field :menu %>
+    <%= f.select :menu, {"サークルメニュー" => 1, "交流メニュー" => 2, "音ゲーコンテンツ" => 3, "非部員向けページ" => 4, "メニュー表示なし" => 0} %>
   </div>
 
   <div class="field">
