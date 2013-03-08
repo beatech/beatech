@@ -67,13 +67,13 @@ class PagesController < ApplicationController
           tabs.each_with_index do |tab, i|
             if i == 0
               line += '<div class="tab-content"><div class="tab-pane active" id="' + tab_name + i.to_s + '">'
-              @page = Page.find_by_url(tab.strip)
-              line += convert_wiki(@page.text)
+              @tab_page = Page.find_by_url(tab.strip)
+              line += convert_wiki(@tab_page.text)
               line += '</div>'
             else
               line += '<div class="tab-pane" id="' + tab_name + i.to_s + '">'
-              @page = Page.find_by_url(tab.strip)
-              line += convert_wiki(@page.text)
+              @tab_page = Page.find_by_url(tab.strip)
+              line += convert_wiki(@tab_page.text)
               line += '</div>'
             end
           end
