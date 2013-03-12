@@ -60,16 +60,7 @@
             <% if @current_user %>
             <li><%= link_to "ページ新規作成", root_url + "newpage" %></li>
             <% if @page && @page.url%>
-            <li><%= link_to "編集", root_url + "edit/" + @page.url %></li>
-            <li class="blog"><a href="#">Blog  
-                <!--[if IE 7]><!--></a><!--<![endif]-->  
-              <!--[if lte IE 6]><table><tr><td><![endif]-->  
-              <ul>  
-                <li class="up"><a href="#">Upload</a></li>  
-                <li class="del"><a href="#">Delete</a></li>  
-              </ul>  
-              <!--[if lte IE 6]></td></tr></table></a><![endif]-->  
-            </li>  
+            <%= raw edit_link %>
             <% end %>
             <% else %>
             <% @header_menu.each do |menu| %>

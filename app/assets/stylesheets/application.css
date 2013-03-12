@@ -178,7 +178,7 @@ ul, ol {
 #menu ul {
     margin:0;
     padding:0;
-    background:url("/assets/bg_menu.gif") 0 50% repeat-x;
+    background-color: #000;
 }
 
 #menu li {
@@ -451,3 +451,4 @@ input[type=number]::-webkit-outer-spin-button {
    padding: 0px 0px 0px 24px;
    margin: 0px 3px 0px 0px;
 }
+
