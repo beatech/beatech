@@ -1,6 +1,29 @@
-<h1>Editing user</h1>
+<%= form_for(@user) do |f| %>
+  <div class="field">
+    <%= f.label "名前" %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "入学年度" %>
+    <%= f.number_field :year %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "留年回数" %>
+    <%= f.select :repeat_year, {"留年なし" => 0, "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4} %>
+  </div>  
+  
+  <div class="field">
+    <%= f.label "自己紹介" %>
+    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "30000"%>
+  </div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="field">
+    <%= f.label "詳細プロフィール" %>
+    <%= f.text_area :long_profile, :class => "span8", :rows => "16", :maxlength => "30000"%>
+  </div>
+  <div class="actions">
+    <%= f.submit "更新", :class => "btn" %>
+  </div>
+<% end %>

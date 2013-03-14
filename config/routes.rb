@@ -36,6 +36,8 @@ Beatech::Application.routes.draw do
 
   # Users
   match "/users/:account" => "users#show"
+  match "/users/edit/:account" => "users#edit"
+  match "/users/destroy/:account" => "users#destroy"
   resources :users
 
   # Settings
