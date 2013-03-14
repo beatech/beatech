@@ -1,40 +1,6 @@
-<p id="notice"><%= notice %></p>
+<%= raw user_data(@user) %>
+<h4>詳細プロフィール</h4>
+<%= raw PagesController.new.convert_wiki(User.long_profile_by_account(@user.account)) %>
 
-<p>
-  <b>Account:</b>
-  <%= @user.account %>
-</p>
-
-<p>
-  <b>Name:</b>
-  <%= @user.name %>
-</p>
-
-<p>
-  <b>Password digest:</b>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <b>Uid:</b>
-  <%= @user.uid %>
-</p>
-
-<p>
-  <b>Year:</b>
-  <%= @user.year %>
-</p>
-
-<p>
-  <b>State:</b>
-  <%= @user.state %>
-</p>
-
-<p>
-  <b>Profile:</b>
-  <%= @user.profile %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<br>
+<%= link_to 'メンバー紹介に戻る', root_url + 'users' %>

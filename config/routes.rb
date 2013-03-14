@@ -2,7 +2,7 @@ Beatech::Application.routes.draw do
   root :to => 'pages#frontpage'
   
   resources :pages
-  resources :users
+
   resources :sessions
   resources :contest2nds
   resources :contestdates
@@ -35,7 +35,8 @@ Beatech::Application.routes.draw do
   match "/contest2nd/scoreupdate" => "contest2nds#scoreupdate"
 
   # Users
-  match "/users/:account" => "users#showprofile"
+  match "/users/:account" => "users#show"
+  resources :users
 
   # Settings
   match "/settings/profile" => "users#editprofile"

@@ -1,31 +1,22 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
   def index
-    admin_required
+    @title = "メンバー紹介"
     
-    @users = User.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @users }
-    end
+    @users_0th = User.grade(0)
+    @users_1st = User.grade(1)
+    @users_2nd = User.grade(2)
+    @users_3rd = User.grade(3)
+    @users_4th = User.grade(4)
+    @users_ob  = User.ob
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @user }
-    end
+    @user = User.find_by_account(params[:account])
+    raise Forbidden unless @user
+    @title = User.name_by_account(params[:account]) + "のプロフィール"
   end
-
-  # GET /users/new
-  # GET /users/new.json
+  
   def new
     @user = User.new
     @title = "入部申請"
@@ -50,17 +41,6 @@ class UsersController < ApplicationController
     @user = User.find_by_account(session[:account])
     @title = "パスワード変更"
   end
-
-  def showprofile
-    @user = User.find_by_account(params[:account])
-    @title = "プロフィール"
-    @title = @user.name + "さんのページ" if @user && @user.name
-
-    if params[:password]
-      update      
-    end
-    raise Forbidden unless @user
-  end  
 
   # POST /users
   # POST /users.json
