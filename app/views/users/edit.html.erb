@@ -6,6 +6,23 @@
 
   <div class="field">
     <%= f.label "Twitterアカウント" %>
+    <% if twitter_accounts = @user.twitter_accounts %>
+    <table class="style-table" style="margin-bottom: 10px;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% twitter_accounts.each do |twitter_account| %>
+        <td><%= twitter_account.screen_name %></td>
+        <td><a href="/twitter_accounts/destroy/<%= twitter_account.uid %>" class="btn" style="text-decoration: none; color: #000;">削除</a>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+    <a href="/auth/twitter" class="btn" style="text-decoration: none; color: #000; margin-bottom: 10px;">アカウント認証</a>
   </div>
   
   <div class="field">

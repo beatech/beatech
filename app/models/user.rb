@@ -86,11 +86,22 @@ class User < ActiveRecord::Base
   end
 
   def self.screen_names_by_account(account)
-    user = self.find_by_account(account)    
-    if user.screen_name
-      user.screen_name.split(" ")
+    # user = self.find_by_account(account)    
+    # if user.screen_name
+    #   user.screen_name.split(" ")
+    # else
+    #   nil
+    # end    
+  end
+
+  def twitter_accounts
+    twitter_accounts = TwitterAccount.find(
+      :all, :conditions => {:account => account}
+    )
+    if twitter_accounts.count > 0
+      twitter_accounts
     else
       nil
-    end    
+    end
   end
 end
