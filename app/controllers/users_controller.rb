@@ -49,6 +49,7 @@ class UsersController < ApplicationController
   end
   
   def update
+    Page.find_by_url('users').touch
     @user = User.find_by_account(params[:user][:account])
 
     respond_to do |format|
