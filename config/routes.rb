@@ -35,9 +35,10 @@ Beatech::Application.routes.draw do
   match "/contest2nd/scoreupdate" => "contest2nds#scoreupdate"
 
   # Users
-  match "/users/:account" => "users#show"
-  match "/users/edit/:account" => "users#edit"
-  match "/users/destroy/:account" => "users#destroy"
+  get "/users/:account" => "users#show"
+  get "/users/edit/:account" => "users#edit"
+  put "/users/edit/update" => "users#update"
+  get "/users/destroy/:account" => "users#destroy"
   resources :users
 
   # Settings

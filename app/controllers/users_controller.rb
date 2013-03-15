@@ -24,11 +24,11 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = User.find(params[:account])
+    @user = User.find_by_account(params[:user][:account])
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to root_url + 'users/' + @user.account, :notice => 'User was successfully updated.' }
+        format.html { redirect_to root_url + 'users/' + @user.account, :notice => 'プロフィールの更新に成功しました。' }
       else
         format.html { render :action => "edit" }
       end

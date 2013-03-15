@@ -1,28 +1,30 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :url => {:action => 'update'} do |f| %>
   <div class="field">
     <%= f.label "名前" %>
     <%= f.text_field :name %>
   </div>
-  
+
   <div class="field">
-    <%= f.label "入学年度" %>
-    <%= f.number_field :year %>
+    <%= f.label "Twitterアカウント" %>
   </div>
   
   <div class="field">
-    <%= f.label "留年回数" %>
-    <%= f.select :repeat_year, {"留年なし" => 0, "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4} %>
-  </div>  
+    <%= f.label "入学年度・留年回数" %>
+    <%= f.number_field :year %>
+        <%= f.select :repeat_year, {"留年なし" => 0, "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4} %>
+  </div>
   
   <div class="field">
-    <%= f.label "自己紹介" %>
-    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "30000"%>
+    <%= f.label "短いプロフィール(4行、1行につき40文字までで自動カットされます)" %>
+    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "400"%>
   </div>
 
   <div class="field">
     <%= f.label "詳細プロフィール" %>
-    <%= f.text_area :long_profile, :class => "span8", :rows => "16", :maxlength => "30000"%>
+    <%= f.text_area :long_profile, :class => "span8", :rows => "10", :maxlength => "1000"%>
   </div>
+
+  <%= f.hidden_field :account %>
   <div class="actions">
     <%= f.submit "更新", :class => "btn" %>
   </div>

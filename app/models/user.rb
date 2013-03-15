@@ -61,7 +61,16 @@ class User < ActiveRecord::Base
   def self.short_profile_by_account(account)
     user = self.find_by_account(account)
     if user.short_profile
-      user.short_profile
+      text = ''
+      user.short_profile.each_line.with_index do |line, idx|
+        break if idx == 4
+        if line.length > 40
+          text += line[0..39]
+        else
+          text += line
+        end
+      end
+      text
     else
       '未入力'
     end
