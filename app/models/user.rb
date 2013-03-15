@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   def self.find_by_uid(uid)
     twitter_account = TwitterAccount.find_by_uid(uid)
     if twitter_account
-      user = self.find_by_account(account)
+      user = self.find_by_account(twitter_account.account)
       if user
         user
       else

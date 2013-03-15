@@ -52,7 +52,10 @@ class SessionsController < ApplicationController
       session[:account] = user.account
       redirect_to(:back)
     else
-      render 'login_failure'
+      redirect_to(
+        root_url,
+        :notice => 'ログインに失敗しました。'
+      )
     end
   end
 
