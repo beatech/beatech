@@ -9,6 +9,21 @@ class UsersController < ApplicationController
     @users_3rd = User.grade(3)
     @users_4th = User.grade(4)
     @users_ob  = User.ob
+
+    @users_0th.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_0th
+    @users_1st.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_1st
+    @users_2nd.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_2nd
+    @users_3rd.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_3rd
+    @users_4th.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_4th
+    @users_ob .sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_ob
+
+    @num_0th = @users_0th.count
+    @num_1st = @users_1st.count
+    @num_2nd = @users_2nd.count
+    @num_3rd = @users_3rd.count
+    @num_4th = @users_4th.count
+    @num_ob  = @users_ob .count
+    @num_member = @num_1st + @num_2nd + @num_3rd + @num_4th
   end
 
   def show
@@ -122,5 +137,4 @@ class UsersController < ApplicationController
       end
     end
   end
-
 end
