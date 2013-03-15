@@ -7,6 +7,7 @@ class SessionsController < ApplicationController
   def twitter_create
     auth = request.env["omniauth.auth"]
     screen_name = auth[:info][:nickname]
+    profile_image = auth[:info][:image]
     uid = auth[:uid]
     
     raise Forbidden unless auth
@@ -22,6 +23,9 @@ class SessionsController < ApplicationController
           'お手数ですが、まずBEATECHアカンウントを作成してください。'
       end
     else
+      user = User.find_by_account(session[:account])
+      user.profile_image = profile_image
+      user.save
       if TwitterAccount.exist?(screen_name) == true
         redirect_to(
           'users/edit/' + session[:account],

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
   def index
-    @title = "メンバー紹介"
+    @title = "部員紹介"
     
     @users_0th = User.grade(0)
     @users_1st = User.grade(1)
@@ -15,6 +15,16 @@ class UsersController < ApplicationController
     @user = User.find_by_account(params[:account])
     raise Forbidden unless @user
     @title = User.name_by_account(params[:account]) + "のプロフィール"
+
+    this_year = Time.now.year    
+    this_year -= 1 if Time.now.month < 4
+
+    grade_num = this_year - @user.year + 1 - @user.repeat_year
+    @grade = case grade_num
+             when 1..4 then grade_num.to_s + '年生'
+             when 0 then '新入生'
+             else 'OB'
+             end
   end
   
   def edit
@@ -46,6 +56,8 @@ class UsersController < ApplicationController
   
   def new
     @user = User.new
+    @user.year = Time.now.year
+    @user.repeat_year = 0
     @title = "入部申請"
 
     respond_to do |format|

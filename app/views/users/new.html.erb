@@ -13,16 +13,18 @@
 
   <h4>入部について</h4>
   <p>部員には、音ゲーをやっている、現役の東工大学部生を受け付けています。<br>
-  該当する方はこのページから入部申請を行うとBEATECHアカウントが作成され、その場で入部したことになります。</p>
+  該当する方はこのページから入部申請を行うとBEATECHアカウントが作成され、その場で入部したことになります。<br><br>
+  なお、BEATECHアカウントを作成後、プロフィール編集ページからTwitterアカウントの認証を行うと、アイコンが修正され、Twitterアカウントでログインすることが可能になります。<br>
+  Twitterアカウントは複数認証できます。</p>
   <br>
 
   <h4>入部申請フォーム</h4>
   <div class="field">
-    <%= f.label "名前" %>
+    <%= f.label "名前(部員紹介で表示されるハンドルネームです)" %>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label "BEATECH アカウント" %>
+    <%= f.label "BEATECH アカウント(ログインに使うIDになります)" %>
     <%= f.text_field :account %>
   </div>
   <div class="field">
@@ -33,25 +35,11 @@
     <%= f.label "パスワード確認" %>
     <%= f.text_field :password_confirmation %>
   </div>
-
-  <!--
   <div class="field">
-    <%= f.label :uid %>
-    <%= f.number_field :uid %>
-  </div>
-  <div class="field">
-    <%= f.label :year %><br />
+    <%= f.label "入学年度" %>
     <%= f.number_field :year %>
   </div>
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.number_field :state %>
-  </div>
-  <div class="field">
-    <%= f.label :profile %><br />
-    <%= f.text_field :profile %>
-  </div>
-  -->
+  <%= f.hidden_field :repeat_year %>
   <div class="actions">
     <%= f.submit "入部する", :class => "btn" %>
   </div>

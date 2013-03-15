@@ -19,8 +19,12 @@ class User < ActiveRecord::Base
     @all = self.all
     @users = Array.new
     @all.each do |user|
-      if this_year + 1 - user.year > 4
-        @users += user
+      if user.year && this_year + 1 - user.year > 4
+        if @users.count == 0
+          @users[0] = user
+        else
+          @users += user
+        end
       end
     end    
     @users
@@ -93,6 +97,21 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
+  def self.find_by_uid(uid)
+    twitter_account = TwitterAccount.find_by_uid(uid)
+    if twitter_account
+      user = self.find_by_account(account)
+      if user
+        user
+      else
+        nil
+      end
+    else
+      nil
+    end
+  end
+
 
   def twitter_accounts
     twitter_accounts = TwitterAccount.find(

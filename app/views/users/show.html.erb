@@ -1,4 +1,6 @@
 <%= raw user_data(@user) %>
+<h4>学年</h4>
+<p><%= @grade %></p>
 <h4>詳細プロフィール</h4>
 <%= raw PagesController.new.convert_wiki(User.long_profile_by_account(@user.account)) %>
 
