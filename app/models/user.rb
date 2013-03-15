@@ -86,12 +86,12 @@ class User < ActiveRecord::Base
   end
 
   def self.screen_names_by_account(account)
-    # user = self.find_by_account(account)    
-    # if user.screen_name
-    #   user.screen_name.split(" ")
-    # else
-    #   nil
-    # end    
+    user = self.find_by_account(account)
+    if twitter_accounts = user.twitter_accounts
+      twitter_accounts.map{ |twitter_account| twitter_account.screen_name }
+    else
+      nil
+    end
   end
 
   def twitter_accounts

@@ -41,6 +41,9 @@ Beatech::Application.routes.draw do
   get "/users/destroy/:account" => "users#destroy"
   resources :users
 
+  # Twitter Account
+  get "/twitter_accounts/destroy/:uid" => "twitter_accounts#destroy"
+
   # Settings
   match "/settings/profile" => "users#editprofile"
   match "/settings/password" => "users#editpassword"
