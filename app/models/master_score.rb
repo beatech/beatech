@@ -1,5 +1,5 @@
 class MasterScore < ActiveRecord::Base
-  attr_accessible :account, :game, :score, :url
+  attr_accessible :account, :game, :score, :url, :user_id
   validates :score, :presence => true
 
   def music_title

@@ -1,5 +1,5 @@
 class MasterUser < ActiveRecord::Base
-  attr_accessible :account, :name
+  attr_accessible :account, :name, :user_id
   
   def total_standard_score
     total = 0
