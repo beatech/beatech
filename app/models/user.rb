@@ -72,15 +72,14 @@ class User < ActiveRecord::Base
       text = ''
       user.short_profile.each_line.with_index do |line, idx|
         break if idx == 4
-          text += line
-        end
+        text += line
       end
       text
     else
       '未入力'
     end
   end
-  
+
   def self.long_profile_by_account(account)
     user = self.find_by_account(account)
     if user.long_profile
@@ -124,4 +123,5 @@ class User < ActiveRecord::Base
       nil
     end
   end
+
 end
