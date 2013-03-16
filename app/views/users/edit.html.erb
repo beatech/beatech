@@ -16,8 +16,10 @@
       </thead>
       <tbody>
         <% twitter_accounts.each do |twitter_account| %>
-        <td><%= twitter_account.screen_name %></td>
-        <td><a href="/twitter_accounts/destroy/<%= twitter_account.uid %>" class="btn" style="text-decoration: none; color: #000;">削除</a>
+        <tr>
+          <td><%= twitter_account.screen_name %></td>
+          <td><a href="/twitter_accounts/destroy/<%= twitter_account.uid %>" class="btn" style="text-decoration: none; color: #000;">削除</a>
+        </tr>
         <% end %>
       </tbody>
     </table>
