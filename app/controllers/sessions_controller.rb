@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
           screen_name: screen_name
         )
         redirect_to(
-          'users/edit/' + session[:account],
+          root_url + 'users/edit/' + session[:account],
           :notice => 'アカウントを追加しました。'
         )
       end
