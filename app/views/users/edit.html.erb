@@ -34,8 +34,8 @@
   </div>
   
   <div class="field">
-    <%= f.label "短いプロフィール(4行、1行につき40文字までで自動カットされます)" %>
-    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "400"%>
+    <%= f.label "短いプロフィール(160文字まで 5行目以降は表示されません)" %>
+    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "160"%>
   </div>
 
   <div class="field">

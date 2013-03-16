@@ -65,12 +65,13 @@ class User < ActiveRecord::Base
   def self.short_profile_by_account(account)
     user = self.find_by_account(account)
     if user.short_profile
+      if user.short_profile.length > 160
+        user.short_profile = user.short_profile[0..159]
+        user.save
+      end
       text = ''
       user.short_profile.each_line.with_index do |line, idx|
         break if idx == 4
-        if line.length > 40
-          text += line[0..39]
-        else
           text += line
         end
       end
