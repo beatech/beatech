@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
       user.save
       if TwitterAccount.exist?(screen_name) == true
         redirect_to(
-          'users/edit/' + session[:account],
+          root_url + 'users/edit/' + session[:account],
           :notice => screen_name +
           'はすでにBEATECHアカウントに関連付けられています。'
         )
