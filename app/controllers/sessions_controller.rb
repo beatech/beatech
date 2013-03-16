@@ -34,7 +34,7 @@ class SessionsController < ApplicationController
         )
       else        
         TwitterAccount.create(
-          account: session[:account],
+          user_id: User.find_by_account(session[:account]).id,
           uid: uid,
           screen_name: screen_name
         )

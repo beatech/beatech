@@ -87,6 +87,11 @@ class UsersController < ApplicationController
     @title = "プロフィール編集"
   end
 
+  def edit_account
+    @user = User.find_by_account(session[:account])
+    @title = "ユーザー名変更"
+  end
+
   def editpassword
     @user = User.find_by_account(session[:account])
     @title = "パスワード変更"
@@ -104,7 +109,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   def update_password
     @user = User.find_by_account(session[:account])
     if params[:user][:password] != params[:user][:password_confirmation]
@@ -114,6 +118,14 @@ class UsersController < ApplicationController
     @user.password_digest = BCrypt::Password.create(params[:user][:password])
     @user.save!
     redirect_to root_url + "settings/password", :notice => "パスワードを変更しました。"
+  end
+
+  def update_account
+    @user = User.find(params[:user][:id])
+    @user.account = params[:user][:account]
+    session[:account] = params[:user][:account]
+    @user.save
+    redirect_to root_url + "settings/account", :notice => "ユーザー名を変更しました。"
   end
   
   def update_profile

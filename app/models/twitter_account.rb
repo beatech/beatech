@@ -9,10 +9,9 @@ class TwitterAccount < ActiveRecord::Base
       false
     end
   end
-=begin
+
   def account
     @user = User.find(user_id)
     @user.account if @user
   end
-=end
 end

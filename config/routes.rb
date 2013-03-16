@@ -47,8 +47,10 @@ Beatech::Application.routes.draw do
   # Settings
   match "/settings/profile" => "users#editprofile"
   match "/settings/password" => "users#editpassword"
+  match "/settings/account" => "users#edit_account"
   match "/settings/update/profile" => "users#update_profile"
   match "/settings/update/password" => "users#update_password"
+  match "/settings/update/account" => "users#update_account"
 
   # Authentication
   match "/auth/twitter/callback" => "sessions#twitter_create"
