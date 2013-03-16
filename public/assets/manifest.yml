@@ -1,0 +1,27 @@
+---
+bg_h2.gif: bg_h2.gif
+bg_h2/index.gif: bg_h2.gif
+bg_list.gif: bg_list.gif
+bg_list/index.gif: bg_list.gif
+bg_menu.gif: bg_menu.gif
+bg_menu/index.gif: bg_menu.gif
+bg_pagetop.gif: bg_pagetop.gif
+bg_pagetop/index.gif: bg_pagetop.gif
+bg_sub_h2.gif: bg_sub_h2.gif
+bg_sub_h2/index.gif: bg_sub_h2.gif
+favicon.png: favicon.png
+favicon/index.png: favicon.png
+glyphicons-halflings-white.png: glyphicons-halflings-white.png
+glyphicons-halflings-white/index.png: glyphicons-halflings-white.png
+glyphicons-halflings.png: glyphicons-halflings.png
+glyphicons-halflings/index.png: glyphicons-halflings.png
+application.js: application.js
+application/index.js: application.js
+bootstrap.js: bootstrap.js
+bootstrap/index.js: bootstrap.js
+bootstrap.min.js: bootstrap.min.js
+bootstrap/index.min.js: bootstrap.min.js
+application.css: application.css
+application/index.css: application.css
+jquery.min.map: jquery.min.map
+jquery/index.min.map: jquery.min.map
