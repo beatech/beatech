@@ -114,9 +114,7 @@ class User < ActiveRecord::Base
 
 
   def twitter_accounts
-    twitter_accounts = TwitterAccount.find(
-      :all, :conditions => {:account => account}
-    )
+    twitter_accounts = TwitterAccount.find_all_by_account(account)
     if twitter_accounts.count > 0
       twitter_accounts
     else
