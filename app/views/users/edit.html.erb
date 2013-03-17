@@ -1,6 +1,50 @@
-<h1>Editing user</h1>
+<%= form_for @user, :url => {:action => 'update'} do |f| %>
+  <div class="field">
+    <%= f.label "名前" %>
+    <%= f.text_field :name %>
+  </div>
 
-<%= render 'form' %>
+  <div class="field">
+    <%= f.label "Twitterアカウント" %>
+    <% if twitter_accounts = @user.twitter_accounts %>
+    <table class="style-table" style="margin-bottom: 10px;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% twitter_accounts.each do |twitter_account| %>
+        <tr>
+          <td><%= twitter_account.screen_name %></td>
+          <td><a href="/twitter_accounts/destroy/<%= twitter_account.uid %>" class="btn" style="text-decoration: none; color: #000;">削除</a>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+    <a href="/auth/twitter" class="btn" style="text-decoration: none; color: #000; margin-bottom: 10px;">アカウント追加</a>
+  </div>
+  
+  <div class="field">
+    <%= f.label "入学年度・留年回数" %>
+    <%= f.number_field :year %>
+        <%= f.select :repeat_year, {"留年なし" => 0, "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4} %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "短いプロフィール(160文字まで 5行目以降は表示されません)" %>
+    <%= f.text_area :short_profile, :class => "span8", :rows => "4", :maxlength => "160"%>
+  </div>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="field">
+    <%= f.label "詳細プロフィール" %>
+    <%= f.text_area :long_profile, :class => "span8", :rows => "10", :maxlength => "1000"%>
+  </div>
+
+  <%= f.hidden_field :account %>
+  <div class="actions">
+    <%= f.submit "更新", :class => "btn" %>
+  </div>
+<% end %>

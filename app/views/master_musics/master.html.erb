@@ -95,9 +95,9 @@
                 </td>
                 <% @master_game.each do |master_game| %>
                   <td>
-                    <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+                    <% @master_score = MasterScore.find_by_account_and_game(account, master_game.id) %>            
                     
-                    <%= sprintf("%.1f", @master_score.standard_score) %>                   
+                    <%= sprintf("%.1f", @master_score.standard_score) if @master_score %> 
                   </td>
                 <% end %>
               </tr>  
@@ -141,15 +141,15 @@
               </td>
               <% @master_game.each do |master_game| %>
               <td>
-                <% @master_score = MasterScore.where(:account => account, :game => master_game.id).first %>            
+                <% @master_score = MasterScore.find_by_account_and_game(account, master_game.id) %>            
 
                 <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
-                <% score = @master_score.score.to_i %>
+                <% score = @master_score.score.to_i if @master_score %>
                 <% else %>
-                <% score = @master_score.score %>
+                <% score = @master_score.score  if @master_score %>
                 <% end %>
                 
-                <% if @master_score.url && @master_score.url.length > 0 %>
+                <% if @master_score && @master_score.url && @master_score.url.length > 0 %>
                 <a href="<%= @master_score.url %>"><%= score %></a>
                 <% else %>
                 <%= score %>

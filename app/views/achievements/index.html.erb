@@ -1,0 +1,14 @@
+<% if @current_user %>
+  <h4 style="margin-bottom: 10px;">報告フォーム</h4>
+  <%= form_for(@achievement) do |f| %>
+    <%= f.hidden_field :user_id %>    
+    <div class="field">
+      <%= User.name_by_account(@current_user.account) %>:
+      <%= f.text_area :text, :style => "width:75%; margin: 0;", :rows => "1", :maxlength => "140"%>
+      <%= f.submit "投稿", {class: "btn", style: "margin:0; width: 70px;"}  %>
+      <br>
+      <%= f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"} %>      
+    </div>
+  <% end %>
+  <h4 style="margin-top: 20px;">成果一覧</h4>
+<% end %>
