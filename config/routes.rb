@@ -1,4 +1,5 @@
 Beatech::Application.routes.draw do
+
   root :to => 'pages#frontpage'
   
   resources :pages
@@ -12,6 +13,13 @@ Beatech::Application.routes.draw do
   match "/registration/create" => "users#create_user"
   match "/contest2nd" => "contest2nds#result"
   match "/master" => "master_musics#master"
+
+  # Achievements
+  get "achievements/index" => "achievements#index"
+  get "achievements/create"
+  get "achievements/edit"
+  get "achievements/update"
+  get "achievements/destroy"
 
   # Master
   match "/master_musics/new/:id" => "master_musics#new"

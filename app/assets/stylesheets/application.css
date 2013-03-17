@@ -23,7 +23,8 @@ br {
 }
 
 hr {
-    border-top:1px dotted #000;
+    border-top:1px solid #aaa;
+    border-bottom:1px solid transparent;
 }
 
 #subL a {
