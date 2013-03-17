@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class MasterMusicsController < ApplicationController
-  def master
+  def master    
     # なかったら初期化
     @master_score = MasterScore.find(1)
     if @master_score.standard_score == nil

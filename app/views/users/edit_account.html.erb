@@ -1,0 +1,12 @@
+<%= form_for @user, :url => {:action => 'update_account'} do |f| %>
+  <div class="field">
+    <%= f.label "新しいユーザー名" %>
+    <%= f.text_field :account %>
+  </div>
+
+  <%= f.hidden_field :id %>
+
+  <div class="actions">
+    <%= f.submit "設定", :class => "btn" %>
+  </div>
+<% end %>

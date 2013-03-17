@@ -1,8 +1,9 @@
 Beatech::Application.routes.draw do
+
   root :to => 'pages#frontpage'
   
   resources :pages
-  resources :users
+
   resources :sessions
   resources :contest2nds
   resources :contestdates
@@ -12,6 +13,13 @@ Beatech::Application.routes.draw do
   match "/registration/create" => "users#create_user"
   match "/contest2nd" => "contest2nds#result"
   match "/master" => "master_musics#master"
+
+  # Achievements
+  get "achievements/index" => "achievements#index"
+  get "achievements/create"
+  get "achievements/edit"
+  get "achievements/update"
+  get "achievements/destroy"
 
   # Master
   match "/master_musics/new/:id" => "master_musics#new"
@@ -35,13 +43,22 @@ Beatech::Application.routes.draw do
   match "/contest2nd/scoreupdate" => "contest2nds#scoreupdate"
 
   # Users
-  match "/users/:account" => "users#showprofile"
+  get "/users/:account" => "users#show"
+  get "/users/edit/:account" => "users#edit"
+  put "/users/edit/update" => "users#update"
+  get "/users/destroy/:account" => "users#destroy"
+  resources :users
+
+  # Twitter Account
+  get "/twitter_accounts/destroy/:uid" => "twitter_accounts#destroy"
 
   # Settings
   match "/settings/profile" => "users#editprofile"
   match "/settings/password" => "users#editpassword"
+  match "/settings/account" => "users#edit_account"
   match "/settings/update/profile" => "users#update_profile"
   match "/settings/update/password" => "users#update_password"
+  match "/settings/update/account" => "users#update_account"
 
   # Authentication
   match "/auth/twitter/callback" => "sessions#twitter_create"

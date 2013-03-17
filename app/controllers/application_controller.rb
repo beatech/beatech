@@ -16,6 +16,14 @@ class ApplicationController < ActionController::Base
     raise Forbidden unless @current_user
   end
 
+  def admin?
+    if @current_user && @current_user.account == 'ikstrm'
+      true
+    else
+      false
+    end
+  end
+
   def admin_required
     unless @current_user
       raise Forbidden

@@ -11,12 +11,12 @@ class MasterScoresController < ApplicationController
 
   def edit
     @title = "マスター部門 スコア編集"
-    @master_scores = MasterScore.find(:all, :conditions => {:account => @current_user.account})
+    @master_scores = MasterScore.find_all_by_account(@current_user.account)
   end
 
   def edit_by_admin    
     @title = "マスター部門 スコア編集"
-    @master_scores = MasterScore.find(:all, :conditions => {:account => params[:account]})
+    @master_scores = MasterScore.find_all_by_account(params[:account])
     if @current_user.account == "ikstrm"
       render "edit"
     else
@@ -59,7 +59,7 @@ class MasterScoresController < ApplicationController
     @master_users.each do |master_user|
       account = master_user.account
       @master_games.each do |master_game|
-        @master_score = MasterScore.where(:account => account, :game => master_game.id).first
+        @master_score = MasterScore.find_by_account_and_game(account, master_game.id)
         @master_score.standard_score = master_game.standard_score_by_account(account)
         @master_score.save
       end

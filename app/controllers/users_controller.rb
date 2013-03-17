@@ -1,33 +1,79 @@
 # -*- coding: utf-8 -*-
 class UsersController < ApplicationController
-  # GET /users
-  # GET /users.json
   def index
-    admin_required
+    @title = "部員紹介"
     
-    @users = User.all
+    @users_0th = User.grade(0)
+    @users_1st = User.grade(1)
+    @users_2nd = User.grade(2)
+    @users_3rd = User.grade(3)
+    @users_4th = User.grade(4)
+    @users_ob  = User.ob
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render :json => @users }
-    end
+    @users_0th.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_0th
+    @users_1st.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_1st
+    @users_2nd.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_2nd
+    @users_3rd.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_3rd
+    @users_4th.sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_4th
+    @users_ob .sort!{ |a,b| b.updated_at <=> a.updated_at } if @users_ob
+
+    @num_0th = @users_0th.count
+    @num_1st = @users_1st.count
+    @num_2nd = @users_2nd.count
+    @num_3rd = @users_3rd.count
+    @num_4th = @users_4th.count
+    @num_ob  = @users_ob .count
+    @num_member = @num_1st + @num_2nd + @num_3rd + @num_4th
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_account(params[:account])
+    raise Forbidden unless @user
+    @title = User.name_by_account(params[:account]) + "のプロフィール"
+
+    this_year = Time.now.year    
+    this_year -= 1 if Time.now.month < 4
+
+    grade_num = this_year - @user.year + 1 - @user.repeat_year
+    @grade = case grade_num
+             when 1..4 then grade_num.to_s + '年生'
+             when 0 then '新入生'
+             else 'OB'
+             end
+  end
+  
+  def edit
+    @user = User.find_by_account(params[:account])
+    raise Forbidden unless @user
+    @title = User.name_by_account(params[:account]) + "のプロフィールの編集"
+  end
+  
+  def update
+    Page.find_by_url('users').touch
+    @user = User.find_by_account(params[:user][:account])
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @user }
+      if @user.update_attributes(params[:user])
+        format.html { redirect_to root_url + 'users/' + @user.account, :notice => 'プロフィールの更新に成功しました。' }
+      else
+        format.html { render :action => "edit" }
+      end
     end
   end
+  
+  def destroy
+    admin_required
 
-  # GET /users/new
-  # GET /users/new.json
+    @user = User.find_by_account(params[:account])
+    raise Forbidden unless @user
+    @user.destroy
+    redirect_to root_url + 'users'
+  end
+  
   def new
     @user = User.new
+    @user.year = Time.now.year
+    @user.repeat_year = 0
     @title = "入部申請"
 
     respond_to do |format|
@@ -36,14 +82,14 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
   def editprofile
     @user = User.find_by_account(session[:account])
     @title = "プロフィール編集"
+  end
+
+  def edit_account
+    @user = User.find_by_account(session[:account])
+    @title = "ユーザー名変更"
   end
 
   def editpassword
@@ -51,45 +97,14 @@ class UsersController < ApplicationController
     @title = "パスワード変更"
   end
 
-  def showprofile
-    @user = User.find_by_account(params[:account])
-    @title = "プロフィール"
-    @title = @user.name + "さんのページ" if @user && @user.name
-
-    if params[:password]
-      update      
-    end
-    raise Forbidden unless @user
-  end  
-
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
         format.html { redirect_to @user, :notice => 'User was successfully created.' }
-        format.json { render :json => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /users/1
-  # PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
-
-    respond_to do |format|
-      if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, :notice => 'User was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render :action => "edit" }
-        format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
     end
   end
@@ -103,6 +118,14 @@ class UsersController < ApplicationController
     @user.password_digest = BCrypt::Password.create(params[:user][:password])
     @user.save!
     redirect_to root_url + "settings/password", :notice => "パスワードを変更しました。"
+  end
+
+  def update_account
+    @user = User.find(params[:user][:id])
+    @user.account = params[:user][:account]
+    session[:account] = params[:user][:account]
+    @user.save
+    redirect_to root_url + "settings/account", :notice => "ユーザー名を変更しました。"
   end
   
   def update_profile
@@ -125,18 +148,6 @@ class UsersController < ApplicationController
         format.html { render :action => "new" }
         format.json { render :json => @user.errors, :status => :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
     end
   end
 end

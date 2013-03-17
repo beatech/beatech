@@ -1,35 +1,43 @@
-<h1>Listing users</h1>
+<p>4年生 <%= @num_4th %>名, 3年生 <%= @num_3rd %>名, 2年生 <%= @num_2nd %>名, 1年生 <%= @num_1st %>名, 計<%= @num_member %>名 (新入生 <%= @num_0th %>名, OB <%= @num_ob %>名)</p>
+<p>名前をクリックすると詳細が見れます。</p>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#users_4th" data-toggle="tab">4年生</a></li>
+  <li><a href="#users_3rd" data-toggle="tab">3年生</a></li>
+  <li><a href="#users_2nd" data-toggle="tab">2年生</a></li>
+  <li><a href="#users_1st" data-toggle="tab">1年生</a></li>
+  <li><a href="#users_0th" data-toggle="tab">新入生</a></li>
+  <li><a href="#users_ob"  data-toggle="tab">OB</a></li>
+</ul>
 
-<table>
-  <tr>
-    <th>Account</th>
-    <th>Name</th>
-    <th>Password digest</th>
-    <th>Uid</th>
-    <th>Year</th>
-    <th>State</th>
-    <th>Profile</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.account %></td>
-    <td><%= user.name %></td>
-    <td><%= user.password_digest %></td>
-    <td><%= user.uid %></td>
-    <td><%= user.year %></td>
-    <td><%= user.state %></td>
-    <td><%= user.profile %></td>
-    <td><%= link_to 'Show', user %></td>
-    <td><%= link_to 'Edit', edit_user_path(user) %></td>
-    <td><%= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New User', new_user_path %>
+<div class="tab-content">
+  <div class="tab-pane active" id="users_4th">
+    <% @users_4th.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="users_3rd">
+    <% @users_3rd.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="users_2nd">
+    <% @users_2nd.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="users_1st">    
+    <% @users_1st.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="users_0th">
+    <% @users_0th.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+  <div class="tab-pane" id="users_ob">
+    <% @users_ob.each do |user| %>
+    <%= raw user_data(user) %>
+    <% end %>
+  </div>
+</div>

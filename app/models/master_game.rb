@@ -72,8 +72,7 @@ class MasterGame < ActiveRecord::Base
   end
 
   def music_score_by_account(account)
-    @master_scores = MasterScore.find(:all, :conditions => {:account => account, :game => self.id})
-    @master_score = @master_scores[0]
+    @master_score = MasterScore.find_by_account_and_game(account, self.id)
     if @master_score
       return @master_score.score
     else
