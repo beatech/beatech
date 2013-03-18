@@ -66,6 +66,6 @@ class SessionsController < ApplicationController
 
   def substitute_user
     session[:account] = params[:account]
-    redirect_to root_url + 'achievements/index'
+    redirect_to root_url + 'achievements'
   end
 end

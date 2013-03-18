@@ -14,7 +14,7 @@ class AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to root_url + 'achievements/index', :notice => '成果報告を送信しました。' }
+        format.html { redirect_to root_url + 'achievements', :notice => '成果報告を送信しました。' }
       else
         format.html { render :action => "index" }
       end
@@ -34,7 +34,7 @@ class AchievementsController < ApplicationController
     @achievement.date = Date.new(year, month, day)
     @achievement.save
 
-    redirect_to root_url + 'achievements/index'
+    redirect_to root_url + 'achievements'
   end
 
   def destroy

@@ -3,7 +3,7 @@
 <%= f.hidden_field :user_id %>    
 <div class="field">
   <%= User.name_by_account(@current_user.account) %>:<br>
-  <%= f.text_area :text, :style => "width:98%; margin: 0;", :rows => "2", :maxlength => "140"%>
+  <%= f.text_area :text, :style => "width:98%; margin: 0;", :rows => "2", :maxlength => "200"%>
   <br>
   <%= f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"} %>
   <%= f.submit "投稿", {class: "btn pull-right", style: "margin:10px 0 0 0; width: 90px;"}  %>

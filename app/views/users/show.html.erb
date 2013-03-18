@@ -18,8 +18,7 @@
       <p style="margin-left: 10px;">
     <% end %>
     
-    <% text = achievement.name + ':' if achievement.name %>
-    <% text = ':' unless text %>
+    <% text = '' %>
     <% content = PagesController.new.convert_wiki(achievement.text).gsub(/<p>/, "").gsub(/<\/p>/, "") %>
     <% text += content if content %>
     <% if @current_user && achievement.user_id == @current_user.id %>
