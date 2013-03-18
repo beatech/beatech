@@ -15,7 +15,7 @@ Beatech::Application.routes.draw do
   match "/master" => "master_musics#master"
 
   # Achievements
-  get "achievements/index" => "achievements#index"
+  get "achievements" => "achievements#index"
   post "achievements/create"
   get "achievements/edit/:id" => "achievements#edit"
   put "achievements/update"
