@@ -16,7 +16,7 @@ Beatech::Application.routes.draw do
 
   # Achievements
   get "achievements/index" => "achievements#index"
-  get "achievements/create"
+  post "achievements/create"
   get "achievements/edit"
   get "achievements/update"
   get "achievements/destroy"
@@ -62,6 +62,9 @@ Beatech::Application.routes.draw do
 
   # Authentication
   match "/auth/twitter/callback" => "sessions#twitter_create"
+
+  # Admin Debug
+  match "/account/:account" => "sessions#substitute_user"
 
   # Wiki
   match 'edit/:url' => 'pages#edit_page'

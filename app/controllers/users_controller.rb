@@ -40,6 +40,8 @@ class UsersController < ApplicationController
              when 0 then '新入生'
              else 'OB'
              end
+
+    @achievements = Achievement.where(user_id: @user.id).sort{|a, b| b.date <=> a.date }
   end
   
   def edit
