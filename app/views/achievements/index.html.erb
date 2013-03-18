@@ -16,11 +16,11 @@
 <% last_date = nil %>
 <% @achievements.each_with_index do |achievement, i| %>    
   <% if i == 0 %>
-    <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+    <div style="margin-left: 5px; margin-top:5px; color: #444;"><strong><%= achievement.date %></strong></div>
     <p style="margin-left: 10px;">
   <% elsif last_date != achievement.date %>
     </p>
-    <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+    <div style="margin-left: 5px; margin-top:5px; color: #444;"><strong><%= achievement.date %></strong></div>
     <p style="margin-left: 10px;">
   <% end %>
 
