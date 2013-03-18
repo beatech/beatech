@@ -26,8 +26,15 @@ class AchievementsController < ApplicationController
   end
 
   def update
-    @achievement = Achievement.find(params[:id])
-    @achievement.update(params)
+    @achievement = Achievement.find(params[:achievement][:id])
+    @achievement.text = params[:achievement][:text]    
+    year = params[:achievement]["date(1i)"].to_i
+    month = params[:achievement]["date(2i)"].to_i
+    day = params[:achievement]["date(3i)"].to_i
+    @achievement.date = Date.new(year, month, day)
+    @achievement.save
+
+    redirect_to root_url + 'achievements/index'
   end
 
   def destroy

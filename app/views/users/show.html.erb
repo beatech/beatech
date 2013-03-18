@@ -17,8 +17,26 @@
       <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
       <p style="margin-left: 10px;">
     <% end %>
-    <%= raw PagesController.new.convert_wiki(achievement.text).gsub(/<p>/, "").gsub(/<\/p>/, "") %>
+    
+    <% text = achievement.name + ':' if achievement.name %>
+    <% text = ':' unless text %>
+    <% content = PagesController.new.convert_wiki(achievement.text).gsub(/<p>/, "").gsub(/<\/p>/, "") %>
+    <% text += content if content %>
+    <% if @current_user && achievement.user_id == @current_user.id %>
+      <% text = text.strip.gsub(/<br>\Z/, " ") %>
+      <% text += link_to '編集', root_url + 'achievements/edit/' + achievement.id.to_s %>
+      <% text += ' ' %>
+      <% text += link_to '削除', root_url + 'achievements/destroy/' + achievement.id.to_s %>
+      <% text += '<br>' %>
+      <%= raw text %>
+    <% else %>
+      <%= raw text %>
+    <% end %>
+    
     <% last_date = achievement.date %>
+  <% end %>
+  <% if @achievements %>
+    </p>
   <% end %>
 <% end %>
 
