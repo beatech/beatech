@@ -22,6 +22,7 @@ class AchievementsController < ApplicationController
   end
 
   def edit
+    @title = "成果報告の編集"
     @achievement = Achievement.find(params[:id])
   end
 
