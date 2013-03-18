@@ -1,14 +1,28 @@
 <% if @current_user %>
   <h4 style="margin-bottom: 10px;">報告フォーム</h4>
-  <%= form_for(@achievement) do |f| %>
+  <%= form_for @achievement, :url => { :action => :create } do |f| %>
     <%= f.hidden_field :user_id %>    
     <div class="field">
-      <%= User.name_by_account(@current_user.account) %>:
-      <%= f.text_area :text, :style => "width:75%; margin: 0;", :rows => "1", :maxlength => "140"%>
-      <%= f.submit "投稿", {class: "btn", style: "margin:0; width: 70px;"}  %>
+      <%= User.name_by_account(@current_user.account) %>:<br>
+      <%= f.text_area :text, :style => "width:98%; margin: 0;", :rows => "2", :maxlength => "140"%>
       <br>
-      <%= f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"} %>      
+      <%= f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"} %>
+      <%= f.submit "投稿", {class: "btn pull-right", style: "margin:10px 0 0 0; width: 90px;"}  %>
     </div>
   <% end %>
   <h4 style="margin-top: 20px;">成果一覧</h4>
+<% end %>
+
+<% last_date = nil %>
+<% @achievements.each_with_index do |achievement, i| %>    
+  <% if i == 0 %>
+    <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+    <p style="margin-left: 10px;">
+  <% elsif last_date != achievement.date %>
+    </p>
+    <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+    <p style="margin-left: 10px;">
+  <% end %>
+  <%= achievement.name %>:<%= raw PagesController.new.convert_wiki(achievement.text).gsub(/<p>/, "").gsub(/<\/p>/, "") %>
+  <% last_date = achievement.date %>
 <% end %>

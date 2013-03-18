@@ -4,5 +4,23 @@
 <h4>詳細プロフィール</h4>
 <%= raw PagesController.new.convert_wiki(User.long_profile_by_account(@user.account)) %>
 
+<% if @achievements.length > 0 %>
+  <h4 style="margin-top: 20px;">成果一覧</h4>
+
+  <% last_date = nil %>
+  <% @achievements.each_with_index do |achievement, i| %>    
+    <% if i == 0 %>
+      <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+      <p style="margin-left: 10px;">
+    <% elsif last_date != achievement.date %>
+      </p>
+      <div style="margin-left: 5px; margin-top:5px;"><strong><%= achievement.date %></strong></div>
+      <p style="margin-left: 10px;">
+    <% end %>
+    <%= raw PagesController.new.convert_wiki(achievement.text).gsub(/<p>/, "").gsub(/<\/p>/, "") %>
+    <% last_date = achievement.date %>
+  <% end %>
+<% end %>
+
 <br>
 <%= link_to 'メンバー紹介に戻る', root_url + 'users' %>
