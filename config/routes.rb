@@ -64,7 +64,7 @@ Beatech::Application.routes.draw do
   match "/auth/twitter/callback" => "sessions#twitter_create"
 
   # Admin Debug
-  # match "/account/:account" => "sessions#substitute_user" 
+  match "/account/:account" => "sessions#substitute_user" 
 
   # Wiki
   match 'edit/:url' => 'pages#edit_page'
