@@ -65,6 +65,7 @@ class SessionsController < ApplicationController
   end
 
   def substitute_user
+    raise Forbidden if session[:account] != 'ikstrm'
     session[:account] = params[:account]
     redirect_to root_url + 'achievements'
   end
