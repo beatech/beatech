@@ -21,3 +21,7 @@ omniauth.rb
 .DS_Store
 .#*
 *.rb~
+script/follow.rb
+*.back
+beatech-stream.rb
+beatech-stream.god

@@ -38,6 +38,7 @@ class SessionsController < ApplicationController
           uid: uid,
           screen_name: screen_name
         )
+        command = "ruby script/follow.rb " + uid.to_s
         redirect_to(
           root_url + 'users/edit/' + session[:account],
           :notice => 'アカウントを追加しました。'
