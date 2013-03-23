@@ -53,9 +53,12 @@ class UsersController < ApplicationController
   def update
     Page.find_by_url('users').touch
     @user = User.find_by_account(params[:user][:account])
+    update_mail = false
+    update_mail = true if params[:user][:mail] && @user.mail != params[:user][:mail]
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        `rails runner script/mail.rb`
         format.html { redirect_to root_url + 'users/' + @user.account, :notice => 'プロフィールの更新に成功しました。' }
       else
         format.html { render :action => "edit" }

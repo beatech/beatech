@@ -32,6 +32,11 @@
     <%= f.number_field :year %>
         <%= f.select :repeat_year, {"留年なし" => 0, "1回" => 1, "2回" => 2, "3回" => 3, "4回" => 4} %>
   </div>
+
+  <div class="field">
+    <%= f.label "メールアドレス(非公開、メーリングリスト受信用です。)" %>
+    <%= f.text_field :mail, {:class => "span6"} %>
+  </div>
   
   <div class="field">
     <%= f.label "短いプロフィール(160文字まで 5行目以降は表示されません)" %>

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :account, :name, :password_digest, :profile, :repeat_year, :uid, :year, :password, :password_confirmation, :short_profile, :long_profile, :profile_image, :screen_name
+  attr_accessible :account, :name, :password_digest, :profile, :repeat_year, :uid, :year, :password, :password_confirmation, :short_profile, :long_profile, :profile_image, :screen_name, :mail
 
   def self.grade(grade)
     this_year = Time.now.year    
