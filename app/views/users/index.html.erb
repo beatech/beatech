@@ -1,4 +1,5 @@
-<p>4年生 <%= @num_4th %>名, 3年生 <%= @num_3rd %>名, 2年生 <%= @num_2nd %>名, 1年生 <%= @num_1st %>名, 計<%= @num_member %>名 (新入生 <%= @num_0th %>名, OB <%= @num_ob %>名)</p>
+<p>4年生 <%= @num_4th %>名, 3年生 <%= @num_3rd %>名, 2年生 <%= @num_2nd %>名, 1年生 <%= @num_1st %>名, 計<%= @num_member %>名
+(<% if Time.now.month == 2 || Time.now.month == 3 %>新入生 <%= @num_0th %>名,<% end %>OB <%= @num_ob %>名)</p>
 <p>名前をクリックすると詳細が見れます。</p>
 <ul class="nav nav-tabs">
   <li class="active"><a href="#users_4th" data-toggle="tab">4年生</a></li>
