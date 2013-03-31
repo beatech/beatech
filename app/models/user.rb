@@ -19,11 +19,11 @@ class User < ActiveRecord::Base
     @all = self.all
     @users = Array.new
     @all.each do |user|
-      if user.year && this_year + 1 - user.year > 4
+      if user.year && this_year + 1 - user.year - user.repeat_year > 4
         if @users.count == 0
           @users[0] = user
         else
-          @users += user
+          @users << user
         end
       end
     end    
