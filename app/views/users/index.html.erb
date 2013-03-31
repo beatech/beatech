@@ -5,7 +5,9 @@
   <li><a href="#users_3rd" data-toggle="tab">3年生</a></li>
   <li><a href="#users_2nd" data-toggle="tab">2年生</a></li>
   <li><a href="#users_1st" data-toggle="tab">1年生</a></li>
+  <% if Time.now.month == 2 || Time.now.month == 3 %>
   <li><a href="#users_0th" data-toggle="tab">新入生</a></li>
+  <% end %>
   <li><a href="#users_ob"  data-toggle="tab">OB</a></li>
 </ul>
 
