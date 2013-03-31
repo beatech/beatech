@@ -30,11 +30,13 @@
     <%= raw user_data(user) %>
     <% end %>
   </div>
+  <% if Time.now.month == 2 || Time.now.month == 3 %>
   <div class="tab-pane" id="users_0th">
     <% @users_0th.each do |user| %>
     <%= raw user_data(user) %>
     <% end %>
   </div>
+  <% end %>
   <div class="tab-pane" id="users_ob">
     <% @users_ob.each do |user| %>
     <%= raw user_data(user) %>
