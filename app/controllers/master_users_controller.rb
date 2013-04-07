@@ -33,7 +33,8 @@ class MasterUsersController < ApplicationController
       
       redirect_to root_url + 'master', :notice => 'Master部門エントリーしました。'     
     else
-      redirect_to root_url + 'master_users/new', :notice => '名前を入力してください。'     
+      redirect_to root_url + 'master_users/new',
+      :notice => '名前を入力してください。'     
     end
   end
 
@@ -49,5 +50,4 @@ class MasterUsersController < ApplicationController
 
   def show
   end
-
 end

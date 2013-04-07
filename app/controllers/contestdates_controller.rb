@@ -46,11 +46,14 @@ class ContestdatesController < ApplicationController
 
     respond_to do |format|
       if @contestdate.save
-        format.html { redirect_to @contestdate, :notice => 'Contestdate was successfully created.' }
-        format.json { render :json => @contestdate, :status => :created, :location => @contestdate }
+        format.html { redirect_to @contestdate,
+          :notice => 'Contestdate was successfully created.' }
+        format.json { render :json => @contestdate, :status => :created,
+          :location => @contestdate }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @contestdate.errors, :status => :unprocessable_entity }
+        format.json { render :json => @contestdate.errors,
+          :status => :unprocessable_entity }
       end
     end
   end
@@ -62,11 +65,13 @@ class ContestdatesController < ApplicationController
 
     respond_to do |format|
       if @contestdate.update_attributes(params[:contestdate])
-        format.html { redirect_to root_url + 'contest2nd', :notice => '会場の編集に成功しました。' }
+        format.html { redirect_to root_url + 'contest2nd',
+          :notice => '会場の編集に成功しました。' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @contestdate.errors, :status => :unprocessable_entity }
+        format.json { render :json => @contestdate.errors,
+          :status => :unprocessable_entity }
       end
     end
   end

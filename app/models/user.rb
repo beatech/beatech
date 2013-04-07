@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 class User < ActiveRecord::Base
   has_secure_password
-  attr_accessible :account, :name, :password_digest, :profile, :repeat_year, :uid, :year, :password, :password_confirmation, :short_profile, :long_profile, :profile_image, :screen_name, :mail
+  attr_accessible :account, :name, :password_digest, :profile, :repeat_year,
+  :uid, :year, :password, :password_confirmation, :short_profile, :long_profile,
+  :profile_image, :screen_name, :mail
 
   def self.grade(grade)
     this_year = Time.now.year    
@@ -112,7 +114,6 @@ class User < ActiveRecord::Base
     end
   end
 
-
   def twitter_accounts
     twitter_accounts = TwitterAccount.find_all_by_account(account)
     if twitter_accounts.count > 0
@@ -121,5 +122,4 @@ class User < ActiveRecord::Base
       nil
     end
   end
-
 end
