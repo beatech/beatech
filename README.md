@@ -10,6 +10,6 @@ CMS for BEATECH made with Ruby on Rails
 4. Push to the branch (`git push origin my-new-feature`)  
 5. Create new Pull Request  
 
-## Copyright
+## License
 
 BEATECH is free and open source software distributed under the [GPL License](http://www.gnu.org/licenses/gpl.html)
