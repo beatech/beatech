@@ -135,4 +135,33 @@ class MasterMusicsController < ApplicationController
     
     redirect_to root_url + 'master', :notice => @master_music.title + 'への投票を取り消しました。'     
   end
+
+  def ajax_data 
+    users = MasterUser.all.sort{|a,b| b.total_standard_score <=> a.total_standard_score}
+    score = []
+    total_sscores = []
+    averages = []
+    games = MasterGame.all
+    users.each do |user|
+      user_score = []
+      games.each do |game|
+        user_score.push(MasterScore.find_by_account_and_game(user.account, game.id))
+      end
+      score.push(user_score)
+      total_sscores.push(user.total_standard_score);
+    end
+
+    games.each do |game|
+      averages.push(game.average)
+    end
+
+    render :json => {
+      :music => MasterMusic.all,
+      :users => users,
+      :score => score,
+      :games => games,
+      :total_sscores => total_sscores,
+      :averages => averages
+    }
+  end
 end

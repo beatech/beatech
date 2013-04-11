@@ -73,35 +73,7 @@
             </tr>
           </thead>
           <tbody>
-            <% last_score = -1 %>
-            <% last_rank = 1 %>
-            <% @master_users.each_with_index do |master_user, i| %>
-              <% account = master_user.account %>
-              <tr>
-                <td>
-                  <% if last_score == master_user.total_standard_score %>
-                    <%= last_rank %>
-                  <% else %>
-                    <%= i + 1 %>
-                    <% last_rank = i + 1 %>
-                  <% end %>
-                  <% last_score = master_user.total_standard_score %>
-                </td>
-                <td>
-                  <%= master_user.name %>
-                </td>
-                <td>
-                  <%= sprintf("%.1f", master_user.total_standard_score) %><br>
-                </td>
-                <% @master_game.each do |master_game| %>
-                  <td>
-                    <% @master_score = MasterScore.find_by_account_and_game(account, master_game.id) %>            
-                    
-                    <%= sprintf("%.1f", @master_score.standard_score) if @master_score %> 
-                  </td>
-                <% end %>
-              </tr>  
-            <% end %>
+
           </tbody>
         </table>
         <br>
@@ -122,59 +94,7 @@
             </tr>
           </thead>
           <tbody>
-            <% last_score = -1 %>
-            <% last_rank = 1 %>
-            <% @master_users.each_with_index do |master_user, i| %>
-            <% account = master_user.account %>
-            <tr>
-              <td>
-                <% if last_score == master_user.total_standard_score %>
-                <%= last_rank %>
-                <% else %>
-                <%= i + 1 %>
-                <% last_rank = i + 1 %>
-                <% end %>
-                <% last_score = master_user.total_standard_score %>
-              </td>
-              <td>
-                <%= master_user.name %>
-              </td>
-              <% @master_game.each do |master_game| %>
-              <td>
-                <% @master_score = MasterScore.find_by_account_and_game(account, master_game.id) %>            
 
-                <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
-                <% score = @master_score.score.to_i if @master_score %>
-                <% else %>
-                <% score = @master_score.score  if @master_score %>
-                <% end %>
-                
-                <% if @master_score && @master_score.url && @master_score.url.length > 0 %>
-                <a href="<%= @master_score.url %>"><%= score %></a>
-                <% else %>
-                <%= score %>
-                <% end %>
-              </td>
-              <% end %>
-            </tr>  
-            <% end %>
-            <tr>
-              <td>
-                -
-              </td>
-              <td>
-                平均
-              </td>
-              <% @master_game.each do |master_game| %>
-              <td>
-                <% if master_game.id != 3 && master_game.id != 4 && master_game.id != 13 %>
-                <%= sprintf("%d", master_game.average) %>
-                <% else %>
-                <%= sprintf("%.2f", master_game.average) %>
-                <% end %>                
-              </td>
-              <% end %>
-            </tr>
           </tbody>
         </table>
         <br>
@@ -237,3 +157,6 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  masterMusicsLoader();
+</script>
