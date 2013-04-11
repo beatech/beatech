@@ -91,7 +91,6 @@ class MasterGame < ActiveRecord::Base
     else
       return 0
     end
-
   end
 
   def average
