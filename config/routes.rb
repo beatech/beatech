@@ -35,6 +35,7 @@ Beatech::Application.routes.draw do
   match "/master_musics/destroy" => "master_musics#destroy"
   match "/master_musics/edit" => "master_musics#edit"
   match "/master_musics/update" => "master_musics#update"
+  match "/master_musics/ajax_data" => "master_musics#ajax_data"
 
   # Contest2nd
   match "/contest2nd/tunesedit/:order" => "contest2nds#tunesedit"
