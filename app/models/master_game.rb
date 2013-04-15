@@ -47,7 +47,7 @@ class MasterGame < ActiveRecord::Base
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})
       (@music_by_game[i].size).times do |j|
         @voter_split = @music_by_game[i][j].voter.split(",")
-        @music_by_game[i][j].number = @voter_split.size 
+        @music_by_game[i][j].number = @voter_split.size
         @music_by_game[i][j].save
       end
       @music_by_game[i].sort!{|a,b| b.number <=> a.number}
@@ -55,7 +55,8 @@ class MasterGame < ActiveRecord::Base
 
     @tops = Array.new
     (@master_game.size).times do |i|
-      @tops[i] = MasterMusic.find(:all, :conditions => { :game => i, :number => @music_by_game[i][0].number})
+      @tops[i] = MasterMusic.find(:all,
+        :conditions => { :game => i, :number => @music_by_game[i][0].number})
     end
 
     if @tops[self.id - 1] && @tops[self.id - 1][0]
@@ -66,7 +67,8 @@ class MasterGame < ActiveRecord::Base
   end
 
   def url_by_account(account)
-    @master_scores = MasterScore.find(:all, :conditions => {:account => account, :game => self.id})
+    @master_scores = MasterScore.find(:all,
+      :conditions => {:account => account, :game => self.id})
     @master_score = @master_scores[0]
     return @master_score.url
   end
@@ -83,7 +85,8 @@ class MasterGame < ActiveRecord::Base
   def standard_score_by_account(account)
     gap = 0
     if standard_deviation != 0
-      gap = 10 * (music_score_by_account(account) - average) / standard_deviation
+      gap = (music_score_by_account(account) - average) / standard_deviation
+      gap *= 10
     end
 
     if music_score_by_account(account) != 0
@@ -103,7 +106,7 @@ class MasterGame < ActiveRecord::Base
         num += 1
       end
     end
-    
+
     if num != 0
       return sum / num
     else

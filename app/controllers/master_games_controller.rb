@@ -20,7 +20,7 @@ class MasterGamesController < ApplicationController
     @master_game.title = params[:game][:title]
     @master_game.voter = @current_user.account if @current_user
     @master_game.save
-    
+
     @master_music = MasterMusic.new
     @master_music.title = params[:music][:title]
     @master_music.url = params[:music][:url]
@@ -34,12 +34,12 @@ class MasterGamesController < ApplicationController
     @page.touch
 
     if @master_game.title.length > 0 && @master_music.title.length > 0
-      redirect_to root_url + 'master', :notice => '対戦機種を追加しました。'     
+      redirect_to root_url + 'master', :notice => '対戦機種を追加しました。'
     else
-      redirect_to root_url + 'master_games/new', :notice => '機種名と譜面両方入力が必要です。'     
+      redirect_to root_url + 'master_games/new', :notice => '機種名と譜面両方入力が必要です。'
     end
   end
-  
+
   def update
   end
 
@@ -50,7 +50,7 @@ class MasterGamesController < ApplicationController
     @master_game = MasterGame.find(params[:id])
     # master_game.voterに追加する
     @master_game.save
-    
+
     @page = Page.find_by_url('master')
     @page.touch
   end

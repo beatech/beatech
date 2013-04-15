@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 class PagesController < ApplicationController
-  
+
   # Definition of the Mode
   M_START = 0
   M_UL = 1
@@ -11,13 +11,18 @@ class PagesController < ApplicationController
     text.gsub!(/<(.+?)>/, '\1')                              # remove <tag>
     text.gsub!(/\[\[(.+?)>(.+?)\]\]/, '<a href="\2">\1</a>') # [[>]]
     text.gsub!(/\[\[(.+?):(.+?)\]\]/, '<a href="\2">\1</a>') # [[:]]
-    text.gsub!(/#youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+?)\)/, '<iframe width="560" height="315" src="http://www.youtube.com/embed/\1" frameborder="0" allowfullscreen></iframe>') # #youtube()
-    text.gsub!(/#image\((.+?)\)/, '<img src="\1">') #        #image()
-    text.gsub!(/#image-resize\((.+?),(.+?),(.+?)\)/, '<img src="\1" width="\2" height="\3">') # #image()
-    text.gsub!(/([^"])(http:\/\/[0-9A-Za-z\.\/#]+)/, '\1<a href="\2">\2</a>') # http://
-    text.gsub!(/&color\((.+?),(.+?)\){(.+?)};/, '<span style="color:\1; background-color:\2">\3</span>')       # &color
-    text.gsub!(/&color\((.+?)\){(.+?)};/, '<font color="\1">\2</font>')       # &color
-    text.gsub!(/&size\((.+?)\){(.+?)};/, '<font size="\1">\2</font>')       # &size
+    text.gsub!(/#youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+?)\)/,
+      '<iframe width="560" height="315" src="http://www.youtube.com/embed/\1"' +
+      'frameborder="0" allowfullscreen></iframe>')           # #youtube()
+    text.gsub!(/#image\((.+?)\)/, '<img src="\1">')          # #image()
+    text.gsub!(/#image-resize\((.+?),(.+?),(.+?)\)/,
+      '<img src="\1" width="\2" height="\3">')               # #image()
+    text.gsub!(/([^"])(http:\/\/[0-9A-Za-z\.\/#]+)/,
+      '\1<a href="\2">\2</a>')                               # http://
+    text.gsub!(/&color\((.+?),(.+?)\){(.+?)};/,
+      '<span style="color:\1; background-color:\2">\3</span>')          # &color
+    text.gsub!(/&color\((.+?)\){(.+?)};/, '<font color="\1">\2</font>') # &color
+    text.gsub!(/&size\((.+?)\){(.+?)};/, '<font size="\1">\2</font>')   # &size
 
 
     html = ""
@@ -27,14 +32,15 @@ class PagesController < ApplicationController
     lines.each do |line|
       # Comment out
       line.gsub!(/([^:])\/\/.*$/, "\1")
-      
+
       # Non-Combo Part
-      if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line || /^&expand\(.+\){/ =~ line || /^&tab\(.+\)/ =~ line
+      if /^\*/ =~ line || /----+/ =~ line || /^}/ =~ line ||
+          /^&expand\(.+\){/ =~ line || /^&tab\(.+\)/ =~ line
 
         html = add_finish_tag(mode, html)
-        
+
         if /^\*\*\*/ =~ line      # ***
-          line.gsub!(/^\*\*\*/, "") 
+          line.gsub!(/^\*\*\*/, "")
           line = "<h4>" + line + "</h4>"
         elsif /^\*\*/ =~ line     # **
           line.gsub!(/^\*\*/, "")
@@ -45,28 +51,38 @@ class PagesController < ApplicationController
         elsif /^----+/ =~ line     # ----
           line.gsub!(/^----+/, '<hr>')
         elsif /^&expand\(.+\){/ =~ line
-          line.gsub!(/^&expand\((.+)\){/, '<p class="dvtitle" onclick="ShowCBox(' + expand_count.to_s + ')" style="margin:0 0 3px 0">\1</p><div id="developbox' + expand_count.to_s + '" class="developbox" onclick="ShowCBox(' + expand_count.to_s + ')">')
+          line.gsub!(/^&expand\((.+)\){/,
+            '<p class="dvtitle" onclick="ShowCBox(' + expand_count.to_s +
+            ')" style="margin:0 0 3px 0">\1</p><div id="developbox' +
+            expand_count.to_s + '" class="developbox" onclick="ShowCBox(' +
+            expand_count.to_s + ')">')
           expand_count += 1
         elsif /^}/ =~ line     # };
           line.gsub!(/^}/, '</div>')
         elsif /^&tab\(.+\)/ =~ line
           tabs = line.gsub(/^&tab\(/, "").gsub(/\)/, "").strip.split(",")
-          
+
           line = '<ul class="nav nav-tabs">'
           tab_name = 'tab'
           tabs.each_with_index do |tab, i|
             if i == 0
               tab_name = tab.strip
-              line += '<li class="active"><a href="#' + tab_name + i.to_s + '" data-toggle="tab">' + Page.title_by_url(tab.strip) + '</a></li>'
+              line += '<li class="active"><a href="#' + tab_name + i.to_s +
+                '" data-toggle="tab">' + Page.title_by_url(tab.strip) +
+                '</a></li>'
             else
-              line += '<li><a href="#' + tab_name + i.to_s + '" data-toggle="tab">' + Page.title_by_url(tab.strip) + '</a></li>'
+              line += '<li><a href="#' + tab_name + i.to_s +
+                '" data-toggle="tab">' + Page.title_by_url(tab.strip) +
+                '</a></li>'
             end
           end
           line += '</ul>'
 
           tabs.each_with_index do |tab, i|
             if i == 0
-              line += '<div class="tab-content"><div class="tab-pane active" id="' + tab_name + i.to_s + '">'
+              line += '<div class="tab-content">'
+              line += '<div class="tab-pane active" id="'
+              line += tab_name + i.to_s + '">'
               @tab_page = Page.find_by_url(tab.strip)
               line += convert_wiki(@tab_page.text)
               line += '</div>'
@@ -80,11 +96,11 @@ class PagesController < ApplicationController
           line += '</div>'
         end
         mode = M_START
-        
+
       # Combo Part
-      else        
+      else
         if /^-[^-]/ =~ line    # -
-          line.gsub!(/^-/, "")          
+          line.gsub!(/^-/, "")
           if mode != M_UL
             html = add_finish_tag(mode, html)
             line = "<ul><li>" + line + "</li>"
@@ -92,7 +108,7 @@ class PagesController < ApplicationController
             line = "<li>" + line + "</li>"
           end
           mode = M_UL
-        elsif /^\|/ =~ line      # |          
+        elsif /^\|/ =~ line      # |
           line.strip!
           bThead = false
           if /h$/ =~ line
@@ -115,7 +131,7 @@ class PagesController < ApplicationController
             html += '<table class="style-table">'
             if bThead == true
               line = '<thead>' + line + '</thead><tbody>'
-            else              
+            else
               line = '<tbody>' + line
             end
           end
@@ -129,12 +145,11 @@ class PagesController < ApplicationController
           mode = M_P
         end
       end
-      
+
       html += line
     end
 
     html = add_finish_tag(mode, html)
-    
     return html
   end
 
@@ -148,33 +163,25 @@ class PagesController < ApplicationController
     end
     return html
   end
-  
-  # GET /pages
-  # GET /pages.json
+
   def index
     admin_required
-    
+
     @pages = Page.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @pages }
     end
   end
 
-  # GET /pages/1
-  # GET /pages/1.json
   def show
     @page = Page.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render :json => @page }
     end
   end
 
-  # GET /pages/new
-  # GET /pages/new.json
   def new
     @page = Page.new
     @page.limit = 0
@@ -182,7 +189,6 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render :json => @page }
     end
   end
 
@@ -209,52 +215,42 @@ class PagesController < ApplicationController
     raise Forbidden unless @page
   end
 
-  # GET /pages/1/edit
   def edit
     @page = Page.find(params[:id])
   end
 
-  # POST /pages
-  # POST /pages.json
   def create
     @page = Page.new(params[:page])
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to root_url + @page.url, :notice => 'ページの作成に成功しました。' }
-        # format.json { render :json => root_url, :status => :created, :location => @page }
+        format.html { redirect_to root_url + @page.url,
+          notice: 'ページの作成に成功しました。' }
       else
         format.html { render :action => "new" }
-        # format.json { render :json => @page.errors, :status => :unprocessable_entity }
       end
-    end                        
+    end
   end
 
-  # PUT /pages/1
-  # PUT /pages/1.json
   def update
     @page = Page.find(params[:id])
 
     respond_to do |format|
       if @page.update_attributes(params[:page])
-        format.html { redirect_to root_url + @page.url, :notice => 'ページを更新しました。' }
-        # format.json { head :no_content }
+        format.html { redirect_to root_url + @page.url,
+          notice: 'ページを更新しました。' }
       else
         format.html { render :action => "edit" }
-        # format.json { render :json => @page.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /pages/1
-  # DELETE /pages/1.json
   def destroy
     @page = Page.find(params[:id])
     @page.destroy
 
     respond_to do |format|
       format.html { redirect_to pages_url }
-      format.json { head :no_content }
     end
   end
 end

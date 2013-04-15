@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 class MasterMusicsController < ApplicationController
-  def master    
+  def master
     # なかったら初期化
     @master_score = MasterScore.find(1)
     if @master_score.standard_score == nil
       master_controller = MasterScoresController.new
       master_controller.update_scores
     end
-    
+
     # エントリー
     @bEntried = false
     @bEntriable = false
@@ -21,8 +21,8 @@ class MasterMusicsController < ApplicationController
 
     # 参加者表示
     @master_users = MasterUser.all
-    @master_users.sort!{|a,b| b.total_standard_score <=> a.total_standard_score}    
-    
+    @master_users.sort!{|a,b| b.total_standard_score <=> a.total_standard_score}
+
     # ページ表示
     @page = Page.find_by_url("master")
     controller = PagesController.new
@@ -38,7 +38,7 @@ class MasterMusicsController < ApplicationController
       @music_by_game[i] = MasterMusic.find(:all, :conditions => {:game => i})
       (@music_by_game[i].size).times do |j|
         @voter_split = @music_by_game[i][j].voter.split(",")
-        @music_by_game[i][j].number = @voter_split.size 
+        @music_by_game[i][j].number = @voter_split.size
         @music_by_game[i][j].save
       end
       @music_by_game[i].sort!{|a,b| b.number <=> a.number}
@@ -46,10 +46,11 @@ class MasterMusicsController < ApplicationController
 
     @tops = Array.new
     (@master_game.size).times do |i|
-      @tops[i] = MasterMusic.find(:all, :conditions => { :game => i, :number => @music_by_game[i][0].number})
+      @tops[i] = MasterMusic.find(:all,
+        :conditions => { :game => i, :number => @music_by_game[i][0].number})
     end
   end
-  
+
   def index
   end
 
@@ -96,7 +97,7 @@ class MasterMusicsController < ApplicationController
 
     @page = Page.find_by_url('master')
     @page.touch
-    
+
     if @master_music.title.length > 0
       redirect_to root_url + 'master', :notice => '希望譜面を編集しました。'
     else
@@ -111,7 +112,7 @@ class MasterMusicsController < ApplicationController
     @page = Page.find_by_url('master')
     @page.touch
 
-    redirect_to root_url + 'master', :notice => @master_music.title + 'を削除しました。'     
+    redirect_to root_url + 'master', :notice => @master_music.title + 'を削除しました。'
   end
 
   def vote
@@ -121,23 +122,26 @@ class MasterMusicsController < ApplicationController
 
     @page = Page.find_by_url('master')
     @page.touch
-    
-    redirect_to root_url + 'master', :notice => @master_music.title + 'に投票しました。'     
+
+    redirect_to root_url + 'master', :notice => @master_music.title + 'に投票しました。'
   end
 
   def unvote
     @master_music = MasterMusic.find(params[:music][:id])
-    @master_music.voter = @master_music.voter.gsub(@current_user.account + ',', '')
+    @master_music.voter =
+      @master_music.voter.gsub(@current_user.account + ',', '')
     @master_music.save
 
     @page = Page.find_by_url('master')
     @page.touch
-    
-    redirect_to root_url + 'master', :notice => @master_music.title + 'への投票を取り消しました。'     
+
+    redirect_to root_url + 'master',:notice =>
+      @master_music.title + 'への投票を取り消しました。'
   end
 
-  def ajax_data 
-    users = MasterUser.all.sort{|a,b| b.total_standard_score <=> a.total_standard_score}
+  def ajax_data
+    users = MasterUser.all
+      .sort{|a,b| b.total_standard_score <=> a.total_standard_score}
     score = []
     total_sscores = []
     averages = []
@@ -145,7 +149,8 @@ class MasterMusicsController < ApplicationController
     users.each do |user|
       user_score = []
       games.each do |game|
-        user_score.push(MasterScore.find_by_account_and_game(user.account, game.id))
+        user_score
+          .push(MasterScore.find_by_account_and_game(user.account, game.id))
       end
       score.push(user_score)
       total_sscores.push(user.total_standard_score);

@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
     screen_name = auth[:info][:nickname]
     profile_image = auth[:info][:image]
     uid = auth[:uid]
-    
+
     raise Forbidden unless auth
     if session[:account] == nil
       user = User.find_by_uid(uid)
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
           :notice => screen_name +
           'はすでにBEATECHアカウントに関連付けられています。'
         )
-      else        
+      else
         TwitterAccount.create(
           user_id: User.find_by_account(session[:account]).id,
           uid: uid,
@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
           redirect_to(
             root_url + 'users/edit/' + session[:account],
             :notice => 'アカウントを追加しました。'
-          )          
+          )
         end
       end
     end

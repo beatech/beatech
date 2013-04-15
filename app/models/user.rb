@@ -6,18 +6,18 @@ class User < ActiveRecord::Base
   :profile_image, :screen_name, :mail
 
   def self.grade(grade)
-    this_year = Time.now.year    
+    this_year = Time.now.year
     this_year -= 1 if Time.now.month < 4
-    
+
     @users = self.where(year: this_year - grade + 1, repeat_year: 0)
     @users += self.where(year: this_year - grade, repeat_year: 1)
     @users
   end
 
   def self.ob
-    this_year = Time.now.year    
+    this_year = Time.now.year
     this_year -= 1 if Time.now.month < 4
-    
+
     @all = self.all
     @users = Array.new
     @all.each do |user|
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
           @users << user
         end
       end
-    end    
+    end
     @users
   end
 
@@ -54,13 +54,14 @@ class User < ActiveRecord::Base
   def self.profile_image_by_account(account)
     user = self.find_by_account(account)
     if user.profile_image
-      if user.profile_image =~ /.*normal.*/        
+      if user.profile_image =~ /.*normal.*/
         user.profile_image.gsub(/normal/, "bigger")
       else
         user.profile_image
       end
     else
-      'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png'
+      'https://si0.twimg.com/sticky/default_profile_images/' +
+        'default_profile_0_bigger.png'
     end
   end
 

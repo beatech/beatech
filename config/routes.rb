@@ -1,7 +1,7 @@
 Beatech::Application.routes.draw do
 
   root :to => 'pages#frontpage'
-  
+
   resources :pages
 
   resources :sessions
@@ -65,13 +65,13 @@ Beatech::Application.routes.draw do
   match "/auth/twitter/callback" => "sessions#twitter_create"
 
   # Admin Debug
-  match "/account/:account" => "sessions#substitute_user" 
+  match "/account/:account" => "sessions#substitute_user"
 
   # Wiki
   match 'edit/:url' => 'pages#edit_page'
   match 'newpage' => 'pages#new'
   match ':url' => 'pages#show_page'
-  
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

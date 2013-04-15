@@ -6,7 +6,7 @@ class AchievementsController < ApplicationController
     @achievement.user_id = @current_user.id if @current_user
 
     @achievements = Achievement.all.sort{|a, b| b.date <=> a.date }
-  end  
+  end
 
   def create
     Page.find_by_url('achievements').touch
@@ -14,7 +14,10 @@ class AchievementsController < ApplicationController
 
     respond_to do |format|
       if @achievement.save
-        format.html { redirect_to root_url + 'achievements', :notice => '成果報告を送信しました。' }
+        format.html {
+          redirect_to root_url + 'achievements',
+          :notice => '成果報告を送信しました。'
+        }
       else
         format.html { render :action => "index" }
       end
@@ -28,7 +31,7 @@ class AchievementsController < ApplicationController
 
   def update
     @achievement = Achievement.find(params[:achievement][:id])
-    @achievement.text = params[:achievement][:text]    
+    @achievement.text = params[:achievement][:text]
     year = params[:achievement]["date(1i)"].to_i
     month = params[:achievement]["date(2i)"].to_i
     day = params[:achievement]["date(3i)"].to_i

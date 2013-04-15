@@ -19,5 +19,4 @@ class TwitterAccount < ActiveRecord::Base
     @user = User.find_by_account(account)
     @master_scores = self.find(:all, :conditions => {:user_id => @user.id})
   end
-
 end

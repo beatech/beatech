@@ -24,7 +24,7 @@ class Contest2ndsController < ApplicationController
       total_score = a.a_score + a.b_score + a.c_score
       a["total_score"] = total_score
       @a_total_score += total_score
-      
+
       total_bp = a.a_bp + a.b_bp + a.c_bp
       a["total_bp"] = total_bp
       @a_total_bp += total_bp
@@ -33,94 +33,112 @@ class Contest2ndsController < ApplicationController
       a["b_rate"] = 0
       a["c_rate"] = 0
 
-      a["a_rate"] = a.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
-      a["b_rate"] = a.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
-      a["c_rate"] = a.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
+      a["a_rate"] =
+        a.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      a["b_rate"] =
+        a.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      a["c_rate"] =
+        a.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       a["total_rate"] = a["a_rate"] + a["b_rate"] + a["c_rate"]
       @a_total_rate += a["total_rate"]
 
       a["a_rate"] = (a["a_rate"] / 10).to_s + '.' + (a["a_rate"] % 10).to_s
       a["b_rate"] = (a["b_rate"] / 10).to_s + '.' + (a["b_rate"] % 10).to_s
       a["c_rate"] = (a["c_rate"] / 10).to_s + '.' + (a["c_rate"] % 10).to_s
-      a["total_rate"] = (a["total_rate"] / 10).to_s + '.' + (a["total_rate"] % 10).to_s
+      a["total_rate"] =
+        (a["total_rate"] / 10).to_s + '.' + (a["total_rate"] % 10).to_s
     end
 
     @b_team.each_with_index do |b, i|
       total_score = b.a_score + b.b_score + b.c_score
       b["total_score"] = total_score
       @b_total_score += total_score
-      
+
       total_bp = b.a_bp + b.b_bp + b.c_bp
       b["total_bp"] = total_bp
       @b_total_bp += total_bp
-      
+
       b["a_rate"] = 0
       b["b_rate"] = 0
       b["c_rate"] = 0
-      
-      b["a_rate"] = b.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
-      b["b_rate"] = b.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
-      b["c_rate"] = b.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
+
+      b["a_rate"] =
+        b.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      b["b_rate"] =
+        b.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      b["c_rate"] =
+        b.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       b["total_rate"] = b["a_rate"] + b["b_rate"] + b["c_rate"]
       @b_total_rate += b["total_rate"]
-     
+
       b["a_rate"] = (b["a_rate"] / 10).to_s + '.' + (b["a_rate"] % 10).to_s
       b["b_rate"] = (b["b_rate"] / 10).to_s + '.' + (b["b_rate"] % 10).to_s
       b["c_rate"] = (b["c_rate"] / 10).to_s + '.' + (b["c_rate"] % 10).to_s
-      b["total_rate"] = (b["total_rate"] / 10).to_s + '.' + (b["total_rate"] % 10).to_s
+      b["total_rate"] =
+        (b["total_rate"] / 10).to_s + '.' + (b["total_rate"] % 10).to_s
     end
 
     @c_team.each_with_index do |c, i|
       total_score = c.a_score + c.b_score + c.c_score
       c["total_score"] = total_score
       @c_total_score += total_score
-      
+
       total_bp = c.a_bp + c.b_bp + c.c_bp
       c["total_bp"] = total_bp
       @c_total_bp += total_bp
-            
+
       c["a_rate"] = 0
       c["b_rate"] = 0
       c["c_rate"] = 0
-      
-      c["a_rate"] = c.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
-      c["b_rate"] = c.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
-      c["c_rate"] = c.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
+
+      c["a_rate"] =
+        c.a_score * 1000 / (@a_team[i].notes * 2) unless @a_team[i].notes == 0
+      c["b_rate"] =
+        c.b_score * 1000 / (@b_team[i].notes * 2) unless @b_team[i].notes == 0
+      c["c_rate"] =
+        c.c_score * 1000 / (@c_team[i].notes * 2) unless @c_team[i].notes == 0
       c["total_rate"] = c["a_rate"] + c["b_rate"] + c["c_rate"]
       @c_total_rate += c["total_rate"]
-           
+
       c["a_rate"] = (c["a_rate"] / 10).to_s + '.' + (c["a_rate"] % 10).to_s
       c["b_rate"] = (c["b_rate"] / 10).to_s + '.' + (c["b_rate"] % 10).to_s
       c["c_rate"] = (c["c_rate"] / 10).to_s + '.' + (c["c_rate"] % 10).to_s
-      c["total_rate"] = (c["total_rate"] / 10).to_s + '.' + (c["total_rate"] % 10).to_s
+      c["total_rate"] =
+        (c["total_rate"] / 10).to_s + '.' + (c["total_rate"] % 10).to_s
     end
 
     @a_total_rate = (@a_total_rate / 10).to_s + '.' + (@a_total_rate % 10).to_s
     @b_total_rate = (@b_total_rate / 10).to_s + '.' + (@b_total_rate % 10).to_s
     @c_total_rate = (@c_total_rate / 10).to_s + '.' + (@c_total_rate % 10).to_s
-    
+
     @title = '第二回部内大会'
   end
 
   def tunesedit
     @order = params[:order]
     @tunes = Array.new
-    @a_team = Contest2nd.find(:all, :conditions => {:team => 'A', :order => @order})
+    @a_team = Contest2nd.find(:all,
+      :conditions => {:team => 'A', :order => @order})
     @tunes[0] = @a_team[0]
-    @b_team = Contest2nd.find(:all, :conditions => {:team => 'B', :order => @order})
+    @b_team = Contest2nd.find(:all,
+      :conditions => {:team => 'B', :order => @order})
     @tunes[1] = @b_team[0]
-    @c_team = Contest2nd.find(:all, :conditions => {:team => 'C', :order => @order})
+    @c_team = Contest2nd.find(:all,
+      :conditions => {:team => 'C', :order => @order})
     @tunes[2] = @c_team[0]
   end
 
   def scoreedit
     @order = params[:order]
     @tunes = Array.new
-    @a_team = Contest2nd.find(:all, :conditions => {:team => 'A', :order => @order})
+    @a_team = Contest2nd.find(:all,
+      :conditions => {:team => 'A', :order => @order})
     @tunes[0] = @a_team[0]
-    @b_team = Contest2nd.find(:all, :conditions => {:team => 'B', :order => @order})
+    @b_team = Contest2nd.find(:all,
+      :conditions => {:team => 'B', :order => @order})
     @tunes[1] = @b_team[0]
-    @c_team = Contest2nd.find(:all, :conditions => {:team => 'C', :order => @order})
+    @c_team = Contest2nd.find(:all,
+      :conditions => {:team => 'C', :order => @order})
     @tunes[2] = @c_team[0]
   end
 
@@ -130,8 +148,9 @@ class Contest2ndsController < ApplicationController
       data = tune[1]
       @order = data["order"]
       @team = data["team"]
-      
-      contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
+
+      contests = Contest2nd.find(:all,
+        :conditions => {:team => @team, :order => @order})
       contest = contests[0]
       contest.notes = data["notes"]
       contest.music = data["music"]
@@ -150,7 +169,8 @@ class Contest2ndsController < ApplicationController
       @order = data["order"]
       @team = data["team"]
 
-      contests = Contest2nd.find(:all, :conditions => {:team => @team, :order => @order})
+      contests = Contest2nd.find(:all,
+        :conditions => {:team => @team, :order => @order})
       contest = contests[0]
       contest.a_score = data["a_score"] if data["a_score"].length > 0
       contest.a_bp = data["a_bp"] if data["a_bp"].length > 0
@@ -158,7 +178,7 @@ class Contest2ndsController < ApplicationController
       contest.b_bp = data["b_bp"] if data["b_bp"].length > 0
       contest.c_score = data["c_score"] if data["c_score"].length > 0
       contest.c_bp = data["c_bp"] if data["c_bp"].length > 0
-      contest.url = data["url"] if data["url"]      
+      contest.url = data["url"] if data["url"]
       contest.save
     end
 
@@ -166,9 +186,7 @@ class Contest2ndsController < ApplicationController
     @page.touch
     redirect_to root_url + 'contest2nd', :notice => '対戦結果の編集に成功しました。'
   end
-  
-  # GET /contest2nds
-  # GET /contest2nds.json
+
   def index
     @contest2nds = Contest2nd.all
     @title = 'データ編集'
@@ -179,8 +197,6 @@ class Contest2ndsController < ApplicationController
     end
   end
 
-  # GET /contest2nds/1
-  # GET /contest2nds/1.json
   def show
     @contest2nd = Contest2nd.find(params[:id])
 
@@ -190,8 +206,6 @@ class Contest2ndsController < ApplicationController
     end
   end
 
-  # GET /contest2nds/new
-  # GET /contest2nds/new.json
   def new
     @contest2nd = Contest2nd.new
 
@@ -201,45 +215,39 @@ class Contest2ndsController < ApplicationController
     end
   end
 
-  # GET /contest2nds/1/edit
   def edit
     @contest2nd = Contest2nd.find(params[:id])
   end
 
-  # POST /contest2nds
-  # POST /contest2nds.json
   def create
     @contest2nd = Contest2nd.new(params[:contest2nd])
 
     respond_to do |format|
       if @contest2nd.save
-        format.html { redirect_to @contest2nd, :notice => 'Contest2nd was successfully created.' }
-        format.json { render :json => @contest2nd, :status => :created, :location => @contest2nd }
+        format.html { redirect_to @contest2nd,
+          :notice => 'Contest2nd was successfully created.' }
       else
         format.html { render :action => "new" }
-        format.json { render :json => @contest2nd.errors, :status => :unprocessable_entity }
       end
     end
   end
 
-  # PUT /contest2nds/1
-  # PUT /contest2nds/1.json
   def update
     @contest2nd = Contest2nd.find(params[:id])
 
     respond_to do |format|
       if @contest2nd.update_attributes(params[:contest2nd])
-        format.html { redirect_to root_url + 'contest2nd', :notice => '対戦結果の編集に成功しました。' }
+        format.html { redirect_to root_url + 'contest2nd',
+          :notice => '対戦結果の編集に成功しました。' }
         format.json { head :no_content }
       else
         format.html { render :action => "edit" }
-        format.json { render :json => @contest2nd.errors, :status => :unprocessable_entity }
+        format.json { render :json => @contest2nd.errors,
+          :status => :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /contest2nds/1
-  # DELETE /contest2nds/1.json
   def destroy
     @contest2nd = Contest2nd.find(params[:id])
     @contest2nd.destroy

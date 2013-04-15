@@ -5,7 +5,7 @@ class MasterUsersController < ApplicationController
 
   def new
     @title = "Master部門にエントリー"
-    @master_user = MasterUser.new    
+    @master_user = MasterUser.new
   end
 
   def create
@@ -30,11 +30,11 @@ class MasterUsersController < ApplicationController
 
       @page = Page.find_by_url('master')
       @page.touch
-      
-      redirect_to root_url + 'master', :notice => 'Master部門エントリーしました。'     
+
+      redirect_to root_url + 'master', :notice => 'Master部門エントリーしました。'
     else
       redirect_to root_url + 'master_users/new',
-      :notice => '名前を入力してください。'     
+      :notice => '名前を入力してください。'
     end
   end
 
