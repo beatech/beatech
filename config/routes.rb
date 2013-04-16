@@ -1,5 +1,4 @@
 Beatech::Application.routes.draw do
-
   root :to => 'pages#frontpage'
 
   resources :pages

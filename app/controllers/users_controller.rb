@@ -79,6 +79,19 @@ class UsersController < ApplicationController
     redirect_to root_url + 'users'
   end
 
+  def create
+    @user = User.new(params[:user])
+
+    respond_to do |format|
+      if @user.save
+        format.html { redirect_to @user,
+          notice: 'User was successfully created.' }
+      else
+        format.html { render :action => "new" }
+      end
+    end
+  end
+
   def new
     @user = User.new
     @user.year = Time.now.year
@@ -86,7 +99,7 @@ class UsersController < ApplicationController
     @title = "入部申請"
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html
     end
   end
 
@@ -103,19 +116,6 @@ class UsersController < ApplicationController
   def editpassword
     @user = User.find_by_account(session[:account])
     @title = "パスワード変更"
-  end
-
-  def create
-    @user = User.new(params[:user])
-
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user,
-          notice: 'User was successfully created.' }
-      else
-        format.html { render :action => "new" }
-      end
-    end
   end
 
   def update_password
