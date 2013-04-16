@@ -84,6 +84,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        raise @user.valid?.to_s
         format.html { redirect_to @user,
           notice: 'User was successfully created.' }
       else
@@ -150,6 +151,15 @@ class UsersController < ApplicationController
 
   def create_user
     @user = User.create(params[:user])
+          @user = User.create(
+        name: 'hoge.2013',
+        account: 'baa.a',
+        password: 'hoge',
+        password_confirmation: 'hoge',
+        year: 2013,
+        repeat_year: 2013
+      )
+    raise @user.valid?.to_s
     session[:account] = @user.account
 
     respond_to do |format|

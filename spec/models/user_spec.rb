@@ -28,21 +28,21 @@ describe User do
         year: 2013,
         repeat_year: 2013
       )
-      @user.valid? == true
+      @user.valid?.should == true
     end
 
     # Because the part of uri after '.' is considered as format,
     # it will cause fatal error.
     it "should not contain dot" do
       @user = User.create(
-        name: 'hoge.2013',
-        account: 'hoge.2013',
+        name: 'hoge_2013',
+        account: '...a',
         password: 'hoge',
         password_confirmation: 'hoge',
         year: 2013,
         repeat_year: 2013
       )
-      @user.valid? == false
+      @user.valid?.should == false
     end
 
     # Because the uri that has Japanese characters isn't beautiful
@@ -55,7 +55,7 @@ describe User do
         year: 2013,
         repeat_year: 2013
       )
-      @user.valid? == false
+      @user.valid?.should == false
     end
   end
 end
