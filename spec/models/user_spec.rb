@@ -28,7 +28,7 @@ describe User do
         year: 2013,
         repeat_year: 2013
       )
-      @user.should_not == nil
+      @user.valid? == true
     end
 
     # Because the part of uri after '.' is considered as format,
@@ -42,7 +42,7 @@ describe User do
         year: 2013,
         repeat_year: 2013
       )
-      @user.should == nil
+      @user.valid? == false
     end
 
     # Because the uri that has Japanese characters isn't beautiful
@@ -55,7 +55,7 @@ describe User do
         year: 2013,
         repeat_year: 2013
       )
-      @user.should == nil
+      @user.valid? == false
     end
   end
 end
