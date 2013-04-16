@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
   :profile_image, :screen_name, :mail
 
   validates :name, presence: true
-  validates :account, presence: true, uniqueness: true, :format => {
-    :with => /.+/
+  validates :account, presence: true, uniqueness: true , format: {
+    with: /[a-zA-Z0-9_]+/i,
+    on: :create
   }
 
   def self.grade(grade)
