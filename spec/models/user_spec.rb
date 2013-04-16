@@ -18,8 +18,6 @@ describe User do
   end
 
   describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:account) }
     it 'should validate account'
   end
 end

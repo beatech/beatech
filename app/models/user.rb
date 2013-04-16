@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   :uid, :year, :password, :password_confirmation, :short_profile, :long_profile,
   :profile_image, :screen_name, :mail
 
+  validates :name, presence: true
+  validates :account, presence: true, uniqueness: true
+
   def self.grade(grade)
     this_year = Time.now.year
     this_year -= 1 if Time.now.month < 4
@@ -105,14 +108,8 @@ class User < ActiveRecord::Base
     twitter_account = TwitterAccount.find_by_uid(uid)
     if twitter_account
       user = self.find_by_account(twitter_account.account)
-      if user
-        user
-      else
-        nil
-      end
-    else
-      nil
     end
+    user
   end
 
   def twitter_accounts
