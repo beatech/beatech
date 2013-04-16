@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
   :profile_image, :screen_name, :mail
 
   validates :name, presence: true
-  validates :account, presence: true, uniqueness: true
+  validates :account, presence: true, uniqueness: true, :format => {
+    :with => /.+/
+  }
 
   def self.grade(grade)
     this_year = Time.now.year
