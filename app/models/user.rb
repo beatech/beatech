@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
   validates :account, presence: true, uniqueness: true , format: {
-    with: /[a-zA-Z0-9_]+/,
+    with: /^[a-zA-Z0-9_]+$/,
     on: :create
   }
 
