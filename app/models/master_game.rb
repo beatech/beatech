@@ -4,37 +4,21 @@ class MasterGame < ActiveRecord::Base
   validates :title, :presence => true
 
   def short_title
-    title = self.title
-
-    case title
-    when "beatmaniaIIDX SP"
-      title = "IIDX SP"
-    when "beatmaniaIIDX DP"
-      title = "IIDX DP"
-    when "REFLEC BEAT"
-      title = "Rb"
-    when "DrumMania"
-      title = "DM"
-    when "GuitarFreaks"
-      title = "GF"
-    when "pop'n music"
-      title = "pop'n"
-    when "Dance Dance Revolution SP"
-      title = "DDR SP"
-    when "太鼓の達人"
-      title = "太鼓"
-    when "jubeat"
-      title = "jubeat"
-    when "SOUND VOLTEX"
-      title = "SDVX"
-    when "DanceEvolution ARCADE"
-      title = "DE"
-    when "Dance Dance Revolution DP"
-      title = "DDR DP"
-    when "Project DIVA Arcade"
-      title = "DIVA"
+    case self.title
+    when "beatmaniaIIDX SP"          then "IIDX SP"
+    when "beatmaniaIIDX DP"          then "IIDX DP"
+    when "REFLEC BEAT"               then "Rb"
+    when "DrumMania"                 then "DM"
+    when "GuitarFreaks"              then "GF"
+    when "pop'n music"               then "pop'n"
+    when "Dance Dance Revolution SP" then "DDR SP"
+    when "太鼓の達人"                then "太鼓"
+    when "jubeat"                    then "jubeat"
+    when "SOUND VOLTEX"              then "SDVX"
+    when "DanceEvolution ARCADE"     then "DE"
+    when "Dance Dance Revolution DP" then "DDR DP"
+    when "Project DIVA Arcade"       then "DIVA"
     end
-    return title
   end
 
   def music_title
