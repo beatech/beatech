@@ -28,6 +28,10 @@ class MasterMusicsController < ApplicationController
     controller = PagesController.new
     @text = controller.convert_wiki(@page.text) if @page && @page.text
 
+    # マスター結果表示
+    @result = Page.find_by_url("master_result")
+    @result = controller.convert_wiki(@result.text) if @result && @result.text
+
     # 以下は投票用
     @master_game = MasterGame.all
     @master_music = MasterMusic.all
