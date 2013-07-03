@@ -1,0 +1,2 @@
+module Contestdate3rdsHelper
+end

@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
   end
 
   def admin?
-    if @current_user && @current_user.account == 'ikstrm'
+    if @current_user && (@current_user.account == 'ikstrm' || @current_user.account == 'popkirby')  
       true
     else
       false
@@ -29,9 +29,10 @@ class ApplicationController < ActionController::Base
       raise Forbidden
     end
 
-    unless @current_user.account == 'ikstrm'
+    unless @current_user.account == 'ikstrm' || @current_user.account == 'popkirby'
        raise Forbidden
     end
+
   end
 
   def load_pages

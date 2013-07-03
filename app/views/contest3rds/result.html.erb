@@ -1,0 +1,167 @@
+<nav>
+  <h4>目次</h4>
+  <ul>
+    <li><a href="#rule">ルール</a></li>
+    <li><a href="#team">チーム分け<% if @current_user %>(対戦結果編集)<% end %></a></li>
+    <li><a href="#tunes">選曲</a></li>
+    <li><a href="#result">試合結果</a></li>
+  </ul>
+  <br>
+</nav>
+
+<section id="rule">
+  <h4>ルール</h4>
+  <p>参加する部員を3つのチームに分け、実力の近い人同士で3人のグループを作って対戦します。<br>
+    チーム全体の合計スコアによって勝敗を決定します。<br>
+    スコアは以下のルールに従って計算します。</p>
+
+  <div style="border: 1px solid #aaa; padding: 0.5em; margin: 0.5em auto;">
+    <p>スコア = 順位点 + クリアボーナス点<br>
+      <ul>
+        <li>順位点:
+          <ul>
+            <li>1位: 50点</li>
+            <li>2位: 20点</li>
+            <li>3位: 0点</li>
+          </ul>
+        </li>
+        <li>クリアボーナス点:
+          <table class="style-table">
+            <thead>
+              <tr><th>難易度</th><th>FC</th><th>EXH</th><th>H</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>☆12</td><td>40点</td><td>30点</td><td>20点</td></tr>
+              <tr><td>☆11</td><td>30点</td><td>20点</td><td>10点</td></tr>
+              <tr><td>☆10以下</td><td>20点</td><td>10点</td><td>5点</td></tr>
+            </tbody>
+          </table>
+        </li>
+      </ul>
+    </p>
+  </div>
+
+
+  <p>スコアの集計にリザルト画面を利用するので、リザルトの撮影は忘れないでください。<br>
+    禁止オプションはありません。<br>
+    また、開催場所・日程は各グループごとに決定して行ないます。<br>
+    観戦は自由ですが、関係のない人に迷惑がかからないよう空気を読んで行ないましょう。</p>
+</section>
+
+<section id="team">
+  <h4>チーム分け<% if @current_user %>(対戦結果編集)<% end %></h4>
+
+  <table class="style-table">
+    <thead>
+      <tr><th>対戦組</th><th>Aチーム</th><th>Bチーム</th><th>Cチーム</th>
+        <% if @current_user %>
+          <th>結果編集</th>
+        <% end %>
+        <th>日程・会場</th>
+        <% if @current_user %>
+          <th>会場編集</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% (@contestdate3rds.size).times do |i| %>
+        <tr>
+          <td><%= @contestdate3rds[i].order %>組</td>
+          <% %w|A B C|.each do |team_char| %>
+            <td><%= @team[team_char][i].name %></td>
+          <% end %>
+          <% if @current_user %>
+            <td><%= link_to 'Edit', root_url + 'contest3rd/scoreedit/' + (i + 1).to_s %></td>
+          <% end %>
+          <td><%= @contestdate3rds[i].place %></td>
+          <% if @current_user %>
+            <td><%= link_to 'Edit', edit_contestdate3rd_path(@contestdate3rds[i]) %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<br>
+
+<section id="tunes">
+  <h4>選曲</h4>
+  <table class="style-table">
+    <thead>
+      <tr><th>対戦組</th><th colspan="2">Aチーム</th><th colspan="2">Bチーム</th><th colspan="2">Cチーム</th>
+        <% if @current_user %>
+          <th>編集</th>
+        <% end %>
+        </tr>
+    </thead>
+    <tbody>
+      <% (@contestdate3rds.size).times do |i| %>
+        <tr>
+          <td><%= @contestdate3rds[i].order %>組</td>
+          <% %w|A B C|.each do |team_char| %>
+            <td><%= @team[team_char][i].name %></td>
+            <td>
+              <% unless @team[team_char][i].difficulty.nil? %>
+                <%= @team[team_char][i].music %>(☆<%= @team[team_char][i].difficulty %>)
+              <% end %>
+            </td>
+
+
+          <% end %>
+          <% if @current_user %>
+            <td><%= link_to 'Edit', root_url + 'contest3rd/tunesedit/' + (i + 1).to_s %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+<br>
+
+<section id="result">
+  <h4>試合結果</h4>
+  <p>名前をクリックするとその人のプレー動画を見ることができます。</p>
+  <p>上段がEXスコア、下段がクリアランプです。</p>
+
+  <table class="style-table">
+    <thead>
+      <tr><th colspan="5">Aチーム</th><th colspan="5">Bチーム</th><th colspan="5">Cチーム</th></tr>
+      <tr>
+        <% 3.times do |i| %>
+          <th rowspan="2"><small>名前</small></th>
+          <th>A曲</th>
+          <th>B曲</th>
+          <th>C曲</th>
+          <th rowspan="2"><small>スコア</small></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% (@contestdate3rds.size).times do |i| %>
+        <tr>
+          <% %w|A B C|.each do |team_char| %>
+            <td rowspan="2">
+              <% if @team[team_char][i].movie_url != nil && @team[team_char][i].movie_url.length > 0 %>
+                <%= link_to @team[team_char][i].name, @team[team_char][i].movie_url %>
+              <% else %>
+                <%= @team[team_char][i].name %>
+              <% end %>
+            </td>
+            <td><%= @team[team_char][i].a_score %></td>
+            <td><%= @team[team_char][i].b_score %></td>
+            <td><%= @team[team_char][i].c_score %></td>
+            <td id="total_score" rowspan="2"><%= @team[team_char][i].total %></td>
+          <% end %>
+        </tr>
+        <tr id="clear_lamps">
+          <% %w|A B C|.each do |team_char| %>
+            <td><%= @clearlamp[@team[team_char][i].a_clear] unless @team[team_char][i].a_clear.nil? %></td>
+            <td><%= @clearlamp[@team[team_char][i].b_clear] unless @team[team_char][i].b_clear.nil? %></td>
+            <td><%= @clearlamp[@team[team_char][i].c_clear] unless @team[team_char][i].c_clear.nil? %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
