@@ -1,4 +1,10 @@
 Beatech::Application.routes.draw do
+  resources :contestdate3rds
+
+
+  resources :contest3rds
+
+
   root :to => 'pages#frontpage'
 
   resources :pages
@@ -11,6 +17,7 @@ Beatech::Application.routes.draw do
   match "/registration" => "users#new"
   match "/registration/create" => "users#create_user"
   match "/contest2nd" => "contest2nds#result"
+  match "/contest3rd" => "contest3rds#result"
   match "/master" => "master_musics#master"
 
   # Achievements
@@ -41,6 +48,12 @@ Beatech::Application.routes.draw do
   match "/contest2nd/scoreedit/:order" => "contest2nds#scoreedit"
   match "/contest2nd/tunesupdate" => "contest2nds#tunesupdate"
   match "/contest2nd/scoreupdate" => "contest2nds#scoreupdate"
+
+  # Contest3rd
+  match "/contest3rd/tunesedit/:order" => "contest3rds#tunesedit"
+  match "/contest3rd/scoreedit/:order" => "contest3rds#scoreedit"
+  match "/contest3rd/tunesupdate" => "contest3rds#tunesupdate"
+  match "/contest3rd/scoreupdate" => "contest3rds#scoreupdate"
 
   # Users
   get "/users/:account" => "users#show"
