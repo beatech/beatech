@@ -17,10 +17,6 @@ class Contest3rdsController < ApplicationController
       @clearbonus[i][4..6] = [5, 10, 20]
     end
 
-    @clearbonus[11][4..6] = [10, 20, 30]
-    @clearbonus[12][4..6] = [20, 30, 40]
-
-
     %w|A B C|.each do |team_char|
       @team[team_char] = Contest3rd.where("team = ?", team_char)
     end
