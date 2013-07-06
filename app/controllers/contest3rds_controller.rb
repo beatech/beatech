@@ -12,6 +12,8 @@ class Contest3rdsController < ApplicationController
     @rankpoint = [0, 20, 50]
     @clearbonus = []
 
+    @team_total = Hash.new
+
     13.times do |i|
       @clearbonus[i] = [].fill(0, 0..6)
       @clearbonus[i][4..6] = [5, 10, 20]
@@ -19,6 +21,7 @@ class Contest3rdsController < ApplicationController
 
     %w|A B C|.each do |team_char|
       @team[team_char] = Contest3rd.where("team = ?", team_char)
+      @team_total[team_char] = 0
     end
     
     (@contestdate3rds.size).times do |i|
@@ -39,6 +42,7 @@ class Contest3rdsController < ApplicationController
         total += @clearbonus[@team['B'][i].difficulty][person.b_clear] unless @team['B'][i].difficulty.nil? || person.b_clear.nil?
         total += @clearbonus[@team['C'][i].difficulty][person.c_clear] unless @team['C'][i].difficulty.nil? || person.c_clear.nil?
 
+        @team_total[team_char] += total
         person["total"] = total
       end
 
