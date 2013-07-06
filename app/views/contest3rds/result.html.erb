@@ -150,17 +150,17 @@
                 <%= @team[team_char][i].name %>
               <% end %>
             </td>
-            <td><%= @team[team_char][i].a_score %></td>
-            <td><%= @team[team_char][i].b_score %></td>
-            <td><%= @team[team_char][i].c_score %></td>
+            <td style="padding:0px;"><%= @team[team_char][i].a_score %></td>
+            <td style="padding:0px;"><%= @team[team_char][i].b_score %></td>
+            <td style="padding:0px;"><%= @team[team_char][i].c_score %></td>
             <td id="total_score" rowspan="2"><%= @team[team_char][i].total %></td>
           <% end %>
         </tr>
         <tr id="clear_lamps">
           <% %w|A B C|.each do |team_char| %>
-            <td><%= @clearlamp[@team[team_char][i].a_clear] unless @team[team_char][i].a_clear.nil? %></td>
-            <td><%= @clearlamp[@team[team_char][i].b_clear] unless @team[team_char][i].b_clear.nil? %></td>
-            <td><%= @clearlamp[@team[team_char][i].c_clear] unless @team[team_char][i].c_clear.nil? %></td>
+            <td style="padding:0px;"><%= @clearlamp[@team[team_char][i].a_clear] unless @team[team_char][i].a_clear.nil? %></td>
+            <td style="padding:0px;"><%= @clearlamp[@team[team_char][i].b_clear] unless @team[team_char][i].b_clear.nil? %></td>
+            <td style="padding:0px;"><%= @clearlamp[@team[team_char][i].c_clear] unless @team[team_char][i].c_clear.nil? %></td>
           <% end %>
         </tr>
       <% end %>
