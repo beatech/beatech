@@ -27,8 +27,9 @@
         </li>
         <li>クリアボーナス点:
           <ul>
-            <li>FC: 40点</li>
-            <li>H: 20点</li>
+            <li>FC: 20点</li>
+            <li>EXH: 10点</li>
+            <li>H: 5点</li>
           </ul>
         </li>
       </ul>
@@ -122,14 +123,22 @@
       <tr><th colspan="5">Aチーム</th><th colspan="5">Bチーム</th><th colspan="5">Cチーム</th></tr>
       <tr>
         <% 3.times do |i| %>
-          <th rowspan="2"><small>名前</small></th>
+          <th><small>名前</small></th>
           <th>A曲</th>
           <th>B曲</th>
           <th>C曲</th>
-          <th rowspan="2"><small>スコア</small></th>
+          <th><small>スコア</small></th>
         <% end %>
       </tr>
     </thead>
+    <tfoot>
+      <tr>
+        <% %w|A B C|.each do |team_char| %>
+          <td>チーム合計</td>
+          <td colspan="4"><%= @team_total[team_char] %></td>
+        <% end %>
+      </tr>
+    </tfoot>
     <tbody>
       <% (@contestdate3rds.size).times do |i| %>
         <tr>
