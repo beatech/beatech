@@ -3,6 +3,6 @@ class EntriesController < ApplicationController
   end
 
   def frontpage
-    render text: "No entries given"
+    render action: "show", url: "frontpage"
   end
 end
