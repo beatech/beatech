@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-  def index
+  def show
   end
 
   def frontpage
