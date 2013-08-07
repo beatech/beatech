@@ -43,8 +43,7 @@ gem "omniauth"
 gem "omniauth-twitter"
 
 # Bootstrap
-gem 'less-rails'
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
 
 # Twitter API wrapper
 gem "twitter"
