@@ -1,5 +1,10 @@
 Beatech::Application.routes.draw do
   #
+  # Session
+  #
+  resource :session, only: [:create, :destroy]
+
+  #
   # Entries
   #
   resources :entries, only: [:index, :new, :create]

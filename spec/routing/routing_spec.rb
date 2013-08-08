@@ -45,10 +45,10 @@ end
 
 describe SessionsController, "routing" do
   it "to #create" do
-    post("/sessions/create").should route_to('sessions#create')
+    post("/session").should route_to('sessions#create')
   end
 
   it "to #destroy" do
-    delete("/sessions/destroy").should route_to('sessions#destroy')
+    delete("/session").should route_to('sessions#destroy')
   end
 end
