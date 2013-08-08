@@ -29,7 +29,7 @@
                   %li= link_to "ユーザー名変更", root_url + "settings/account"
                   %li= link_to "パスワード変更", root_url + "settings/password"
                   %li.divider
-                  %li= link_to 'ログアウト', session_path(@current_user.account), :method => :delete
+                  %li= link_to 'ログアウト', sessio_path, :method => :delete
             - else
               .dropdown.pull-right
                 %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -37,7 +37,7 @@
                   %span.caret
                 %ul#login.dropdown-menu
                   %li
-                    = form_tag sessions_path do
+                    = form_tag session_path do
                       = label_tag :account, 'BEATECH アカウント'
                       = text_field_tag :account, params[:account], :class => 'span3'
                       = label_tag :pass, 'パスワード'
