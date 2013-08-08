@@ -1,13 +1,13 @@
 !!!
 %html{:lang => "ja", "xml:lang" => "ja", :xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
-    %meta{:content => "text/css", "http-equiv" => "Content-Style-Type"}/
-    %meta{:content => "text/javascript", "http-equiv" => "Content-Script-Type"}/
-    %meta{:content => "no", "http-equiv" => "imagetoolbar"}/
-    %meta{:content => "", :name => "description"}/
-    %meta{:content => "", :name => "keywords"}/
-    %link{:href => "assets/favicon.png", :rel => "shortcut icon"}/
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    %meta{:content => "text/css", "http-equiv" => "Content-Style-Type"}
+    %meta{:content => "text/javascript", "http-equiv" => "Content-Script-Type"}
+    %meta{:content => "no", "http-equiv" => "imagetoolbar"}
+    %meta{:content => "", :name => "description"}
+    %meta{:content => "", :name => "keywords"}
+    %link{:href => "favicon.ico", :rel => "shortcut icon"}
     %title= title_with_entry(@entry)
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
