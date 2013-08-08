@@ -58,48 +58,53 @@
               - if @page && @page.url
                 = raw edit_link
             - else
-              - @header_menu.each do |menu|
-                %li= link_to menu.title, root_url + menu.url
+              - if @header_menu
+                - @header_menu.each do |menu|
+                  %li= link_to menu.title, root_url + menu.url
         / menu end
       #contents
         #subL
           .section
             %h2 サークルメニュー
             %ul
-              - @circle_menu.each do |menu|
-                - if @current_user == nil || menu.url != "registration"
-                  %li= page_link(menu.title, menu.url)
+              - if @circle_menu
+                - @circle_menu.each do |menu|
+                  - if @current_user == nil || menu.url != "registration"
+                    %li= page_link(menu.title, menu.url)
           / section end
           .section
             %h2 交流メニュー
             %ul
-              - @communication_menu.each do |menu|
-                %li= page_link(menu.title, menu.url)
+              - if @communication_menu
+                - @communication_menu.each do |menu|
+                  %li= page_link(menu.title, menu.url)
           / section end
           .section
             %h2 音ゲーコンテンツ
             %ul
-              - @contents_menu.each do |menu|
-                %li= page_link(menu.title, menu.url)
+              - if @contents_menu
+                - @contents_menu.each do |menu|
+                  %li= page_link(menu.title, menu.url)
           / section end
           .section
             %h2 最新の10件
             - last_date = nil
-            - @recent_pages.each_with_index do |menu, i|
-              - break if i == 10
-              - if i == 0
-                %div{:style => "margin-left: 10px; margin-top:5px;"}
-                  %strong= menu.updated_at.to_date
-                %ul
-              - elsif last_date != menu.updated_at.to_date
-                %div{:style => "margin-left: 10px; margin-top:5px;"}
-                  %strong= menu.updated_at.to_date
-                %ul
-              - menu.title = 'トップページ' if menu.url == 'frontpage'
-              %li
-                = page_link(menu.title, menu.url)
-                %br/
-              - last_date = menu.updated_at.to_date
+            - if @recent_pages
+              - @recent_pages.each_with_index do |menu, i|
+                - break if i == 10
+                - if i == 0
+                  %div{:style => "margin-left: 10px; margin-top:5px;"}
+                    %strong= menu.updated_at.to_date
+                  %ul
+                - elsif last_date != menu.updated_at.to_date
+                  %div{:style => "margin-left: 10px; margin-top:5px;"}
+                    %strong= menu.updated_at.to_date
+                  %ul
+                - menu.title = 'トップページ' if menu.url == 'frontpage'
+                %li
+                  = page_link(menu.title, menu.url)
+                  %br/
+                - last_date = menu.updated_at.to_date
           / section end
         / subL end
         - if flash[:notice]
