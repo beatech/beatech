@@ -1,55 +1,125 @@
-!!! 5
-%html(lang="en")
+!!!
+%html{:lang => "ja", "xml:lang" => "ja", :xmlns => "http://www.w3.org/1999/xhtml"}
   %head
-    %meta(charset="utf-8")
-    %meta(http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1")
-    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    %title= content_for?(:title) ? yield(:title) : "Beatech"
-    = csrf_meta_tags
-    / Le HTML5 shim, for IE6-8 support of HTML elements
-    /[if lt IE 9]
-      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"
-    = stylesheet_link_tag "application", :media => "all"
-    = favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144'
-    = favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114'
-    = favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72'
-    = favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png'
-    = favicon_link_tag 'favicon.ico', :rel => 'shortcut icon'
-
-
-  %body
-    .navbar.navbar-fixed-top
-      .navbar-inner
-        .container
-          %a.btn.btn-navbar(data-target=".nav-collapse" data-toggle="collapse")
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-          %a.brand(href="#") Beatech
-          .container.nav-collapse
-            %ul.nav
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-
-    .container
-
-      .row
-        .span9
-          = yield
-        .span3
-          .well.sidebar-nav
-            %h3 Sidebar
-            %ul.nav.nav-list
-              %li.nav-header Sidebar
-              %li= link_to "Link 1", "/path1"
-              %li= link_to "Link 2", "/path2"
-              %li= link_to "Link 3", "/path3"
-    
-      %footer
-        %p &copy; Company 2013
-    /
-      Javascripts
-      \==================================================
-    / Placed at the end of the document so the pages load faster
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}/
+    %meta{:content => "text/css", "http-equiv" => "Content-Style-Type"}/
+    %meta{:content => "text/javascript", "http-equiv" => "Content-Script-Type"}/
+    %meta{:content => "no", "http-equiv" => "imagetoolbar"}/
+    %meta{:content => "", :name => "description"}/
+    %meta{:content => "", :name => "keywords"}/
+    %link{:href => "assets/favicon.png", :rel => "shortcut icon"}/
+    %title= title_with_entry(@entry)
+    = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    = javascript_include_tag "bootstrap"
+    = csrf_meta_tags
+  %body
+    #top
+      #box
+        #header
+          %h1#text-dropshadow= link_to "BEATECH", :root
+          .account
+            - if @current_user
+              .dropdown.pull-right
+                %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  = @current_user.account
+                  %span.caret
+                %ul.dropdown-menu
+                  %li= link_to "プロフィールを編集", root_url + "users/edit/" + @current_user.account
+                  %li= link_to "ユーザー名変更", root_url + "settings/account"
+                  %li= link_to "パスワード変更", root_url + "settings/password"
+                  %li.divider
+                  %li= link_to 'ログアウト', session_path(@current_user.account), :method => :delete
+            - else
+              .dropdown.pull-right
+                %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
+                  ログイン
+                  %span.caret
+                %ul#login.dropdown-menu
+                  %li
+                    = form_tag sessions_path do
+                      = label_tag :account, 'BEATECH アカウント'
+                      = text_field_tag :account, params[:account], :class => 'span3'
+                      = label_tag :pass, 'パスワード'
+                      = password_field_tag :pass, params[:pass], :class => 'span3'
+                      = submit_tag "ログイン", :class => "btn"
+                  %li.divider
+                  %li
+                    または
+                    %br/
+                    %span
+                      %a.btn.btn-info{:href => "/auth/twitter"} Twitterでログイン
+        / header end
+        #menu
+          %ul
+            %li= link_to "ホーム", :root
+            - if @current_user
+              %li= link_to "ページ新規作成", root_url + "newpage"
+              - if @page && @page.url
+                = raw edit_link
+            - else
+              - @header_menu.each do |menu|
+                %li= link_to menu.title, root_url + menu.url
+        / menu end
+      #contents
+        #subL
+          .section
+            %h2 サークルメニュー
+            %ul
+              - @circle_menu.each do |menu|
+                - if @current_user == nil || menu.url != "registration"
+                  %li= page_link(menu.title, menu.url)
+          / section end
+          .section
+            %h2 交流メニュー
+            %ul
+              - @communication_menu.each do |menu|
+                %li= page_link(menu.title, menu.url)
+          / section end
+          .section
+            %h2 音ゲーコンテンツ
+            %ul
+              - @contents_menu.each do |menu|
+                %li= page_link(menu.title, menu.url)
+          / section end
+          .section
+            %h2 最新の10件
+            - last_date = nil
+            - @recent_pages.each_with_index do |menu, i|
+              - break if i == 10
+              - if i == 0
+                %div{:style => "margin-left: 10px; margin-top:5px;"}
+                  %strong= menu.updated_at.to_date
+                %ul
+              - elsif last_date != menu.updated_at.to_date
+                %div{:style => "margin-left: 10px; margin-top:5px;"}
+                  %strong= menu.updated_at.to_date
+                %ul
+              - menu.title = 'トップページ' if menu.url == 'frontpage'
+              %li
+                = page_link(menu.title, menu.url)
+                %br/
+              - last_date = menu.updated_at.to_date
+          / section end
+        / subL end
+        - if flash[:notice]
+          #main-alert
+            .alert.alert-success
+              %button.close{"data-dismiss" => "alert", :type => "button"} &times;
+              = flash[:notice]
+        .main
+          - if @page && @page.title
+            %h1= @page.title
+          - elsif @title
+            %h1= @title
+          #inner-main
+            = yield
+        / main end
+      / contents end
+      #pageTop
+        %a{:href => "#top"} ページのトップへ戻る
+      / pageTop end
+      #footer
+        .copyright Copyright &copy; 2012 beatech.net. All Rights Reserved. Created by ikstrm.
+      / footer end
+    / top end
