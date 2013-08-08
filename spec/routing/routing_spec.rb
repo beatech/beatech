@@ -1,7 +1,14 @@
 require 'spec_helper'
 
-#    root     /     entries#frontpage
-# entries GET /:url entries#show
+#    entries GET    /entries(.:format)     entries#index
+#            POST   /entries(.:format)     entries#create
+#  new_entry GET    /entries/new(.:format) entries#new
+# edit_entry GET    /:id/edit(.:format)    entries#edit {:id=>/[^\/]+/}
+#      entry GET    /:id(.:format)         entries#show {:id=>/[^\/]+/}
+#            PATCH  /:id(.:format)         entries#update {:id=>/[^\/]+/}
+#            PUT    /:id(.:format)         entries#update {:id=>/[^\/]+/}
+#            DELETE /:id(.:format)         entries#destroy {:id=>/[^\/]+/}
+#       root GET    /                      entries#frontpage
 describe EntriesController, "routing" do
   it "to #frontpage" do
     get("/").should route_to('entries#frontpage')
