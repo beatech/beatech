@@ -43,6 +43,8 @@ describe EntriesController, "routing" do
   end
 end
 
+# session POST   /session(.:format)     sessions#create
+#         DELETE /session(.:format)     sessions#destroy
 describe SessionsController, "routing" do
   it "to #create" do
     post("/session").should route_to('sessions#create')
