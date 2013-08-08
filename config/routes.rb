@@ -2,7 +2,8 @@ Beatech::Application.routes.draw do
   #
   # Entries
   #
-  get ":url" => "entries#show"
+  resources :entries, only: [:index, :new, :create]
+  resources :entries, constraints: { id: /[^\/]+/ }, except: [:index, :new, :create], path: "/"
   
   root to: "entries#frontpage"
 end
