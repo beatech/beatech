@@ -49,7 +49,7 @@ gem 'bootstrap-sass'
 gem "twitter"
 
 # Use RSpec for testing
-group :test do
+group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
 end
