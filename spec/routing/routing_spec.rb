@@ -42,3 +42,13 @@ describe EntriesController, "routing" do
     delete("/tips").should route_to('entries#destroy', id: 'tips')
   end
 end
+
+describe SessionsController, "routing" do
+  it "to #create" do
+    post("/sessions/create").should route_to('sessions#create')
+  end
+
+  it "to #destroy" do
+    delete("/sessions/destroy").should route_to('sessions#destroy')
+  end
+end
