@@ -1,5 +1,7 @@
 require 'spec_helper'
 
 describe MusicGame do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Associations" do
+    it { should have_many(:score_types) }
+  end
 end
