@@ -7,7 +7,7 @@ describe ScoreType do
 
   describe "Validation" do
     it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:type) }
+    it { should validate_presence_of(:score_type) }
     it { should validate_presence_of(:music_game_id) }
   end
 end

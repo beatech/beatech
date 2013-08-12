@@ -5,7 +5,7 @@ class CreateEntries < ActiveRecord::Migration
       t.string :url
       t.integer :menu
       t.text :text
-      t.integer :type
+      t.integer :entry_type
 
       t.timestamps
     end
