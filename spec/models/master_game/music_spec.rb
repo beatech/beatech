@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe MasterGame::Music do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should belong_to(:master_game) }
+    it { should belong_to(:score_type) }
+    it { should have_one(:music_game).through(:score_type) }
+    it { should have_many(:music_scores) }
+    it { should have_many(:user_scores).through(:music_scores) }
+  end
 end

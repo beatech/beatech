@@ -1,5 +1,10 @@
 require 'spec_helper'
 
 describe SingleGame::Music do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Association' do
+    it { should belong_to(:single_game) }
+    it { should belong_to(:score_type) }
+    it { should have_many(:scores) }
+    it { should have_many(:users).through(:scores) }
+  end
 end

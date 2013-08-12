@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe TeamGame::MusicScore do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should belong_to(:music) }
+    it { should belong_to(:user_score) }
+    it { should belong_to(:score_type) }
+  end
 end

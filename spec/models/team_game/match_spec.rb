@@ -1,5 +1,9 @@
 require 'spec_helper'
 
 describe TeamGame::Match do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'Associations' do
+    it { should belong_to(:team_game) }
+    it { should have_many(:musics) }
+    it { should have_many(:user_scores) }
+  end
 end
