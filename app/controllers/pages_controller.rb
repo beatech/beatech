@@ -166,12 +166,11 @@ class PagesController < ApplicationController
   end
 
   def index
-    admin_required
-
     @pages = Page.all
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @pages }
     end
   end
 
