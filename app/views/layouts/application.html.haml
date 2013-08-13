@@ -69,21 +69,21 @@
               - if @circle_menu
                 - @circle_menu.each do |menu|
                   - if @current_user == nil || menu.url != "registration"
-                    %li= page_link(menu.title, menu.url)
+                    %li= entry_link(menu.title, menu.url)
           / section end
           .section
             %h2 交流メニュー
             %ul
               - if @communication_menu
                 - @communication_menu.each do |menu|
-                  %li= page_link(menu.title, menu.url)
+                  %li= entry_link(menu.title, menu.url)
           / section end
           .section
             %h2 音ゲーコンテンツ
             %ul
               - if @contents_menu
                 - @contents_menu.each do |menu|
-                  %li= page_link(menu.title, menu.url)
+                  %li= entry_link(menu.title, menu.url)
           / section end
           .section
             %h2 最新の10件
@@ -101,7 +101,7 @@
                   %ul
                 - menu.title = 'トップページ' if menu.url == 'frontpage'
                 %li
-                  = page_link(menu.title, menu.url)
+                  = entry_link(menu.title, menu.url)
                   %br/
                 - last_date = menu.updated_at.to_date
           / section end

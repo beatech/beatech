@@ -7,4 +7,12 @@ module ApplicationHelper
       'BEATECH'
     end
   end
+
+  def entry_link(title, url)
+    if /^http:\/\// =~ url
+      link_to(title, url)
+    else
+      link_to(title, root_url + url)
+    end
+  end
 end
