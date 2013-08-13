@@ -5,4 +5,5 @@
 /log/*.log
 /tmp
 config/database.yml
+Gemfile.lock
 .DS_Store
