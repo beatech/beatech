@@ -14,7 +14,7 @@ describe ApplicationController do
       assigns(:communication_menu).should be_a_kind_of(ActiveRecord::Relation::ActiveRecord_Relation_Entry)
       assigns(:contents_menu).should be_a_kind_of(ActiveRecord::Relation::ActiveRecord_Relation_Entry)
       assigns(:header_menu).should be_a_kind_of(ActiveRecord::Relation::ActiveRecord_Relation_Entry)
-      assigns(:recent_pages).should be_a_kind_of(ActiveRecord::Relation::ActiveRecord_Relation_Entry)
+      assigns(:recent_entries).should be_a_kind_of(ActiveRecord::Relation::ActiveRecord_Relation_Entry)
     end
   end
 end

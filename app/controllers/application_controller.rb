@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     @contents_menu = Entry.where(menu: 3)
     @header_menu = Entry.where(menu: 4)
 
-    @recent_pages = Entry.all
-    @recent_pages.sort! { |a, b| b.updated_at <=> a.updated_at }
+    @recent_entries = Entry.all
+    @recent_entries.sort! { |a, b| b.updated_at <=> a.updated_at }
   end
 end
