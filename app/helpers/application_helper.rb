@@ -31,4 +31,13 @@ module ApplicationHelper
     @recent_entries = rest_entries
     { date: latest_date, entries: latest_date_entries }
   end
+
+  def render_wiki_content(entry)
+    render_wiki(entry.content)
+  end
+
+  def render_wiki(text)
+    @wiki = Beatech::Wiki.new
+    @wiki.render(text).html_safe
+  end
 end

@@ -52,4 +52,5 @@ gem "twitter"
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'webrat'
 end

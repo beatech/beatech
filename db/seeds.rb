@@ -9,7 +9,7 @@ pages.each do |page|
     title: page["title"],
     url: page["url"],
     menu: page["menu"],
-    text: page["text"],
+    content: page["text"],
     entry_type: page["limit"],
   )
 end

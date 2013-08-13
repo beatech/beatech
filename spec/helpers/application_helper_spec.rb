@@ -47,4 +47,31 @@ describe ApplicationHelper do
       @recent_entries.should == rest_entries
     end
   end
+
+  describe "#render_wiki_content" do
+    before do
+      @entry = double('Entry')
+      @entry.stub(:content).and_return('wiki content')
+    end
+    
+    it "should return a converted content of the entry" do
+      helper.should_receive(:render_wiki).with('wiki content')
+      helper.render_wiki_content(@entry)
+    end
+  end
+
+  describe "#render_wiki" do
+    it "should remove html tags" do
+      render_wiki("<html>").should_not match(/<html>/)
+    end
+
+    it "should convert [[>]], [[:]] to link tag" do
+      render_wiki("[[foo>bar]]").should match(/<a href="bar">foo<\/a>/)
+      render_wiki("[[foo:bar]]").should match(/<a href="bar">foo<\/a>/)
+    end
+
+    it "should convert #youtube()" do
+      render_wiki("#youtube(http://www.youtube.com/watch?v=gYl5pCte-8s)").should match(/<iframe width="560" height="315" src="http:\/\/www.youtube.com\/embed\/gYl5pCte-8s"frameborder="0" allowfullscreen><\/iframe>/)
+    end
+  end
 end

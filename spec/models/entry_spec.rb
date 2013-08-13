@@ -6,6 +6,6 @@ describe Entry do
     it { should validate_presence_of(:url) }
     it { should validate_presence_of(:menu) }
     it { should validate_presence_of(:entry_type) }
-    it { should validate_presence_of(:text) }
+    it { should validate_presence_of(:content) }
   end
 end
