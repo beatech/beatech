@@ -2,6 +2,8 @@
 require 'spec_helper'
 
 describe ApplicationHelper do
+  fixtures :entries
+  
   describe "#title_with_entry" do
     it "should generate title with entry url" do
       title_with_entry('tips').should match(/BEATECH.*/)

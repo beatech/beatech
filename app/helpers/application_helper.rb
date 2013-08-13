@@ -15,4 +15,7 @@ module ApplicationHelper
       link_to(title, root_url + url)
     end
   end
+
+  def pop_latest_date_entries(recent_pages)
+  end
 end

@@ -1,0 +1,98 @@
+frontpage:
+  id: 1
+  entry_type: 1
+  menu: 0
+  text: "VOLTEXの2ウィークリーランキングを開催しています。"
+  title: 東工大音楽ゲーム愛好会BEATECH
+  updated_at: '2013-06-20'
+  url: frontpage
+  
+users:
+  id: 2
+  entry_type: 2
+  menu: 1
+  text: ''
+  title: 部員紹介
+  updated_at: '2013-06-20'
+  url: users
+  
+history:
+  id: 3
+  entry_type: 0
+  menu: 1
+  text: "過去の活動と、今月の予定を記録していきます。"
+  title: 活動記録
+  updated_at: '2013-06-21'
+  url: history
+  
+registration:
+  id: 4
+  entry_type: 2
+  menu: 1
+  text: '**入部申請'
+  title: 入部申請
+  updated_at: '2013-06-21'
+  url: registration
+  
+diet:
+  id: 42
+  entry_type: 
+  menu: 2
+  text: "**体重推移"
+  title: ダイエット部門
+  updated_at: '2013-06-21'
+  url: diet
+  
+contest3rd:
+  id: 43
+  entry_type: 
+  menu: 2
+  text: ''
+  title: 部内大会3rd
+  updated_at: '2013-06-19'
+  url: contest3rd
+  
+master2013s:
+  id: 44
+  entry_type: 
+  menu: 2
+  text: "アンケート。"
+  title: master部門2013夏
+  updated_at: '2013-06-19'
+  url: master2013s
+  
+achievements:
+  id: 34
+  entry_type: 
+  menu: 1
+  text: ''
+  title: 成果報告
+  updated_at: '2013-06-19'
+  url: achievements
+  
+about:
+  id: 15
+  entry_type: 1
+  menu: 4
+  text: このサークルの概要
+  title: BEATECHとは
+  updated_at: '2013-06-19'
+  url: about
+  
+registration:
+  id: 16
+  entry_type: 2
+  menu: 4
+  text: '入部希望者へ'
+  title: 入部希望者へ
+  updated_at: '2013-06-19'
+  url: registration
+  
+outsider:
+  id: 17
+  entry_type: 1
+  menu: 4
+  text: 他大の方へ
+  title: 他大の方へ
+  updated_at: '2013-06-19'
+  url: outsider
