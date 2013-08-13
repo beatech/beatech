@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 class EntriesController < ApplicationController
   def show
-    raise params.to_yaml
     @entry = Entry.find_by_url(params[:id])
   end
 
