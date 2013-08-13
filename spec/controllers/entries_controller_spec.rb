@@ -17,5 +17,10 @@ describe EntriesController do
       get :frontpage
       response.should contain("frontpage is rendered")
     end
+
+    it "should be able to render entries which contain tabs" do
+      get :show, id: 'tips'
+      response.should be_success
+    end
   end
 end

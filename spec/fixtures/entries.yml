@@ -96,3 +96,12 @@ outsider:
   title: 他大の方へ
   updated_at: '2013-06-19'
   url: outsider
+
+tips:
+  id: 12
+  entry_type: 0
+  menu: 3
+  content: "攻略情報を共有しましょう。\r\n音ゲー、難易度、曲、攻略対象(ゲージ、段位等)と書いた人の名前を明記してください。\r\n&tab(tips_iidx,tips_bms,tips_reflec,tips_sdvx,tips_popn,tips_taiko,tips_ddr)"
+  title: 音ゲー攻略
+  updated_at: '2013-03-09'
+  url: tips
