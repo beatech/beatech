@@ -15,7 +15,3 @@ pages.each do |page|
     entry_type: page["limit"],
   )
 end
-
-File.open("yaml.yml", "w") do |f|
-  f << pages.to_yaml
-end
