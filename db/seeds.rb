@@ -1,10 +1,12 @@
 require 'open-uri'
-require 'json'
 
 Entry.all.each { |entry| entry.destroy }
 pages = JSON.parse(open("http://beatech.net/pages.json").read)
 pages.each do |page|
   puts page["title"]
+  page["limit"] ||= 0
+  page["content"] ||= ""
+  page["menu"] ||= 0
   Entry.create(
     title: page["title"],
     url: page["url"],
@@ -14,3 +16,6 @@ pages.each do |page|
   )
 end
 
+File.open("yaml.yml", "w") do |f|
+  f << pages.to_yaml
+end
