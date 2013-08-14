@@ -102,8 +102,8 @@
               %button.close{"data-dismiss" => "alert", :type => "button"} &times;
               = flash[:notice]
         .main
-          - if @page && @page.title
-            %h1= @page.title
+          - if @entry && @entry.title
+            %h1= @entry.title
           - elsif @title
             %h1= @title
           #inner-main
