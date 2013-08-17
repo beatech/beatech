@@ -24,6 +24,11 @@ class UsersController < ApplicationController
     @num_4th = @users_4th.count
     @num_ob  = @users_ob .count
     @num_member = @num_1st + @num_2nd + @num_3rd + @num_4th
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: Page.all }
+    end
   end
 
   def show
