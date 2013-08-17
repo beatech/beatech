@@ -48,14 +48,12 @@
                     %br/
                     %span
                       %a.btn.btn-info{:href => "/auth/twitter"} Twitterでログイン
-        / header end
         #menu
           %ul
             %li= link_to "ホーム", :root
             - if @current_user
-              %li= link_to "ページ新規作成", root_url + "newpage"
-              - if @page && @page.url
-                = raw edit_link
+              %li= link_to "ページ新規作成", new_entry_path
+              = raw edit_link
             - else
               - if @header_menu
                 - @header_menu.each do |menu|
