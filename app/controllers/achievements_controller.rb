@@ -6,6 +6,11 @@ class AchievementsController < ApplicationController
     @achievement.user_id = @current_user.id if @current_user
 
     @achievements = Achievement.all.sort{|a, b| b.date <=> a.date }
+
+    respond_to do |format|
+      format.html
+      format.json { render json: Achievement.all }
+    end
   end
 
   def create
