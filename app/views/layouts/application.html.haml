@@ -21,14 +21,14 @@
             - if @current_user
               .dropdown.pull-right
                 %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = @current_user.account
+                  = @current_user.username
                   %span.caret
                 %ul.dropdown-menu
-                  %li= link_to "プロフィールを編集", root_url + "users/edit/" + @current_user.account
-                  %li= link_to "ユーザー名変更", root_url + "settings/account"
-                  %li= link_to "パスワード変更", root_url + "settings/password"
+                  %li= link_to "プロフィールを編集", "#{root_url}users/edit/#{@current_user.username}"
+                  %li= link_to "ユーザー名変更", "#{root_url}settings/account"
+                  %li= link_to "パスワード変更", "#{root_url}settings/password"
                   %li.divider
-                  %li= link_to 'ログアウト', sessio_path, :method => :delete
+                  %li= link_to 'ログアウト', session_path, :method => :delete
             - else
               .dropdown.pull-right
                 %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
@@ -37,10 +37,10 @@
                 %ul#login.dropdown-menu
                   %li
                     = form_tag session_path do
-                      = label_tag :account, 'BEATECH アカウント'
-                      = text_field_tag :account, params[:account], :class => 'span3'
-                      = label_tag :pass, 'パスワード'
-                      = password_field_tag :pass, params[:pass], :class => 'span3'
+                      = label_tag :username, 'BEATECH アカウント'
+                      = text_field_tag :username, params[:username], :class => 'span3'
+                      = label_tag :password, 'パスワード'
+                      = password_field_tag :password, params[:password], :class => 'span3'
                       = submit_tag "ログイン", :class => "btn"
                   %li.divider
                   %li
@@ -108,14 +108,9 @@
             %h1= @title
           #inner-main
             = yield
-        / main end
-      / contents end
       #pageTop
         %a{:href => "#top"} ページのトップへ戻る
-      / pageTop end
       #footer
         .copyright
           Copyright &copy; 2013 #{link_to "beatech.net", "http://beatech.net"}.
           All Rights Reserved. Created by #{link_to "ikstrm", "https://twitter.com/ikstrm"}.
-  / footer end
-  / top end

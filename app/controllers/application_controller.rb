@@ -1,7 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  before_filter :load_entries
+  before_filter :load_entries, :authorize
+
+  def authorize
+    if session[:username]
+      @current_user = User.find_by_username(session[:username])
+      session.delete(:username) unless @current_user
+    end
+  end
 
   def load_entries
     @circle_menu = Entry.where(menu: 1)
