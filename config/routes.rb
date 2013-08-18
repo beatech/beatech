@@ -3,6 +3,7 @@ Beatech::Application.routes.draw do
 
 
   resources :contest3rds
+  resources :twitter_accounts, only: :index
 
 
   root :to => 'pages#frontpage'

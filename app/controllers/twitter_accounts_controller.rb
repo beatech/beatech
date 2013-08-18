@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 class TwitterAccountsController < ApplicationController
+  def index
+    render json: TwitterAccount.all
+  end
+  
   def destroy
     @twitter_account = TwitterAccount.find_by_uid(params[:uid])
     if @twitter_account && session[:account]
