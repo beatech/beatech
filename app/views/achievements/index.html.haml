@@ -1,0 +1,32 @@
+- if @current_user
+  %h4{:style => "margin-bottom: 10px;"} 報告フォーム
+  = form_for @achievement, :url => { :action => :create } do |f|
+    = f.hidden_field :user_id
+    .field
+      = "#{User.find(@current_user).name}: "
+      %br
+      = f.text_area :text, :style => "width:98%; margin: 0;", :rows => "2", :maxlength => "200"
+      %br
+      = f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"}
+      = f.submit "投稿", {class: "btn pull-right", style: "margin:10px 0 0 0; width: 90px;"}
+  %h4{:style => "margin-top: 20px;"} 成果一覧
+- last_date = nil
+- while @achievements.size > 0
+  - latest_date, latest_date_achievements, @achievements = pop_latest_date_achievements(@achievements)
+  %div{style: "margin-left: 5px; margin-top:5px; color: #444;"}
+    %strong
+      = latest_date
+  %table{style: "width: 100%; margin-bottom: 10px;"}
+    - latest_date_achievements.each do |achievement|
+      %tr
+        %td{style: "width: 50px; vertical-align: top;"}
+          %a{href: "#"}
+            %img{src: achievement.user.profile_image}
+        %td{style: "vertical-align: top;"}
+          %p{style: "margin-bottom: 0"}
+            %strong
+              = link_to achievement.user.name, "#"
+            - if @current_user && achievement.user == @current_user
+              = link_to "編集", edit_achievement_path(achievement)
+              = link_to "削除", achievement_path(achievement), method: :delete
+          = convert_wiki(achievement_text(achievement)).gsub(/<p>/, '<p style="margin-bottom: 2px">').html_safe
