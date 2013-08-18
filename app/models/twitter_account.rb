@@ -1,5 +1,5 @@
 class TwitterAccount < ActiveRecord::Base
-  attr_accessible :screen_name, :uid, :user_id, :account
+  attr_accessible :screen_name, :uid, :user_id
 
   def self.exist?(screen_name)
     @twitter_account = self.find_by_screen_name(screen_name)
@@ -8,11 +8,6 @@ class TwitterAccount < ActiveRecord::Base
     else
       false
     end
-  end
-
-  def account
-    @user = User.find(user_id)
-    @user.account if @user
   end
 
   def self.find_all_by_account(account)
