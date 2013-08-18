@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 class TwitterAccountsController < ApplicationController
   def index
+    TwitterAccount.all.each do |twitter_account|
+      twitter_account.destroy unless User.find_by_account(twitter_account.account)
+    end
     render json: TwitterAccount.all
   end
   
