@@ -2,7 +2,11 @@
 class TwitterAccountsController < ApplicationController
   def index
     TwitterAccount.all.each do |twitter_account|
-      twitter_account.destroy unless User.find(twitter_account.user_id)
+      begin
+        twitter_account.destroy unless User.find(twitter_account.user_id)
+      rescue
+        twitter_account.destroy
+      end
     end
     render json: TwitterAccount.all
   end
