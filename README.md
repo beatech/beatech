@@ -1,6 +1,6 @@
 # BEATECH  
   
-東工大音ゲーサークルBEATECH交流用CMS  
+東工大音ゲーサークルBEATECH交流用SNS  
   
 ## Contributing
 
