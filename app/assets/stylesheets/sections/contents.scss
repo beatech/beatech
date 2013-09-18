@@ -14,9 +14,11 @@
     margin: -11px -11px 10px -11px;
     line-height: 28px;
     padding: 0px 10px;
-    font-size: 14px;
-    font-weight: bold;
     color: #fff;
+    font: {
+      size: 14px;
+      weight: bold;
+    }
     border: 1px solid #58b {
       radius: 4px 4px 0 0;
     }
@@ -27,14 +29,12 @@
   }
 
   h2 {
-    box-shadow: 1px 1px 3px #444;
     margin-bottom: 5px;
     padding: 2px 2px 2px 5px;
     font-size: 15px;
     font-weight: bold;
     line-height: 1.4;
     border-left: 3px solid #000;
-    background: url("/images/bg_h2.gif");
   }
 
   h3 {
