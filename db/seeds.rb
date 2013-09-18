@@ -32,10 +32,10 @@ JSON.parse(open("http://beatech.net/pages.json").read).each do |page|
     invalid_num += 1
   end
 end
-Entry.all.each do |entry|
-  entry.content = entry.content.gsub(/^\*\*/, '*').gsub(/^\*\*\*/, '**')
-  entry.save
-end
+#Entry.all.each do |entry|
+#  entry.content = entry.content.gsub(/^\*\*/, '*').gsub(/^\*\*\*/, '**')
+#  entry.save
+#end
 puts "\e[32m#{valid_num} successes, #{invalid_num} failures\e[0m"
 
 puts "\nCreating users..."
