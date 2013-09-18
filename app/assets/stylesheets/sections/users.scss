@@ -1,0 +1,52 @@
+.dvtitle {
+  margin:0;
+  font-weight:bold;
+  cursor: pointer;
+  margin-bottom:2px;
+  padding:3px;
+  font-size:13px;
+  line-height:1.4;
+  background:#ddd;
+  line-width:100%;
+  display: block;
+  border:1px solid #aaa;
+}
+
+.developbox {
+  margin: 6px 0px 18px 5px;
+  display: none;
+}
+
+.developbox p {
+  line-height: 1.4;
+  margin: 9px 0px 0px 0px;
+}
+
+.more_read .dvtitle {
+  padding: 0px 0px 0px 24px;
+  margin: 0px 3px 0px 0px;
+}
+
+#profile-left {
+  width: 73px;
+  height: 73px;
+  border: 4px solid #fff;
+  background-color: #fff;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.25);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,.25);
+  box-shadow: 0 1px 1px rgba(0,0,0,.25);
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+#profile-right {
+  margin-left: 10px;
+  position: absolute;
+  width: 650px;
+  height: 100px;
+  display: inline-block;
+}
+

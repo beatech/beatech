@@ -1,0 +1,17 @@
+/* Twitter Bootstrap */
+@import "bootstrap";
+@import "beatech_bootstrap";
+
+/* Common styles */
+@import "variables.scss";
+@import "common.scss";
+
+/* Styles for some sections */
+@import "sections/header.scss";
+@import "sections/login.scss";
+@import "sections/side_menu.scss";
+@import "sections/flush.scss";
+@import "sections/contents.scss";
+@import "sections/users.scss";
+@import "sections/footer.scss";
+

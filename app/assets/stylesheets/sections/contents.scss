@@ -1,0 +1,131 @@
+.contents {
+  float: right;
+  margin: 0;
+  padding: 10px;
+  width: 750px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  background: #F9F9F9;
+  border: 1px solid #aaa {
+    radius: 4px;
+  }
+
+  h1 {
+    margin: -11px -11px 10px -11px;
+    line-height: 28px;
+    padding: 0px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: 1px solid #58b {
+      radius: 4px 4px 0 0;
+    }
+    background: #58b {
+      image: url("/images/bg_section.png");
+      repeat: repeat-x;
+    }
+  }
+
+  h2 {
+    box-shadow: 1px 1px 3px #444;
+    margin-bottom: 5px;
+    padding: 2px 2px 2px 5px;
+    font-size: 15px;
+    font-weight: bold;
+    line-height: 1.4;
+    border-left: 3px solid #000;
+    background: url("/images/bg_h2.gif");
+  }
+
+  h3 {
+    margin-left: 0px;
+    padding: 1px 3px;
+    margin-bottom: 5px;
+    font-size: 13px;
+    line-height: 20px;
+    border-left: 2px solid #000;
+    border-bottom: 1px dotted #000;
+  }
+
+  h4 {
+    margin-bottom: 2px;
+    padding: 3px;
+    font-size: 13px;
+    line-height: 1.4;
+    background: #ddd;
+  }
+
+  h5 {
+    margin-bottom: 2px;
+    font-size: 13px;
+    line-height: 1.4;
+    border-bottom: 2px solid #333;
+  }
+
+  h6 {
+    margin-bottom: 2px;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  p {
+    margin: 0 0 1em 5px;
+    line-height: 1.4;
+  }
+
+  dd {
+    padding: 0;
+    margin: 0 0 1em 1em;
+    padding: 3px;
+    background: #f1f1f1;
+  }
+  
+  .style-table {
+      border: 1px solid gray;
+      border-collapse: collapse;
+  }
+  
+  table tr:nth-child(odd) td {
+    background: #fff;
+  }
+  
+  table tr:nth-child(even) td {
+    background: #f3f3f3;
+  }
+
+  .style-table thead th {
+  	background: #f6f6f6;    
+  	background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
+  	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6));
+  	background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  	background: -o-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  	background: -ms-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  	background: linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
+  	color: #666;
+  	white-space: nowrap;
+  }
+  
+  table tr:hover td {
+    background: #fdfbe0;
+  }
+  
+  .style-table td, th {
+    padding: 5px 3px;
+  	border: 1px solid #aaa;
+  }
+  
+  a {
+    color: #069;
+    text-decoration: underline; 
+  }
+  
+  .active a {
+    text-decoration: none;
+  }
+  
+  .main a:hover {
+    color: #008000;
+    text-decoration: underline; 
+  }
+}
+
