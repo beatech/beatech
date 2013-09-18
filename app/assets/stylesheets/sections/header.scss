@@ -1,0 +1,62 @@
+header {
+  margin-bottom: 10px;
+
+  a {
+    color: #fff;
+    &:hover, &:link {
+      text-decoration: none;
+      color: #ddd;
+    }
+  }
+
+  .nav_bar {
+    text-shadow: 1px 1px 3px #000;
+    position: relative;
+    height: 40px;
+    padding: 0;
+    background: #4375a8 {
+      image: url("/images/bg_header.png");
+      repeat: repeat-x;
+    }
+  }
+
+  .title_logo {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    line-height: 20px;
+    margin-top: -10px;
+    float: left;
+    font: {
+      size: 20px;
+      weight: bold;
+    }
+  }
+
+  .account {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    line-height: 20px;
+    margin-top: -10px;
+  }
+
+  .header_menu {
+    background: black;
+    height: 28px;
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none {
+        type: none;
+      }
+    }
+
+    li {
+      margin: 4px 20px;
+      float: left;
+    }
+  }
+}
+

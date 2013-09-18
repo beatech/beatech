@@ -1,0 +1,62 @@
+html {
+  overflow-y: scroll;
+}
+
+body {
+  line-height:1.6;
+  letter-spacing:1px;
+  font-family: Verdana, Helvetica, sans-serif;
+  color: #333;
+  font-size: 13px;
+  background: #fff;
+}
+
+hr {
+  border-top: 1px solid #aaa;
+  border-bottom: 1px solid transparent;
+}
+
+img {
+  border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0 0 5px 20px;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0;
+  width: 960px;
+  clear: both;
+}
+
+#left_column {
+  float: left;
+  width: 180px;
+}
+
+#right_column {
+  margin-left: 10px;
+  float: left;
+  width: 770px;
+}
+
+.white_caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  vertical-align: middle;
+  border: {
+    top: 4px solid white;
+    right: 4px solid transparent;
+    left: 4px solid transparent;
+    bottom: 0 dotted;
+  }
+  content: "";
+}
+

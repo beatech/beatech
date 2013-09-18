@@ -1,114 +1,18 @@
 !!!
-%html{:lang => "ja", "xml:lang" => "ja", :xmlns => "http://www.w3.org/1999/xhtml"}
-  %head
-    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
-    %meta{:content => "text/css", "http-equiv" => "Content-Style-Type"}
-    %meta{:content => "text/javascript", "http-equiv" => "Content-Script-Type"}
-    %meta{:content => "no", "http-equiv" => "imagetoolbar"}
-    %meta{:content => "", :name => "description"}
-    %meta{:content => "", :name => "keywords"}
-    %link{:href => "favicon.ico", :rel => "shortcut icon"}
-    %title= title_with_entry(@entry)
-    = stylesheet_link_tag    "application", :media => "all"
-    = javascript_include_tag "application"
-    = csrf_meta_tags
+%html{lang: 'ja'}
+  = render 'layouts/head', title: title_with_entry(@entry)
   %body
-    #top
-      #box
-        #header
-          %h1#text-dropshadow= link_to "BEATECH", :root
-          .account
-            - if @current_user
-              .dropdown.pull-right
-                %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  = @current_user.username
-                  %span.caret
-                %ul.dropdown-menu
-                  %li= link_to "プロフィールを編集", "#{root_url}users/edit/#{@current_user.username}"
-                  %li= link_to "ユーザー名変更", "#{root_url}settings/account"
-                  %li= link_to "パスワード変更", "#{root_url}settings/password"
-                  %li.divider
-                  %li= link_to 'ログアウト', session_path, :method => :delete
-            - else
-              .dropdown.pull-right
-                %a#text-dropshadow.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                  ログイン
-                  %span.caret
-                %ul#login.dropdown-menu
-                  %li
-                    = form_tag session_path do
-                      = label_tag :username, 'BEATECH アカウント'
-                      = text_field_tag :username, params[:username], :class => 'span3'
-                      = label_tag :password, 'パスワード'
-                      = password_field_tag :password, params[:password], :class => 'span3'
-                      = submit_tag "ログイン", :class => "btn"
-                  %li.divider
-                  %li
-                    または
-                    %br/
-                    %span
-                      %a.btn.btn-info{:href => "/auth/twitter"} Twitterでログイン
-        #menu
-          %ul
-            %li= link_to "ホーム", :root
-            - if @current_user
-              %li= link_to "ページ新規作成", new_entry_path
-              = raw edit_link
-            - else
-              - if @header_menu
-                - @header_menu.each do |menu|
-                  %li= link_to menu.title, root_url + menu.url
-      #contents
-        #subL
-          .section
-            %h2 サークルメニュー
-            %ul
-              - if @circle_menu
-                - @circle_menu.each do |menu|
-                  - if @current_user == nil || menu.url != "registration"
-                    %li= entry_link(menu.title, menu.url)
-          .section
-            %h2 交流メニュー
-            %ul
-              - if @communication_menu
-                - @communication_menu.each do |menu|
-                  %li= entry_link(menu.title, menu.url)
-          .section
-            %h2 音ゲーコンテンツ
-            %ul
-              - if @contents_menu
-                - @contents_menu.each do |menu|
-                  %li= entry_link(menu.title, menu.url)
-          .section{style: "padding-bottom: 5px;"}
-            %h2 最新の10件
-            - last_date = nil
-            - if @recent_entries
-              - i = 0
-              - while @recent_entries.size > 0 && i < 10
-                - latest_date_entries = pop_latest_date_entries
-                %div{style: "margin: 2px 0 5px 12px;"}
-                  %strong= latest_date_entries[:date]
-                  %ul{style: "padding: 1px 0 0 0;"}
-                    - latest_date_entries[:entries].each do |entry|
-                      - break unless i < 10
-                      %li
-                        = entry_link(entry.title, entry.url)
-                        - i += 1
-        - if flash[:notice]
-          #main-alert
-            .alert.alert-success
-              %button.close{"data-dismiss" => "alert", :type => "button"} &times;
-              = flash[:notice]
-        .main
+    = render 'layouts/header'
+    .container
+      #left_column
+        = render 'layouts/side_menu'
+      #right_column
+        = render 'layouts/flash'
+        .contents
           - if @entry && @entry.title
             %h1= @entry.title
           - elsif @title
             %h1= @title
-          #inner-main
-            = yield
-      #pageTop
-        %a{:href => "#top"} ページのトップへ戻る
-      #footer
-        .copyright
-          Copyright &copy; 2013 #{link_to "beatech.net", "http://beatech.net"}.
-          All Rights Reserved. Created by #{link_to "ikstrm", "https://twitter.com/ikstrm"}.
+          = yield
+    = render 'layouts/footer'
+
