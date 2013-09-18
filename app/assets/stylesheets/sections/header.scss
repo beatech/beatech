@@ -1,10 +1,10 @@
 header {
   margin-bottom: 10px;
 
-  a {
+  a, a:link {
     color: #fff;
-    &:hover, &:link {
-      text-decoration: none;
+    text-decoration: none;
+    &:hover {
       color: #ddd;
     }
   }

@@ -15,6 +15,7 @@ puts "\nCreating entries..."
 valid_num, invalid_num = 0, 0
 Entry.all.each { |entry| entry.destroy }
 JSON.parse(open("http://beatech.net/pages.json").read).each do |page|
+  page["url"] = "users/new" if page["url"] == "registration"
   page["limit"] ||= 0
   page["text"] ||= ""
   page["menu"] ||= 0
@@ -30,6 +31,10 @@ JSON.parse(open("http://beatech.net/pages.json").read).each do |page|
   else
     invalid_num += 1
   end
+end
+Entry.all.each do |entry|
+  entry.content = entry.content.gsub(/^\*\*/, '*').gsub(/^\*\*\*/, '**')
+  entry.save
 end
 puts "\e[32m#{valid_num} successes, #{invalid_num} failures\e[0m"
 
