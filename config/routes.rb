@@ -1,7 +1,7 @@
 Beatech::Application.routes.draw do
   resource :session, only: [:create, :destroy]
 
-  resource :users
+  resources :users
 
   resources :achievements, except: [:new, :show]
 

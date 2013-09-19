@@ -32,10 +32,19 @@ JSON.parse(open("http://beatech.net/pages.json").read).each do |page|
     invalid_num += 1
   end
 end
-#Entry.all.each do |entry|
-#  entry.content = entry.content.gsub(/^\*\*/, '*').gsub(/^\*\*\*/, '**')
-#  entry.save
-#end
+Entry.all.each do |entry|
+  level_down_entries = %w|tips_iidx tips_bms tips_reflec tips_sdbx tips_popn tips_taiko tips_ddr|
+  level_down_entries.each do |entry_url|
+    if entry.url == entry_url 
+      entry.content = entry.content.gsub(/^\*\*/, '*').gsub(/^\*\*\*/, '**')
+    end
+  end
+  entry.content = entry.content.gsub(/^-/, '- ')
+  entry.content = entry.content.gsub(/^(\|.+\|)h/, "\\1\n| --- | --- |")
+  # entry.content = entry.content.gsub(/^-(.+)$/, "\n### \\1\n")
+  entry.content = entry.content.gsub(/^\*\*\*/, '###').gsub(/^\*\*/, '##').gsub(/^\*/, '#')
+  entry.save
+end
 puts "\e[32m#{valid_num} successes, #{invalid_num} failures\e[0m"
 
 puts "\nCreating users..."
