@@ -42,6 +42,8 @@ Entry.all.each do |entry|
   entry.content = entry.content.gsub(/^-/, '- ')
   entry.content = entry.content.gsub(/^(\|.+\|)h/, "\\1\n| --- | --- |")
   # entry.content = entry.content.gsub(/^-(.+)$/, "\n### \\1\n")
+  entry.content = entry.content.gsub(/\[\[(.+?)>(.+?)\]\]/, '[\1](\2)')
+  entry.content = entry.content.gsub(/\[\[(.+?):(.+?)\]\]/, '[\1](\2)')
   entry.content = entry.content.gsub(/^\*\*\*/, '###').gsub(/^\*\*/, '##').gsub(/^\*/, '#')
   entry.save
 end
