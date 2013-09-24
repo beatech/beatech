@@ -5,6 +5,5 @@
 /log/*.log
 /tmp
 /public/assets
-config/database.yml
 Gemfile.lock
 .DS_Store
