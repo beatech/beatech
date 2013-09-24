@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.integer :year
       t.integer :repeated_year
+      t.integer :grade
       t.text :bio
       t.text :profile
       t.string :profile_image

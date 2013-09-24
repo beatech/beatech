@@ -61,6 +61,7 @@ JSON.parse(open("http://beatech.net/users.json").read).each do |user|
       name: user["name"],
       year: user["year"],
       repeated_year: user["repeat_year"],
+      grade: Date.today.year - user["year"].to_i - user["repeat_year"].to_i + 1,
       bio: user["short_profile"],
       profile: user["long_profile"],
       profile_image: user["profile_image"],

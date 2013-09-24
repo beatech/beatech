@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  # has_secure_password
   
   has_many :achievements
   has_many :twitter_accounts
