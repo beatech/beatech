@@ -1,7 +1,20 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  helper_method :admin_required, :is_admin?
   before_filter :load_entries, :authorize
+
+  def admin_required
+    raise Exception unless is_admin?
+  end
+  
+  def is_admin?
+    return false unless @current_user
+    admins = %w|ikstrm popkirby|
+    admins.each do |admin|
+      return true if @current_user.username == admin
+    end
+    false
+  end
 
   def authorize
     if session[:username]

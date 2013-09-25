@@ -16,4 +16,12 @@ module AchievementsHelper
   def achievement_text(achievement)
     achievement.text
   end
+
+  def achievement_profile_image(achievement)
+    if achievement.user && achievement.user.profile_image
+      achievement.user.profile_image
+    else
+      'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_normal.png'        
+    end
+  end
 end

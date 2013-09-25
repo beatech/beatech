@@ -23,12 +23,14 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @user.year = Time.now.year
-    @user.repeat_year = 0
+    @user.repeated_year = 0
     @title = "入部申請"
   end
 
   def create
-    @user = User.new(params[:user])
+    @user = User.new(create_user_params)
+    @user.grade = grade_of(@user)
+    @user.save
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'        
     else
@@ -37,15 +39,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find_by_username(params[:id])
-    raise Exception unless @user
-    @title = "#{@user.name}のプロフィールの編集"
+    setting_items = %w|profile username password|
+    if setting_items.include?(params[:item])
+      render params[:item]
+    else
+      raise Exception
+    end
   end
 
   def update
     @user = User.find_by_username(params[:id])
+    raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
     @user.update_attributes(user_params)
-    @user.grade = grade_with(params[:user][:year], params[:user][:repeated_year])
+    @user.grade = grade_of(@user)
     if @user.save
       redirect_to @user, notice: 'プロフィールの更新に成功しました。'
     else
@@ -60,6 +66,14 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :year, :repeated_year, :bio, :profile)
+    params.require(:user).permit(:name, :username, :year, :repeated_year, :bio, :profile, :username)
+  end
+
+  def create_user_params
+    params.require(:user).permit(:name, :username, :password, :password_confirmation, :year, :repeated_year)
+  end
+
+  def grade_of(user)
+    Date.today.year - user.year + 1
   end
 end

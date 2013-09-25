@@ -9,24 +9,36 @@
       %br
       = f.date_select :date, {use_month_numbers: true}, {style: "width:70px; margin: 10px 0 0 0;"}
       = f.submit "投稿", {class: "btn pull-right", style: "margin:10px 0 0 0; width: 90px;"}
-  %h3{:style => "margin-top: 20px;"} 成果一覧
-- last_date = nil
-- while @achievements.size > 0
-  - latest_date, latest_date_achievements, @achievements = pop_latest_date_achievements(@achievements)
+  
+- else
+  %h3 成果報告とは
+  %p
+    部員の音ゲーの成果を報告し合い、交流を深めたり、モチベーションを高め合ったりするためのページです。
+    %br
+    登録しているtwitterアカウントで「#BEATECH_成果報告」のハッシュタグをつけてツイートすると、
+    %br
+    自動的にこのページにも投稿されます。
+
+%h3{:style => "margin-top: 20px;"} 成果一覧
+- rest_achievements = @achievements.dup
+- while rest_achievements.size > 0
+  - latest_date, latest_date_achievements, rest_achievements = pop_latest_date_achievements(rest_achievements)
   %div{style: "margin-left: 5px; margin-top:5px; color: #444;"}
     %strong
       = latest_date
   %table{style: "width: 100%; margin-bottom: 10px;"}
     - latest_date_achievements.each do |achievement|
+      - next unless achievement.user
       %tr
         %td{style: "width: 50px; vertical-align: top;"}
-          %a{href: "#"}
-            %img{src: achievement.user.profile_image}
+          = link_to user_path(achievement.user) do
+            %img{src: achievement_profile_image(achievement)}
         %td{style: "vertical-align: top;"}
           %p{style: "margin-bottom: 0"}
             %strong
-              = link_to achievement.user.name, "#"
+              = link_to achievement.user.name, user_path(achievement.user)
             - if @current_user && achievement.user == @current_user
               = link_to "編集", edit_achievement_path(achievement)
               = link_to "削除", achievement_path(achievement), method: :delete
           = markdown(achievement_text(achievement)).gsub(/<p>/, '<p style="margin-bottom: 2px">').html_safe
+= paginate @achievements, :window => 5, :theme => 'twitter-bootstrap'

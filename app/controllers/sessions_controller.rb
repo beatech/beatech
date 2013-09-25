@@ -12,6 +12,6 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:username] = nil
-    redirect_to :back
+    redirect_to root_url
   end
 end
