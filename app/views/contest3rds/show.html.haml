@@ -1,0 +1,37 @@
+%p#notice= notice
+%p
+  %b A score:
+  = @contest3rd.a_score
+%p
+  %b A clear:
+  = @contest3rd.a_clear
+%p
+  %b B score:
+  = @contest3rd.b_score
+%p
+  %b B clear:
+  = @contest3rd.b_clear
+%p
+  %b C score:
+  = @contest3rd.c_score
+%p
+  %b C clear:
+  = @contest3rd.c_clear
+%p
+  %b Name:
+  = @contest3rd.name
+%p
+  %b Music:
+  = @contest3rd.music
+%p
+  %b Order:
+  = @contest3rd.order
+%p
+  %b Team:
+  = @contest3rd.team
+%p
+  %b Movie url:
+  = @contest3rd.movie_url
+= link_to 'Edit', edit_contest3rd_path(@contest3rd)
+|
+\#{link_to 'Back', contest3rds_path}

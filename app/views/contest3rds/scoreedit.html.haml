@@ -1,0 +1,43 @@
+%h2
+  = @order
+  組の対戦結果の編集
+%p
+  曲名の編集は#{link_to 'こちら', root_url + 'contest3rd/tunesedit/' + @order.to_s}
+= form_tag :action => :scoreupdate do
+  - @tunes.each_with_index do |tune, i|
+    - @tune = tune
+    %h4
+      = @tunes[i].team
+      チーム #{@tunes[i].name} の結果
+    %table.style-table
+      %thead
+        %tr
+          %th
+          %th 曲
+          %th スコア
+          %th クリアランプ
+      %tbody
+        %tr
+          %td A曲
+          %td= @tunes[0].music
+          %td= number_field "tune[]", :a_score, :class => 'span1', :id => 'no-margin'
+          %td= select "tune[]", :a_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
+        %tr
+          %td B曲
+          %td= @tunes[1].music
+          %td= number_field "tune[]", :b_score, :class => 'span1', :id => 'no-margin'
+          %td= select "tune[]", :b_clear, @clearlamp, :index => i, :class => 'span1', :id => 'no-margin'
+        %tr
+          %td C曲
+          %td= @tunes[2].music
+          %td= number_field "tune[]", :c_score, :class => 'span1', :id => 'no-margin'
+          %td= select "tune[]", :c_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
+        %tr
+          %td 動画URL
+          %td{:colspan => "3"}= text_field "tune[]", :movie_url, :class => 'span5', :id => 'no-margin'
+    = hidden_field "tune[]", :order
+    = hidden_field "tune[]", :team
+    %br/
+  .actions
+    = submit_tag '編集', :class => 'btn'
+= link_to 'Back', root_url + 'contest3rd'

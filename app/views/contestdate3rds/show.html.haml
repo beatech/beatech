@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %b Order:
+  = @contestdate3rd.order
+%p
+  %b Place:
+  = @contestdate3rd.place
+= link_to 'Edit', edit_contestdate3rd_path(@contestdate3rd)
+|
+\#{link_to 'Back', contestdate3rds_path}

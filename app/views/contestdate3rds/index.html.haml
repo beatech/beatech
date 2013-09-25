@@ -1,0 +1,17 @@
+%h1 Listing contestdate3rds
+%table
+  %tr
+    %th Order
+    %th Place
+    %th
+    %th
+    %th
+  - @contestdate3rds.each do |contestdate3rd|
+    %tr
+      %td= contestdate3rd.order
+      %td= contestdate3rd.place
+      %td= link_to 'Show', contestdate3rd
+      %td= link_to 'Edit', edit_contestdate3rd_path(contestdate3rd)
+      %td= link_to 'Destroy', contestdate3rd, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Contestdate3rd', new_contestdate3rd_path

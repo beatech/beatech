@@ -1,0 +1,19 @@
+= form_for(@contestdate3rd) do |f|
+  - if @contestdate3rd.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@contestdate3rd.errors.count, "error")
+        prohibited this contestdate3rd from being saved:
+      %ul
+        - @contestdate3rd.errors.full_messages.each do |msg|
+          %li= msg
+  .field
+    = f.label :order
+    %br/
+    = f.number_field :order
+  .field
+    = f.label :place
+    %br/
+    = f.text_field :place
+  .actions
+    = f.submit
