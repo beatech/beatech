@@ -43,7 +43,7 @@ class Contest3rdsController < ApplicationController
         total += @clearbonus[@team['C'][i].difficulty][person.c_clear] unless @team['C'][i].difficulty.nil? || person.c_clear.nil?
 
         @team_total[team_char] += total
-        person["total"] = total
+        person.total = total
       end
 
     end
@@ -105,8 +105,8 @@ class Contest3rdsController < ApplicationController
       contest.save
     end
 
-    @page = Page.find_by_url('contest3rd')
-    @page.touch
+    @entry = Entry.find_by_url('contest3rd')
+    @entry.touch
     redirect_to root_url + 'contest3rd', :notice => '曲名の編集に成功しました。'
   end
 
@@ -130,8 +130,8 @@ class Contest3rdsController < ApplicationController
       contest.save
     end
 
-    @page = Page.find_by_url('contest3rd')
-    @page.touch
+    @entry = Entry.find_by_url('contest3rd')
+    @entry.touch
     redirect_to root_url + 'contest3rd', :notice => '対戦結果の編集に成功しました。'
   end
 
