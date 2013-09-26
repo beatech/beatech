@@ -6,7 +6,7 @@
 - if @user.achievements.length > 0
   %h4{:style => "margin-top: 20px;"} 成果一覧
   - last_date = nil
-  - @user.achievements.each_with_index do |achievement, i|
+  - @user.achievements.order('date desc').each_with_index do |achievement, i|
     - if i == 0
       %div{:style => "margin-left: 5px; margin-top:5px;"}
         %strong= achievement.date
@@ -15,6 +15,19 @@
       %div{:style => "margin-left: 5px; margin-top:5px;"}
         %strong= achievement.date
       %p{:style => "margin-left: 10px;"}
+    - text = ''
+    - content = markdown(achievement.text)
+    - text += content if content
+    - if @current_user && achievement.user_id == @current_user.id
+      - text = text.strip.gsub(/<br>\Z/, " ")
+      - text += link_to '編集', root_url + 'achievements/edit/' + achievement.id.to_s
+      - text += ' '
+      - text += link_to '削除', root_url + 'achievements/destroy/' + achievement.id.to_s
+      - text += '<br>'
+      = raw text
+    - else
+      = raw text
+    - last_date = achievement.date
 
 %br
 = link_to 'メンバー紹介に戻る', users_path
