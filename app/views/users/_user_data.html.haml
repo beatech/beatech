@@ -1,14 +1,15 @@
-%h3
-  = link_to user.name, user_path(user)
-  - if user.twitter_accounts.size > 0
-    - user.twitter_accounts.each_with_index do |twitter_account, i|
-      = ', ' if i != 0
-      = link_to "@#{twitter_account.screen_name}", "https://twitter.com/#{twitter_account.screen_name}"
-  %span.pull-right
-    - if @current_user && @current_user == user
-      = link_to '編集', setting_path('profile')
-#profile-left
-  = image_tag big_profile_image(user), style: "width: 73px; height: 73px; position:absolute; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;"
-#profile-right  
-  - if user.bio
-    = markdown(user.bio)
+.user_data
+  %h3
+    = link_to user.name, user_path(user)
+    - if user.twitter_accounts.size > 0
+      = ' - '
+      = user.twitter_accounts.pluck(:screen_name).map { |screen_name| screen_name_link(screen_name) }.join(', ').html_safe
+    %span.pull-right
+      - if @current_user && @current_user == user
+        = link_to '編集', setting_path('profile')
+  .profile
+    .left_column
+      = image_tag big_profile_image(user), class: :profile_image
+    .right_column
+      - if user.bio
+        = markdown(user.bio)

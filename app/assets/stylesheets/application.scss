@@ -1,6 +1,5 @@
-/* Twitter Bootstrap */
-@import "bootstrap";
-@import "beatech_bootstrap";
+/* Beatech Bootstrap */
+@import "beatech_bootstrap.scss";
 
 /* Common styles */
 @import "variables.scss";
@@ -12,5 +11,6 @@
 @import "sections/side_menu.scss";
 @import "sections/flush.scss";
 @import "sections/contents.scss";
+@import "sections/achievements.scss";
 @import "sections/users.scss";
 @import "sections/footer.scss";

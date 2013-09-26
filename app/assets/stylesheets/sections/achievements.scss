@@ -1,0 +1,24 @@
+.achievements {
+  .date {
+    margin: 5px 0 0 5px;
+    color: #444;
+    font-weight: bold;
+  }
+
+  table {
+    width: 100%;
+
+    td {
+      vertical-align: top;
+      padding-bottom: 2px;
+    }
+
+    .icon {
+      width: 50px;
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

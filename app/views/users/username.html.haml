@@ -1,8 +1,8 @@
 %h1 ユーザー名変更
 = form_for @current_user, url: { action: 'update' } do |f|
   .field
-    = f.label "新しいユーザー名"
+    = f.label '新しいユーザー名'
     = f.text_field :username
   = f.hidden_field :id
   .actions
-    = f.submit "設定", class: "btn"
+    = f.submit '設定', class: 'btn'

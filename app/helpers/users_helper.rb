@@ -26,4 +26,12 @@ module UsersHelper
         'default_profile_0_bigger.png'
     end
   end
+
+  def screen_name_link(screen_name)
+    link_to "@#{screen_name}", "https://twitter.com/#{screen_name}"
+  end
+
+  def welcome_term?
+    Time.now.month == 2 || Time.now.month == 3
+  end
 end

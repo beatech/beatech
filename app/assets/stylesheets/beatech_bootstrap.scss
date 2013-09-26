@@ -1,13 +1,5 @@
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+/* Twitter Bootstrap */
+@import "bootstrap";
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-}
-
-.nav, .nav-tabs {
-  margin-bottom: 0;
-}
+/* Overrides */
+@import "beatech_bootstrap/common.scss";
