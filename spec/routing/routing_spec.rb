@@ -54,3 +54,19 @@ describe SessionsController, "routing" do
     delete("/session").should route_to('sessions#destroy')
   end
 end
+
+# setting GET    /settings/:item(.:format)              users#edit
+#         POST   /settings/:item(.:format)              users#update
+describe UsersController, "routing" do
+  it "to #edit" do
+    get("/settings/profile").should  route_to('users#edit', item: 'profile')
+    get("/settings/username").should route_to('users#edit', item: 'username')
+    get("/settings/password").should route_to('users#edit', item: 'password')
+  end
+
+  it "to #update" do
+    patch("/settings/profile").should  route_to('users#update', item: 'profile')
+    patch("/settings/username").should route_to('users#update', item: 'username')
+    patch("/settings/password").should route_to('users#update', item: 'password')
+  end
+end

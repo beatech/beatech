@@ -24,4 +24,51 @@ describe UsersController do
       end
     end
   end
+
+  describe '#update' do
+    context 'when editing profile' do
+      let!(:user) do
+        User.create(name: 'foo', username: 'foo', password: 'foo', password_confirmation: 'foo', year: 2013, repeated_year: 0)
+      end
+
+      before do
+        controller.instance_variable_set(:@current_user, user)
+      end
+
+      it 'updates profile' do
+        patch :update, item: 'profile', user: user.attributes.merge(name: 'hoge')
+        User.find(user.id).name.should == 'hoge'
+      end
+    end
+
+    context 'when editing username' do
+      let!(:user) do
+        User.create(name: 'foo', username: 'foo', password: 'foo', password_confirmation: 'foo', year: 2013, repeated_year: 0)
+      end
+
+      before do
+        controller.instance_variable_set(:@current_user, user)
+      end
+
+      it 'updates username' do
+        patch :update, item: 'username', user: user.attributes.merge(username: 'new_username')
+        User.find(user.id).username.should == 'new_username'
+      end
+    end
+
+    context 'when editing password' do
+      let!(:user) do
+        User.create(name: 'foo', username: 'foo', password: 'foo', password_confirmation: 'foo', year: 2013, repeated_year: 0)
+      end
+
+      before do
+        controller.instance_variable_set(:@current_user, user)
+      end
+
+      it 'updates passowrd' do
+        patch :update, item: 'password', user: user.attributes.merge(password: 'hoge', password_confirmation: 'hoge')
+        BCrypt::Password.new(User.find(user.id).password_digest).should == 'hoge'
+      end
+    end
+  end
 end

@@ -48,14 +48,35 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by_username(params[:id])
-    raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
-    @user.update_attributes(user_params)
-    @user.grade = grade_of(@user)
-    if @user.save
-      redirect_to @user, notice: 'プロフィールの更新に成功しました。'
+    case params[:item]
+    when 'profile'
+      @user = User.find(params[:user][:id])
+      raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
+      @user.update_attributes(user_params)
+      @user.grade = grade_of(@user)
+      if @user.save
+        redirect_to @user, notice: 'プロフィールの更新に成功しました。'
+      else
+        render action: "edit"
+      end
+    when 'username'
+      @current_user.username = params[:user][:username]
+      if @current_user.save
+        session[:username] = params[:user][:username]
+        redirect_to @current_user, notice: 'ユーザー名の更新に成功しました。'
+      else
+        render action: "edit"
+      end
+    when 'password'
+      @current_user.password = params[:user][:password]
+      @current_user.password_confirmation = params[:user][:password_confirmation]
+      if @current_user.save
+        redirect_to @current_user, notice: 'パスワードの更新に成功しました。'
+      else
+        render action: "edit"
+      end
     else
-      render action: "edit"
+      raise Exception
     end
   end
 

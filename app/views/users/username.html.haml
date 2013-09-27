@@ -1,5 +1,5 @@
 %h1 ユーザー名変更
-= form_for @current_user, url: { action: 'update' } do |f|
+= form_for @current_user, url: { action: 'update', item: 'username' } do |f|
   .field
     = f.label '新しいユーザー名'
     = f.text_field :username

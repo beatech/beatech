@@ -4,8 +4,8 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
     "<h#{level}>#{text}</h#{level}>"
   end
 
-  def autolink(link, link_type)
-    link.gsub(/^([^　]+)/, '<a href="\1">\1</a>')
+  def preprocess(full_document)
+    full_document.gsub(/(http:\/\/[0-9a-zA-Z.\/?=&]+)/, '[\1](\1)')
   end
 
   def postprocess(full_document)

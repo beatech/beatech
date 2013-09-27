@@ -3,8 +3,8 @@ Beatech::Application.routes.draw do
 
   resources :users, except: [:edit, :update]
   controller :users, path: 'settings' do
-    get  '/:item', action: 'edit', as: 'setting'
-    post '/:item', action: 'update'
+    get   '/:item', constraints: { item: /.+/ }, action: 'edit', as: 'setting'
+    patch '/:item', constraints: { item: /.+/ }, action: 'update'
   end
 
   resources :achievements, except: [:new, :show]

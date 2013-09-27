@@ -18,6 +18,7 @@ gem 'unicorn'
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'capybara'
   gem 'webrat'
 end
 
