@@ -9,6 +9,7 @@ module BeatechMarkdownHelper
   end
 
   def render_wiki_content(entry)
+    return '' unless entry && entry.content
     markdown(entry.content)
   end
 end

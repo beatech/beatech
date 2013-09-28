@@ -26,6 +26,9 @@ def change_to_markdown(text)
   text = text.gsub(/^(\|.+\|)h/, "\\1\n| --- | --- |")
   text = text.gsub(/\[\[(.+?)>(.+?)\]\]/, '[\1](\2)')
   text = text.gsub(/\[\[(.+?):(.+?)\]\]/, '[\1](\2)')
+  text = text.gsub(/#image\((.+)\)/, '![image](\1)')
+  text = text.gsub(/#youtube/, '&youtube')
+  text = text.gsub(/#image-resize\((.+),[0-9]+?,[0-9]+?\)/, '![image](\1)')
   text = text.gsub(/^\*\*\*/, '###').gsub(/^\*\*/, '##').gsub(/^\*/, '#')
   text
 end
