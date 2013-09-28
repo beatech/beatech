@@ -76,4 +76,26 @@ header {
       }
     }
   }
+
+  .user_menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+
+    a {
+      text-shadow: none;
+    }
+  }
+
+  .login_menu {
+    position: absolute;
+    right: 0;
+    left: auto;
+    padding: 10px;
+    text-shadow: none;
+
+    label {
+      font-size: 12px;
+    }
+  }
 }
