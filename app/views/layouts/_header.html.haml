@@ -36,7 +36,7 @@
         %li= link_to 'ホーム', :root
         - if @current_user
           %li= link_to 'ページ新規作成', new_entry_path
-          = raw edit_link
+          = render 'layouts/edit_link', entry: @entry
         - else
           - if @header_menu
             - @header_menu.each do |menu|

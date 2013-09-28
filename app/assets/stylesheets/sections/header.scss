@@ -54,8 +54,26 @@ header {
     }
 
     li {
+      position: relative;
       margin: 4px 20px;
       float: left;
+    }
+  }
+
+  ul .edit_link_list {
+    position: absolute;
+    top: 23px;
+    left: -20px;
+    background-color: #000;
+    border-radius: 0;
+
+    li {
+      margin: 0;
+      width: 100%;
+
+      a {
+        color: #fff;
+      }
     }
   }
 }
