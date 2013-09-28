@@ -13,7 +13,7 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
       ' frameborder="0" allowfullscreen></iframe>')
 
     # autolink (original implementation because recarpet's one is broken)
-    full_document.gsub!(/([^'"])(http:\/\/[0-9a-zA-Z.\/?=&]+)/, '\1<a href="\2">\2</a>')
+    full_document.gsub!(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&]+)/, '\1<a href="\2">\2</a>')
 
     # font
     full_document.gsub!(/&amp;color\((.+?)\){(.+?)};/, '<font color="\1">\2</font>')
