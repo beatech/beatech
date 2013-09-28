@@ -18,18 +18,17 @@
       - if @contents_menu
         - @contents_menu.each do |menu|
           %li= entry_link(menu.title, menu.url)
-  .section
+  .latest_entries
     %h2 最新の10件
     - last_date = nil
     - if @recent_entries
       - i = 0
       - while @recent_entries.size > 0 && i < 10
         - latest_date_entries = pop_latest_date_entries
-        %div{style: "margin: 2px 0 5px 12px;"}
-          %strong= latest_date_entries[:date]
-          %ul{style: "padding: 1px 0 0 0;"}
-            - latest_date_entries[:entries].each do |entry|
-              - break unless i < 10
-              %li
-                = entry_link(entry.title, entry.url)
-                - i += 1
+        .date= latest_date_entries[:date]
+        %ul
+          - latest_date_entries[:entries].each do |entry|
+            - break unless i < 10
+            %li
+              = entry_link(entry.title, entry.url)
+              - i += 1

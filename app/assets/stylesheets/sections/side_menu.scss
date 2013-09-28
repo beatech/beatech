@@ -45,4 +45,22 @@
       list-style: none;
     }
   }
+
+  .latest_entries {
+    @extend .section;
+    padding-bottom: 4px;
+
+    h2 {
+      margin-bottom: 6px;
+    }
+
+    .date {
+      margin-left: 8px;
+      font-weight: bold;
+    }
+
+    ul {
+      padding: 0 8px 4px 8px;
+    }
+  }
 }
