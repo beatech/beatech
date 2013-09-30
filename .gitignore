@@ -6,5 +6,7 @@
 /tmp
 /public/assets
 /config/database.yml
+/config/deploy.rb
 Gemfile.lock
 .DS_Store
+Capfile
