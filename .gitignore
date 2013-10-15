@@ -8,5 +8,6 @@
 /config/database.yml
 /config/deploy.rb
 /config/unicorn.rb
+/config/initializer/omniauth.rb
 .DS_Store
 Capfile
