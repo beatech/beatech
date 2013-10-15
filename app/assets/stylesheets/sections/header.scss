@@ -83,7 +83,12 @@ header {
     left: auto;
 
     a {
+      color: black;
       text-shadow: none;
+
+      &:hover {
+        color: white;
+      }
     }
   }
 
