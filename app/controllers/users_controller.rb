@@ -12,6 +12,11 @@ class UsersController < ApplicationController
       @users_grade[grade] = all_users.select { |user| user.grade == grade }
     end
     @users_grade[5] = all_users.select { |user| user.grade >= 5 } # OB
+
+    respond_to do |format|
+      format.html
+      format.json { render json: User.all }
+    end
   end
 
   def show

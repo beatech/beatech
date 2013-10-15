@@ -6,7 +6,8 @@ class Contestdate3rdsController < ApplicationController
     @contestdate3rds = Contestdate3rd.all
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
+      format.json { render json: Contestdate3rd.all }
     end
   end
 

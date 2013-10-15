@@ -7,6 +7,8 @@ Beatech::Application.routes.draw do
     patch '/:item', constraints: { item: /.+/ }, action: 'update'
   end
 
+  resources :twitter_accounts, only: [:index]
+
   resources :achievements, except: [:new, :show]
 
   # Contest3rd
