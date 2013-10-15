@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
 
     raise Forbidden unless auth
     if session[:username] == nil
-      user = User.find_by_uid(uid)
+      user = TwitterAccount.find_by_uid(uid).user
 
       if user
         session[:username] = user.username
