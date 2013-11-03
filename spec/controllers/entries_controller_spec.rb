@@ -3,7 +3,7 @@ require 'spec_helper'
 describe EntriesController do
   render_views
   fixtures :entries
-  
+
   describe "GET 'frontpage'" do
     it "should render #show" do
       get 'frontpage'

@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def admin_required
     raise Exception unless is_admin?
   end
-  
+
   def is_admin?
     return false unless @current_user
     admins = %w|ikstrm popkirby|

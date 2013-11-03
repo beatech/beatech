@@ -24,12 +24,12 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
     full_document.gsub!(/([^:])\/\/.*$/, '\1')
 
     # expansion field
-    full_document.gsub!(/&amp;expand\((.+?)\){(.+?)}/m, 
-        '<p class="dvtitle" onclick="ShowCBox(\'\1\')">\1</p>' + 
+    full_document.gsub!(/&amp;expand\((.+?)\){(.+?)}/m,
+        '<p class="dvtitle" onclick="ShowCBox(\'\1\')">\1</p>' +
         '<div id="developbox\1" class="developbox" onclick="ShowCBox(\'\1\')">\2</div>')
 
     # tab
-    full_document.gsub!(/&amp;tab\(.+?\)/) do |tab_field| 
+    full_document.gsub!(/&amp;tab\(.+?\)/) do |tab_field|
       tab_list = tab_field.gsub!(/&amp;tab\((.+?)\)/, '\1')
       html = '<ul class="nav nav-tabs">' + build_tabs(tab_list) + '</ul>'
       html += '<div class="tab-content">' + build_tab_contents(tab_list) + '</div>'

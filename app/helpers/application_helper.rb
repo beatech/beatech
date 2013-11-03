@@ -16,7 +16,7 @@ module ApplicationHelper
       link_to(title, root_url + url)
     end
   end
-  
+
   def tabs(text)
     if text
       if text =~/&tab\(.+\)/

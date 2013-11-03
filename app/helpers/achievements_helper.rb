@@ -12,7 +12,7 @@ module AchievementsHelper
     end
     [latest_date, latest_date_achievements, rest_achievements]
   end
-  
+
   def achievement_text(achievement)
     achievement.text
   end
@@ -21,7 +21,7 @@ module AchievementsHelper
     if achievement.user && achievement.user.profile_image
       achievement.user.profile_image
     else
-      'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_normal.png'        
+      'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_normal.png'
     end
   end
 end

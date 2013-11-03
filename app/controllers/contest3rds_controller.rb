@@ -23,7 +23,7 @@ class Contest3rdsController < ApplicationController
       @team[team_char] = Contest3rd.where("team = ?", team_char)
       @team_total[team_char] = 0
     end
-    
+
     (@contestdate3rds.size).times do |i|
 
       ranks_a = [@team['A'][i].a_score, @team['B'][i].a_score, @team['C'][i].a_score].sort!
@@ -63,7 +63,7 @@ class Contest3rdsController < ApplicationController
 
     @order = params[:order]
     @tunes = Array.new
-    
+
     @a_team = Contest3rd.find(:all,
       :conditions => {:team => 'A', :order => @order})
     @tunes[0] = @a_team[0]

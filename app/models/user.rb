@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  
+
   has_many :achievements
   has_many :twitter_accounts
 
@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user && user.password_digest.present? &&
-        BCrypt::Password.new(user.password_digest) == password      
+        BCrypt::Password.new(user.password_digest) == password
       user
     else
       nil

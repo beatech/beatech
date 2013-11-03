@@ -80,7 +80,7 @@
     padding: 3px;
     background: #f1f1f1;
   }
-  
+
   table {
     border: 1px solid gray;
     border-collapse: collapse;
@@ -99,7 +99,7 @@
     }
 
     thead th {
-      background: #f6f6f6;    
+      background: #f6f6f6;
       background: -moz-linear-gradient(top,  #ffffff 0%, #f1f1f1 50%, #e1e1e1 51%, #f6f6f6 100%);
       background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(50%,#f1f1f1), color-stop(51%,#e1e1e1), color-stop(100%,#f6f6f6));
       background: -webkit-linear-gradient(top,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%);
@@ -115,19 +115,19 @@
       border: 1px solid #aaa;
     }
   }
-  
+
   a {
     color: #069;
-    text-decoration: underline; 
+    text-decoration: underline;
   }
-  
+
   .active a {
     text-decoration: none;
   }
-  
+
   .main a:hover {
     color: #008000;
-    text-decoration: underline; 
+    text-decoration: underline;
   }
 
   .dvtitle {

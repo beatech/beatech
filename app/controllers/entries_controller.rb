@@ -9,7 +9,7 @@ class EntriesController < ApplicationController
       format.json { render json: Entry.all }
     end
   end
-  
+
   def show
     @entry = Entry.find_by_url(params[:id])
   end
@@ -18,7 +18,7 @@ class EntriesController < ApplicationController
     @entry = Entry.new
     @title = "ページの新規作成"
   end
-  
+
   def edit
     @entry = Entry.find(params[:id])
   end
@@ -46,7 +46,7 @@ class EntriesController < ApplicationController
 
   def destroy
     admin_required
-    
+
     @entry = Entry.find_by_url(params[:id])
     @entry.destroy
     redirect_to entries_path
