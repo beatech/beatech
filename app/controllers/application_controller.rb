@@ -15,10 +15,7 @@ class ApplicationController < ActionController::Base
   def is_admin?
     return false unless @current_user
     admins = %w|ikstrm popkirby|
-    admins.each do |admin|
-      return true if @current_user.username == admin
-    end
-    false
+    admins.include?(@current_user.username)
   end
   helper_method :is_admin?
 
