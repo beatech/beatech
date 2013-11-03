@@ -1,7 +1,7 @@
 %h2
   = @order
   組の選曲の編集
-= form_tag :action => :tunesupdate do
+= form_tag action: :tunesupdate do
   - i = 0
   - @tunes.each do |tune|
     - @tune = tune
@@ -24,5 +24,5 @@
     %br/
     - i += 1
   .actions
-    = submit_tag '編集', :class => 'btn'
+    = submit_tag '編集', class: 'btn'
 = link_to 'Back', root_url + 'contest3rd'

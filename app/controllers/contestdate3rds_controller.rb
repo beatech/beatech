@@ -58,7 +58,7 @@ class Contestdate3rdsController < ApplicationController
     respond_to do |format|
       if @contestdate3rd.update_attributes(params[:contestdate3rd])
         format.html { redirect_to root_url + 'contest3rd',
-                      :notice => '会場の編集に成功しました。' }
+                      notice: '会場の編集に成功しました。' }
       else
         format.html { render action: 'edit' }
       end

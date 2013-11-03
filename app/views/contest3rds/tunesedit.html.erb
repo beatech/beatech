@@ -1,6 +1,6 @@
 <h2><%= @order %>組の選曲の編集</h2>
 
-<%= form_tag :action => :tunesupdate do %>
+<%= form_tag action: :tunesupdate do %>
 <% i = 0 %>
   <% @tunes.each do |tune| %>
   <% @tune = tune %>
@@ -23,7 +23,7 @@
   <% end %>
 
   <div class="actions">
-    <%= submit_tag '編集', :class => 'btn'%>
+    <%= submit_tag '編集', class: 'btn'%>
   </div>
 <% end %>
 

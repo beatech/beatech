@@ -3,7 +3,7 @@ require 'spec_helper'
 describe ApplicationController do
   controller do
     def index
-      render :text => "index called"
+      render text: "index called"
     end
   end
 
