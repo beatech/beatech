@@ -1,15 +1,15 @@
 desc 'Setup files for development'
 task 'setup' do
   Rake::Task['setup:secret'].invoke
-  Rake::Task['setup:omniauth'].invoke
+  Rake::Task['setup:omniauth:default'].invoke
 
-  puts "\nChecking for database.yml..."
+  puts 'Checking for database.yml...'
   unless File.exists?('config/database.yml')
     puts 'database.yml did not exist. Use sqlite3 for db.'
     FileUtils.cp('config/database.yml.sqlite3', 'config/database.yml')
   end
 
-  puts "\nPreparing database..."
+  puts 'Preparing database...'
   db_tasks = %w(create migrate seed)
   db_tasks.each do |task|
     Rake::Task["db:#{task}"].invoke
