@@ -34,6 +34,7 @@ end
     FileUtils.cp('config/database.yml.sqlite3', 'config/database.yml')
   end
 
+  puts "\nPreparing database..."
   db_tasks = %w(create migrate seed)
   db_tasks.each do |task|
     Rake::Task["db:#{task}"].invoke
