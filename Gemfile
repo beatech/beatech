@@ -21,6 +21,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'webrat'
+  gem 'spring'
 end
 
 gem "twitter"
