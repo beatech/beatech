@@ -1,5 +1,7 @@
 # coding: utf-8
 module UsersHelper
+  DEFAULT_ICON = 'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png'
+
   def grade_with(year, repeated_year)
     this_year = Time.now.year
     this_year -= 1 if Time.now.month < 4
@@ -22,13 +24,12 @@ module UsersHelper
         user.profile_image
       end
     else
-      'https://si0.twimg.com/sticky/default_profile_images/' +
-        'default_profile_0_bigger.png'
+      DEFAULT_ICON
     end
   end
 
   def screen_name_link(screen_name)
-    link_to "@#{screen_name}', 'https://twitter.com/#{screen_name}"
+    link_to "@#{screen_name}", "https://twitter.com/#{screen_name}"
   end
 
   def welcome_term?
