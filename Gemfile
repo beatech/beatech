@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.0'
 gem 'mysql2'
+gem 'sqlite3'
 
 gem 'haml-rails'
 gem 'sass-rails', '~> 4.0.0'
