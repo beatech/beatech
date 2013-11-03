@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class EntriesController < ApplicationController
   def index
     @entries = Entry.all

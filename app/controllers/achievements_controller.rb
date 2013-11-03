@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class AchievementsController < ApplicationController
   def index
     @title = "成果報告"

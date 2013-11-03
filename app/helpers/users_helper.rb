@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 module UsersHelper
   def grade_with(year, repeated_year)
     this_year = Time.now.year

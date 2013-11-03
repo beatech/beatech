@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class UsersController < ApplicationController
   include UsersHelper
   before_filter :admin_required, only: :destroy

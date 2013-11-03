@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:username], params[:password])

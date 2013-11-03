@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8
 module ApplicationHelper
   def title_with_entry(entry)
     return 'BEATECH' unless entry && entry.url
