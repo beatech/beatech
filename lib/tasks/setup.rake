@@ -1,7 +1,7 @@
 desc 'Setup files for development'
 task 'setup' do
   puts 'Generating secret_token...'
-  %x{echo 'Beatech::Application.config.secret_key_base = '`bundle exec rake secret`'' > config/initializers/secret_token.rb}
+  %x{echo "Beatech::Application.config.secret_key_base = '`bundle exec rake secret`'" > config/initializers/secret_token.rb}
 
   puts "\nGenerating omniauth configuration file..."
   puts 'Please input Twitter API Credentials.'
