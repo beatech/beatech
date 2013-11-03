@@ -15,13 +15,12 @@ task 'setup' do
       consumer_secret = STDIN.gets.strip
     end
   else
-    puts "\nUse default consumer key (Twitter for iPhone)."
+    puts 'Use default consumer key (Twitter for iPhone).'
     consumer_key = 'IQKbtAYlXLripLGPWd0HUA'
     consumer_secret = 'GgDYlkSvaPxGxC4X8liwpUoqKwwr3lCADbz8A7ADU'
   end
 
-  omniauth_path = File.expand_path('./config/initializers/omniauth.rb')
-  File.open(omniauth_path, 'w') do |f|
+  File.open('config/initializers/omniauth.rb', 'w') do |f|
     f.write <<-EOS
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :twitter, '#{consumer_key}', '#{consumer_secret}'
@@ -29,5 +28,14 @@ end
     EOS
   end
 
-  %x{bundle exec rake db:seed}
+  puts "\nChecking for database.yml..."
+  unless File.exists?('config/database.yml')
+    puts 'database.yml did not exist. Use sqlite3 for db.'
+    FileUtils.cp('config/database.yml.sqlite3', 'config/database.yml')
+  end
+
+  db_tasks = %w(create migrate seed)
+  db_tasks.each do |task|
+    Rake::Task["db:#{task}"].invoke
+  end
 end
