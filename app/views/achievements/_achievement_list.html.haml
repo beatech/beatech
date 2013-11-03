@@ -1,20 +1,21 @@
 - if achievements.size > 0
-  %h3 成果一覧
-  - while achievements.size > 0
-    - latest_date, latest_date_achievements, achievements = pop_latest_date_achievements(achievements)
-    .date= latest_date
-    %table
-      - latest_date_achievements.each do |achievement|
-        - next unless achievement.user
-        %tr
-          %td.icon
-            = link_to user_path(achievement.user) do
-              = image_tag achievement_profile_image(achievement)
-          %td
-            %p
-              %strong
-                = link_to achievement.user.name, user_path(achievement.user)
-              - if @current_user && achievement.user == @current_user
-                = link_to '編集', edit_achievement_path(achievement)
-                = link_to '削除', achievement_path(achievement), method: :delete
-            = markdown(achievement_text(achievement)).html_safe
+  .achievement_list
+    %h3 成果一覧
+    - while achievements.size > 0
+      - latest_date, latest_date_achievements, achievements = pop_latest_date_achievements(achievements)
+      .date= latest_date
+      %table
+        - latest_date_achievements.each do |achievement|
+          - next unless achievement.user
+          %tr
+            %td.icon
+              = link_to user_path(achievement.user) do
+                = image_tag achievement_profile_image(achievement)
+            %td
+              %p
+                %strong
+                  = link_to achievement.user.name, user_path(achievement.user)
+                - if @current_user && achievement.user == @current_user
+                  = link_to '編集', edit_achievement_path(achievement)
+                  = link_to '削除', achievement_path(achievement), method: :delete
+              = markdown(achievement_text(achievement)).html_safe

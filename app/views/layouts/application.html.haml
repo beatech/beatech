@@ -11,7 +11,7 @@
         .contents
           - if @entry && @entry.title
             %h1= @entry.title
-          - elsif @title
-            %h1= @title
+          - elsif title
+            %h1= title
           = yield
     = render 'layouts/footer'

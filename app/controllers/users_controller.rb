@@ -3,9 +3,11 @@ class UsersController < ApplicationController
   include UsersHelper
   before_filter :admin_required, only: :destroy
 
-  def index
-    @title = '部員紹介'
+  def title
+    '部員紹介'
+  end
 
+  def index
     @users_grade = Array.new
     all_users = User.order('updated_at DESC')
     (0..4).each do |grade|

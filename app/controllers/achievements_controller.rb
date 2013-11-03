@@ -1,7 +1,10 @@
 # coding: utf-8
 class AchievementsController < ApplicationController
+  def title
+    '成果報告'
+  end
+
   def index
-    @title = '成果報告'
     @achievement = Achievement.new
     @achievement.user_id = @current_user.id if @current_user
 
@@ -26,7 +29,6 @@ class AchievementsController < ApplicationController
   end
 
   def edit
-    @title = '成果報告の編集'
     @achievement = Achievement.find(params[:id])
   end
 
