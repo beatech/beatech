@@ -1,7 +1,29 @@
-# BEATECH  
-  
-東工大音ゲーサークルBEATECH交流用SNS  
-  
+# BEATECH
+SNS for BEATECH  
+http://beatech.net
+
+## Setup
+First, you should run following commands.
+```
+git clone https://github.com/tkkbn/beatech
+cd beatech
+bundle install
+bundle exec rake setup
+```
+DB will be set up, and the data of production server will be copied to your local db.
+
+## Development
+You can run beatech as follows
+```
+bundle exec rails server
+```
+Open `http://localhost:3000/`, then you can see beatech website.
+
+## Run test
+```
+bundle exec rake spec
+```
+
 ## Contributing
 
 1. Fork it  
