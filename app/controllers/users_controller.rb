@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   before_filter :admin_required, only: :destroy
 
   def index
-    @title = "部員紹介"
+    @title = '部員紹介'
 
     @users_grade = Array.new
-    all_users = User.order("updated_at DESC")
+    all_users = User.order('updated_at DESC')
     (0..4).each do |grade|
       @users_grade[grade] = all_users.select { |user| user.grade == grade }
     end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = User.new
     @user.year = Time.now.year
     @user.repeated_year = 0
-    @title = "入部申請"
+    @title = '入部申請'
   end
 
   def create
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
     else
-      render action: "new"
+      render action: 'new'
     end
   end
 
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
       if @user.save
         redirect_to @user, notice: 'プロフィールの更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
     when 'username'
       @current_user.username = params[:user][:username]
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
         session[:username] = params[:user][:username]
         redirect_to @current_user, notice: 'ユーザー名の更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
     when 'password'
       @current_user.password = params[:user][:password]
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
       if @current_user.save
         redirect_to @current_user, notice: 'パスワードの更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
     else
       raise Exception
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find_by_username(params["id"]).destroy
+    User.find_by_username(params['id']).destroy
     redirect_to users_url
   end
 

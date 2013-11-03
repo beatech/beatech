@@ -9,8 +9,8 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
   def postprocess(full_document)
     # youtube
     full_document.gsub!(/&amp;youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+)\)/,
-      '<iframe width="560" height="315" src="http://www.youtube.com/embed/\1"' +
-      ' frameborder="0" allowfullscreen></iframe>')
+      '<iframe width='560' height='315' src="http://www.youtube.com/embed/\1"' +
+      ' frameborder='0' allowfullscreen></iframe>')
 
     # autolink (original implementation because recarpet's one is broken)
     full_document.gsub!(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
@@ -20,19 +20,19 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
     full_document.gsub!(/&amp;size\((.+?)\){(.+?)};/, '<font size="\1">\2</font>')
 
     # comment out
-    full_document.gsub!(/^\/\/.*$/, "")
+    full_document.gsub!(/^\/\/.*$/, '')
     full_document.gsub!(/([^:])\/\/.*$/, '\1')
 
     # expansion field
     full_document.gsub!(/&amp;expand\((.+?)\){(.+?)}/m,
-        '<p class="dvtitle" onclick="ShowCBox(\'\1\')">\1</p>' +
-        '<div id="developbox\1" class="developbox" onclick="ShowCBox(\'\1\')">\2</div>')
+        '<p class='dvtitle' onclick="ShowCBox(\'\1\')">\1</p>' +
+        '<div id="developbox\1' class='developbox' onclick='ShowCBox(\'\1\')">\2</div>')
 
     # tab
     full_document.gsub!(/&amp;tab\(.+?\)/) do |tab_field|
       tab_list = tab_field.gsub!(/&amp;tab\((.+?)\)/, '\1')
-      html = '<ul class="nav nav-tabs">' + build_tabs(tab_list) + '</ul>'
-      html += '<div class="tab-content">' + build_tab_contents(tab_list) + '</div>'
+      html = '<ul class='nav nav-tabs'>' + build_tabs(tab_list) + '</ul>'
+      html += '<div class='tab-content'>' + build_tab_contents(tab_list) + '</div>'
       html
     end
 

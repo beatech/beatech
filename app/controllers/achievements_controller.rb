@@ -1,7 +1,7 @@
 # coding: utf-8
 class AchievementsController < ApplicationController
   def index
-    @title = "成果報告"
+    @title = '成果報告'
     @achievement = Achievement.new
     @achievement.user_id = @current_user.id if @current_user
 
@@ -21,21 +21,21 @@ class AchievementsController < ApplicationController
     if @achievement.save
       redirect_to achievements_path, notice: '成果報告を送信しました。'
     else
-      render action: "index"
+      render action: 'index'
     end
   end
 
   def edit
-    @title = "成果報告の編集"
+    @title = '成果報告の編集'
     @achievement = Achievement.find(params[:id])
   end
 
   def update
     @achievement = Achievement.find(params[:achievement][:id])
     @achievement.text = params[:achievement][:text]
-    year = params[:achievement]["date(1i)"].to_i
-    month = params[:achievement]["date(2i)"].to_i
-    day = params[:achievement]["date(3i)"].to_i
+    year = params[:achievement]['date(1i)'].to_i
+    month = params[:achievement]['date(2i)'].to_i
+    day = params[:achievement]['date(3i)'].to_i
     @achievement.date = Date.new(year, month, day)
     @achievement.save
 

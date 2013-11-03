@@ -34,4 +34,4 @@ ensure
   enable_secure_password
 end
 
-puts ""
+puts ''

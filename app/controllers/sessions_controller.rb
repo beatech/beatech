@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def twitter_create
-    auth = request.env["omniauth.auth"]
+    auth = request.env['omniauth.auth']
     screen_name = auth[:info][:nickname]
     profile_image = auth[:info][:image]
     uid = auth[:uid]
@@ -29,7 +29,7 @@ class SessionsController < ApplicationController
         session[:username] = user.username
         redirect_to root_url
       else
-        redirect_to "/registration", notice: 'ご使用のアカウント(' +
+        redirect_to '/registration', notice: 'ご使用のアカウント(' +
         screen_name + ')はBEATECHアカウントに関連付けられていないようです。' +
         'お手数ですが、まずBEATECHアカンウントを作成してください。'
       end
@@ -49,7 +49,7 @@ class SessionsController < ApplicationController
           screen_name: screen_name
         )
         begin
-          # command = "ruby script/follow.rb " + uid.to_s
+          # command = 'ruby script/follow.rb ' + uid.to_s
           # system(command)
         ensure
           redirect_to(

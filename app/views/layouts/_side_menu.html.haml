@@ -4,7 +4,7 @@
     %ul
       - if @circle_menu
         - @circle_menu.each do |menu|
-          - if @current_user == nil || menu.url != "registration"
+          - if @current_user == nil || menu.url != 'registration'
             %li= entry_link(menu.title, menu.url)
   .section
     %h2 交流メニュー

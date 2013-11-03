@@ -2,7 +2,7 @@
   - if @contest3rd.errors.any?
     #error_explanation
       %h2
-        = pluralize(@contest3rd.errors.count, "error")
+        = pluralize(@contest3rd.errors.count, 'error')
         prohibited this contest3rd from being saved:
       %ul
         - @contest3rd.errors.full_messages.each do |msg|

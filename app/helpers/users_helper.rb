@@ -8,8 +8,8 @@ module UsersHelper
 
   def grade_label(grade)
     case grade
-    when 0 then "新入生"
-    when 5 then "OB"
+    when 0 then '新入生'
+    when 5 then 'OB'
     else "#{grade}年生"
     end
   end
@@ -17,7 +17,7 @@ module UsersHelper
   def big_profile_image(user)
     if user.profile_image
       if user.profile_image =~ /.*normal.*/
-        user.profile_image.gsub(/normal/, "bigger")
+        user.profile_image.gsub(/normal/, 'bigger')
       else
         user.profile_image
       end
@@ -28,7 +28,7 @@ module UsersHelper
   end
 
   def screen_name_link(screen_name)
-    link_to "@#{screen_name}", "https://twitter.com/#{screen_name}"
+    link_to "@#{screen_name}', 'https://twitter.com/#{screen_name}"
   end
 
   def welcome_term?

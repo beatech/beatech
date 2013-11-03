@@ -45,7 +45,7 @@ class Contestdate3rdsController < ApplicationController
       if @contestdate3rd.save
         format.html { redirect_to @contestdate3rd, notice: 'Contestdate3rd was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
       end
     end
   end
@@ -60,7 +60,7 @@ class Contestdate3rdsController < ApplicationController
         format.html { redirect_to root_url + 'contest3rd',
                       :notice => '会場の編集に成功しました。' }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
       end
     end
   end
