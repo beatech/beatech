@@ -28,7 +28,7 @@ gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'redcarpet'
