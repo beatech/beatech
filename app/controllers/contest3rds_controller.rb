@@ -65,13 +65,13 @@ class Contest3rdsController < ApplicationController
     @tunes = Array.new
 
     @a_team = Contest3rd.find(:all,
-      :conditions => {:team => 'A', :order => @order})
+      conditions: {team: 'A', order: @order})
     @tunes[0] = @a_team[0]
     @b_team = Contest3rd.find(:all,
-      :conditions => {:team => 'B', :order => @order})
+      conditions: {team: 'B', order: @order})
     @tunes[1] = @b_team[0]
     @c_team = Contest3rd.find(:all,
-      :conditions => {:team => 'C', :order => @order})
+      conditions: {team: 'C', order: @order})
     @tunes[2] = @c_team[0]
   end
 
@@ -85,13 +85,13 @@ class Contest3rdsController < ApplicationController
     @order = params[:order]
     @tunes = Array.new
     @a_team = Contest3rd.find(:all,
-      :conditions => {:team => 'A', :order => @order})
+      conditions: {team: 'A', order: @order})
     @tunes[0] = @a_team[0]
     @b_team = Contest3rd.find(:all,
-      :conditions => {:team => 'B', :order => @order})
+      conditions: {team: 'B', order: @order})
     @tunes[1] = @b_team[0]
     @c_team = Contest3rd.find(:all,
-      :conditions => {:team => 'C', :order => @order})
+      conditions: {team: 'C', order: @order})
     @tunes[2] = @c_team[0]
   end
 
@@ -103,7 +103,7 @@ class Contest3rdsController < ApplicationController
       @team = data['team']
 
       contests = Contest3rd.find(:all,
-        :conditions => {:team => @team, :order => @order})
+        conditions: {team: @team, order: @order})
       contest = contests[0]
       contest.difficulty = data['difficulty']
       contest.music = data['music']
@@ -112,7 +112,7 @@ class Contest3rdsController < ApplicationController
 
     @entry = Entry.find_by_url('contest3rd')
     @entry.touch
-    redirect_to root_url + 'contest3rd', :notice => '曲名の編集に成功しました。'
+    redirect_to root_url + 'contest3rd', notice: '曲名の編集に成功しました。'
   end
 
   def scoreupdate
@@ -123,7 +123,7 @@ class Contest3rdsController < ApplicationController
       @team = data['team']
 
       contests = Contest3rd.find(:all,
-        :conditions => {:team => @team, :order => @order})
+        conditions: {team: @team, order: @order})
       contest = contests[0]
       contest.a_score = data['a_score'] if data['a_score'].length > 0
       contest.a_clear = data['a_clear'] if data['a_clear'].length > 0
@@ -137,7 +137,7 @@ class Contest3rdsController < ApplicationController
 
     @entry = Entry.find_by_url('contest3rd')
     @entry.touch
-    redirect_to root_url + 'contest3rd', :notice => '対戦結果の編集に成功しました。'
+    redirect_to root_url + 'contest3rd', notice: '対戦結果の編集に成功しました。'
   end
 
 
