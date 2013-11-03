@@ -1,5 +1,6 @@
 class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
   include BeatechMarkdownHelper
+  include ActionView::Helpers::TagHelper
 
   def header(text, level)
     level += 1
@@ -9,7 +10,8 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
   def postprocess(full_document)
     # youtube
     full_document.gsub!(/&amp;youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+)\)/) do |text|
-      content_tag(:iframe, '', width: 560, height: 315, src: $1, frameborder: 0, allowfullscreen: true)
+      content_tag(:iframe, '', width: 560, height: 315, src: "http://www.youtube.com/embed/#{$1}",
+                  frameborder: 0, allowfullscreen: true)
     end
 
     # autolink (original implementation because recarpet's one is broken)
