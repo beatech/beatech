@@ -9,5 +9,6 @@
 /config/deploy.rb
 /config/unicorn.rb
 /config/initializers/omniauth.rb
+/config/initializers/secret_token.rb
 .DS_Store
 Capfile
