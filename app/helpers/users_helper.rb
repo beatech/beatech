@@ -1,5 +1,7 @@
 # coding: utf-8
 module UsersHelper
+  DEFAULT_ICON = 'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png'
+
   def grade_with(year, repeated_year)
     this_year = Time.now.year
     this_year -= 1 if Time.now.month < 4
@@ -8,8 +10,8 @@ module UsersHelper
 
   def grade_label(grade)
     case grade
-    when 0 then "新入生"
-    when 5 then "OB"
+    when 0 then '新入生'
+    when 5 then 'OB'
     else "#{grade}年生"
     end
   end
@@ -17,13 +19,12 @@ module UsersHelper
   def big_profile_image(user)
     if user.profile_image
       if user.profile_image =~ /.*normal.*/
-        user.profile_image.gsub(/normal/, "bigger")
+        user.profile_image.gsub(/normal/, 'bigger')
       else
         user.profile_image
       end
     else
-      'https://si0.twimg.com/sticky/default_profile_images/' +
-        'default_profile_0_bigger.png'
+      DEFAULT_ICON
     end
   end
 

@@ -15,11 +15,11 @@ Beatech::Application.routes.draw do
   # Contest3rd
   resources :contestdate3rds
   resources :contest3rds
-  get "/contest3rd" => "contest3rds#result"
-  get "/contest3rd/tunesedit/:order" => "contest3rds#tunesedit"
-  get "/contest3rd/scoreedit/:order" => "contest3rds#scoreedit"
-  post "/contest3rd/tunesupdate" => "contest3rds#tunesupdate"
-  post "/contest3rd/scoreupdate" => "contest3rds#scoreupdate"
+  get '/contest3rd' => 'contest3rds#result'
+  get '/contest3rd/tunesedit/:order' => 'contest3rds#tunesedit'
+  get '/contest3rd/scoreedit/:order' => 'contest3rds#scoreedit'
+  post '/contest3rd/tunesupdate' => 'contest3rds#tunesupdate'
+  post '/contest3rd/scoreupdate' => 'contest3rds#scoreupdate'
 
   resources :entries, only: [:index, :new, :create]
   resources :entries, constraints: { id: /.+/ }, except: [:index, :new, :create], path: '/'

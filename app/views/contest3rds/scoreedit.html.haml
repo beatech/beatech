@@ -20,23 +20,23 @@
         %tr
           %td A曲
           %td= @tunes[0].music
-          %td= number_field "tune[]", :a_score, :class => 'span1', :id => 'no-margin'
-          %td= select "tune[]", :a_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
+          %td= number_field 'tune[]', :a_score, :class => 'span1', :id => 'no-margin'
+          %td= select 'tune[]', :a_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
         %tr
           %td B曲
           %td= @tunes[1].music
-          %td= number_field "tune[]", :b_score, :class => 'span1', :id => 'no-margin'
-          %td= select "tune[]", :b_clear, @clearlamp, :index => i, :class => 'span1', :id => 'no-margin'
+          %td= number_field 'tune[]', :b_score, :class => 'span1', :id => 'no-margin'
+          %td= select 'tune[]', :b_clear, @clearlamp, :index => i, :class => 'span1', :id => 'no-margin'
         %tr
           %td C曲
           %td= @tunes[2].music
-          %td= number_field "tune[]", :c_score, :class => 'span1', :id => 'no-margin'
-          %td= select "tune[]", :c_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
+          %td= number_field 'tune[]', :c_score, :class => 'span1', :id => 'no-margin'
+          %td= select 'tune[]', :c_clear, @clearlamp, :class => 'span1', :id => 'no-margin'
         %tr
           %td 動画URL
-          %td{:colspan => "3"}= text_field "tune[]", :movie_url, :class => 'span5', :id => 'no-margin'
-    = hidden_field "tune[]", :order
-    = hidden_field "tune[]", :team
+          %td{:colspan => '3'}= text_field 'tune[]', :movie_url, :class => 'span5', :id => 'no-margin'
+    = hidden_field 'tune[]', :order
+    = hidden_field 'tune[]', :team
     %br/
   .actions
     = submit_tag '編集', :class => 'btn'

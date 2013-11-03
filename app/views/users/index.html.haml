@@ -9,7 +9,7 @@
 %ul.nav.nav-tabs
   - [4, 3, 2, 1, 0, 5].each do |grade|
     - if grade > 0 || (Time.now.month == 2 || Time.now.month == 3)
-      %li{ class: grade == 4 ? "active" : '' }
+      %li{ class: grade == 4 ? 'active' : '' }
         = link_to grade_label(grade), "#users_grade#{grade}", :'data-toggle' => 'tab'
 .tab-content
   - [4, 3, 2, 1, 0, 5].each do |grade|

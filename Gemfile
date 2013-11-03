@@ -24,9 +24,9 @@ group :development, :test do
   gem 'spring'
 end
 
-gem "twitter"
-gem "omniauth"
-gem "omniauth-twitter"
+gem 'twitter'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'kaminari'

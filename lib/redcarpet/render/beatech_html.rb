@@ -1,5 +1,6 @@
 class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
   include BeatechMarkdownHelper
+  include ActionView::Helpers::TagHelper
 
   def header(text, level)
     level += 1
@@ -8,9 +9,10 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
 
   def postprocess(full_document)
     # youtube
-    full_document.gsub!(/&amp;youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+)\)/,
-      '<iframe width="560" height="315" src="http://www.youtube.com/embed/\1"' +
-      ' frameborder="0" allowfullscreen></iframe>')
+    full_document.gsub!(/&amp;youtube\(http:\/\/www\.youtube\.com\/watch\?v=(.+)\)/) do |text|
+      content_tag(:iframe, '', width: 560, height: 315, src: "http://www.youtube.com/embed/#{$1}",
+                  frameborder: 0, allowfullscreen: true)
+    end
 
     # autolink (original implementation because recarpet's one is broken)
     full_document.gsub!(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
@@ -20,13 +22,15 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
     full_document.gsub!(/&amp;size\((.+?)\){(.+?)};/, '<font size="\1">\2</font>')
 
     # comment out
-    full_document.gsub!(/^\/\/.*$/, "")
+    full_document.gsub!(/^\/\/.*$/, '')
     full_document.gsub!(/([^:])\/\/.*$/, '\1')
 
     # expansion field
-    full_document.gsub!(/&amp;expand\((.+?)\){(.+?)}/m,
-        '<p class="dvtitle" onclick="ShowCBox(\'\1\')">\1</p>' +
-        '<div id="developbox\1" class="developbox" onclick="ShowCBox(\'\1\')">\2</div>')
+    full_document.gsub!(
+      /&amp;expand\((.+?)\){(.+?)}/m,
+      '<p class="dvtitle" onclick="ShowCBox(\'\1\')">\1</p>' +
+      '<div id="developbox\1" class="developbox" onclick="ShowCBox(\'\1\')">\2</div>'
+    )
 
     # tab
     full_document.gsub!(/&amp;tab\(.+?\)/) do |tab_field|

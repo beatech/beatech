@@ -7,7 +7,7 @@ class Contest3rdsController < ApplicationController
 
     @team = Hash.new
 
-    @clearlamp = ["F", "AC", "EC", "C", "H", "EXH", "FC"]
+    @clearlamp = ['F', 'AC', 'EC', 'C', 'H', 'EXH', 'FC']
 
     @rankpoint = [0, 20, 50]
     @clearbonus = []
@@ -20,7 +20,7 @@ class Contest3rdsController < ApplicationController
     end
 
     %w|A B C|.each do |team_char|
-      @team[team_char] = Contest3rd.where("team = ?", team_char)
+      @team[team_char] = Contest3rd.where('team = ?', team_char)
       @team_total[team_char] = 0
     end
 
@@ -58,7 +58,7 @@ class Contest3rdsController < ApplicationController
 
   def tunesedit
     @difficulty = (1..12).to_a.map do |i|
-      ["☆" + i.to_s, i]
+      ['☆' + i.to_s, i]
     end
 
     @order = params[:order]
@@ -76,7 +76,7 @@ class Contest3rdsController < ApplicationController
   end
 
   def scoreedit
-    lamp = ["F", "AC", "EC", "C", "H", "EXH", "FC"]
+    lamp = ['F', 'AC', 'EC', 'C', 'H', 'EXH', 'FC']
     i = -1
     @clearlamp = lamp.map {|t|
       i += 1
@@ -99,14 +99,14 @@ class Contest3rdsController < ApplicationController
     @tunes = params[:tune]
     @tunes.each do |tune|
       data = tune[1]
-      @order = data["order"]
-      @team = data["team"]
+      @order = data['order']
+      @team = data['team']
 
       contests = Contest3rd.find(:all,
         :conditions => {:team => @team, :order => @order})
       contest = contests[0]
-      contest.difficulty = data["difficulty"]
-      contest.music = data["music"]
+      contest.difficulty = data['difficulty']
+      contest.music = data['music']
       contest.save
     end
 
@@ -119,19 +119,19 @@ class Contest3rdsController < ApplicationController
     @tunes = params[:tune]
     @tunes.each do |tune|
       data = tune[1]
-      @order = data["order"]
-      @team = data["team"]
+      @order = data['order']
+      @team = data['team']
 
       contests = Contest3rd.find(:all,
         :conditions => {:team => @team, :order => @order})
       contest = contests[0]
-      contest.a_score = data["a_score"] if data["a_score"].length > 0
-      contest.a_clear = data["a_clear"] if data["a_clear"].length > 0
-      contest.b_score = data["b_score"] if data["b_score"].length > 0
-      contest.b_clear = data["b_clear"] if data["b_clear"].length > 0
-      contest.c_score = data["c_score"] if data["c_score"].length > 0
-      contest.c_clear = data["c_clear"] if data["c_clear"].length > 0
-      contest.url = data["url"] if data["url"]
+      contest.a_score = data['a_score'] if data['a_score'].length > 0
+      contest.a_clear = data['a_clear'] if data['a_clear'].length > 0
+      contest.b_score = data['b_score'] if data['b_score'].length > 0
+      contest.b_clear = data['b_clear'] if data['b_clear'].length > 0
+      contest.c_score = data['c_score'] if data['c_score'].length > 0
+      contest.c_clear = data['c_clear'] if data['c_clear'].length > 0
+      contest.url = data['url'] if data['url']
       contest.save
     end
 
@@ -187,7 +187,7 @@ class Contest3rdsController < ApplicationController
         format.html { redirect_to @contest3rd, notice: 'Contest3rd was successfully created.' }
         format.json { render json: @contest3rd, status: :created, location: @contest3rd }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new' }
         format.json { render json: @contest3rd.errors, status: :unprocessable_entity }
       end
     end
@@ -203,7 +203,7 @@ class Contest3rdsController < ApplicationController
         format.html { redirect_to @contest3rd, notice: 'Contest3rd was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
+        format.html { render action: 'edit' }
         format.json { render json: @contest3rd.errors, status: :unprocessable_entity }
       end
     end

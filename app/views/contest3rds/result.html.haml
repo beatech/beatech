@@ -83,9 +83,9 @@
     %thead
       %tr
         %th 対戦組
-        %th{:colspan => "2"} Aチーム
-        %th{:colspan => "2"} Bチーム
-        %th{:colspan => "2"} Cチーム
+        %th{:colspan => '2'} Aチーム
+        %th{:colspan => '2'} Bチーム
+        %th{:colspan => '2'} Cチーム
         - if @current_user
           %th 編集
     %tbody
@@ -110,9 +110,9 @@
   %table.style-table
     %thead
       %tr
-        %th{:colspan => "5"} Aチーム
-        %th{:colspan => "5"} Bチーム
-        %th{:colspan => "5"} Cチーム
+        %th{:colspan => '5'} Aチーム
+        %th{:colspan => '5'} Bチーム
+        %th{:colspan => '5'} Cチーム
       %tr
         - 3.times do |i|
           %th
@@ -126,22 +126,22 @@
       %tr
         - %w|A B C|.each do |team_char|
           %td チーム合計
-          %td{:colspan => "4"}= @team_total[team_char]
+          %td{:colspan => '4'}= @team_total[team_char]
     %tbody
       - (@contestdate3rds.size).times do |i|
         %tr
           - %w|A B C|.each do |team_char|
-            %td{:rowspan => "2"}
+            %td{:rowspan => '2'}
               - if @team[team_char][i].movie_url != nil && @team[team_char][i].movie_url.length > 0
                 = link_to @team[team_char][i].name, @team[team_char][i].movie_url
               - else
                 = @team[team_char][i].name
-            %td{:style => "padding:0px;"}= @team[team_char][i].a_score
-            %td{:style => "padding:0px;"}= @team[team_char][i].b_score
-            %td{:style => "padding:0px;"}= @team[team_char][i].c_score
-            %td#total_score{:rowspan => "2"}= @team[team_char][i].total
+            %td{:style => 'padding:0px;'}= @team[team_char][i].a_score
+            %td{:style => 'padding:0px;'}= @team[team_char][i].b_score
+            %td{:style => 'padding:0px;'}= @team[team_char][i].c_score
+            %td#total_score{:rowspan => '2'}= @team[team_char][i].total
         %tr#clear_lamps
           - %w|A B C|.each do |team_char|
-            %td{:style => "padding:0px;"}= @clearlamp[@team[team_char][i].a_clear] unless @team[team_char][i].a_clear.nil?
-            %td{:style => "padding:0px;"}= @clearlamp[@team[team_char][i].b_clear] unless @team[team_char][i].b_clear.nil?
-            %td{:style => "padding:0px;"}= @clearlamp[@team[team_char][i].c_clear] unless @team[team_char][i].c_clear.nil?
+            %td{:style => 'padding:0px;'}= @clearlamp[@team[team_char][i].a_clear] unless @team[team_char][i].a_clear.nil?
+            %td{:style => 'padding:0px;'}= @clearlamp[@team[team_char][i].b_clear] unless @team[team_char][i].b_clear.nil?
+            %td{:style => 'padding:0px;'}= @clearlamp[@team[team_char][i].c_clear] unless @team[team_char][i].c_clear.nil?

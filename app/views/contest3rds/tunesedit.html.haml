@@ -14,13 +14,13 @@
     .field
       曲名
       %br/
-      = text_field "tune[]", :music
+      = text_field 'tune[]', :music
     .field
       難易度
       %br/
-      = select "tune[]", :difficulty, @difficulty
-    = hidden_field "tune[]", :order
-    = hidden_field "tune[]", :team
+      = select 'tune[]', :difficulty, @difficulty
+    = hidden_field 'tune[]', :order
+    = hidden_field 'tune[]', :team
     %br/
     - i += 1
   .actions
