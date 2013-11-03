@@ -10,7 +10,7 @@ cd beatech
 bundle install
 bundle exec rake setup
 ```
-DB will be set up, and the data of production server will be copied to your local db.
+DB will be set up, and the data of production server will be copied to your local DB.
 
 ## Development
 You can run beatech as follows
