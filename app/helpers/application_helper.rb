@@ -1,13 +1,5 @@
 # coding: utf-8
 module ApplicationHelper
-  def title_with_entry(entry)
-    return 'BEATECH' unless entry && entry.url
-    case entry.url
-    when 'frontpage' then '東工大音ゲーサークルBEATECH'
-    else "BEATECH - #{entry.title}"
-    end
-  end
-
   def entry_link(title, url)
     title = 'トップページ' if url == 'frontpage'
     if /^http:\/\// =~ url
@@ -20,7 +12,7 @@ module ApplicationHelper
   def tabs(text)
     if text
       if text =~/&tab\(.+\)/
-        $&.gsub(/^&tab\(/, "").gsub(/\)/, "").strip.split(",")
+        $&.gsub(/^&tab\(/, '').gsub(/\)/, '').strip.split(',')
       else
         nil
       end

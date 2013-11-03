@@ -1,8 +1,19 @@
 # coding: utf-8
 class EntriesController < ApplicationController
+  def title
+    if @entry && @entry.title
+      case @entry.url
+      when 'frontpage' then '東工大音ゲーサークルBEATECH'
+      else "BEATECH - #{@entry.title}"
+      end
+    else
+      'BEATECH'
+    end
+  end
+
   def index
     @entries = Entry.all
-    @title = "ページ一覧"
+    @title = 'ページ一覧'
 
     respond_to do |format|
       format.html
@@ -16,7 +27,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
-    @title = "ページの新規作成"
+    @title = 'ページの新規作成'
   end
 
   def edit
@@ -53,15 +64,15 @@ class EntriesController < ApplicationController
   end
 
   def frontpage
-    @entry = Entry.find_by_url("frontpage")
+    @entry = Entry.find_by_url('frontpage')
     @entry ||= Entry.create(
-      title: "東工大音楽ゲーム愛好会BEATECH",
-      url: "frontpage",
-      content: "This is automatically generated frontpage.",
+      title: '東工大音楽ゲーム愛好会BEATECH',
+      url: 'frontpage',
+      content: 'This is automatically generated frontpage.',
       entry_type: 0,
       menu: 0,
     )
-    render action: "show"
+    render action: 'show'
   end
 
   private

@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  helper_method :admin_required, :is_admin?
   before_filter :load_entries, :authorize
+
+  def title
+    'BEATECH'
+  end
+  helper_method :title
 
   def admin_required
     raise Exception unless is_admin?
   end
+  helper_method :admin_required
 
   def is_admin?
     return false unless @current_user
@@ -15,6 +20,7 @@ class ApplicationController < ActionController::Base
     end
     false
   end
+  helper_method :is_admin?
 
   def authorize
     if session[:username]
