@@ -15,9 +15,9 @@ task 'setup' do
       consumer_secret = STDIN.gets.strip
     end
   else
-    puts 'Use default consumer key (Twitter for iPhone).'
-    consumer_key = 'IQKbtAYlXLripLGPWd0HUA'
-    consumer_secret = 'GgDYlkSvaPxGxC4X8liwpUoqKwwr3lCADbz8A7ADU'
+    puts 'Use default consumer key (BEATECH for development).'
+    consumer_key = 'N7KOrhYnHnSWBYrtMtbX0Q'
+    consumer_secret = 'dcTRcMn2PpwXlrO6doLclCjMOxavHQ9j9rOo5K3M78'
   end
 
   File.open('config/initializers/omniauth.rb', 'w') do |f|
