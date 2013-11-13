@@ -10,5 +10,6 @@
 /config/unicorn.rb
 /config/initializers/omniauth.rb
 /config/initializers/secret_token.rb
+/config/initializers/google_analytics.rb
 .DS_Store
 Capfile
