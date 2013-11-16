@@ -18,4 +18,4 @@
                 - if @current_user && achievement.user == @current_user
                   = link_to '編集', edit_achievement_path(achievement)
                   = link_to '削除', achievement_path(achievement), method: :delete
-              = markdown(achievement_text(achievement)).html_safe
+              = autolink(achievement.text)
