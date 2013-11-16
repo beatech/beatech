@@ -22,6 +22,7 @@ module AchievementsHelper
   end
 
   def autolink(text)
-    text.gsub!(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
+    text.gsub(/</, '&lt;').gsub(/>/, '&gt;')
+      .gsub(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
   end
 end
