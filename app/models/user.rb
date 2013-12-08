@@ -20,6 +20,26 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.update_profile_images
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key = Beatech::CONSUMER_KEY
+      config.consumer_secret = Beatech::CONSUMER_SECRET
+      config.access_token = Beatech::ACCESS_TOKEN
+      config.access_token_secret = Beatech::ACCESS_TOKEN_SECRET
+    end
+
+    User.all.each do |user|
+      twitter_account = user.twitter_accounts.first
+      if twitter_account.present?
+        profile_image_url = client.user(twitter_account.uid).profile_image_url
+        user.profile_image = profile_image_url.to_s if profile_image_url.present?
+        user.save
+        puts "#{user.name}: #{user.profile_image}"
+        sleep(3)
+      end
+    end
+  end
+
   def to_param
     username
   end

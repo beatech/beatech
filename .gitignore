@@ -11,5 +11,6 @@
 /config/initializers/omniauth.rb
 /config/initializers/secret_token.rb
 /config/initializers/google_analytics.rb
+/config/initializers/twitter.rb
 .DS_Store
 Capfile
