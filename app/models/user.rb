@@ -31,10 +31,15 @@ class User < ActiveRecord::Base
     User.all.each do |user|
       twitter_account = user.twitter_accounts.first
       if twitter_account.present?
-        profile_image_url = client.user(twitter_account.uid).profile_image_url
-        user.profile_image = profile_image_url.to_s if profile_image_url.present?
-        user.save
-        puts "#{user.name}: #{user.profile_image}"
+        print "#{user.name}: "
+        begin
+          profile_image_url = client.user(twitter_account.uid).profile_image_url
+          user.profile_image = profile_image_url.to_s if profile_image_url.present?
+          user.save
+          puts 'success'
+        rescue
+          puts 'something wrong happend.'
+        end
         sleep(3)
       end
     end
