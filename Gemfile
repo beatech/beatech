@@ -24,7 +24,7 @@ group :development, :test do
   gem 'spring'
 end
 
-gem 'twitter'
+gem 'twitter', '~> 5.1.1'
 gem 'omniauth'
 gem 'omniauth-twitter'
 
