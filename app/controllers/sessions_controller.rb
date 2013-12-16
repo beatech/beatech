@@ -37,26 +37,21 @@ class SessionsController < ApplicationController
       user = User.find_by_username(session[:username])
       user.profile_image = profile_image
       user.save
-      if TwitterAccount.exist?(screen_name) == true
+      if TwitterAccount.exist?(screen_name)
         redirect_to(
-          root_url + 'users/edit/' + session[:account],
+          setting_path(item: 'profile'),
           notice: "#{screen_name}はすでにBEATECHアカウントに関連付けられています。"
         )
       else
         TwitterAccount.create(
-          user_id: User.find_by_account(session[:account]).id,
+          user_id: User.find_by_username(session[:username]).id,
           uid: uid,
           screen_name: screen_name
         )
-        begin
-          # command = 'ruby script/follow.rb ' + uid.to_s
-          # system(command)
-        ensure
-          redirect_to(
-            root_url + 'users/edit/' + session[:account],
-            notice: 'アカウントを追加しました。'
-          )
-        end
+        redirect_to(
+          setting_path(item: 'profile'),
+          notice: 'アカウントを追加しました。'
+        )
       end
     end
   end

@@ -1,4 +1,3 @@
-%h1 プロフィールの編集
 = form_for @current_user, url: { action: :update, item: 'profile' } do |f|
   .field
     = f.label '名前'
@@ -15,7 +14,7 @@
           - @current_user.twitter_accounts.each do |twitter_account|
             %tr
               %td= twitter_account.screen_name
-              %td= link_to '削除', "/twitter_accounts/destroy/#{twitter_account.id}"
+              %td= link_to '削除', "/twitter_accounts/destroy/#{twitter_account.id}", method: :delete
     = link_to 'アカウント追加', '/auth/twitter', class: 'btn', style: 'text-decoration: none; color: #000; margin-bottom: 10px;'
   .field
     = f.label '入学年度・留年回数'
