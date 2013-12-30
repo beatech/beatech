@@ -33,3 +33,5 @@ gem 'kaminari'
 gem 'bootstrap-kaminari-views'
 gem 'redcarpet'
 gem 'google-analytics-rails'
+
+gem 'newrelic_rpm'

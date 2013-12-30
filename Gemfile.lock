@@ -93,6 +93,7 @@ GEM
     multi_json (1.8.2)
     multipart-post (1.2.0)
     mysql2 (0.3.14)
+    newrelic_rpm (3.7.1.180)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     oauth (0.4.7)
@@ -207,6 +208,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mysql2
+  newrelic_rpm
   omniauth
   omniauth-twitter
   rails (= 4.0.1)
