@@ -15,5 +15,6 @@ module Beatech
   class Application < Rails::Application
     config.autoload_paths += %W(#{config.root}/lib)
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
+    config.middleware.insert_before Rack::Runtime, Rack::RuntimeGrowthForecast, name: 'beatech'
   end
 end
