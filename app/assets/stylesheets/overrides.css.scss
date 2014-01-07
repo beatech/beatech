@@ -4,7 +4,7 @@ a {
 
   &:hover,
   &:focus {
-    color: $link-hover;
+    color: $dark-blue;
     text-decoration: underline;
   }
 
@@ -16,7 +16,7 @@ a {
 }
 
 .container {
-  width: 970px;
+  width: $width;
 }
 
 .btn-info {

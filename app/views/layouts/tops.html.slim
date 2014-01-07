@@ -1,0 +1,7 @@
+- content_for :css do
+  = stylesheet_link_tag 'tops'
+
+- content_for :main do
+  = yield
+
+= render template: 'layouts/application'

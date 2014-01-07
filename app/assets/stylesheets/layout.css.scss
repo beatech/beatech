@@ -55,12 +55,37 @@ header .menu_bar {
     }
 
     &:hover {
-      background-color: $background;
-      border-bottom: 2px solid $background;
+      background-color: $lighter-background;
+      border-bottom: 2px solid $lighter-background;
     }
 
     &.active {
       border-bottom: 2px solid $border;
     }
+  }
+}
+
+.footer {
+  margin-top: 10px;
+  border-top: 1px solid $border;
+  color: $dark-blue;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.box {
+  width: 100%;
+  border: 1px solid $border;
+  border-radius: 4px;
+  margin-top: 10px;
+  background-color: white;
+
+  h1 {
+    border-radius: 4px 4px 0 0;
+    background-color: $lighter-background;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 10px;
   }
 }

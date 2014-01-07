@@ -5,13 +5,13 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
+    = content_for :css
   body
     header
       .title_bar
         .container
           .pull-left
-            h1
-              |Beatech
+            h1 Beatech
           .pull-right
             .btn.btn-info
               = link_to '入部する', '#'
@@ -30,5 +30,6 @@ html
               = link_to '大会を開催する', '#'
             li
               = link_to 'お気に入り', '#'
+    = content_for :main || yield
     .container
-      = yield
+      .footer Copyright &copy; beatech.net. All Rights Reserved

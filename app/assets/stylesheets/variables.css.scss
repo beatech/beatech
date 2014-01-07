@@ -1,6 +1,13 @@
 $background: #eaf3ff;
+$lighter-background: lighten($background, 1.4%);
 $header: #6e8db2;
-$border: darken($background, 4%);
+$border: darken($background, 5%);
 
 $link: #527bc0;
-$link-hover: #2a6496;
+$dark-blue: #2a6496;
+
+$width: 970px;
+$margin: 20px;
+$padding: 30px;
+$span1: ($width - $padding - ($margin * 2)) / 3;
+$span2: 2 * ($width - $padding - ($margin * 2)) / 3 + $margin;
