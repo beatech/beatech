@@ -6,5 +6,29 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    header
+      .title_bar
+        .container
+          .pull-left
+            h1
+              |Beatech
+          .pull-right
+            .btn.btn-info
+              = link_to '入部する', '#'
+            .login
+              = link_to 'ログイン', '#'
+      .menu_bar
+        .container
+          ul
+            li.active
+              = link_to 'ホーム', '#'
+            li
+              = link_to 'ページを作成', '#'
+            li
+              = link_to 'ブログを書く', '#'
+            li
+              = link_to '大会を開催する', '#'
+            li
+              = link_to 'お気に入り', '#'
     .container
       = yield

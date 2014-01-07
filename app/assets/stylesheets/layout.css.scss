@@ -1,0 +1,66 @@
+body {
+  background-color: $background;
+}
+
+header .title_bar {
+  background-color: $header;
+  color: white;
+
+  h1 {
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-size: 24px;
+    margin: 6px 0;
+  }
+
+  .pull-right .btn {
+    padding: 5px 14px 4px 14px;
+    margin: 4px 0 0 6px;
+
+    a {
+      color: white;
+    }
+  }
+
+  .login {
+    vertical-align: sub;
+    display: inline-block;
+
+    a {
+      margin: 0 14px;
+      color: white;
+    }
+  }
+}
+
+header .menu_bar {
+  background-color: white;
+  border-bottom: 1px solid $border;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    list-style-type: none;
+
+    a {
+      padding: 5px 8px 3px 8px;
+      display: block;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &:hover {
+      background-color: $background;
+      border-bottom: 2px solid $background;
+    }
+
+    &.active {
+      border-bottom: 2px solid $border;
+    }
+  }
+}
