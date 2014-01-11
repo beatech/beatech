@@ -1,0 +1,38 @@
+@import "variables";
+
+#users.box {
+  h1.title {
+    font-size: 20px;
+    padding: 15px;
+    background-color: transparent;
+  }
+
+  ul.grade_tab {
+    background-color: $lighter-background;
+    padding: 0 15px;
+
+    li {
+      float: left;
+      list-style: none;
+
+      a {
+        display: block;
+        padding: 8px 14px;
+      }
+    }
+
+    li:hover {
+      background-color: $darker-background;
+    }
+
+    li.active {
+      background-color: $darker-background;
+
+      a {
+        color: black;
+        cursor: text;
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,27 +1,28 @@
-#higher_row.clearfix.container
+#higher_row.clearfix
   .column.left
     .box
-      h1 お知らせ
+      h1.title お知らせ
       p お知らせ！
       p お知らせ！
       p お知らせ！
     .box
-      h1 メインメニュー
-      |メインメニュー
+      h1.title メインメニュー
+      .content
+        = link_to '部員紹介', users_path
   .column.right
     .box
-      h1 成果報告
+      h1.title 成果報告
       |成果報告
-#lower_row.clearfix.container
+#lower_row.clearfix
   .column.left
     .box
-      h1 新着ページ
+      h1.title 新着ページ
       |新着ページ
   .column.middle
     .box
-      h1 新着ブログ
+      h1.title 新着ブログ
       |Pages
   .column.right
     .box
-      h1 WR & 大会
+      h1.title WR & 大会
       |Pages

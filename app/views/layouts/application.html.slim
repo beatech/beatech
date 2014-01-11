@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title BEATECH
+    title Beatech
     = csrf_meta_tags
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_include_tag 'application'
@@ -11,7 +11,8 @@ html
       .title_bar
         .container
           .pull-left
-            h1 Beatech
+            h1
+              = link_to 'Beatech', root_url
           .pull-right
             .btn.btn-info
               = link_to '入部する', '#'
@@ -21,7 +22,7 @@ html
         .container
           ul
             li.active
-              = link_to 'ホーム', '#'
+              = link_to 'ホーム', root_url
             li
               = link_to 'ページを作成', '#'
             li
@@ -30,6 +31,6 @@ html
               = link_to '大会を開催する', '#'
             li
               = link_to 'お気に入り', '#'
-    = content_for :main || yield
     .container
+      = yield
       .footer Copyright &copy; beatech.net. All Rights Reserved
