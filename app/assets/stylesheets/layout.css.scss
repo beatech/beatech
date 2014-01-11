@@ -1,3 +1,5 @@
+@import "layout/login";
+
 body {
   background-color: $background;
 }
@@ -22,16 +24,6 @@ header .title_bar {
     margin: 4px 0 0 6px;
 
     a {
-      color: white;
-    }
-  }
-
-  .login {
-    vertical-align: sub;
-    display: inline-block;
-
-    a {
-      margin: 0 14px;
       color: white;
     }
   }

@@ -19,10 +19,20 @@ a {
   width: $width;
 }
 
-.btn-info {
-  background-color: #8fbadf;
+.btn {
   border: none;
   border-radius: 2px;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    border: none;
+  }
+}
+
+.btn-info {
+  background-color: #8fbadf;
 
   &:hover,
   &:focus,

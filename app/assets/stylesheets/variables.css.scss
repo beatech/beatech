@@ -3,11 +3,13 @@ $border: #afd3f3;
 $background: #eaf3ff;
 $lighter-background: lighten($background, 1.4%);
 $darker-background: darken($background, 2%);
+$extra-darker-background: darken($background, 8%);
 
 $link: #527bc0;
 $blue: lighten(#2a6496, 38%);
 $dark-blue: #2a6496;
 $light-gray: lighten(gray, 10%);
+$extra-light-gray: lighten(gray, 30%);
 
 $orange: #ff9228;
 
