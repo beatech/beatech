@@ -60,7 +60,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:user][:id])
       raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
       @user.update_attributes(user_params)
-      @user.grade = grade_of(@user)
       if @user.save
         redirect_to @user, notice: 'プロフィールの更新に成功しました。'
       else
@@ -99,9 +98,5 @@ class UsersController < ApplicationController
 
   def create_user_params
     params.require(:user).permit(:name, :username, :password, :password_confirmation, :year, :repeated_year)
-  end
-
-  def grade_of(user)
-    Date.today.year - user.year + 1
   end
 end

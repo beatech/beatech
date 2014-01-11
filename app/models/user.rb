@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   validates :year, presence: true
   validates :repeated_year, presence: true
 
+  before_save :set_grade
+
   def self.authenticate(username, password)
     user = find_by_username(username)
     if user && user.password_digest.present? &&
@@ -47,5 +49,14 @@ class User < ActiveRecord::Base
 
   def to_param
     username
+  end
+
+  def set_grade
+    self.grade =
+      if (1..3).include?(Date.today.month)
+        Date.today.year - self.year
+      else
+        Date.today.year - self.year + 1
+      end
   end
 end
