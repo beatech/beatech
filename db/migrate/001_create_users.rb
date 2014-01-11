@@ -9,7 +9,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :grade
       t.string :bio
       t.string :profile
-      t.string :icon
+      t.string :icon_url
 
       t.timestamps
     end

@@ -1,15 +1,31 @@
 @import "variables";
+$padding: 20px;
+$icon-size: 73px;
+$user-box-width: ($box-width - $padding * 2) / 3;
 
 #users.box {
   h1.title {
     font-size: 20px;
-    padding: 15px;
+    padding: 15px $padding;
     background-color: transparent;
+
+    .user_count_description {
+      color: $light-gray;
+      font-weight: normal;
+      font-size: 12px;
+
+      .count_label {
+        color: black;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 0 4px;
+      }
+    }
   }
 
-  ul.grade_tab {
+  ul.grade_tabs {
     background-color: $lighter-background;
-    padding: 0 15px;
+    padding: 0 $padding;
 
     li {
       float: left;
@@ -33,6 +49,50 @@
         cursor: text;
         text-decoration: none;
       }
+    }
+
+    li .badge {
+      background-color: $blue;
+      margin-left: 4px;
+      line-height: 12px;
+    }
+  }
+
+  .grade_contents {
+    ul.grade_content {
+      padding: 20px $padding 0 $padding;
+      display: none;
+
+      &.active {
+        display: block;
+      }
+    }
+
+    li.user {
+      width: $user-box-width;
+      margin-bottom: 30px;
+      float: left;
+      list-style: none;
+    }
+
+    .icon {
+      width: $icon-size;
+      height: $icon-size;
+      float: left;
+    }
+
+    .profile {
+      font-size: 12px;
+      margin-left: 10px;
+      width: $user-box-width - $icon-size - 40px;
+      height: $icon-size - 2px;
+      float: left;
+      overflow: hidden;
+    }
+
+    .name {
+      font-size: 14px;
+      font-weight: bold;
     }
   }
 }

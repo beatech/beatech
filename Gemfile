@@ -11,9 +11,11 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'beatech-api', '~> 0.0.3', github: 'tkkbn/beatech-api'
   gem 'rspec-rails', '~> 2.14.1'
+  gem 'pry-rails'
 end

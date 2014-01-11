@@ -1,17 +1,37 @@
-#users.box
-  h1.title 部員リスト
-  ul.grade_tab.clearfix
-    li.active
-      = link_to '4年生', '#'
-    li
-      = link_to '3年生', '#'
-    li
-      = link_to '2年生', '#'
-    li
-      = link_to '1年生', '#'
-    li
-      = link_to 'OB', '#'
+- content_for :js do
+  = javascript_include_tag 'users/index'
 
-  ul
-    - @users.each do |user|
-      li= user.name
+- default_active_grade = 4
+- bio_max_length = 50
+
+#users.box
+  h1.title.clearfix
+    .pull-left 部員リスト
+    .pull-right
+      .user_count_description
+        |現役部員数
+        span.count_label= @active_user_count
+        |名
+  ul.grade_tabs.clearfix
+    - [4, 3, 2, 1, 5].each do |grade|
+      li class=('active' if grade == default_active_grade) data={ grade: grade }
+        = link_to '#', class: 'grade_tab_link' do
+          = label_for_grade(grade)
+          span.badge
+            = @user_count_by_grade[grade.to_s]
+
+  .grade_contents
+    - (1..5).each do |grade|
+      ul.grade_content.clearfix class=('active' if grade == default_active_grade) data={ grade: grade }
+        - @users_by_grade[grade.to_s].each do |user|
+          li.user.clearfix
+            .icon
+              = image_tag user.big_icon_url
+            .profile
+              .name
+                = link_to user.name, '#'
+              .bio
+                - if user.bio.length > bio_max_length
+                  = user.bio.slice(0, bio_max_length) + '…'
+                - else
+                  = user.bio
