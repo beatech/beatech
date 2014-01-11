@@ -1,8 +1,9 @@
 GIT
   remote: git://github.com/tkkbn/beatech-api.git
-  revision: 4396e0d22cada57d46586eb5c74251fa2e0b62bd
+  revision: 1ec2243bd9ba2925df5e14860091f1c277125e99
   specs:
-    beatech-api (0.0.2)
+    beatech-api (0.0.3)
+      activesupport (~> 4.0.2)
 
 GEM
   remote: https://rubygems.org/
@@ -132,7 +133,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  beatech-api (~> 0.0.2)!
+  beatech-api (~> 0.0.3)!
   bootstrap-sass (~> 3.0.3.0)
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
