@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :name
       t.string :year
       t.string :repeated_year
+      t.string :grade
       t.string :bio
       t.string :profile
       t.string :icon
