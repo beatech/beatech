@@ -1,3 +1,5 @@
 /db/schema.rb
+/config/database.yml
+/config/database.yml.mysql
 /tmp
 /log
