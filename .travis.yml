@@ -1,0 +1,9 @@
+rvm:
+- 2.0.0
+branches:
+  only:
+    - master
+    - development
+script:
+  - 'RAILS_ENV=test bundle exec rake spec'
+  - 'RAILS_ENV=production bundle exec rake assets:precompile'
