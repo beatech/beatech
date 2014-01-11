@@ -36,7 +36,6 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(create_user_params)
-    @user.grade = grade_of(@user)
     @user.save
     if @user.save
       redirect_to @user, notice: 'User was successfully created.'
