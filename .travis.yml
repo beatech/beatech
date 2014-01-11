@@ -4,6 +4,8 @@ branches:
   only:
     - master
     - development
+before_script:
+  - 'RAILS_ENV=test bundle exec rake db:create db:migrate'
 script:
   - 'RAILS_ENV=test bundle exec rake spec'
   - 'RAILS_ENV=production bundle exec rake assets:precompile'
