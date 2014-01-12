@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def to_param
+    username
+  end
+
   private
 
   def self.correct_password?(user, password)

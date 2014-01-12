@@ -6,4 +6,8 @@ class UsersController < ApplicationController
       (1..4).include?(grade) ? sum + count : sum
     end
   end
+
+  def show
+    @user = User.find_by_username(params[:id])
+  end
 end

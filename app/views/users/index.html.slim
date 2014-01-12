@@ -27,10 +27,11 @@
           - @users_by_grade[grade].each do |user|
             li.user.clearfix
               .icon
-                = image_tag user.big_icon_url
+                = link_to user_path(user) do
+                  = image_tag user.big_icon_url
               .profile
                 .name
-                  = link_to user.name, '#'
+                  = link_to user.name, user_path(user)
                 .bio
                   - if user.bio.length > bio_max_length
                     = user.bio.slice(0, bio_max_length) + '…'
