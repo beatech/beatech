@@ -1,0 +1,47 @@
+require 'spec_helper'
+
+describe User do
+  describe '.authenticate' do
+    let!(:user) { User.make!(username: 'username', password: 'password', password_confirmation: 'password') }
+
+    context 'given valid username' do
+      let(:username) { 'username' }
+
+      context 'given valid password' do
+        let(:password) { 'password' }
+
+        it 'returns user' do
+          expect(User.authenticate(username, password)).to eq(user)
+        end
+      end
+
+      context 'given invalid password' do
+        let(:password) { 'pass' }
+
+        it 'returns nil' do
+          expect(User.authenticate(username, password)).to eq(nil)
+        end
+      end
+    end
+
+    context 'given invalid username' do
+      let(:username) { 'user' }
+
+      context 'given valid password' do
+        let(:password) { 'password' }
+
+        it 'returns nil' do
+          expect(User.authenticate(username, password)).to eq(nil)
+        end
+      end
+
+      context 'given invalid password' do
+        let(:password) { 'pass' }
+
+        it 'returns nil' do
+          expect(User.authenticate(username, password)).to eq(nil)
+        end
+      end
+    end
+  end
+end

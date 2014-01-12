@@ -18,20 +18,21 @@
         = link_to '#', class: 'grade_tab_link' do
           = label_for_grade(grade)
           span.badge
-            = @user_count_by_grade[grade.to_s]
+            = @user_count_by_grade[grade]
 
   .grade_contents
     - (1..5).each do |grade|
       ul.grade_content.clearfix class=('active' if grade == default_active_grade) data={ grade: grade }
-        - @users_by_grade[grade.to_s].each do |user|
-          li.user.clearfix
-            .icon
-              = image_tag user.big_icon_url
-            .profile
-              .name
-                = link_to user.name, '#'
-              .bio
-                - if user.bio.length > bio_max_length
-                  = user.bio.slice(0, bio_max_length) + '…'
-                - else
-                  = user.bio
+        - if @users_by_grade[grade].present?
+          - @users_by_grade[grade].each do |user|
+            li.user.clearfix
+              .icon
+                = image_tag user.big_icon_url
+              .profile
+                .name
+                  = link_to user.name, '#'
+                .bio
+                  - if user.bio.length > bio_max_length
+                    = user.bio.slice(0, bio_max_length) + '…'
+                  - else
+                    = user.bio

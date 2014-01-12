@@ -4,12 +4,12 @@
     = form_tag session_path, class: 'beatech_login' do
       = label_tag :username, class: 'bold' do
         | ユーザー名
-        = text_field_tag :username, params[:username], class: 'form-control'
+        = text_field_tag :username, '', class: 'form-control'
       = label_tag :password, class: 'bold' do
         | パスワード
-        = password_field_tag :password, params[:password], class: 'form-control'
+        = password_field_tag :password, '', class: 'form-control'
       = label_tag :auto_login do
-        = check_box_tag :hoge
+        = check_box_tag :auto_login
         | 次回から自動的にログイン
       = submit_tag 'ログイン', class: 'btn btn-info'
 

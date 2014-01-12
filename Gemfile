@@ -20,4 +20,5 @@ group :development, :test do
   gem 'beatech-api', '~> 0.0.3', github: 'tkkbn/beatech-api'
   gem 'rspec-rails', '~> 2.14.1'
   gem 'pry-rails'
+  gem 'machinist', '~> 2.0'
 end
