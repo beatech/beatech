@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   validates :repeated_year, presence: true
   before_save :set_grade
 
+  DEFAULT_PROFILE_IMAGE_COUNT = 7
+
   def self.authenticate(username, password)
     user = User.where(username: username).first
     if user.present? && correct_password?(user, password)
@@ -36,7 +38,7 @@ class User < ActiveRecord::Base
   end
 
   def normal_default_icon_url
-    random_number = self.id % 7
+    random_number = self.id % DEFAULT_PROFILE_IMAGE_COUNT
     "https://si0.twimg.com/sticky/default_profile_images/"\
       "default_profile_#{random_number}_normal.png"
   end
