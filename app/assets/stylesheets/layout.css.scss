@@ -1,4 +1,6 @@
-@import "layout/login";
+@import "layout/login_panel";
+@import "layout/login_menu";
+@import "mixins";
 
 body {
   background-color: $background;
@@ -16,6 +18,44 @@ header .title_bar {
     a {
       color: white;
       text-decoration: none;
+    }
+  }
+
+  ul.nav_right {
+    @include clearfix;
+    height: 38px;
+    margin: 0;
+
+    li {
+      padding: 6px 10px;
+      height: 38px;
+      float: right;
+      list-style-type: none;
+    }
+
+    li:hover {
+      background-color: $lighter-header;
+    }
+
+    li.login_menu {
+      cursor: pointer;
+      position: relative;
+
+      &.active {
+        background-color: $lighter-header;
+      }
+
+      .user_icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 3px;
+        border: 1px solid $lighter-header;
+      }
+
+      .caret {
+        margin-left: 4px;
+        color: $darker-background;
+      }
     }
   }
 

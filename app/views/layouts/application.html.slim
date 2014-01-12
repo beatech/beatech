@@ -7,6 +7,7 @@ html
     = javascript_include_tag 'application'
     = content_for :css
     = content_for :js
+
   body
     header
       .title_bar
@@ -14,10 +15,19 @@ html
           .pull-left
             h1
               = link_to 'Beatech', root_url
-          .pull-right
-            .btn.btn-info
-              = link_to '入部する', '#'
-            = render 'layouts/login'
+          ul.nav_right
+            - if @login_user.present?
+              li.login_menu
+                = image_tag @login_user.normal_icon_url, class: 'user_icon'
+                span.caret
+                = render 'layouts/login_menu'
+            - else
+              li.btn.btn-info
+                = link_to '入部する', '#'
+              li.login
+                = link_to 'ログイン', '#', class: 'login_link'
+                = render 'layouts/login_panel'
+
       .menu_bar
         .container
           ul
@@ -31,6 +41,7 @@ html
               = link_to '大会を開催する', '#'
             li
               = link_to 'お気に入り', '#'
+
     .container
       = yield
       .footer Copyright &copy; beatech.net. All Rights Reserved

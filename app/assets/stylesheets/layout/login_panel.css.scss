@@ -4,7 +4,7 @@ $form-width: 200px;
 $triangle-size: 8px;
 $triangle-position: 34px;
 
-header .title_bar .login {
+.title_bar .login {
   vertical-align: sub;
   display: inline-block;
   position: relative;
@@ -17,35 +17,34 @@ header .title_bar .login {
   .login_link {
     padding: 8px 4px;
   }
+}
 
-  .login_panel {
-    @include box-shadow(0, 0, 12px, rgba(0, 0, 0, 0.1));
-    padding: 14px;
-    border: 1px solid $extra-light-gray;
-    border-radius: 3px;
-    display: none;
-    background-color: white;
-    color: black;
+.login_panel {
+  @include box-shadow(0, 0, 12px, rgba(0, 0, 0, 0.1));
+  padding: 14px;
+  border: 1px solid $extra-light-gray;
+  border-radius: 3px;
+  display: none;
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  z-index: 100;
+
+  &:before {
+    @include triangle("up", $extra-light-gray, $triangle-size + 1px);
     position: absolute;
-    top: 30px;
-    right: 0;
-    z-index: 100;
-
-    &:before {
-      @include triangle("up", $extra-light-gray, $triangle-size + 1px);
-      position: absolute;
-      top: -1 * ($triangle-size + 1px);
-      right: $triangle-position;
-    }
-
-    &:after {
-      @include triangle("up", white, $triangle-size);
-      position: absolute;
-      top: -1 * $triangle-size;
-      right: $triangle-position + 1px;
-    }
+    top: -1 * ($triangle-size + 1px);
+    right: $triangle-position;
   }
 
+  &:after {
+    @include triangle("up", white, $triangle-size);
+    position: absolute;
+    top: -1 * $triangle-size;
+    right: $triangle-position + 1px;
+  }
   .beatech_login {
     label {
       font-size: 13px;

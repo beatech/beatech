@@ -1,4 +1,6 @@
 $header: #6e8db2;
+$lighter-header: lighten($header, 10%);
+$extra-lighter-header: lighten($header, 20%);
 $border: #afd3f3;
 $background: #eaf3ff;
 $lighter-background: lighten($background, 1.4%);
