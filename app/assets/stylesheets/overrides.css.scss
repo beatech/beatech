@@ -29,6 +29,10 @@ a {
   &.active {
     border: none;
   }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .btn-info {

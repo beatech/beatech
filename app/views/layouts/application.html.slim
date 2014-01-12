@@ -24,9 +24,11 @@ html
           - else
             .pull-right
               .btn.btn-info
-                = link_to '入部する', '#'
+                = link_to '入部する', registration_users_path
               .login
-                = link_to 'ログイン', '#', class: 'login_link'
+                = link_to '#', class: 'login_link' do
+                  | ログイン
+                  span.caret
                 = render 'layouts/login_panel'
 
       .menu_bar
