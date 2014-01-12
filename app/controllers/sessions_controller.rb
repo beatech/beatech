@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
     user = User.authenticate(params[:username], params[:password])
     if user.present?
       session[:user_id] = user.id
-      redirect_to :back
+      redirect_to :back, notice: 'ログインしました。'
     else
       redirect_to :back, notice: 'ログインに失敗しました。'
     end

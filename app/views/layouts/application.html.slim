@@ -44,5 +44,9 @@ html
               = link_to 'お気に入り', '#'
 
     .container
+      - if flash[:notice]
+        .notice_wrapper.container
+          .notice
+            = flash[:notice]
       = yield
       .footer Copyright &copy; beatech.net. All Rights Reserved

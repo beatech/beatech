@@ -3,12 +3,15 @@
     = label_tag :username, class: 'bold' do
       | ユーザー名
       = text_field_tag :username, '', class: 'form-control'
+
     = label_tag :password, class: 'bold' do
       | パスワード
       = password_field_tag :password, '', class: 'form-control'
+
     = label_tag :auto_login do
       = check_box_tag :auto_login
       | 次回から自動的にログイン
+
     = submit_tag 'ログイン', class: 'btn btn-info'
 
   .divider

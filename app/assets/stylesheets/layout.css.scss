@@ -121,6 +121,23 @@ header .menu_bar {
   }
 }
 
+.notice_wrapper {
+  position: absolute;
+  top: 79px;
+  left: 0;
+
+  .notice {
+    @include box-shadow(0, 0, 8px, rgba(0, 0, 0, 0.3));
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+    width: $width * 0.6;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+}
+
 .footer {
   margin-top: 10px;
   border-top: 1px solid $border;

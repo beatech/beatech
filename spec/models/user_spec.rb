@@ -2,7 +2,9 @@ require 'spec_helper'
 
 describe User do
   describe '.authenticate' do
-    let!(:user) { User.make!(username: 'username', password: 'password', password_confirmation: 'password') }
+    let!(:user) do
+      User.make!(username: 'username', password: 'password', password_confirmation: 'password')
+    end
 
     context 'given valid username' do
       let(:username) { 'username' }
