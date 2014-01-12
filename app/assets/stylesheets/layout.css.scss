@@ -59,12 +59,31 @@ header .title_bar {
     }
   }
 
+  .pull-right {
+    height: 38px;
+  }
+
   .pull-right .btn {
     padding: 5px 14px 4px 14px;
-    margin: 4px 0 0 6px;
+    margin: 4px 0 6px 0;
 
     a {
       color: white;
+    }
+  }
+
+  .login {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+
+    a {
+      margin: 0 14px;
+      color: white;
+    }
+
+    .login_link {
+      padding: 8px 4px;
     }
   }
 }

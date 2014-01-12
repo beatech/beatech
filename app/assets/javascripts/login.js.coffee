@@ -5,7 +5,9 @@ jQuery ($) ->
     $(document).delegate('.login_link', 'click', (event) ->
       event.preventDefault()
       $('.login_panel').toggle()
-      event.stopPropagation()
+      if $('.login_panel').is(':visible')
+        $('#username').focus()
+      event.stopPropagation() # to prevent panel hide event
     )
 
     # hide panel when you click outside of panel
@@ -21,7 +23,7 @@ jQuery ($) ->
     $(document).delegate('.login_menu', 'click', (event) ->
       $('.login_menu_dropdown').toggle()
       $('.login_menu').toggleClass('active')
-      event.stopPropagation()
+      event.stopPropagation() # to prevent menu hide event
     )
 
     # hide login menu when you click outside of dropdown

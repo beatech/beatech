@@ -4,21 +4,6 @@ $form-width: 200px;
 $triangle-size: 8px;
 $triangle-position: 34px;
 
-.title_bar .login {
-  vertical-align: sub;
-  display: inline-block;
-  position: relative;
-
-  a {
-    margin: 0 14px;
-    color: white;
-  }
-
-  .login_link {
-    padding: 8px 4px;
-  }
-}
-
 .login_panel {
   @include box-shadow(0, 0, 12px, rgba(0, 0, 0, 0.1));
   padding: 14px;
@@ -28,7 +13,7 @@ $triangle-position: 34px;
   background-color: white;
   color: black;
   position: absolute;
-  top: 30px;
+  top: 29px;
   right: 0;
   z-index: 100;
 
@@ -45,6 +30,7 @@ $triangle-position: 34px;
     top: -1 * $triangle-size;
     right: $triangle-position + 1px;
   }
+
   .beatech_login {
     label {
       font-size: 13px;

@@ -15,16 +15,17 @@ html
           .pull-left
             h1
               = link_to 'Beatech', root_url
-          ul.nav_right
-            - if @login_user.present?
+          - if @login_user.present?
+            ul.nav_right
               li.login_menu
                 = image_tag @login_user.normal_icon_url, class: 'user_icon'
                 span.caret
                 = render 'layouts/login_menu'
-            - else
-              li.btn.btn-info
+          - else
+            .pull-right
+              .btn.btn-info
                 = link_to '入部する', '#'
-              li.login
+              .login
                 = link_to 'ログイン', '#', class: 'login_link'
                 = render 'layouts/login_panel'
 

@@ -8,4 +8,13 @@ class SessionsController < ApplicationController
       redirect_to :back, notice: 'ログインに失敗しました。'
     end
   end
+
+  def destroy
+    if session[:user_id].present?
+      session[:user_id] = nil
+      redirect_to :back, notice: 'ログアウトしました。'
+    else
+      redirect_to :back, notice: 'ログアウト済みです。'
+    end
+  end
 end
