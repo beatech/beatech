@@ -3,7 +3,17 @@
 
 #user_registration
   .progress_indicator.box
-    | Step 1 プロフィール入力
+    .center.clearfix
+      .steps
+        .step.active
+          .step_label Step 1
+          .step_description アカウント作成
+        .step
+          .step_label Step 2
+          .step_description Twitterログイン
+        .step
+          .step_label Step 3
+          .step_description プロフィール入力
 
   .registration_form.box.clearfix
     .left_column
@@ -13,9 +23,9 @@
           dl
             dt Beatech ID
             dd
-              - placeholder = "Beatech_#{Date.today.year}"
-              = f.text_field :username, placeholder: placeholder, autofocus: true, class: "form-control"
-              .description URLやログインに使用します
+              - username_example = "Beatech_#{Date.today.year}"
+              = f.text_field :username, placeholder: username_example, autofocus: true, class: "form-control"
+              .description URLやログインに使用されます
 
             dt ニックネーム
             dd= f.text_field :username, placeholder: "ビーテック", class: "form-control"
@@ -27,9 +37,20 @@
             dd= f.password_field :username, class: "form-control"
 
             dt 学年
-            dd= f.text_field :username, class: "form-control"
+            dd= f.select :year, grade_choices, class: "form-control"
 
         = submit_tag "入部する", class: "btn btn-primary"
 
     .right_column
-      |入部する
+      .colored_box
+        .title Beatechとは
+        p Beatechは、東京工業大学の音楽ゲームサークルです。
+        p 普段はゲームセンターで一緒に音ゲーをしに集まったり、焼き肉を食べに行ったりしています。
+
+      .colored_box
+        .title 入部について
+        - if (1..3).include?(Date.today.month)
+          p 東工大の学部生および、春に入学する新入生を部員として受け入れています。
+        - else
+          p 東工大の学部生を部員として受け入れています。
+        p Beatechアカウントを作ると入部となり、部内大会や各種イベントに参加できます。

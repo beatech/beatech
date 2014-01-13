@@ -23,8 +23,7 @@ html
                 = render "layouts/login_menu"
           - else
             .pull-right
-              .btn.btn-info
-                = link_to "入部する", registration_users_path
+              = link_to "入部する", registration_users_path, class: "btn btn-info"
               .login
                 = link_to "#", class: "login_link" do
                   | ログイン

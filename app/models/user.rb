@@ -10,6 +10,18 @@ class User < ActiveRecord::Base
 
   DEFAULT_PROFILE_IMAGE_COUNT = 7
 
+  def self.year_by_grade(grade, repeated_year = 0)
+    if (1..3).include?(Date.today.month)
+      Date.today.year - grade - repeated_year
+    else
+      Date.today.year - grade - repeated_year - 1
+    end
+  end
+
+  def self.grade_by_year(year, repeated_year = 0)
+    Date.today.year - self.year_by_grade(0)
+  end
+
   def self.authenticate(username, password)
     user = User.where(username: username).first
     if user.present? && correct_password?(user, password)

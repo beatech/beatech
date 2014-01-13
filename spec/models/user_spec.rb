@@ -1,6 +1,14 @@
 require "spec_helper"
 
 describe User do
+  describe ".year_by_grade" do
+    context "" do
+    end
+
+    context "" do
+    end
+  end
+
   describe ".authenticate" do
     let!(:user) do
       User.make!(username: "username", password: "password", password_confirmation: "password")

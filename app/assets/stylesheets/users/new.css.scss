@@ -7,6 +7,44 @@ $left-column-rate: 0.6;
 
 #user_registration .progress_indicator {
   padding: 10px;
+
+  .center {
+    text-align: center;
+  }
+
+  .steps {
+    display: inline-block;
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .step {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 60px;
+    list-style-type: none;
+    float: left;
+    color: $light-gray;
+    position: relative;
+
+    &.active {
+      color: black;
+    }
+
+    &:after {
+      @include triangle("right", $extra-light-gray, 4px);
+      margin-left: 30px;
+      position: absolute;
+      top: 14px;
+      right: -60px;
+    }
+  }
+
+  .step:last-child {
+    &:after {
+      border: none;
+    }
+  }
 }
 
 #user_registration .registration_form {
@@ -17,45 +55,67 @@ $left-column-rate: 0.6;
     border-right: 1px solid $border;
     float: left;
     width: $box-inner-width * $left-column-rate;
-  }
 
-  .right_column {
-    padding: 0 $padding;
-    float: left;
-    width: $box-inner-width * (1.0 - $left-column-rate);
-  }
+    .form-control {
+      width: 300px;
+    }
 
-  .form-control {
-    width: 300px;
-  }
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-  h1 {
-    margin: 0;
-    font-size: 20px;
-    font-weight: bold;
-  }
+    dt {
+      margin: 10px;
+      padding: 8px;
+      clear: both;
+      width: 140px;
+      float: left;
+      text-align: right;
+      vertical-align: sub;
+    }
 
-  dt {
-    margin: 10px;
-    padding: 8px;
-    clear: both;
-    width: 140px;
-    float: left;
-    text-align: right;
-    vertical-align: sub;
-  }
+    dd {
+      margin: 10px;
+      float: left;
 
-  dd {
-    margin: 10px;
-    float: left;
+      .description {
+        color: $light-gray;
+      }
+    }
 
-    .description {
-      color: $light-gray;
+    select {
+      margin: 10px 0;
+    }
+
+    input[type="submit"] {
+      margin: 15px 0 0 170px;
+      padding: 6px 40px;
     }
   }
 
-  input[type="submit"] {
-    margin: 15px 0 0 170px;
-    padding: 6px 40px;
+  .right_column {
+    padding-left: $padding * 2 - 10px;
+    padding-right: $padding - 10px;
+    float: left;
+    width: $box-inner-width * (1.0 - $left-column-rate);
+
+    .colored_box {
+      padding: 14px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      background-color: $background;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    p:last-child {
+      margin: 0;
+    }
   }
 }
