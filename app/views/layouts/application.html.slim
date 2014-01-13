@@ -3,8 +3,8 @@ html
   head
     title Beatech
     = csrf_meta_tags
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
     = content_for :css
     = content_for :js
 
@@ -14,38 +14,38 @@ html
         .container
           .pull-left
             h1
-              = link_to 'Beatech', root_url
+              = link_to "Beatech", root_url
           - if @login_user.present?
             ul.nav_right
               li.login_menu
-                = image_tag @login_user.normal_icon_url, class: 'user_icon'
+                = image_tag @login_user.normal_icon_url, class: "user_icon"
                 span.caret
-                = render 'layouts/login_menu'
+                = render "layouts/login_menu"
           - else
             .pull-right
               .btn.btn-info
-                = link_to '入部する', registration_users_path
+                = link_to "入部する", registration_users_path
               .login
-                = link_to '#', class: 'login_link' do
+                = link_to "#", class: "login_link" do
                   | ログイン
                   span.caret
-                = render 'layouts/login_panel'
+                = render "layouts/login_panel"
 
       .menu_bar
         .container
           ul
             li.active
-              = link_to 'ホーム', root_url
+              = link_to "ホーム", root_url
             li
-              = link_to '部員リスト', users_path
+              = link_to "部員リスト", users_path
             li
-              = link_to 'ページを作成', '#'
+              = link_to "ページを作成", "#"
             li
-              = link_to 'ブログを書く', '#'
+              = link_to "ブログを書く", "#"
             li
-              = link_to '大会を開催する', '#'
+              = link_to "大会を開催する", "#"
             li
-              = link_to 'お気に入り', '#'
+              = link_to "お気に入り", "#"
 
     .container
       - if flash[:notice]

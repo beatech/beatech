@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
   def edit
     unless AVAILABLE_SETTING_ITEMS.include?(params[:item])
-      raise ActionController::RoutingError.new('Not Found')
+      raise ActionController::RoutingError.new("Not Found")
     end
   end
 

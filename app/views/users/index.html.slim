@@ -1,5 +1,5 @@
 - content_for :js do
-  = javascript_include_tag 'users/index'
+  = javascript_include_tag "users/index"
 
 - default_active_grade = 4
 - bio_max_length = 50
@@ -14,15 +14,15 @@
         |名
   ul.grade_tabs.clearfix
     - [4, 3, 2, 1, 5].each do |grade|
-      li class=('active' if grade == default_active_grade) data={ grade: grade }
-        = link_to '#', class: 'grade_tab_link' do
+      li class=("active" if grade == default_active_grade) data={ grade: grade }
+        = link_to "#", class: "grade_tab_link" do
           = label_for_grade(grade)
           span.badge
             = @user_count_by_grade[grade]
 
   .grade_contents
     - (1..5).each do |grade|
-      ul.grade_content.clearfix class=('active' if grade == default_active_grade) data={ grade: grade }
+      ul.grade_content.clearfix class=("active" if grade == default_active_grade) data={ grade: grade }
         - if @users_by_grade[grade].present?
           - @users_by_grade[grade].each do |user|
             li.user.clearfix
@@ -34,6 +34,6 @@
                   = link_to user.name, user_path(user)
                 .bio
                   - if user.bio.length > bio_max_length
-                    = user.bio.slice(0, bio_max_length) + '…'
+                    = user.bio.slice(0, bio_max_length) + "…"
                   - else
                     = user.bio

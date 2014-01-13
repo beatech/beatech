@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   end
 
   def big_icon_url
-    normal_icon_url.gsub(/normal(.*)$/, 'bigger\1')
+    normal_icon_url.gsub(/normal(.*)$/, "bigger\1")
   end
 
   def normal_icon_url

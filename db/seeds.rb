@@ -1,12 +1,12 @@
-require 'open-uri'
+require "open-uri"
 
 # delete nonexistent url
 def check_icon_url(icon_url)
-  return '' unless icon_url.present?
+  return "" unless icon_url.present?
   begin
     open(icon_url)
   rescue OpenURI::HTTPError
-    icon_url = ''
+    icon_url = ""
   end
   icon_url
 end
@@ -19,7 +19,7 @@ Beatech::API::User.all.each do |user|
 
   user = User.create!(
     # to pass has_secure_password
-    user.merge(password: 'password', password_confirmation: 'password')
+    user.merge(password: "password", password_confirmation: "password")
   )
 
   # force update password_digest
