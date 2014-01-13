@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :name, presence: true
   validates :year, presence: true
   validates :repeated_year, presence: true
+  validates :grade, presence: true
   before_save :set_grade
 
   DEFAULT_PROFILE_IMAGE_COUNT = 7
@@ -14,12 +15,12 @@ class User < ActiveRecord::Base
     if (1..3).include?(Date.today.month)
       Date.today.year - grade - repeated_year
     else
-      Date.today.year - grade - repeated_year - 1
+      Date.today.year - grade - repeated_year + 1
     end
   end
 
   def self.grade_by_year(year, repeated_year = 0)
-    Date.today.year - self.year_by_grade(0)
+    self.year_by_grade(0, repeated_year) - year
   end
 
   def self.authenticate(username, password)
@@ -60,12 +61,7 @@ class User < ActiveRecord::Base
   end
 
   def set_grade
-    self.repeated_year = 0
-    self.grade =
-      if (1..3).include?(Date.today.month)
-        Date.today.year - self.year
-      else
-        Date.today.year - self.year + 1
-      end
+    self.repeated_year ||= 0
+    self.grade = User.grade_by_year(self.year, self.repeated_year)
   end
 end

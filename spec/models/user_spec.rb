@@ -2,10 +2,120 @@ require "spec_helper"
 
 describe User do
   describe ".year_by_grade" do
-    context "" do
+    context "given no repeated_year" do
+      context "when it is in January, February or March" do
+        before { Timecop.freeze(Time.local(2014, 1, 1)) }
+
+        specify do
+          expect(User.year_by_grade(0)).to eq(2014)
+          expect(User.year_by_grade(1)).to eq(2013)
+          expect(User.year_by_grade(2)).to eq(2012)
+          expect(User.year_by_grade(3)).to eq(2011)
+          expect(User.year_by_grade(4)).to eq(2010)
+        end
+      end
+
+      context "otherwise" do
+        before { Timecop.freeze(Time.local(2014, 4, 1)) }
+
+        specify do
+          expect(User.year_by_grade(1)).to eq(2014)
+          expect(User.year_by_grade(2)).to eq(2013)
+          expect(User.year_by_grade(3)).to eq(2012)
+          expect(User.year_by_grade(4)).to eq(2011)
+        end
+      end
     end
 
-    context "" do
+    context "given repeated_year" do
+      context "when it is in January, February or March" do
+        before { Timecop.freeze(Time.local(2014, 1, 1)) }
+
+        specify do
+          expect(User.year_by_grade(1, 1)).to eq(2012)
+          expect(User.year_by_grade(2, 1)).to eq(2011)
+          expect(User.year_by_grade(3, 1)).to eq(2010)
+          expect(User.year_by_grade(4, 1)).to eq(2009)
+          expect(User.year_by_grade(1, 2)).to eq(2011)
+          expect(User.year_by_grade(2, 2)).to eq(2010)
+          expect(User.year_by_grade(3, 2)).to eq(2009)
+          expect(User.year_by_grade(4, 2)).to eq(2008)
+        end
+      end
+
+      context "otherwise" do
+        before { Timecop.freeze(Time.local(2014, 4, 1)) }
+
+        specify do
+          expect(User.year_by_grade(1, 1)).to eq(2013)
+          expect(User.year_by_grade(2, 1)).to eq(2012)
+          expect(User.year_by_grade(3, 1)).to eq(2011)
+          expect(User.year_by_grade(4, 1)).to eq(2010)
+          expect(User.year_by_grade(1, 2)).to eq(2012)
+          expect(User.year_by_grade(2, 2)).to eq(2011)
+          expect(User.year_by_grade(3, 2)).to eq(2010)
+          expect(User.year_by_grade(4, 2)).to eq(2009)
+        end
+      end
+    end
+  end
+
+  describe ".grade_by_year" do
+    context "given no repeated_year" do
+      context "when it is in January, February or March" do
+        before { Timecop.freeze(Time.local(2014, 1, 1)) }
+
+        specify do
+          expect(User.grade_by_year(2014)).to eq(0)
+          expect(User.grade_by_year(2013)).to eq(1)
+          expect(User.grade_by_year(2012)).to eq(2)
+          expect(User.grade_by_year(2011)).to eq(3)
+          expect(User.grade_by_year(2010)).to eq(4)
+        end
+      end
+
+      context "otherwise" do
+        before { Timecop.freeze(Time.local(2014, 4, 1)) }
+
+        specify do
+          expect(User.grade_by_year(2014)).to eq(1)
+          expect(User.grade_by_year(2013)).to eq(2)
+          expect(User.grade_by_year(2012)).to eq(3)
+          expect(User.grade_by_year(2011)).to eq(4)
+        end
+      end
+    end
+
+    context "given repeated_year" do
+      context "when it is in January, February or March" do
+        before { Timecop.freeze(Time.local(2014, 1, 1)) }
+
+        specify do
+          expect(User.grade_by_year(2012, 1)).to eq(1)
+          expect(User.grade_by_year(2011, 1)).to eq(2)
+          expect(User.grade_by_year(2010, 1)).to eq(3)
+          expect(User.grade_by_year(2009, 1)).to eq(4)
+          expect(User.grade_by_year(2011, 2)).to eq(1)
+          expect(User.grade_by_year(2010, 2)).to eq(2)
+          expect(User.grade_by_year(2009, 2)).to eq(3)
+          expect(User.grade_by_year(2008, 2)).to eq(4)
+        end
+      end
+
+      context "otherwise" do
+        before { Timecop.freeze(Time.local(2014, 4, 1)) }
+
+        specify do
+          expect(User.grade_by_year(2013, 1)).to eq(1)
+          expect(User.grade_by_year(2012, 1)).to eq(2)
+          expect(User.grade_by_year(2011, 1)).to eq(3)
+          expect(User.grade_by_year(2010, 1)).to eq(4)
+          expect(User.grade_by_year(2012, 2)).to eq(1)
+          expect(User.grade_by_year(2011, 2)).to eq(2)
+          expect(User.grade_by_year(2010, 2)).to eq(3)
+          expect(User.grade_by_year(2009, 2)).to eq(4)
+        end
+      end
     end
   end
 

@@ -21,4 +21,5 @@ group :development, :test do
   gem "rspec-rails", "~> 2.14.1"
   gem "pry-rails"
   gem "machinist", "~> 2.0"
+  gem "timecop", "~> 0.7.1"
 end

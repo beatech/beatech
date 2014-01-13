@@ -126,6 +126,7 @@ header .menu_bar {
   width: 100%;
   top: 79px;
   left: 0;
+  z-index: 1000;
 
   .notice {
     @include box-shadow(0, 0, 8px, rgba(0, 0, 0, 0.3));
