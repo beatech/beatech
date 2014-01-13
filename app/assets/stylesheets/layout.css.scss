@@ -1,0 +1,170 @@
+@import "layout/login_panel";
+@import "layout/login_menu";
+@import "beatech_settings";
+
+body {
+  background-color: $background;
+}
+
+header .title_bar {
+  background-color: $header;
+  color: white;
+
+  h1 {
+    margin: 6px 0;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-size: 24px;
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+  }
+
+  ul.nav_right {
+    @include clearfix;
+    height: 38px;
+    margin: 0;
+
+    li {
+      padding: 6px 10px;
+      height: 38px;
+      float: right;
+      list-style-type: none;
+    }
+
+    li:hover {
+      background-color: $lighter-header;
+    }
+
+    li.login_menu {
+      cursor: pointer;
+      position: relative;
+
+      &.active {
+        background-color: $lighter-header;
+      }
+
+      .user_icon {
+        width: 24px;
+        height: 24px;
+        border-radius: 3px;
+        border: 1px solid $lighter-header;
+      }
+
+      .caret {
+        margin-left: 4px;
+        color: $darker-background;
+      }
+    }
+  }
+
+  .pull-right {
+    height: 38px;
+  }
+
+  .pull-right .btn {
+    padding: 5px 14px 4px 14px;
+    margin: 4px 0 6px 0;
+
+    a {
+      color: white;
+    }
+  }
+
+  .login {
+    vertical-align: middle;
+    display: inline-block;
+    position: relative;
+
+    a {
+      margin: 0 14px;
+      color: white;
+    }
+
+    .login_link {
+      padding: 8px 4px;
+    }
+  }
+}
+
+header .menu_bar {
+  background-color: white;
+  border-bottom: 1px solid $border;
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    float: left;
+    list-style-type: none;
+
+    a {
+      padding: 5px 8px 3px 8px;
+      display: block;
+
+      &:hover,
+      &:focus {
+        text-decoration: none;
+      }
+    }
+
+    &:hover {
+      background-color: $lighter-background;
+      border-bottom: 2px solid $lighter-background;
+    }
+
+    &.active {
+      border-bottom: 2px solid $border;
+    }
+  }
+}
+
+.notice_wrapper {
+  position: absolute;
+  width: 100%;
+  top: 79px;
+  left: 0;
+  z-index: 1000;
+
+  .notice {
+    @include box-shadow(0, 0, 8px, rgba(0, 0, 0, 0.3));
+    border-radius: 4px;
+    padding: 8px;
+    text-align: center;
+    width: $width * 0.6;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+  }
+}
+
+.footer {
+  margin-top: 10px;
+  border-top: 1px solid $border;
+  color: $dark-blue;
+  text-align: center;
+  padding: 10px 0;
+}
+
+.box {
+  width: 100%;
+  border: 1px solid $border;
+  border-radius: 4px;
+  margin-top: 10px;
+  background-color: white;
+
+  h1.title {
+    border-radius: 4px 4px 0 0;
+    background-color: $lighter-background;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 6px 10px;
+  }
+
+  .content {
+    padding: 5px 10px;
+  }
+}

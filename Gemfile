@@ -1,36 +1,25 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'rails', '4.0.1'
-gem 'mysql2'
-gem 'sqlite3'
+gem "rails", "4.0.2"
+gem "mysql2"
 
-gem 'haml-rails'
-gem 'sass-rails', '~> 4.0.1'
-gem 'bootstrap-sass', '~> 2.3.2'
+gem "slim-rails", "~> 2.0.4"
+gem "sass-rails", "~> 4.0.0"
+gem "bootstrap-sass", "~> 3.0.3.0"
+gem "uglifier", ">= 1.3.0"
+gem "coffee-rails", "~> 4.0.0"
+gem "jquery-rails"
+gem "jbuilder", "~> 1.2"
 
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.1'
-gem 'therubyracer', platforms: :ruby
-gem 'jquery-rails'
-gem 'jbuilder', '~> 1.2'
-
-gem 'unicorn'
+gem "bcrypt-ruby", "~> 3.1.2"
+gem "omniauth-twitter", "~> 1.0.1"
+gem "dotenv-rails", "~> 0.9.0"
 
 group :development, :test do
-  gem 'rspec-rails'
-  gem 'shoulda-matchers'
-  gem 'capybara'
-  gem 'webrat'
-  gem 'spring'
+  gem "sqlite3"
+  gem "beatech-api", "~> 0.0.3", github: "tkkbn/beatech-api"
+  gem "rspec-rails", "~> 2.14.1"
+  gem "pry-rails"
+  gem "machinist", "~> 2.0"
+  gem "timecop", "~> 0.7.1"
 end
-
-gem 'twitter', '~> 5.1.1'
-gem 'omniauth'
-gem 'omniauth-twitter'
-
-gem 'bcrypt-ruby', '~> 3.1.2'
-gem 'kaminari'
-gem 'bootstrap-kaminari-views'
-gem 'redcarpet'
-gem 'google-analytics-rails'
-gem 'rack-runtime_growth_forecast', '~> 0.0.2'

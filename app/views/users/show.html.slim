@@ -1,0 +1,25 @@
+- content_for :css do
+  = stylesheet_link_tag "users/show"
+
+#user
+  .column.left
+    #main_profile.box
+      .upper_box
+        .icon
+          = image_tag @user.big_icon_url
+        .short_profile
+          p= @user.name
+          p= label_for_grade(@user.grade)
+      .profile
+        .profile_label 自己紹介
+        .profile_content
+          = @user.profile
+
+    .inner_column
+      .column.left
+        #blogs.box ブログ一覧
+      .column.right
+        #contest_results.box 大会成績　
+
+  .column.right
+    #achievements.box 成果一覧

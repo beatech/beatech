@@ -1,0 +1,51 @@
+@import "beatech_settings";
+
+#user {
+  @include clearfix;
+
+  .column {
+    float: left;
+
+    &.left {
+      width: $span2;
+      margin-right: $margin;
+    }
+
+    &.right {
+      width: $span1;
+    }
+  }
+
+  .inner_column .column {
+    &.left {
+      width: $span1;
+      margin-right: $margin;
+    }
+
+    &.right {
+      width: $span1;
+    }
+  }
+}
+
+#main_profile {
+  .upper_box {
+    @include clearfix;
+    padding: 10px;
+
+    .icon {
+      float: left;
+      margin-right: 10px;
+    }
+
+    .short_profile {
+      float: left;
+    }
+  }
+
+  .profile {
+    border-radius: 0 0 3px 3px;
+    background-color: $lighter-background;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,5 @@
+ul.login_menu_dropdown
+  li= link_to "マイページ", user_path(@login_user)
+  li= link_to "プロフィール設定", setting_user_path(item: :profile)
+  li= link_to "パスワード設定", setting_user_path(item: :password)
+  li= link_to "ログアウト", session_path, method: :delete

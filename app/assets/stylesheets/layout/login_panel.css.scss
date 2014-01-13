@@ -1,0 +1,77 @@
+@import "beatech_settings";
+
+$form-width: 200px;
+$triangle-size: 8px;
+$triangle-position: 34px;
+
+.login_panel {
+  @include box-shadow(0, 0, 12px, rgba(0, 0, 0, 0.1));
+  padding: 14px;
+  border: 1px solid $extra-light-gray;
+  border-radius: 3px;
+  display: none;
+  background-color: white;
+  color: black;
+  position: absolute;
+  top: 29px;
+  right: 0;
+  z-index: 100;
+
+  &:before {
+    @include triangle("up", $extra-light-gray, $triangle-size + 1px);
+    position: absolute;
+    top: -1 * ($triangle-size + 1px);
+    right: $triangle-position;
+  }
+
+  &:after {
+    @include triangle("up", white, $triangle-size);
+    position: absolute;
+    top: -1 * $triangle-size;
+    right: $triangle-position + 1px;
+  }
+
+  .beatech_login {
+    label {
+      font-size: 13px;
+      margin-bottom: 10px;
+      font-weight: normal;
+
+      &.bold {
+        font-weight: bold;
+      }
+    }
+
+    .form-control {
+      margin: 2px 0 4px 0;
+      width: $form-width;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 6px;
+    }
+
+    input[type="submit"] {
+      margin: 4px 0 10px 0;
+    }
+  }
+
+  .divider {
+    position: relative;
+    border-top: 1px dotted $extra-light-gray;
+    margin: 16px 0;
+
+    .message {
+      padding: 0 4px;
+      background-color: white;
+      position: absolute;
+      top: -10px;
+      right: ($form-width / 2) - 26px;
+    }
+  }
+
+  .twitter_login .btn {
+    margin: 0;
+    width: $form-width;
+  }
+}

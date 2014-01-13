@@ -1,0 +1,53 @@
+a {
+  color: $link;
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: $dark-blue;
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+  }
+}
+
+.container {
+  width: $width;
+}
+
+.btn {
+  border: none;
+  border-radius: 2px;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    border: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.btn-info {
+  background-color: #8fbadf;
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: white;
+    background-color: #8ab0d3;
+    border: none;
+  }
+}
+
+.form-control {
+  padding: 8px;
+}

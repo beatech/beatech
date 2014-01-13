@@ -1,0 +1,36 @@
+@import "beatech_settings";
+
+#higher_row {
+  .column {
+    float: left;
+
+    &.left {
+      width: $span2;
+      margin-right: $margin;
+    }
+
+    &.right {
+      width: $span1;
+    }
+  }
+}
+
+#lower_row {
+  .column {
+    float: left;
+
+    &.left {
+      width: $span1;
+      margin-right: $margin;
+    }
+
+    &.middle {
+      width: $span1;
+      margin-right: $margin;
+    }
+
+    &.right {
+      width: $span1;
+    }
+  }
+}

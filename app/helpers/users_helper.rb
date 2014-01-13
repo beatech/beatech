@@ -1,38 +1,24 @@
-# coding: utf-8
 module UsersHelper
-  DEFAULT_ICON = 'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png'
-
-  def grade_with(year, repeated_year)
-    this_year = Time.now.year
-    this_year -= 1 if Time.now.month < 4
-    (this_year + 1) - (year.to_i + repeated_year.to_i)
-  end
-
-  def grade_label(grade)
+  def label_for_grade(grade)
     case grade
-    when 0 then '新入生'
-    when 5 then 'OB'
+    when 5 then "OB"
+    when 0 then "新入生"
     else "#{grade}年生"
     end
   end
 
-  def big_profile_image(user)
-    if user.profile_image
-      if user.profile_image =~ /.*normal.*/
-        user.profile_image.gsub(/normal/, 'bigger')
-      else
-        user.profile_image
-      end
-    else
-      DEFAULT_ICON
+  def grade_choices
+    acceptable_grades.map do |grade|
+      entrance_year = User.year_by_grade(grade)
+      ["#{label_for_grade(grade)} (#{entrance_year}年入学)", entrance_year]
     end
   end
 
-  def screen_name_link(screen_name)
-    link_to "@#{screen_name}", "https://twitter.com/#{screen_name}"
-  end
-
-  def welcome_term?
-    Time.now.month == 2 || Time.now.month == 3
+  def acceptable_grades
+    if (1..3).include?(Date.today.month)
+      (0..4)
+    else
+      (1..4)
+    end
   end
 end

@@ -1,49 +1,46 @@
 class User < ActiveRecord::Base
   has_secure_password
 
-  has_many :achievements
-  has_many :twitter_accounts
-
   validates :username, presence: true
   validates :password_digest, presence: true
   validates :name, presence: true
   validates :year, presence: true
   validates :repeated_year, presence: true
-
+  validates :grade, presence: true
   before_save :set_grade
 
+  DEFAULT_PROFILE_IMAGE_COUNT = 7
+
+  def self.year_by_grade(grade, repeated_year = 0)
+    if (1..3).include?(Date.today.month)
+      Date.today.year - grade - repeated_year
+    else
+      Date.today.year - grade - repeated_year + 1
+    end
+  end
+
+  def self.grade_by_year(year, repeated_year = 0)
+    self.year_by_grade(0, repeated_year) - year
+  end
+
   def self.authenticate(username, password)
-    user = find_by_username(username)
-    if user && user.password_digest.present? &&
-        BCrypt::Password.new(user.password_digest) == password
+    user = User.where(username: username).first
+    if user.present? && correct_password?(user, password)
       user
     else
       nil
     end
   end
 
-  def self.update_profile_images
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key = Beatech::CONSUMER_KEY
-      config.consumer_secret = Beatech::CONSUMER_SECRET
-      config.access_token = Beatech::ACCESS_TOKEN
-      config.access_token_secret = Beatech::ACCESS_TOKEN_SECRET
-    end
+  def big_icon_url
+    normal_icon_url.gsub(/normal(.*)$/, 'bigger\1')
+  end
 
-    User.all.each do |user|
-      twitter_account = user.twitter_accounts.first
-      if twitter_account.present?
-        print "#{user.name}: "
-        begin
-          profile_image_url = client.user(twitter_account.uid).profile_image_url
-          user.profile_image = profile_image_url.to_s if profile_image_url.present?
-          user.save
-          puts 'success'
-        rescue
-          puts 'something wrong happend.'
-        end
-        sleep(3)
-      end
+  def normal_icon_url
+    if self.icon_url.present?
+      self.icon_url
+    else
+      normal_default_icon_url
     end
   end
 
@@ -51,12 +48,20 @@ class User < ActiveRecord::Base
     username
   end
 
+  private
+
+  def self.correct_password?(user, password)
+    BCrypt::Password.new(user.password_digest) == password
+  end
+
+  def normal_default_icon_url
+    random_number = self.id % DEFAULT_PROFILE_IMAGE_COUNT
+    "https://si0.twimg.com/sticky/default_profile_images/"\
+      "default_profile_#{random_number}_normal.png"
+  end
+
   def set_grade
-    self.grade =
-      if (1..3).include?(Date.today.month)
-        Date.today.year - self.year
-      else
-        Date.today.year - self.year + 1
-      end
+    self.repeated_year ||= 0
+    self.grade = User.grade_by_year(self.year, self.repeated_year)
   end
 end
