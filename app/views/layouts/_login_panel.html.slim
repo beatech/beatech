@@ -1,7 +1,7 @@
 .login_panel
   = form_tag session_path, class: 'beatech_login' do
     = label_tag :username, class: 'bold' do
-      | ユーザー名
+      | Beatech ID
       = text_field_tag :username, '', class: 'form-control'
 
     = label_tag :password, class: 'bold' do

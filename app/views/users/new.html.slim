@@ -1,2 +1,35 @@
-.box
-  |入部する
+- content_for :css do
+  = stylesheet_link_tag 'users/new'
+
+#user_registration
+  .progress_indicator.box
+    | Step 1 プロフィール入力
+
+  .registration_form.box.clearfix
+    .left_column
+      h1 入部する
+      = form_for @user do |f|
+        .clearfix
+          dl
+            dt Beatech ID
+            dd
+              - placeholder = "Beatech_#{Date.today.year}"
+              = f.text_field :username, placeholder: placeholder, autofocus: true, class: 'form-control'
+              .description URLやログインに使用します
+
+            dt ニックネーム
+            dd= f.text_field :username, placeholder: 'ビーテック', class: 'form-control'
+
+            dt パスワード
+            dd= f.password_field :username, class: 'form-control'
+
+            dt パスワード(再入力)
+            dd= f.password_field :username, class: 'form-control'
+
+            dt 学年
+            dd= f.text_field :username, class: 'form-control'
+
+        = submit_tag '入部する', class: 'btn btn-primary'
+
+    .right_column
+      |入部する

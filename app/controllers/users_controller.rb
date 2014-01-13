@@ -21,17 +21,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_to root_url unless @login_user
     unless AVAILABLE_SETTING_ITEMS.include?(params[:item])
       raise ActionController::RoutingError.new('Not Found')
     end
   end
 
   def update
-    redirect_to root_url unless @login_user
   end
 
   def destroy
-    redirect_to root_url unless @login_user
   end
 end

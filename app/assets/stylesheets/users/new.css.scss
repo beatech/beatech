@@ -1,0 +1,61 @@
+@import "beatech_settings";
+
+$box-width: 938px;
+$padding: 20px;
+$box-inner-width: $box-width - (2 * $padding);
+$left-column-rate: 0.6;
+
+#user_registration .progress_indicator {
+  padding: 10px;
+}
+
+#user_registration .registration_form {
+  padding: $padding;
+
+  .left_column {
+    padding: 0 $padding;
+    border-right: 1px solid $border;
+    float: left;
+    width: $box-inner-width * $left-column-rate;
+  }
+
+  .right_column {
+    padding: 0 $padding;
+    float: left;
+    width: $box-inner-width * (1.0 - $left-column-rate);
+  }
+
+  .form-control {
+    width: 300px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  dt {
+    margin: 10px;
+    padding: 8px;
+    clear: both;
+    width: 140px;
+    float: left;
+    text-align: right;
+    vertical-align: sub;
+  }
+
+  dd {
+    margin: 10px;
+    float: left;
+
+    .description {
+      color: $light-gray;
+    }
+  }
+
+  input[type="submit"] {
+    margin: 15px 0 0 170px;
+    padding: 6px 40px;
+  }
+}
