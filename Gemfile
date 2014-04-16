@@ -17,7 +17,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
 
 group :development, :test do
-  gem 'rspec-rails'
+  gem 'rspec-rails', '~> 2.14.2'
   gem 'shoulda-matchers'
   gem 'capybara'
   gem 'webrat'
