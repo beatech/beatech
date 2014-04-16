@@ -23,34 +23,4 @@ describe EntriesController do
       response.should be_success
     end
   end
-
-  describe '#destroy' do
-    let!(:entry) { Entry.make! }
-
-    context 'when login user is admin' do
-      before do
-        controller.stub(:is_admin?).and_return(true)
-      end
-
-      it 'succeeds to destroy the entry' do
-        expect {
-          delete :destroy, id: entry.id
-        }.to change {
-          Entry.count
-        }.by(-1)
-      end
-    end
-
-    context 'when login user is not admin' do
-      before do
-        controller.stub(:is_admin?).and_return(false)
-      end
-
-      it 'fails to destroy the entry' do
-        expect {
-          delete :destroy, id: entry.id
-        }.to raise_error
-      end
-    end
-  end
 end

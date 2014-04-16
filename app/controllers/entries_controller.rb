@@ -1,7 +1,5 @@
 # coding: utf-8
 class EntriesController < ApplicationController
-  before_action :admin_required, only: [:destroy]
-
   def title
     if @entry && @entry.title
       case @entry.url
@@ -58,9 +56,11 @@ class EntriesController < ApplicationController
   end
 
   def destroy
-    @entry = Entry.find(params[:id])
+    admin_required
+
+    @entry = Entry.find_by_url(params[:id])
     @entry.destroy
-    redirect_to entries_path, notice: 'ページを削除しました。'
+    redirect_to entries_path
   end
 
   def frontpage
