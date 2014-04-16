@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  ADMIN_USERNAMES = %w|ikstrm popkirby|
+  ADMIN_USERNAMES = %w|ikstrm popkirby norimiso|
 
   has_secure_password
 
