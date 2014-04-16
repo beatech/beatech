@@ -23,6 +23,7 @@ group :development, :test do
   gem 'webrat'
   gem 'spring'
   gem 'machinist', '~> 2.0'
+  gem 'pry-rails', '~> 0.3.2'
 end
 
 gem 'twitter', '~> 5.1.1'
