@@ -22,6 +22,7 @@ group :development, :test do
   gem 'capybara'
   gem 'webrat'
   gem 'spring'
+  gem 'machinist', '~> 2.0'
 end
 
 gem 'twitter', '~> 5.1.1'

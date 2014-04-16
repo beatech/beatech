@@ -84,6 +84,7 @@ GEM
       activesupport (>= 3.0.0)
     kgio (2.8.1)
     libv8 (3.16.14.3)
+    machinist (2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -212,6 +213,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   kaminari
+  machinist (~> 2.0)
   mysql2
   omniauth
   omniauth-twitter
