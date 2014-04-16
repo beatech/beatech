@@ -21,8 +21,8 @@ Beatech::Application.routes.draw do
   post '/contest3rd/tunesupdate' => 'contest3rds#tunesupdate'
   post '/contest3rd/scoreupdate' => 'contest3rds#scoreupdate'
 
-  resources :entries, only: [:index, :new, :create]
-  resources :entries, constraints: { id: /.+/ }, except: [:index, :new, :create], path: '/'
+  resources :entries, only: [:index, :new, :create, :destroy]
+  resources :entries, constraints: { id: /.+/ }, only: [:show, :edit, :update], path: '/'
 
   root to: 'entries#frontpage'
 end
