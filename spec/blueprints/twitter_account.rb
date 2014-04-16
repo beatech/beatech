@@ -1,5 +1,5 @@
 TwitterAccount.blueprint do
   uid { 1 }
-  string { 'ikstrm' }
+  screen_name { 'ikstrm' }
   user { User.make! }
 end

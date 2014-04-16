@@ -234,7 +234,7 @@ DEPENDENCIES
   rack-runtime_growth_forecast (~> 0.0.2)
   rails (= 4.0.1)
   redcarpet
-  rspec-rails
+  rspec-rails (~> 2.14.2)
   sass-rails (~> 4.0.1)
   shoulda-matchers
   spring

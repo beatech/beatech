@@ -8,7 +8,7 @@ Beatech::Application.routes.draw do
   end
   get '/auth/twitter/callback' => 'sessions#twitter_create'
 
-  resources :twitter_accounts, only: [:index]
+  resources :twitter_accounts, only: [:index, :destroy]
 
   resources :achievements, except: [:new, :show]
 
