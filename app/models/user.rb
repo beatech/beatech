@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  ADMIN_USERNAMES = %w|ikstrm popkirby|
+
   has_secure_password
 
   has_many :achievements
@@ -45,6 +47,10 @@ class User < ActiveRecord::Base
         sleep(3)
       end
     end
+  end
+
+  def is_admin?
+    ADMIN_USERNAMES.any? { |admin_username| self.username == admin_username }
   end
 
   def to_param
