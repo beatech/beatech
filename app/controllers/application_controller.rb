@@ -13,9 +13,7 @@ class ApplicationController < ActionController::Base
   helper_method :admin_required
 
   def is_admin?
-    return false unless @current_user
-    admins = %w|ikstrm popkirby|
-    admins.include?(@current_user.username)
+    @current_user.try(:is_admin?)
   end
   helper_method :is_admin?
 
