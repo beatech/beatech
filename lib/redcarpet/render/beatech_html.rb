@@ -2,7 +2,7 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
   include BeatechMarkdownHelper
   include ActionView::Helpers::TagHelper
 
-  def header(text, level)
+  def header(text, level, option = nil)
     level += 1
     "<h#{level}>#{text}</h#{level}>"
   end
