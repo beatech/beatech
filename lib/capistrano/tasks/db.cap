@@ -1,0 +1,36 @@
+namespace :db do
+  desc "Import remote data to local development db"
+  task :pull do
+    on roles(:db) do
+      puts "Exporting data from #{fetch(:stage)}"
+      ask(:mysql_user, "root")
+      ask(:mysql_password, "")
+
+      puts "Dumping mysql data..."
+      filename = "/tmp/dump#{Time.now.to_i}.sql"
+      execute [
+        "mysqldump",
+        "-u#{fetch(:mysql_user)}",
+        ("-p'#{fetch(:mysql_password)}'" if fetch(:mysql_password).length > 0),
+        "beatech_#{fetch(:stage)}",
+        "> '#{filename}'",
+      ].compact.join(" ")
+
+      download! filename, "db/dump.sql"
+      execute "rm #{filename}"
+
+      puts "Resetting local DB..."
+      `RAILS_ENV=development bundle exec rake db:drop`
+      `RAILS_ENV=development bundle exec rake db:create`
+      `RAILS_ENV=development bundle exec rake db:migrate`
+
+      puts "Importing data to local DB from dump file..."
+      `cat db/dump.sql | mysql -uroot beatech_development`
+
+      puts "Removing downloaded dump file..."
+      `rm db/dump.sql`
+
+      puts "Done!"
+    end
+  end
+end
