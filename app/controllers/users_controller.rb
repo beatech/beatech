@@ -4,12 +4,12 @@ class UsersController < ApplicationController
   before_filter :admin_required, only: :destroy
 
   def title
-    '部員紹介'
+    "部員紹介"
   end
 
   def index
     @users_grade = Array.new
-    all_users = User.order('updated_at DESC')
+    all_users = User.order("updated_at DESC")
     (0..4).each do |grade|
       @users_grade[grade] = all_users.select { |user| user.grade == grade }
     end
@@ -31,16 +31,16 @@ class UsersController < ApplicationController
     @user = User.new
     @user.year = Time.now.year
     @user.repeated_year = 0
-    @title = '入部申請'
+    @title = "入部申請"
   end
 
   def create
     @user = User.new(create_user_params)
     @user.save
     if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
+      redirect_to @user, notice: "User was successfully created."
     else
-      render action: 'new'
+      render action: "new"
     end
   end
 
@@ -55,30 +55,30 @@ class UsersController < ApplicationController
 
   def update
     case params[:item]
-    when 'profile'
+    when "profile"
       @user = User.find(params[:user][:id])
       raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
       @user.update_attributes(user_params)
       if @user.save
-        redirect_to @user, notice: 'プロフィールの更新に成功しました。'
+        redirect_to @user, notice: "プロフィールの更新に成功しました。"
       else
-        render action: 'edit'
+        render action: "edit"
       end
-    when 'username'
+    when "username"
       @current_user.username = params[:user][:username]
       if @current_user.save
         session[:username] = params[:user][:username]
-        redirect_to @current_user, notice: 'ユーザー名の更新に成功しました。'
+        redirect_to @current_user, notice: "ユーザー名の更新に成功しました。"
       else
-        render action: 'edit'
+        render action: "edit"
       end
-    when 'password'
+    when "password"
       @current_user.password = params[:user][:password]
       @current_user.password_confirmation = params[:user][:password_confirmation]
       if @current_user.save
-        redirect_to @current_user, notice: 'パスワードの更新に成功しました。'
+        redirect_to @current_user, notice: "パスワードの更新に成功しました。"
       else
-        render action: 'edit'
+        render action: "edit"
       end
     else
       raise Exception
@@ -86,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find_by_username(params['id']).destroy
+    User.find_by_username(params["id"]).destroy
     redirect_to users_url
   end
 

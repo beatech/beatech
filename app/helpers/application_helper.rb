@@ -2,8 +2,8 @@
 module ApplicationHelper
   def link_to_entry(entry)
     label =
-      if entry.url == 'frontpage'
-        'トップページ'
+      if entry.url == "frontpage"
+        "トップページ"
       else
         entry.title
       end
@@ -16,7 +16,7 @@ module ApplicationHelper
   end
 
   def entry_link(title, url)
-    title = 'トップページ' if url == 'frontpage'
+    title = "トップページ" if url == "frontpage"
     if /^http:\/\// =~ url
       link_to(title, url)
     else
@@ -27,7 +27,7 @@ module ApplicationHelper
   def tabs(text)
     if text
       if text =~/&tab\(.+\)/
-        $&.gsub(/^&tab\(/, '').gsub(/\)/, '').strip.split(',')
+        $&.gsub(/^&tab\(/, "").gsub(/\)/, "").strip.split(",")
       else
         nil
       end

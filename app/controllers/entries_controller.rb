@@ -3,17 +3,17 @@ class EntriesController < ApplicationController
   def title
     if @entry && @entry.title
       case @entry.url
-      when 'frontpage' then '東工大音ゲーサークルBEATECH'
+      when "frontpage" then "東工大音ゲーサークルBEATECH"
       else "BEATECH - #{@entry.title}"
       end
     else
-      'BEATECH'
+      "BEATECH"
     end
   end
 
   def index
     @entries = Entry.all
-    @title = 'ページ一覧'
+    @title = "ページ一覧"
 
     respond_to do |format|
       format.html
@@ -27,7 +27,7 @@ class EntriesController < ApplicationController
 
   def new
     @entry = Entry.new
-    @title = 'ページの新規作成'
+    @title = "ページの新規作成"
   end
 
   def edit
@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
     @entry.entry_type = 0
 
     if @entry.save
-      redirect_to edit_entry_path(@entry.url), notice: 'ページの作成に成功しました。'
+      redirect_to edit_entry_path(@entry.url), notice: "ページの作成に成功しました。"
     else
       redirect_to new_entry_path
     end
@@ -49,7 +49,7 @@ class EntriesController < ApplicationController
     @entry = Entry.find(params[:id])
 
     if @entry.update_attributes(user_params)
-      redirect_to entry_path(@entry.url), notice: 'ページを更新しました。'
+      redirect_to entry_path(@entry.url), notice: "ページを更新しました。"
     else
       redirect_to edit_entry_path(@entry.url)
     end
@@ -64,15 +64,15 @@ class EntriesController < ApplicationController
   end
 
   def frontpage
-    @entry = Entry.find_by_url('frontpage')
+    @entry = Entry.find_by_url("frontpage")
     @entry ||= Entry.create(
-      title: '東工大音楽ゲーム愛好会BEATECH',
-      url: 'frontpage',
-      content: 'This is automatically generated frontpage.',
+      title: "東工大音楽ゲーム愛好会BEATECH",
+      url: "frontpage",
+      content: "This is automatically generated frontpage.",
       entry_type: 0,
       menu: 0,
     )
-    render action: 'show'
+    render action: "show"
   end
 
   private

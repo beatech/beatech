@@ -17,12 +17,12 @@ module AchievementsHelper
     if achievement.user && achievement.user.profile_image
       achievement.user.profile_image
     else
-      'https://si0.twimg.com/sticky/default_profile_images/default_profile_0_normal.png'
+      "https://si0.twimg.com/sticky/default_profile_images/default_profile_0_normal.png"
     end
   end
 
   def autolink(text)
-    text.gsub(/</, '&lt;').gsub(/>/, '&gt;')
+    text.gsub(/</, "&lt;").gsub(/>/, "&gt;")
       .gsub(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
   end
 end

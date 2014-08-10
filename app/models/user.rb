@@ -40,9 +40,9 @@ class User < ActiveRecord::Base
           profile_image_url = client.user(twitter_account.uid).profile_image_url
           user.profile_image = profile_image_url.to_s if profile_image_url.present?
           user.save
-          puts 'success'
+          puts "success"
         rescue
-          puts 'something wrong happend.'
+          puts "something wrong happend."
         end
         sleep(3)
       end

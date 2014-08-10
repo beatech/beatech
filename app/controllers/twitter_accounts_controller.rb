@@ -10,9 +10,9 @@ class TwitterAccountsController < ApplicationController
 
     if twitter_account.user == @current_user
       twitter_account.destroy
-      redirect_to setting_path(item: 'profile'), notice: 'Twitterアカウントの削除に成功しました。'
+      redirect_to setting_path(item: "profile"), notice: "Twitterアカウントの削除に成功しました。"
     else
-      redirect_to setting_path(item: 'profile'), notice: 'そのTwitterアカウントの削除は許可されていません。'
+      redirect_to setting_path(item: "profile"), notice: "そのTwitterアカウントの削除は許可されていません。"
     end
   end
 end

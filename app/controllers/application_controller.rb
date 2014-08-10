@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :load_entries, :authorize
 
   def title
-    'BEATECH'
+    "BEATECH"
   end
   helper_method :title
 
