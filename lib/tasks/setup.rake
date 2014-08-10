@@ -1,11 +1,10 @@
 desc 'Setup files for development'
 task 'setup' do
-  Rake::Task['setup:secret'].invoke
   Rake::Task['setup:omniauth:default'].invoke
 
   puts 'Checking for database.yml...'
-  unless File.exists?('config/database.yml')
-    puts 'database.yml did not exist. Use sqlite3 for db.'
+  if !File.exists?('config/database.yml') || ENV['USE_SQLITE3']
+    puts 'Use sqlite3 for db.'
     FileUtils.cp('config/database.yml.sqlite3', 'config/database.yml')
   end
 
