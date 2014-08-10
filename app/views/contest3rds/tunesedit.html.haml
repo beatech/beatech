@@ -5,24 +5,24 @@
   - i = 0
   - @tunes.each do |tune|
     - @tune = tune
-    - team_char = 'A'
-    - team_char = 'B' if i == 1
-    - team_char = 'C' if i == 2
+    - team_char = "A"
+    - team_char = "B" if i == 1
+    - team_char = "C" if i == 2
     %h4
       = team_char
       チーム
     .field
       曲名
       %br/
-      = text_field 'tune[]', :music
+      = text_field "tune[]", :music
     .field
       難易度
       %br/
-      = select 'tune[]', :difficulty, @difficulty
-    = hidden_field 'tune[]', :order
-    = hidden_field 'tune[]', :team
+      = select "tune[]", :difficulty, @difficulty
+    = hidden_field "tune[]", :order
+    = hidden_field "tune[]", :team
     %br/
     - i += 1
   .actions
-    = submit_tag '編集', class: 'btn'
-= link_to 'Back', root_url + 'contest3rd'
+    = submit_tag "編集", class: "btn"
+= link_to "Back", root_url + "contest3rd"

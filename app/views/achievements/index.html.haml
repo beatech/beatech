@@ -1,7 +1,7 @@
 .achievements
   - if @current_user
     %h3 報告フォーム
-    = render 'achievements/form', action: :create
+    = render "achievements/form", action: :create
 
   - else
     %h3 成果報告とは
@@ -9,5 +9,5 @@
     %p 登録しているtwitterアカウントで「#BEATECH_成果報告」のハッシュタグをつけてツイートすると、
     %p 自動的にこのページにも投稿されます。
 
-  = render 'achievement_list', achievements: @achievements
-  = paginate @achievements, window: 5, theme: 'twitter-bootstrap'
+  = render "achievement_list", achievements: @achievements
+  = paginate @achievements, window: 5, theme: "twitter-bootstrap"

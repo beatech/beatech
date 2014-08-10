@@ -16,6 +16,6 @@
                 %strong
                   = link_to achievement.user.name, user_path(achievement.user)
                 - if @current_user && achievement.user == @current_user
-                  = link_to '編集', edit_achievement_path(achievement)
-                  = link_to '削除', achievement_path(achievement), method: :delete
+                  = link_to "編集", edit_achievement_path(achievement)
+                  = link_to "削除", achievement_path(achievement), method: :delete
               = raw autolink(achievement.text)

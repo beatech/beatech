@@ -4,8 +4,8 @@ branches:
   only:
     - master
 before_script:
-  - 'RAILS_ENV=development USE_SQLITE3=1 bundle exec rake setup'
-  - 'RAILS_ENV=test bundle exec rake db:migrate'
+  - "RAILS_ENV=development USE_SQLITE3=1 bundle exec rake setup"
+  - "RAILS_ENV=test bundle exec rake db:migrate"
 script:
-  - 'RAILS_ENV=test bundle exec rake spec'
-  - 'RAILS_ENV=production bundle exec rake assets:precompile'
+  - "RAILS_ENV=test bundle exec rake spec"
+  - "RAILS_ENV=production bundle exec rake assets:precompile"

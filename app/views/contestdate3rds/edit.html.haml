@@ -5,7 +5,7 @@
   - if @contestdate3rd.errors.any?
     #error_explanation
       %h2
-        = pluralize(@contestdate3rd.errors.count, 'error')
+        = pluralize(@contestdate3rd.errors.count, "error")
         prohibited this contestdate from being saved:
       %ul
         - @contestdate3rd.errors.full_messages.each do |msg|
@@ -13,8 +13,8 @@
   %p
   .field
     %p 会場・日程
-    = f.text_field :place, class: 'span7'
+    = f.text_field :place, class: "span7"
   %br/
   .actions
-    = f.submit '編集', class: 'btn'
-= link_to 'Back', root_url + 'contest3rd'
+    = f.submit "編集", class: "btn"
+= link_to "Back", root_url + "contest3rd"
