@@ -45,6 +45,8 @@ end
     task 'default' do
       puts 'Generating omniauth configuration file...'
       puts 'Use default consumer key (BEATECH for development).'
+
+      FileUtils.rm("config/initializers/comniauth.rb")
       generate_omniauth_rb(BEATECH_CONSUMER_KEY, BEATECH_CONSUMER_SECRET)
       puts ''
     end
