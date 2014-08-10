@@ -9,7 +9,7 @@ task 'setup' do
   end
 
   puts 'Preparing database...'
-  db_tasks = %w(create migrate seed)
+  db_tasks = %w(create migrate)
   db_tasks.each do |task|
     Rake::Task["db:#{task}"].invoke
   end

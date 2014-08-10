@@ -10,7 +10,8 @@ $ cd beatech
 $ bundle install
 $ bundle exec rake setup
 ```
-DB will be set up, and the data of production server will be copied to your local DB.
+
+By `rake setup`, dummy twitter credentials are configured and DB is set up.
 
 ## Development
 You can run beatech as follows
@@ -21,7 +22,7 @@ Open `http://localhost:3000/`, then you can see beatech website.
 
 ## Run test
 ```
-$ bundle exec rake spec
+$ bundle exec rspec .
 ```
 
 ## Contributing
