@@ -18,7 +18,7 @@ describe ApplicationHelper do
   describe '#pop_latest_date_entries' do
     it 'should pop latest date entries from sorted Array of Entry' do
       @recent_entries = Entry.all
-      @recent_entries.sort! { |a, b| b.updated_at <=> a.updated_at }
+      @recent_entries.to_a.sort! { |a, b| b.updated_at <=> a.updated_at }
       latest_date = @recent_entries.first.updated_at.to_date
       latest_date_entries = Array.new
       rest_entries = Array.new
