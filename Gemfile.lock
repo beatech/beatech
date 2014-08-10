@@ -70,6 +70,11 @@ GEM
     colorize (0.7.3)
     descendants_tracker (0.0.3)
     diff-lcs (1.2.5)
+    dotenv (0.11.1)
+      dotenv-deployment (~> 0.0.2)
+    dotenv-deployment (0.0.2)
+    dotenv-rails (0.11.1)
+      dotenv (= 0.11.1)
     equalizer (0.0.9)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -251,6 +256,7 @@ DEPENDENCIES
   capistrano-rbenv
   capybara
   coffee-rails (~> 4.0.1)
+  dotenv-rails
   google-analytics-rails
   haml-rails
   jbuilder (~> 1.2)

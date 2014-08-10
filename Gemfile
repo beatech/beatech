@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 1.2'
 
 gem 'unicorn'
+gem 'dotenv-rails'
 
 group :development, :test do
   gem 'capistrano', require: false
