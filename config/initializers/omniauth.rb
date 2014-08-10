@@ -1,1 +1,1 @@
-../../../../../../shared/config/initializers/omniauth.rb
+../../../../shared/config/initializers/omniauth.rb
