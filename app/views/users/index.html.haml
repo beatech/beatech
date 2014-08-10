@@ -4,16 +4,16 @@
     - active_member_count += @users_grade[grade].count
     #{grade}年生 #{@users_grade[grade].count}名,
   計#{active_member_count}名
-  (#{ welcome_term? ? "新入生 #{@users_grade[0].count}名, " : '' }OB #{@users_grade[5].count}名)
+  (#{ welcome_term? ? "新入生 #{@users_grade[0].count}名, " : "" }OB #{@users_grade[5].count}名)
 %p 名前をクリックすると詳細が見れます。
 %ul.nav.nav-tabs
   - [4, 3, 2, 1, 0, 5].each do |grade|
     - if grade > 0 || (Time.now.month == 2 || Time.now.month == 3)
-      %li{ class: grade == 4 ? 'active' : '' }
-        = link_to grade_label(grade), "#users_grade#{grade}", :'data-toggle' => 'tab'
+      %li{ class: grade == 4 ? "active" : "" }
+        = link_to grade_label(grade), "#users_grade#{grade}", :"data-toggle" => "tab"
 .tab-content
   - [4, 3, 2, 1, 0, 5].each do |grade|
     - if grade > 0 || (Time.now.month == 2 || Time.now.month == 3)
-      %div{ id: "users_grade#{grade}", class: grade == 4 ? 'tab-pane active' : 'tab-pane' }
+      %div{ id: "users_grade#{grade}", class: grade == 4 ? "tab-pane active" : "tab-pane" }
         - @users_grade[grade].each do |user|
-          = render 'user_data', user: user
+          = render "user_data", user: user

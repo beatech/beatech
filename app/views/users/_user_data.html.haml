@@ -2,11 +2,11 @@
   %h3
     = link_to user.name, user_path(user)
     - if user.twitter_accounts.size > 0
-      = ' - '
-      = user.twitter_accounts.pluck(:screen_name).map { |screen_name| screen_name_link(screen_name) }.join(', ').html_safe
+      = " - "
+      = user.twitter_accounts.pluck(:screen_name).map { |screen_name| screen_name_link(screen_name) }.join(", ").html_safe
     %span.pull-right
       - if @current_user && @current_user == user
-        = link_to '編集', setting_path('profile')
+        = link_to "編集", setting_path("profile")
   .profile
     .left_column
       = image_tag big_profile_image(user), class: :profile_image

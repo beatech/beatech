@@ -2,7 +2,7 @@
   - tabs = tabs(entry.content)
   - if tabs
     %li.dropdown
-      = link_to '#', class: 'dropdown-toggle', :'data-toggle' => 'dropdown' do
+      = link_to "#", class: "dropdown-toggle", :"data-toggle" => "dropdown" do
         編集
         %span.white_caret
       %ul.dropdown-menu.edit_link_list
@@ -11,4 +11,4 @@
           - if tab_entry && tab_entry.title
             %li= link_to tab_entry.title, edit_entry_path(tab_entry)
   - else
-    %li= link_to '編集', edit_entry_path(entry)
+    %li= link_to "編集", edit_entry_path(entry)

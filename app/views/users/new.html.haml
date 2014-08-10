@@ -1,4 +1,4 @@
-= form_for @user, url: { action: 'create' } do |f|
+= form_for @user, url: { action: "create" } do |f|
   %h3 入部について
   %p
     部員には、音ゲーをやっている、現役の東工大学部生を受け付けています。
@@ -11,20 +11,20 @@
     Twitterアカウントは複数認証できます。
   %h3 入部申請フォーム
   .field
-    = f.label '名前(部員紹介で表示されるハンドルネームです)'
+    = f.label "名前(部員紹介で表示されるハンドルネームです)"
     = f.text_field :name
   .field
-    = f.label 'BEATECH アカウント(ログインに使うIDになります)'
+    = f.label "BEATECH アカウント(ログインに使うIDになります)"
     = f.text_field :username
   .field
-    = f.label 'パスワード'
+    = f.label "パスワード"
     = f.text_field :password
   .field
-    = f.label 'パスワード確認'
+    = f.label "パスワード確認"
     = f.text_field :password_confirmation
   .field
-    = f.label '入学年度'
+    = f.label "入学年度"
     = f.number_field :year
   = f.hidden_field :repeated_year
   .actions
-    = f.submit '入部する', class: 'btn'
+    = f.submit "入部する", class: "btn"
