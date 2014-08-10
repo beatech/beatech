@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.1'
+gem 'rails', '4.1.4'
 gem 'mysql2'
 gem 'sqlite3'
 
@@ -17,6 +17,10 @@ gem 'jbuilder', '~> 1.2'
 gem 'unicorn'
 
 group :development, :test do
+  gem 'capistrano', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rbenv', require: false
+  gem 'capistrano-bundler', require: false
   gem 'rspec-rails', '~> 2.14.2'
   gem 'shoulda-matchers'
   gem 'capybara'
