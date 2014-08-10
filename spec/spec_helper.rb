@@ -40,3 +40,6 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 end
+
+# Require factories
+Dir[Rails.root.join("spec/factories/**/*.rb")].each { |f| require f }

@@ -29,7 +29,7 @@ group :development, :test do
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', '~> 2.0.2'
   gem 'capybara', '~> 2.4.1'
-  gem 'machinist', '~> 2.0'
+  gem 'factory_girl', '~> 4.4.0'
   gem 'pry-rails', '~> 0.3.2'
   gem 'rspec-rails', '~> 2.14.2'
   gem 'shoulda-matchers', '~> 2.6.2'

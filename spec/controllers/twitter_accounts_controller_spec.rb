@@ -2,14 +2,14 @@ require 'spec_helper'
 
 describe TwitterAccountsController do
   describe '#destroy' do
-    let!(:user) { User.make! }
+    let!(:user) { FactoryGirl.create(:user) }
 
     before do
       controller.instance_variable_set(:@current_user, user)
     end
 
     context 'when login user has a given twitter account' do
-      let!(:twitter_account) { TwitterAccount.make!(user: user) }
+      let!(:twitter_account) { FactoryGirl.create(:twitter_account, user: user) }
 
       it 'succeeds to destroy the twitter account' do
         expect {
@@ -21,7 +21,7 @@ describe TwitterAccountsController do
     end
 
     context 'when login user does not have a given twitter account' do
-      let!(:twitter_account) { TwitterAccount.make! }
+      let!(:twitter_account) { FactoryGirl.create(:twitter_account) }
 
       it 'fails to destroy the twitter account' do
         expect {
