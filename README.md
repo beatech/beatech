@@ -4,7 +4,8 @@ http://beatech.net
 
 ## Setup
 First, you should run following commands.
-```
+
+```sh
 $ git clone https://github.com/k0kubun/beatech
 $ cd beatech
 $ bundle install
@@ -15,13 +16,15 @@ By `rake setup`, dummy twitter credentials are configured and DB is set up.
 
 ## Development
 You can run beatech as follows
-```
+
+```sh
 $ bundle exec rails server
 ```
+
 Open `http://localhost:3000/`, then you can see beatech website.
 
 ## Run test
-```
+```sh
 $ bundle exec rspec .
 ```
 
