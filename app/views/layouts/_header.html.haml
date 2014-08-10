@@ -30,14 +30,19 @@
               または
               %br
               %span
-                .btn.btn-info= link_to 'Twitterでログイン', '/auth/twitter'
+                .btn.btn-info
+                  = link_to 'Twitterでログイン', '/auth/twitter'
+
     .header_menu
       %ul
-        %li= link_to 'ホーム', :root
-        - if @current_user
-          %li= link_to 'ページ新規作成', new_entry_path
+        %li
+          = link_to 'ホーム', root_path
+        - if @current_user.present?
+          %li
+            = link_to 'ページ新規作成', new_entry_path
           = render 'layouts/edit_link', entry: @entry
         - else
-          - if @header_menu
-            - @header_menu.each do |menu|
-              %li= link_to menu.title, root_url + menu.url
+          - if @header_menu.present?
+            - @header_menu.entries.each do |entry|
+              %li
+                = link_to_entry(entry)

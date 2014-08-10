@@ -1,5 +1,20 @@
 # coding: utf-8
 module ApplicationHelper
+  def link_to_entry(entry)
+    label =
+      if entry.url == 'frontpage'
+        'トップページ'
+      else
+        entry.title
+      end
+
+    if /^https?:\/\// =~ entry.url
+      link_to(label, entry.url)
+    else
+      link_to(label, File.join(root_url, entry.url))
+    end
+  end
+
   def entry_link(title, url)
     title = 'トップページ' if url == 'frontpage'
     if /^http:\/\// =~ url

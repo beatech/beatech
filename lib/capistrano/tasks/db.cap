@@ -22,7 +22,6 @@ namespace :db do
       puts "Resetting local DB..."
       `RAILS_ENV=development bundle exec rake db:drop`
       `RAILS_ENV=development bundle exec rake db:create`
-      `RAILS_ENV=development bundle exec rake db:migrate`
 
       puts "Importing data to local DB from dump file..."
       `cat db/dump.sql | mysql -uroot beatech_development`

@@ -58,7 +58,7 @@ class EntriesController < ApplicationController
   def destroy
     admin_required
 
-    @entry = Entry.find_by_url(params[:id])
+    @entry = Entry.find_by_id(params[:id])
     @entry.destroy
     redirect_to entries_path
   end
@@ -77,6 +77,6 @@ class EntriesController < ApplicationController
 
   private
   def user_params
-    params.require(:entry).permit(:title, :url, :content, :menu)
+    params.require(:entry).permit(:title, :url, :content, :menu_id)
   end
 end

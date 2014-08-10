@@ -25,10 +25,8 @@ class ApplicationController < ActionController::Base
   end
 
   def load_entries
-    @circle_menu = Entry.where(menu: 1)
-    @communication_menu = Entry.where(menu: 2)
-    @contents_menu = Entry.where(menu: 3)
-    @header_menu = Entry.where(menu: 4)
+    @side_menus = Menu.preload(:entries).for_side
+    @header_menu = Menu.for_header.first
 
     @recent_entries = Entry.all
     @recent_entries.to_a.sort! { |a, b| b.updated_at <=> a.updated_at }
