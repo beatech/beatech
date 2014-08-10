@@ -23,6 +23,10 @@ gem 'twitter', '~> 5.1.1'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn', '~> 4.8.3'
 
+group :development do
+  gem 'silencer', '~> 0.6.0'
+end
+
 group :development, :test do
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-bundler', '~> 1.1.3'
