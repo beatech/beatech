@@ -31,6 +31,6 @@ class ApplicationController < ActionController::Base
     @header_menu = Entry.where(menu: 4)
 
     @recent_entries = Entry.all
-    @recent_entries.sort! { |a, b| b.updated_at <=> a.updated_at }
+    @recent_entries.to_a.sort! { |a, b| b.updated_at <=> a.updated_at }
   end
 end
