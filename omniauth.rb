@@ -1,1 +1,0 @@
-../../../../shared/config/initializers/omniauth.rb
