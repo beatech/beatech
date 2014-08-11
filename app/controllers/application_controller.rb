@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  MAX_RECENT_ENTRIES = 10
+
   protect_from_forgery with: :exception
   before_filter :load_entries, :authorize
 
@@ -28,7 +30,6 @@ class ApplicationController < ActionController::Base
     @side_menus = Menu.preload(:entries).for_side
     @header_menu = Menu.for_header.first
 
-    @recent_entries = Entry.all
-    @recent_entries.to_a.sort! { |a, b| b.updated_at <=> a.updated_at }
+    @recent_entries = Entry.order(updated_at: :desc).first(MAX_RECENT_ENTRIES)
   end
 end
