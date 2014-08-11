@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users_by_grade = User.order(updated_at: :desc).group_by(&:grade)
+    @users_by_grade = User.preload(:twitter_accounts).order(updated_at: :desc).group_by(&:grade)
     @active_members_count = @users_by_grade.slice(1, 2, 3, 4).values.flatten.size
 
     # FIXME: grade over User::GRADE_OB should be GRADE_OB
