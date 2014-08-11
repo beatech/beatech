@@ -4,6 +4,7 @@ class BlogsController < ApplicationController
   before_action :validate_user, only: [:new, :edit, :create, :update, :destroy]
 
   def index
+    @blogs = Blog.where(user_id: @user.id).order(created_at: :desc)
   end
 
   def show

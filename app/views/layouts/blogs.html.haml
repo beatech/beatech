@@ -5,17 +5,8 @@
         = image_tag big_profile_image(@user), class: "profile_image"
 
       = link_to user_blogs_path(@user), class: "blog_link" do
-        - if content_for?(:blog_header)
-          = content_for(:blog_header)
-        - else
-          #{@user.username}'s blog
+        #{@user.username}'s blog
 
-  .contents
-    %h1
-      - if content_for?(:title)
-        = content_for(:title)
-      - elsif title
-        = title
-    = yield
+  = yield
 
 = render template: "layouts/application"

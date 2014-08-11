@@ -1,0 +1,6 @@
+.contents
+  %h1
+    = link_to user_blog_path(blog.user, blog), class: "blog_article_link" do
+      #{blog.created_at.to_date} - #{blog.title}
+
+  = render_wiki_content(blog)
