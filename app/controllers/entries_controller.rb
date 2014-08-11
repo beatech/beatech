@@ -76,6 +76,7 @@ class EntriesController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:entry).permit(:title, :url, :content, :menu_id)
   end
