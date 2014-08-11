@@ -1,6 +1,4 @@
 Beatech::Application.routes.draw do
-  get "exception" => "application#exception"
-
   resource :session, only: [:create, :destroy]
 
   resources :users, except: [:edit, :update]

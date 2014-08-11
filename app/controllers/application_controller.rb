@@ -31,8 +31,4 @@ class ApplicationController < ActionController::Base
     @recent_entries = Entry.all
     @recent_entries.to_a.sort! { |a, b| b.updated_at <=> a.updated_at }
   end
-
-  def exception
-    raise "Error test"
-  end
 end
