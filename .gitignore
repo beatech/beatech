@@ -4,11 +4,7 @@
 /log/*.log
 /tmp
 /public/assets
-/config/deploy.rb
-/config/unicorn.rb
 /config/initializers/secret_token.rb
-/config/initializers/google_analytics.rb
 /config/initializers/twitter.rb
 .env
 .DS_Store
-Capfile
