@@ -21,6 +21,12 @@ describe BlogsController do
   end
 
   describe "#show" do
+    let!(:blog) { FactoryGirl.create(:blog) }
+
+    it "succeeds to render" do
+      get :show, user_id: blog.user.username, id: blog.id
+      expect(response).to be_ok
+    end
   end
 
   describe "#new" do

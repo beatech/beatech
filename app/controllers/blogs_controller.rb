@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :find_user
   before_action :login_required, only: [:new, :edit, :create, :update, :destroy]
   before_action :validate_user, only: [:new, :edit, :create, :update, :destroy]
 
@@ -6,6 +7,7 @@ class BlogsController < ApplicationController
   end
 
   def show
+    @blog = Blog.find(params[:id])
   end
 
   def new
@@ -33,6 +35,10 @@ class BlogsController < ApplicationController
 
   private
 
+  def find_user
+    @user = User.find_by_username(params[:user_id])
+  end
+
   def user_params
     params.require(:blog).permit(:title, :content, :user_id)
   end
@@ -44,7 +50,7 @@ class BlogsController < ApplicationController
   end
 
   def logged_in_with_invalid_user?
-    @current_user.username != params[:user_id]
+    @current_user != @user
   end
 
   def requested_user_id_is_invalid?

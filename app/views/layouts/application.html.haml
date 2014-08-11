@@ -1,19 +1,26 @@
 !!!
 %html{lang: "ja"}
   = render "layouts/head"
-  %body
+  %body{ class: "#{controller_name} #{action_name}" }
     = render "layouts/header"
     .container
       #left_column
         = render "layouts/side_menu"
       #right_column
         = render "layouts/flash"
-        .contents
-          - if @entry && @entry.title
-            %h1= @entry.title
-          - elsif content_for?(:title)
-            %h1= content_for(:title)
-          - elsif title
-            %h1= title
-          = yield
+
+        - if content_for?(:main)
+          = content_for(:main)
+
+        - else
+          .contents
+            - if @entry && @entry.title
+              %h1= @entry.title
+            - elsif content_for?(:title)
+              %h1= content_for(:title)
+            - elsif title
+              %h1= title
+
+            = yield
+
     = render "layouts/footer"

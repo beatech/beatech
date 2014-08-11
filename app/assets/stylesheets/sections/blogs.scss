@@ -1,0 +1,38 @@
+.blogs {
+  .blog_header {
+    height: 20px;
+    position: relative;
+    background: #4375a8 {
+      image: url("/images/bg_header.png");
+      repeat: repeat-x;
+    }
+  }
+
+  .profile_image {
+    border-radius: 2px 0 0 2px;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .profile_link {
+    text-decoration: none;
+  }
+
+  .blog_link {
+    font-weight: bold;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    position: absolute;
+    left: 52px;
+    top: 6px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

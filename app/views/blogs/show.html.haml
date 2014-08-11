@@ -1,0 +1,5 @@
+- if @blog.present?
+  - content_for :title do
+    = @blog.title
+
+  = render_wiki_content(@blog)
