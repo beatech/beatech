@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   ADMIN_USERNAMES = %w|ikstrm popkirby norimiso|
+  GRADE_NEWCOMER = 0
+  GRADE_OB = 5
 
   has_secure_password
 

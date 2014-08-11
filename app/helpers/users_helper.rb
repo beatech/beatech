@@ -33,6 +33,6 @@ module UsersHelper
   end
 
   def welcome_term?
-    Time.now.month == 2 || Time.now.month == 3
+    [2, 3].include?(Time.now.month)
   end
 end

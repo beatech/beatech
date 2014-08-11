@@ -1,4 +1,3 @@
-# coding: utf-8
 class UsersController < ApplicationController
   include UsersHelper
   before_filter :admin_required, only: :destroy
@@ -8,12 +7,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users_grade = Array.new
-    all_users = User.order("updated_at DESC")
-    (0..4).each do |grade|
-      @users_grade[grade] = all_users.select { |user| user.grade == grade }
-    end
-    @users_grade[5] = all_users.select { |user| user.grade >= 5 } # OB
+    @users_by_grade = User.order(updated_at: :desc).group_by(&:grade)
+    @active_members_count = @users_by_grade.slice(1, 2, 3, 4).values.flatten.size
+
+    # FIXME: grade over User::GRADE_OB should be GRADE_OB
+    ob_grades = @users_by_grade.keys.select { |grade| grade >= User::GRADE_OB }
+    @users_by_grade[User::GRADE_OB] = @users_by_grade.slice(*ob_grades).values.flatten
 
     respond_to do |format|
       format.html
