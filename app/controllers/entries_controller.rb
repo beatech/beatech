@@ -1,5 +1,7 @@
 # coding: utf-8
 class EntriesController < ApplicationController
+  layout "frontpage", only: :frontpage
+
   def title
     if @entry && @entry.title
       case @entry.url
@@ -64,6 +66,7 @@ class EntriesController < ApplicationController
   end
 
   def frontpage
+    @blogs = Blog.order(created_at: :desc).first(5)
     @entry = Entry.find_by_url("frontpage")
     @entry ||= Entry.create(
       title: "東工大音楽ゲーム愛好会BEATECH",

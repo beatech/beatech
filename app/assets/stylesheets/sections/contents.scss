@@ -158,4 +158,36 @@
     padding: 0 0 0 24px;
     margin: 0 3px 0 0;
   }
+
+  .top_blog_links {
+    margin: 0;
+  }
+
+  .top_blog_header {
+    margin-bottom: 6px;
+  }
+
+  .top_blog_icon {
+    margin: -2px 2px 2px 0;
+    height: 16px;
+    width: 16px;
+    display: inline-block;
+  }
+
+  .top_blog_link {
+    background: #f3f3f3;
+    list-style: none;
+
+    &:nth-child(even) {
+      background: white;
+    }
+
+    a {
+      color: black;
+
+      &:hover {
+        color: gray;
+      }
+    }
+  }
 }

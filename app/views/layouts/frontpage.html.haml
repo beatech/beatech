@@ -1,0 +1,24 @@
+- content_for :main do
+  - if @current_user.present? && @blogs.present?
+    .contents
+      %h1.top_blog_header
+        最新のブログ
+
+      %ul.top_blog_links
+        - @blogs.each do |blog|
+          %li.top_blog_link><
+            = link_to user_blog_path(blog.user, blog) do
+              = image_tag big_profile_image(blog.user), class: "top_blog_icon"
+
+            = link_to blog.title, user_blog_path(blog.user, blog)
+
+            .pull-right.blog_date
+              = blog.created_at.to_date
+
+
+  .contents
+    %h1= title
+
+    = yield
+
+= render template: "layouts/application"
