@@ -1,6 +1,5 @@
 # BEATECH [![Build Status](https://travis-ci.org/k0kubun/beatech.png?branch=master)](https://travis-ci.org/k0kubun/beatech)
-SNS for BEATECH  
-http://beatech.net
+SNS for BEATECH
 
 ## Setup
 First, you should run following commands.
@@ -30,8 +29,8 @@ $ bundle exec rspec .
 
 ## Contributing
 
-1. Fork it  
-2. Create your feature branch (`git checkout -b my-new-feature`)  
-3. Commit your changes (`git commit -am 'Add some feature'`)  
-4. Push to the branch (`git push origin my-new-feature`)  
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
