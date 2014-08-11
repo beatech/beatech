@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811104701) do
+ActiveRecord::Schema.define(version: 20140811114211) do
 
   create_table "achievements", force: true do |t|
     t.date     "date"
@@ -22,6 +22,22 @@ ActiveRecord::Schema.define(version: 20140811104701) do
   end
 
   add_index "achievements", ["user_id"], name: "index_achievements_on_user_id", using: :btree
+
+  create_table "blogs", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "blog_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "contest2nds", force: true do |t|
     t.string   "name"

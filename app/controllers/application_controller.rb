@@ -2,12 +2,16 @@ class ApplicationController < ActionController::Base
   MAX_RECENT_ENTRIES = 10
 
   protect_from_forgery with: :exception
-  before_filter :load_entries, :authorize
+  before_action :load_entries, :authorize
 
   def title
     "BEATECH"
   end
   helper_method :title
+
+  def login_required
+    raise Exception if @current_user.blank?
+  end
 
   def admin_required
     raise Exception unless is_admin?

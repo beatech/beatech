@@ -11,6 +11,8 @@
         .contents
           - if @entry && @entry.title
             %h1= @entry.title
+          - elsif content_for?(:title)
+            %h1= content_for(:title)
           - elsif title
             %h1= title
           = yield

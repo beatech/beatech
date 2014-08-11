@@ -1,15 +1,17 @@
 Beatech::Application.routes.draw do
   resource :session, only: [:create, :destroy]
 
-  resources :users, except: [:edit, :update]
+  resources :users, except: [:edit, :update] do
+    resources :blogs
+  end
   controller :users, path: "settings" do
     get   "/:item", constraints: { item: /.+/ }, action: "edit", as: "setting"
     patch "/:item", constraints: { item: /.+/ }, action: "update"
   end
+
   get "/auth/twitter/callback" => "sessions#twitter_create"
 
   resources :twitter_accounts, only: [:index, :destroy]
-
   resources :achievements, except: [:new, :show]
 
   # Contest3rd

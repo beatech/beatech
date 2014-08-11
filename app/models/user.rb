@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 
   has_many :achievements
   has_many :twitter_accounts
+  has_many :blogs
 
   validates :username, presence: true
   validates :password_digest, presence: true
@@ -15,6 +16,8 @@ class User < ActiveRecord::Base
   validates :repeated_year, presence: true
 
   before_save :set_grade
+
+  delegate :to_param, to: :username
 
   def self.authenticate(username, password)
     user = find_by_username(username)
@@ -53,10 +56,6 @@ class User < ActiveRecord::Base
 
   def is_admin?
     ADMIN_USERNAMES.any? { |admin_username| self.username == admin_username }
-  end
-
-  def to_param
-    username
   end
 
   def set_grade
