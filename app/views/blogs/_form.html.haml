@@ -18,7 +18,7 @@
       - label = "記事作成"
     - else
       - label = "記事の更新"
-    = f.submit label, class: "btn"
+    = f.submit label, class: "btn", data: { disable_with: "送信中…" }
 
     - if blog.id.present?
       = link_to "記事を削除", user_blog_path(blog.user, blog), class: "delete_blog",

@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   before_action :find_user
+  before_action :set_new_comment, only: [:index, :show, :edit]
   before_action :login_required, only: [:new, :edit, :create, :update, :destroy]
   before_action :validate_user, only: [:new, :edit, :create, :update, :destroy]
 
@@ -51,6 +52,10 @@ class BlogsController < ApplicationController
     @user = User.find_by_username(params[:user_id])
   end
 
+  def set_new_comment
+    @comment = Comment.new
+  end
+
   def user_params
     params.require(:blog).permit(:title, :content, :user_id)
   end
@@ -58,6 +63,7 @@ class BlogsController < ApplicationController
   def validate_user
     if logged_in_with_invalid_user? || requested_user_id_is_invalid?
       redirect_to root_path, alert: "不正なユーザーです"
+      return
     end
   end
 

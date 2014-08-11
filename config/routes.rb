@@ -9,6 +9,8 @@ Beatech::Application.routes.draw do
     patch "/:item", constraints: { item: /.+/ }, action: "update"
   end
 
+  resources :comments, only: [:create, :destroy]
+
   get "/auth/twitter/callback" => "sessions#twitter_create"
 
   resources :twitter_accounts, only: [:index, :destroy]
