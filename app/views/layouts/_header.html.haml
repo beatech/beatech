@@ -42,12 +42,14 @@
       %ul
         %li
           = link_to "ホーム", root_path
+
         - if @current_user.present?
           %li
             = link_to "ページ新規作成", new_entry_path
           %li
             = link_to "ブログを書く", new_user_blog_path(@current_user)
-          = render "layouts/edit_link", entry: @entry
+          = render "layouts/edit_link", entry: @entry, blog: @blog
+
         - else
           - if @header_menu.present?
             - @header_menu.entries.each do |entry|

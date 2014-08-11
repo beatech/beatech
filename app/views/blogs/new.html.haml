@@ -1,24 +1,4 @@
 .contents
   %h1 ブログを書く
 
-  = form_for([@current_user, @blog]) do |f|
-    = f.label :title do
-      .field_label
-        タイトル
-      .field
-        = f.text_field :title
-
-    = f.label :content do
-      .field_label
-        本文
-      .field
-        = f.text_area :content, class: "span8", rows: "24", maxlength: "30000"
-
-    = f.hidden_field :user_id
-
-    .actions
-      - if action_name == "new"
-        - label = "記事作成"
-      - else
-        - label = "記事の更新"
-      = f.submit label, class: "btn"
+  = render "form", blog: @blog

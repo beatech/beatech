@@ -3,4 +3,8 @@
     = link_to user_blog_path(blog.user, blog), class: "blog_article_link" do
       #{blog.created_at.to_date} - #{blog.title}
 
+    - if @current_user.present? && blog.user == @current_user
+      = link_to edit_user_blog_path(blog.user, blog), class: "pull-right blog_article_link" do
+        編集
+
   = render_wiki_content(blog)

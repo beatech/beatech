@@ -26,12 +26,23 @@ class BlogsController < ApplicationController
   end
 
   def edit
+    @blog = Blog.find(params[:id])
   end
 
   def update
+    @blog = Blog.find(params[:id])
+
+    if @blog.update!(user_params)
+      redirect_to user_blog_path(@blog.user, @blog), notice: "記事を更新しました。"
+    else
+      redirect_to :back, alert: "記事の更新に失敗しました。"
+    end
   end
 
   def destroy
+    @blog = Blog.find(params[:id])
+    @blog.destroy
+    redirect_to user_blogs_path(@user), notice: "記事を削除しました。"
   end
 
   private

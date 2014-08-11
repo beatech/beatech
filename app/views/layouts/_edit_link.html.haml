@@ -12,3 +12,7 @@
             %li= link_to tab_entry.title, edit_entry_path(tab_entry)
   - else
     %li= link_to "編集", edit_entry_path(entry)
+
+- if blog.present? && blog.id.present? && @current_user.present? && blog.user == @current_user
+  %li
+    = link_to "ブログを編集", edit_user_blog_path(blog.user, blog)
