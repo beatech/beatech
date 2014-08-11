@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   helper_method :title
 
   def login_required
-    raise Exception if @current_user.blank?
+    redirect_to root_path, alert: "ログインが必要です" if @current_user.blank?
   end
 
   def admin_required

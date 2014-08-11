@@ -14,6 +14,8 @@
     .field
       = f.text_area :content, class: "span8", rows: "24", maxlength: "30000"
 
+  = f.hidden_field :user_id
+
   .actions
     - if action_name == "new"
       - label = "記事作成"
