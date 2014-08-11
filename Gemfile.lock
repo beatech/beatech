@@ -77,6 +77,9 @@ GEM
       dotenv (= 0.11.1)
     equalizer (0.0.9)
     erubis (2.7.0)
+    exception_notification (4.0.1)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (2.2.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
@@ -254,6 +257,7 @@ DEPENDENCIES
   capybara (~> 2.4.1)
   coffee-rails (~> 4.0.1)
   dotenv-rails (~> 0.11.1)
+  exception_notification (~> 4.0.1)
   factory_girl (~> 4.4.0)
   google-analytics-rails
   haml-rails (~> 0.5.3)
