@@ -1,10 +1,4 @@
 class TwitterAccountsController < ApplicationController
-  def index
-    respond_to do |format|
-      format.json { render json: TwitterAccount.all }
-    end
-  end
-
   def destroy
     twitter_account = TwitterAccount.find(params[:id])
 

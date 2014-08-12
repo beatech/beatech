@@ -13,11 +13,6 @@ class UsersController < ApplicationController
     # FIXME: grade over User::GRADE_OB should be GRADE_OB
     ob_grades = @users_by_grade.keys.select { |grade| grade >= User::GRADE_OB }
     @users_by_grade[User::GRADE_OB] = @users_by_grade.slice(*ob_grades).values.flatten
-
-    respond_to do |format|
-      format.html
-      format.json { render json: User.all }
-    end
   end
 
   def show

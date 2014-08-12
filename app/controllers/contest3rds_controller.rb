@@ -49,11 +49,6 @@ class Contest3rdsController < ApplicationController
     end
 
     @title = "第三回部内大会"
-
-    respond_to do |format|
-      format.html
-      format.json { render json: Contest3rd.all }
-    end
   end
 
   def tunesedit

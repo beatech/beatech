@@ -1,4 +1,3 @@
-# coding: utf-8
 class AchievementsController < ApplicationController
   def title
     "成果報告"
@@ -9,11 +8,6 @@ class AchievementsController < ApplicationController
     @achievement.user_id = @current_user.id if @current_user
 
     @achievements = Achievement.order("date DESC").page(params[:page])
-
-    respond_to do |format|
-      format.html
-      format.json { render json: Achievement.all }
-    end
   end
 
   def create
@@ -52,6 +46,7 @@ class AchievementsController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:achievement).permit(:date, :text)
   end

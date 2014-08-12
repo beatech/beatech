@@ -16,11 +16,6 @@ class EntriesController < ApplicationController
   def index
     @entries = Entry.all
     @title = "ページ一覧"
-
-    respond_to do |format|
-      format.html
-      format.json { render json: Entry.all }
-    end
   end
 
   def show

@@ -13,7 +13,7 @@ Beatech::Application.routes.draw do
 
   get "/auth/twitter/callback" => "sessions#twitter_create"
 
-  resources :twitter_accounts, only: [:index, :destroy]
+  resources :twitter_accounts, only: [:destroy]
   resources :achievements, except: [:new, :show]
 
   # Contest3rd
