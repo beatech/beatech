@@ -1,7 +1,7 @@
 Beatech::Application.routes.draw do
   resource :session, only: [:create, :destroy]
 
-  resources :users, except: [:edit, :update] do
+  resources :users, constraints: { id: /[a-zA-Z0-9_\-.]+/ }, except: [:edit, :update] do
     resources :blogs
   end
   controller :users, path: "settings" do
