@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       session[:username] = user.username
       redirect_to :back
     else
-      redirect_to root_url, notice: "ログインに失敗しました。"
+      redirect_to root_url, alert: "ログインに失敗しました。"
     end
   end
 
