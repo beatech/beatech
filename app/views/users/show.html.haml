@@ -1,9 +1,13 @@
 - title = "#{@user.name}のプロフィール"
 
 = render "user_data", user: @user
+
 %h3 学年
-%p= grade_label(@user.grade)
-%h3 詳細プロフィール
+%p
+  = grade_label(@user.grade)
+
+%h3
+  詳細プロフィール
 = markdown(@user.profile)
 = render "achievements/achievement_list", achievements: @user.achievements.order("date desc")
 

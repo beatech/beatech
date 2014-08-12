@@ -1,5 +1,7 @@
 module BeatechMarkdownHelper
   def markdown(text)
+    return "" if text.blank?
+
     unless @markdown
       beatech_renderer = Redcarpet::Render::BeatechHTML.new(hard_wrap: true, filter_html: true)
       @markdown = Redcarpet::Markdown.new(beatech_renderer, tables: true, lax_spacing: true)
