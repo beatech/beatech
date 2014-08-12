@@ -14,7 +14,7 @@
       .comment.clearfix
         .pull-left.left_column
           = link_to user_path(comment.user) do
-            = image_tag big_profile_image(@user), class: "comment_icon"
+            = image_tag big_profile_image(comment.user), class: "comment_icon"
         .pull-left.right_column
           .comment_author
             = link_to comment.user.name, user_path(comment.user)
