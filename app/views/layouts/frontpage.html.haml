@@ -1,5 +1,6 @@
 - content_for :main do
-  - if @current_user.present? && @blogs.present?
+  -# currently disabled
+  -# if @current_user.present? && @blogs.present?
     .contents
       %h1.top_blog_header
         最新のブログ
@@ -14,7 +15,6 @@
 
             .pull-right.blog_date
               = blog.created_at.to_date
-
 
   .contents
     %h1= title
