@@ -68,7 +68,7 @@ class EntriesController < ApplicationController
       url: "frontpage",
       content: "This is automatically generated frontpage.",
       entry_type: 0,
-      menu: 0,
+      menu_id: nil,
     )
     render action: "show"
   end
