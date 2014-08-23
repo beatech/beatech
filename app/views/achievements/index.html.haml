@@ -6,8 +6,6 @@
   - else
     %h3 成果報告とは
     %p 部員の音ゲーの成果を報告し合い、交流を深めたり、モチベーションを高め合ったりするためのページです。
-    %p 登録しているtwitterアカウントで「#BEATECH_成果報告」のハッシュタグをつけてツイートすると、
-    %p 自動的にこのページにも投稿されます。
 
   = render "achievement_list", achievements: @achievements
   = paginate @achievements, window: 5, theme: "twitter-bootstrap"
