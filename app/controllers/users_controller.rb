@@ -17,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_username(params[:id])
-    raise Exception unless @user
+    raise ActiveRecord::RecordNotFound unless @user
     @title = "#{@user.name}のプロフィール"
   end
 
