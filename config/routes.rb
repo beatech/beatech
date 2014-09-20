@@ -1,4 +1,6 @@
 Beatech::Application.routes.draw do
+  mount Peek::Railtie => '/peek' if Rails.env.development?
+
   resource :session, only: [:create, :destroy]
 
   resources :users, constraints: { id: /[a-zA-Z0-9_\-.]+/ }, except: [:edit, :update] do

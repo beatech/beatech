@@ -23,6 +23,11 @@ gem "therubyracer", "~> 0.12.1", platforms: :ruby
 gem "twitter", "~> 5.1.1"
 gem "uglifier", ">= 1.3.0"
 gem "unicorn", "~> 4.8.3"
+gem "peek", "~> 0.1.9"
+gem "peek-gc"
+gem "peek-mysql2"
+gem "peek-performance_bar"
+gem "peek-rblineprof"
 
 group :development do
   gem "silencer", "~> 0.6.0"

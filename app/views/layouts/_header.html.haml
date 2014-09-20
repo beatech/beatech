@@ -1,5 +1,8 @@
 %header
   .container
+    - if Rails.env.development?
+      = render 'peek/bar'
+
     .nav_bar
       %h1.title_logo.vertical_middle= link_to "BEATECH", :root
       .account.vertical_middle.dropdown
