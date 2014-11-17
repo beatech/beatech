@@ -83,7 +83,6 @@ Beatech::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
   config.middleware.use ExceptionNotification::Rack, email: {
     email_prefix:         "[ERROR] ",
     sender_address:       %{"Beatech Notifier" <error@beatech.net>},
