@@ -18,7 +18,6 @@ gem "omniauth", "~> 1.2.2"
 gem "omniauth-twitter", "~> 1.0.1"
 gem "redcarpet", "~> 3.1.2"
 gem "sass-rails", "~> 4.0.1"
-gem "sqlite3", "~> 1.3.9"
 gem "therubyracer", "~> 0.12.1", platforms: :ruby
 gem "twitter", "~> 5.1.1"
 gem "uglifier", ">= 1.3.0"

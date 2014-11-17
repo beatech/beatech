@@ -1,6 +1,6 @@
 set :application, 'beatech'
 set :repo_url, 'git@github.com:k0kubun/beatech.git'
-set :deploy_to, '/var/www/beatech'
+set :deploy_to, '~/beatech'
 set :log_level, :info
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
