@@ -80,4 +80,12 @@ Beatech::Application.configure do
 
   # Because I have no certificate
   ActionMailer::Base.smtp_settings[:enable_starttls_auto] = false
+
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.middleware.use ExceptionNotification::Rack, email: {
+    email_prefix:         "[ERROR] ",
+    sender_address:       %{"Beatech Notifier" <error@beatech.net>},
+    exception_recipients: %w{takashikkbn@gmail.com},
+  }
 end
