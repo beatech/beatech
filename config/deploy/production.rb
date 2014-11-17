@@ -3,4 +3,4 @@ set :branch, 'master'
 set :rails_env, 'production'
 set :migration_role, 'db'
 
-server 'sakura', user: 'ikstrm', roles: %w{web app db}
+server 'conoha', user: 'k0kubun', roles: %w{web app db}
