@@ -8,3 +8,4 @@
 /config/initializers/twitter.rb
 .env
 .DS_Store
+/config/database.yml
