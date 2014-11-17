@@ -4,6 +4,7 @@ set :deploy_to, '~/beatech'
 set :log_level, :info
 
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
+set :linked_files, %w{.env}
 
 set :ssh_options, {
   keys: [File.expand_path('~/.ssh/id_rsa')],
