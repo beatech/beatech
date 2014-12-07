@@ -30,10 +30,11 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(create_user_params)
-    @user.save
     if @user.save
-      redirect_to @user, notice: "User was successfully created."
+      session[:username] = @user.username
+      redirect_to @user, notice: "部員登録に成功しました。BEATECHへようこそ！"
     else
+      flash[:alert] = @user.errors.full_messages.join
       render action: "new"
     end
   end

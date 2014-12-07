@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :twitter_accounts
   has_many :blogs
 
-  validates :username, presence: true
+  validates :username, presence: true, uniqueness: true
   validates :password_digest, presence: true
   validates :name, presence: true
   validates :year, presence: true
