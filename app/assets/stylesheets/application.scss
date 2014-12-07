@@ -5,11 +5,6 @@
 @import "variables.scss";
 @import "common.scss";
 
-/* Peek */
-@import "peek";
-@import "peek/views/rblineprof";
-@import "peek/views/performance_bar";
-
 /* Styles for some sections */
 @import "sections/header.scss";
 @import "sections/login.scss";
