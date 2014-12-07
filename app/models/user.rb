@@ -46,8 +46,9 @@ class User < ActiveRecord::Base
           user.profile_image = profile_image_url.to_s if profile_image_url.present?
           user.save
           puts "success"
-        rescue
-          puts "something wrong happend."
+        rescue => e
+          puts "Error!"
+          puts e
         end
         sleep(3)
       end
