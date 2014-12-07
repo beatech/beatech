@@ -37,6 +37,7 @@ class User < ActiveRecord::Base
       config.access_token_secret = ENV["ACCESS_TOKEN_SECRET"]
     end
 
+    ActiveRecord::Base.record_timestamps = false
     User.all.each do |user|
       twitter_account = user.twitter_accounts.first
       if twitter_account.present?
@@ -53,6 +54,7 @@ class User < ActiveRecord::Base
         sleep(3)
       end
     end
+    ActiveRecord::Base.record_timestamps = true
   end
 
   def is_admin?
