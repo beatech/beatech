@@ -199,6 +199,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sqlite3 (1.3.10)
     sshkit (1.5.1)
       colorize
       net-scp (>= 1.1.2)
@@ -272,6 +273,7 @@ DEPENDENCIES
   shoulda-matchers (~> 2.6.2)
   silencer (~> 0.6.0)
   spring (~> 1.1.3)
+  sqlite3
   therubyracer (~> 0.12.1)
   twitter (~> 5.1.1)
   uglifier (>= 1.3.0)
