@@ -19,7 +19,7 @@ class BlogsController < ApplicationController
   def create
     @blog = Blog.new(user_params)
 
-    if @blog.save!
+    if @blog.save
       redirect_to user_blog_path(@blog.user, @blog), notice: '記事を作成しました。'
     else
       redirect_to :back, alert: '記事の作成に失敗しました。'
@@ -33,7 +33,7 @@ class BlogsController < ApplicationController
   def update
     @blog = Blog.find(params[:id])
 
-    if @blog.update!(user_params)
+    if @blog.update(user_params)
       redirect_to user_blog_path(@blog.user, @blog), notice: '記事を更新しました。'
     else
       redirect_to :back, alert: '記事の更新に失敗しました。'

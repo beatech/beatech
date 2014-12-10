@@ -9,11 +9,11 @@ class AchievementsController < ApplicationController
   end
 
   def create
-    Entry.find_by_url('achievements').touch
     @achievement = Achievement.new(user_params)
     @achievement.user = @current_user
 
     if @achievement.save
+      Entry.find_by(url: 'achievements').try(:touch)
       redirect_to achievements_path, notice: '成果報告を送信しました。'
     else
       render action: 'index'
@@ -33,7 +33,7 @@ class AchievementsController < ApplicationController
     @achievement.date = Date.new(year, month, day)
     @achievement.save
 
-    redirect_to root_url + 'achievements'
+    redirect_to achievements_path
   end
 
   def destroy
