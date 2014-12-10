@@ -5,24 +5,24 @@ class CommentsController < ApplicationController
     @comment = Comment.new(user_params)
 
     if @current_user.id != params[:comment][:user_id].to_i
-      redirect_to root_path, alert: "不正なユーザーです"
+      redirect_to root_path, alert: '不正なユーザーです'
       return
     end
 
     @comment.save!
-    redirect_to :back, notice: "コメントを投稿しました。"
+    redirect_to :back, notice: 'コメントを投稿しました。'
   end
 
   def destroy
     @comment = Comment.find(params[:id])
 
     if @current_user != @comment.user
-      redirect_to root_path, alert: "不正なユーザーです"
+      redirect_to root_path, alert: '不正なユーザーです'
       return
     end
 
     @comment.destroy
-    redirect_to :back, notice: "コメントを削除しました。"
+    redirect_to :back, notice: 'コメントを削除しました。'
   end
 
   private

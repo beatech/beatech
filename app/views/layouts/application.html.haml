@@ -1,13 +1,13 @@
 !!!
-%html{lang: "ja"}
-  = render "layouts/head"
+%html{lang: 'ja'}
+  = render 'layouts/head'
   %body{ class: "#{controller_name} #{action_name}" }
-    = render "layouts/header"
+    = render 'layouts/header'
     .container
       #left_column
-        = render "layouts/side_menu"
+        = render 'layouts/side_menu'
       #right_column
-        = render "layouts/flash"
+        = render 'layouts/flash'
 
         - if content_for?(:main)
           = content_for(:main)
@@ -23,4 +23,4 @@
 
             = yield
 
-    = render "layouts/footer"
+    = render 'layouts/footer'

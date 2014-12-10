@@ -19,9 +19,9 @@ class Contestdate3rdsController < ApplicationController
     @contestdate3rd = Contestdate3rd.new(params[:contestdate3rd])
 
     if @contestdate3rd.save
-      redirect_to @contestdate3rd, notice: "Contestdate3rd was successfully created."
+      redirect_to @contestdate3rd, notice: 'Contestdate3rd was successfully created.'
     else
-      render action: "new"
+      render action: 'new'
     end
   end
 
@@ -29,9 +29,9 @@ class Contestdate3rdsController < ApplicationController
     @contestdate3rd = Contestdate3rd.find(params[:id])
 
     if @contestdate3rd.update_attributes(params[:contestdate3rd])
-      redirect_to root_url + "contest3rd", notice: "会場の編集に成功しました。"
+      redirect_to root_url + 'contest3rd', notice: '会場の編集に成功しました。'
     else
-      render action: "edit"
+      render action: 'edit'
     end
   end
 

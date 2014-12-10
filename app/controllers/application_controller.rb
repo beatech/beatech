@@ -5,13 +5,13 @@ class ApplicationController < ActionController::Base
   before_action :load_entries, :authorize
 
   def title
-    "BEATECH"
+    'BEATECH'
   end
   helper_method :title
 
   def login_required
     if @current_user.blank?
-      redirect_to root_path, alert: "ログインが必要です"
+      redirect_to root_path, alert: 'ログインが必要です'
       return
     end
   end

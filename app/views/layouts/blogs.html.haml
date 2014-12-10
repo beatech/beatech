@@ -1,12 +1,12 @@
 - content_for :main do
   .contents.blog_header
     - if @user.present?
-      = link_to user_path(@user), class: "profile_link" do
-        = image_tag big_profile_image(@user), class: "profile_image"
+      = link_to user_path(@user), class: 'profile_link' do
+        = image_tag big_profile_image(@user), class: 'profile_image'
 
-      = link_to user_blogs_path(@user), class: "blog_link" do
+      = link_to user_blogs_path(@user), class: 'blog_link' do
         #{@user.username}'s blog
 
   = yield
 
-= render template: "layouts/application"
+= render template: 'layouts/application'

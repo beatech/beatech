@@ -1,55 +1,55 @@
 %header
   .container
     .nav_bar
-      %h1.title_logo.vertical_middle= link_to "BEATECH", :root
+      %h1.title_logo.vertical_middle= link_to 'BEATECH', :root
       .account.vertical_middle.dropdown
         - if @current_user
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+          %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'}
             = @current_user.username
             %span.white_caret
           %ul.dropdown-menu.user_menu
             %li
-              = link_to "プロフィールを編集", setting_path("profile")
+              = link_to 'プロフィールを編集', setting_path('profile')
             %li
-              = link_to "ユーザー名変更", setting_path("username")
+              = link_to 'ユーザー名変更', setting_path('username')
             %li
-              = link_to "パスワード変更", setting_path("password")
+              = link_to 'パスワード変更', setting_path('password')
             %li.divider
             %li
-              = link_to "ログアウト", session_path, method: :delete
+              = link_to 'ログアウト', session_path, method: :delete
 
         - else
-          %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+          %a.dropdown-toggle{'data-toggle' => 'dropdown', href: '#'}
             ログイン
             %span.white_caret
           %ul.dropdown-menu.login_menu
             %li
               = form_tag session_path do
-                = label_tag :username, "BEATECH アカウント"
-                = text_field_tag :username, params[:username], class: "span3"
-                = label_tag :password, "パスワード"
-                = password_field_tag :password, params[:password], class: "span3"
-                = submit_tag "ログイン", class: "btn"
+                = label_tag :username, 'BEATECH アカウント'
+                = text_field_tag :username, params[:username], class: 'span3'
+                = label_tag :password, 'パスワード'
+                = password_field_tag :password, params[:password], class: 'span3'
+                = submit_tag 'ログイン', class: 'btn'
             %li.divider
             %li
               または
               %br
               %span
                 .btn.btn-info
-                  = link_to "Twitterでログイン", "/auth/twitter"
+                  = link_to 'Twitterでログイン', '/auth/twitter'
 
     .header_menu
       %ul
         %li
-          = link_to "ホーム", root_path
+          = link_to 'ホーム', root_path
 
         - if @current_user.present?
           %li
-            = link_to "ページ新規作成", new_entry_path
+            = link_to 'ページ新規作成', new_entry_path
           -# currently disabled
           -#%li
-            = link_to "ブログを書く", new_user_blog_path(@current_user)
-          = render "layouts/edit_link", entry: @entry, blog: @blog
+            = link_to 'ブログを書く', new_user_blog_path(@current_user)
+          = render 'layouts/edit_link', entry: @entry, blog: @blog
 
         - else
           - if @header_menu.present?

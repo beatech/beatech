@@ -20,9 +20,9 @@ class BlogsController < ApplicationController
     @blog = Blog.new(user_params)
 
     if @blog.save!
-      redirect_to user_blog_path(@blog.user, @blog), notice: "記事を作成しました。"
+      redirect_to user_blog_path(@blog.user, @blog), notice: '記事を作成しました。'
     else
-      redirect_to :back, alert: "記事の作成に失敗しました。"
+      redirect_to :back, alert: '記事の作成に失敗しました。'
     end
   end
 
@@ -34,16 +34,16 @@ class BlogsController < ApplicationController
     @blog = Blog.find(params[:id])
 
     if @blog.update!(user_params)
-      redirect_to user_blog_path(@blog.user, @blog), notice: "記事を更新しました。"
+      redirect_to user_blog_path(@blog.user, @blog), notice: '記事を更新しました。'
     else
-      redirect_to :back, alert: "記事の更新に失敗しました。"
+      redirect_to :back, alert: '記事の更新に失敗しました。'
     end
   end
 
   def destroy
     @blog = Blog.find(params[:id])
     @blog.destroy
-    redirect_to user_blogs_path(@user), notice: "記事を削除しました。"
+    redirect_to user_blogs_path(@user), notice: '記事を削除しました。'
   end
 
   private
@@ -62,7 +62,7 @@ class BlogsController < ApplicationController
 
   def validate_user
     if logged_in_with_invalid_user? || requested_user_id_is_invalid?
-      redirect_to root_path, alert: "不正なユーザーです"
+      redirect_to root_path, alert: '不正なユーザーです'
       return
     end
   end

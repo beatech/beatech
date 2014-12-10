@@ -4,7 +4,7 @@
   .field
     = "#{User.find(@current_user).name}: "
     %br
-    = f.text_area :text, rows: "2", maxlength: "200"
+    = f.text_area :text, rows: '2', maxlength: '200'
     %br
     = f.date_select :date, use_month_numbers: true
-    = f.submit "投稿", class: "btn pull-right"
+    = f.submit '投稿', class: 'btn pull-right'

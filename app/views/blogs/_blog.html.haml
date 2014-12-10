@@ -1,10 +1,10 @@
 .contents
   %h1
-    = link_to user_blog_path(blog.user, blog), class: "blog_article_link" do
+    = link_to user_blog_path(blog.user, blog), class: 'blog_article_link' do
       #{blog.created_at.to_date} - #{blog.title}
 
     - if @current_user.present? && blog.user == @current_user
-      = link_to edit_user_blog_path(blog.user, blog), class: "pull-right blog_article_link" do
+      = link_to edit_user_blog_path(blog.user, blog), class: 'pull-right blog_article_link' do
         編集
 
   = render_wiki_content(blog)
@@ -14,12 +14,12 @@
       .comment.clearfix
         .pull-left.left_column
           = link_to user_path(comment.user) do
-            = image_tag big_profile_image(comment.user), class: "comment_icon"
+            = image_tag big_profile_image(comment.user), class: 'comment_icon'
         .pull-left.right_column
           .comment_author
             = link_to comment.user.name, user_path(comment.user)
             - if @current_user.present? && @current_user == comment.user
-              = link_to "削除", comment_path(comment), method: :delete
+              = link_to '削除', comment_path(comment), method: :delete
           = comment.content
 
     - if @current_user.present?
@@ -29,9 +29,9 @@
 
         .comment.new_comment.clearfix.hidden
           .pull-left
-            = image_tag big_profile_image(@current_user), class: "comment_icon"
+            = image_tag big_profile_image(@current_user), class: 'comment_icon'
           .pull-left
-            = f.text_area :content, rows: "2", maxlength: "200", class: "comment_area"
+            = f.text_area :content, rows: '2', maxlength: '200', class: 'comment_area'
           .pull-right
-            = f.submit "投稿", class: "btn pull-right"
-      = link_to "コメントを書く", "#", class: "write_comment"
+            = f.submit '投稿', class: 'btn pull-right'
+      = link_to 'コメントを書く', '#', class: 'write_comment'

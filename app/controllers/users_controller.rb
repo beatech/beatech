@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_filter :admin_required, only: :destroy
 
   def title
-    "部員紹介"
+    '部員紹介'
   end
 
   def index
@@ -25,17 +25,17 @@ class UsersController < ApplicationController
     @user = User.new
     @user.year = Time.now.year
     @user.repeated_year = 0
-    @title = "入部申請"
+    @title = '入部申請'
   end
 
   def create
     @user = User.new(create_user_params)
     if @user.save
       session[:username] = @user.username
-      redirect_to @user, notice: "部員登録に成功しました。BEATECHへようこそ！"
+      redirect_to @user, notice: '部員登録に成功しました。BEATECHへようこそ！'
     else
       flash[:alert] = @user.errors.full_messages.join
-      render action: "new"
+      render action: 'new'
     end
   end
 
@@ -50,30 +50,30 @@ class UsersController < ApplicationController
 
   def update
     case params[:item]
-    when "profile"
+    when 'profile'
       @user = User.find(params[:user][:id])
       raise Exception if @user.nil? || (is_admin? == false && @current_user != @user)
       @user.update_attributes(user_params)
       if @user.save
-        redirect_to @user, notice: "プロフィールの更新に成功しました。"
+        redirect_to @user, notice: 'プロフィールの更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
-    when "username"
+    when 'username'
       @current_user.username = params[:user][:username]
       if @current_user.save
         session[:username] = params[:user][:username]
-        redirect_to @current_user, notice: "ユーザー名の更新に成功しました。"
+        redirect_to @current_user, notice: 'ユーザー名の更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
-    when "password"
+    when 'password'
       @current_user.password = params[:user][:password]
       @current_user.password_confirmation = params[:user][:password_confirmation]
       if @current_user.save
-        redirect_to @current_user, notice: "パスワードの更新に成功しました。"
+        redirect_to @current_user, notice: 'パスワードの更新に成功しました。'
       else
-        render action: "edit"
+        render action: 'edit'
       end
     else
       raise Exception
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find_by_username(params["id"]).destroy
+    User.find_by_username(params['id']).destroy
     redirect_to users_url
   end
 

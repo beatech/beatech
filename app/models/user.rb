@@ -31,10 +31,10 @@ class User < ActiveRecord::Base
 
   def self.update_profile_images
     client = Twitter::REST::Client.new do |config|
-      config.consumer_key        = ENV["CONSUMER_KEY"]
-      config.consumer_secret     = ENV["CONSUMER_SECRET"]
-      config.access_token        = ENV["ACCESS_TOKEN"]
-      config.access_token_secret = ENV["ACCESS_TOKEN_SECRET"]
+      config.consumer_key        = ENV['CONSUMER_KEY']
+      config.consumer_secret     = ENV['CONSUMER_SECRET']
+      config.access_token        = ENV['ACCESS_TOKEN']
+      config.access_token_secret = ENV['ACCESS_TOKEN_SECRET']
     end
 
     ActiveRecord::Base.record_timestamps = false
@@ -46,9 +46,9 @@ class User < ActiveRecord::Base
           profile_image_url = client.user(twitter_account.uid).profile_image_url
           user.profile_image = profile_image_url.to_s if profile_image_url.present?
           user.save
-          puts "success"
+          puts 'success'
         rescue => e
-          puts "Error!"
+          puts 'Error!'
           puts e
         end
         sleep(3)
