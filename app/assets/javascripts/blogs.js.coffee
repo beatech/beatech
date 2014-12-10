@@ -6,4 +6,3 @@ jQuery ($) ->
     $(this).hide()
     $(this).closest(".comments").find(".new_comment").removeClass("hidden")
   )
-
