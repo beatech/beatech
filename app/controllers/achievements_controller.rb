@@ -5,7 +5,7 @@ class AchievementsController < ApplicationController
 
   def index
     @achievement = Achievement.new(user: @current_user)
-    @achievements = Achievement.order(date: :desc).page(params[:page])
+    @achievements = Achievement.preload(:user).order(date: :desc).page(params[:page])
   end
 
   def create
