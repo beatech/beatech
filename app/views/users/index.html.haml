@@ -3,7 +3,7 @@
     #{grade}年生 #{@users_by_grade[grade].size}名,
   計#{@active_members_count}名
   %span><
-    (#{ welcome_term? ? "新入生 #{@users_by_grade[User::GRADE_NEWCOMER].size}名, " : "" }
+    (#{ welcome_term? ? "新入生 #{@users_by_grade[User::GRADE_NEWCOMER].size}名, " : '' }
     OB #{@users_by_grade[User::GRADE_OB].size}名)
 
 %p
@@ -16,11 +16,12 @@
 
 %ul.nav.nav-tabs
   - grades.each_with_index do |grade, index|
-    %li{ class: ("active" if index == 0) }
-      = link_to grade_label(grade), "#users_grade#{grade}", data: { toggle: "tab" }
+    %li{ class: ('active' if active_grade == grade) }
+      = link_to grade_label(grade), "#users_grade#{grade}",
+        class: 'user_grade_tab', data: { grade: grade, toggle: 'tab' }
 
 .tab-content
   - grades.each_with_index do |grade, index|
-    .tab-pane{ id: "users_grade#{grade}", class: ("active" if index == 0) }
+    .tab-pane{ id: "users_grade#{grade}", class: ('active' if active_grade == grade) }
       - @users_by_grade[grade].each do |user|
-        = render "user_data", user: user
+        = render 'user_data', user: user

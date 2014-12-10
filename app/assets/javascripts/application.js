@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require blogs
+//= require users
 //= require bootstrap
 
 function ShowCBox(n) {

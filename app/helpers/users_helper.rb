@@ -1,6 +1,7 @@
 # coding: utf-8
 module UsersHelper
   DEFAULT_ICON = "https://si0.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png"
+  DEFAULT_ACTIVE_GRADE = 4
 
   def grade_with(year, repeated_year)
     this_year = Time.now.year
@@ -34,5 +35,9 @@ module UsersHelper
 
   def welcome_term?
     [2, 3].include?(Time.now.month)
+  end
+
+  def active_grade
+    (params[:grade] || DEFAULT_ACTIVE_GRADE).to_i
   end
 end
