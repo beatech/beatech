@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210143018) do
+ActiveRecord::Schema.define(version: 20141210144039) do
 
   create_table "achievements", force: true do |t|
     t.date     "date"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20141210143018) do
     t.datetime "updated_at"
   end
 
+  add_index "entries", ["menu_id"], name: "index_entries_on_menu_id", using: :btree
   add_index "entries", ["updated_at"], name: "index_entries_on_updated_at", using: :btree
   add_index "entries", ["url"], name: "index_entries_on_url", using: :btree
 
