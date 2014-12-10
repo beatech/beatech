@@ -4,10 +4,8 @@ class AchievementsController < ApplicationController
   end
 
   def index
-    @achievement = Achievement.new
-    @achievement.user_id = @current_user.id if @current_user
-
-    @achievements = Achievement.order('date DESC').page(params[:page])
+    @achievement = Achievement.new(user: @current_user)
+    @achievements = Achievement.order(date: :desc).page(params[:page])
   end
 
   def create
