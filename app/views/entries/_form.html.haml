@@ -1,23 +1,23 @@
 = form_for(@entry) do |f|
   .field
-    = f.label "ページ名"
+    = f.label 'ページ名'
     = f.text_field :title
 
   .field
-    = f.label "ページアドレス(英数推奨)"
+    = f.label 'ページアドレス(英数推奨)'
     = f.text_field :url
 
   .field
-    = f.label "メニュー"
-    - title_and_ids = Menu.pluck(:title, :id).unshift(["メニュー表示なし", nil])
+    = f.label 'メニュー'
+    - title_and_ids = Menu.pluck(:title, :id).unshift(['メニュー表示なし', nil])
     = f.select :menu_id, Hash[title_and_ids]
 
   .field
-    = f.label "本文"
-    = f.text_area :content, class: "span8", rows: "16", maxlength: "30000"
+    = f.label '本文'
+    = f.text_area :content, class: 'span8', rows: '16', maxlength: '30000'
 
   .field
     = f.hidden_field :entry_type
 
   .actions
-    = f.submit "ページの更新", class: "btn"
+    = f.submit 'ページの更新', class: 'btn'

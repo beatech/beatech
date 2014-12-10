@@ -25,10 +25,10 @@
         %td
           = entry.entry_type
         %td
-          = link_to "開く", entry_path(entry.url)
+          = link_to '開く', entry_path(entry.url)
         %td
-          = link_to "編集", edit_entry_path(entry)
+          = link_to '編集', edit_entry_path(entry)
         - if is_admin?
-          %td= link_to "削除", entry_path(entry), method: :delete
+          %td= link_to '削除', entry_path(entry), method: :delete
 %br
-= link_to "New Entry", new_entry_path
+= link_to 'New Entry', new_entry_path
