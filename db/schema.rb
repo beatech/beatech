@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141210144039) do
+ActiveRecord::Schema.define(version: 20141210144759) do
 
   create_table "achievements", force: true do |t|
     t.date     "date"
@@ -73,6 +73,8 @@ ActiveRecord::Schema.define(version: 20141210144039) do
     t.datetime "updated_at"
     t.integer  "difficulty"
   end
+
+  add_index "contest3rds", ["team"], name: "index_contest3rds_on_team", using: :btree
 
   create_table "contestdate3rds", force: true do |t|
     t.integer  "order"
