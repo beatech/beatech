@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207162536) do
+ActiveRecord::Schema.define(version: 20141210143018) do
 
   create_table "achievements", force: true do |t|
     t.date     "date"
@@ -39,6 +39,24 @@ ActiveRecord::Schema.define(version: 20141207162536) do
     t.datetime "updated_at"
   end
 
+  create_table "contest2nds", force: true do |t|
+    t.string   "name"
+    t.string   "team"
+    t.integer  "order"
+    t.integer  "a_score"
+    t.integer  "a_bp"
+    t.integer  "b_score"
+    t.integer  "b_bp"
+    t.integer  "c_score"
+    t.integer  "c_bp"
+    t.string   "music"
+    t.integer  "notes"
+    t.string   "url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
   create_table "contest3rds", force: true do |t|
     t.integer  "a_score"
     t.integer  "a_clear"
@@ -63,6 +81,13 @@ ActiveRecord::Schema.define(version: 20141207162536) do
     t.datetime "updated_at"
   end
 
+  create_table "contestdates", force: true do |t|
+    t.integer  "order"
+    t.string   "place"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "entries", force: true do |t|
     t.string   "title"
     t.string   "url"
@@ -74,6 +99,45 @@ ActiveRecord::Schema.define(version: 20141207162536) do
   end
 
   add_index "entries", ["updated_at"], name: "index_entries_on_updated_at", using: :btree
+  add_index "entries", ["url"], name: "index_entries_on_url", using: :btree
+
+  create_table "master_games", force: true do |t|
+    t.string   "title"
+    t.string   "voter"
+    t.string   "top"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "master_musics", force: true do |t|
+    t.string   "title"
+    t.integer  "game"
+    t.string   "voter"
+    t.integer  "number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "author"
+    t.string   "url"
+  end
+
+  create_table "master_scores", force: true do |t|
+    t.string   "account"
+    t.integer  "game"
+    t.float    "score",          limit: 24
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "url"
+    t.float    "standard_score", limit: 24
+    t.integer  "user_id"
+  end
+
+  create_table "master_users", force: true do |t|
+    t.string   "name"
+    t.string   "account"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
 
   create_table "menus", force: true do |t|
     t.string   "title"
@@ -82,6 +146,8 @@ ActiveRecord::Schema.define(version: 20141207162536) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "menus", ["section"], name: "index_menus_on_section", using: :btree
 
   create_table "twitter_accounts", force: true do |t|
     t.decimal  "uid",         precision: 10, scale: 0
