@@ -1,5 +1,5 @@
 set :stage, :production
-set :branch, fetch(:branch, "master")
+set :branch, "popkirby-conoha"
 set :rails_env, 'production'
 set :migration_role, 'db'
 
