@@ -1,5 +1,5 @@
 # paths
-app_path = "/home/k0kubun/beatech"
+app_path = "/home/beatech/beatech"
 working_directory "#{app_path}/current"
 pid               "#{app_path}/current/tmp/pids/unicorn.pid"
 
