@@ -7,7 +7,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 set :linked_files, %w{.env config/database.yml config/initializers/omniauth.rb}
 
 set :ssh_options, {
-  keys: [File.expand_path('~/.ssh/id_rsa')],
+  keys: [File.expand_path('~/.ssh/id_beatech')],
   forward_agent: true,
   auth_methods: %w(publickey)
 }
