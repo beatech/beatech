@@ -1,5 +1,5 @@
 set :application, 'beatech'
-set :repo_url, 'git@github.com:k0kubun/beatech.git'
+set :repo_url, 'git@github.com:popkirby/beatech.git'
 set :deploy_to, '~/beatech'
 set :log_level, :info
 
