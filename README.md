@@ -1,11 +1,11 @@
-# BEATECH [![Build Status](https://travis-ci.org/k0kubun/beatech.png?branch=master)](https://travis-ci.org/k0kubun/beatech)
+# BEATECH [![Build Status](https://travis-ci.org/beatech/beatech.png?branch=master)](https://travis-ci.org/beatech/beatech)
 SNS for BEATECH
 
 ## Setup
 First, you should run following commands.
 
 ```sh
-$ git clone https://github.com/k0kubun/beatech
+$ git clone https://github.com/beatech/beatech
 $ cd beatech
 $ bundle install
 $ bundle exec rake setup
