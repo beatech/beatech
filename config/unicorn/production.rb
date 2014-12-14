@@ -1,10 +1,10 @@
 # paths
-app_path = "/home/k0kubun/beatech"
+app_path = "/home/beatech/beatech"
 working_directory "#{app_path}/current"
 pid               "#{app_path}/current/tmp/pids/unicorn.pid"
 
 # listen
-listen "/tmp/unicorn-beatech.sock"
+listen "/var/sockets/unicorn-beatech.sock"
 
 # logging
 stderr_path "log/unicorn.stderr.log"
