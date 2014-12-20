@@ -1,61 +1,61 @@
-require "spec_helper"
+require 'spec_helper'
 
 describe BlogsController, type: :controller do
-  shared_examples_for "login required" do
-    it "redirects to root_path" do
+  shared_examples_for 'login required' do
+    it 'redirects to root_path' do
       subject
       expect(response).to redirect_to(root_path)
-      expect(flash[:alert]).to eq("ログインが必要です")
+      expect(flash[:alert]).to eq('ログインが必要です')
     end
   end
 
-  shared_examples_for "valid user required" do
-    it "redirects to root_path" do
+  shared_examples_for 'valid user required' do
+    it 'redirects to root_path' do
       subject
       expect(response).to redirect_to(root_path)
-      expect(flash[:alert]).to eq("不正なユーザーです")
+      expect(flash[:alert]).to eq('不正なユーザーです')
     end
   end
 
-  describe "#index" do
+  describe '#index' do
     let!(:blog) { FactoryGirl.create(:blog) }
 
-    it "succeeds to render" do
+    it 'succeeds to render' do
       get :index, user_id: blog.user.username
       expect(response).to be_ok
       expect(assigns[:blogs]).to eq([blog])
     end
   end
 
-  describe "#show" do
+  describe '#show' do
     let!(:blog) { FactoryGirl.create(:blog) }
 
-    it "succeeds to render" do
+    it 'succeeds to render' do
       get :show, user_id: blog.user.username, id: blog.id
       expect(response).to be_ok
       expect(assigns[:blog]).to eq(blog)
     end
   end
 
-  describe "#new" do
+  describe '#new' do
     subject { get :new, user_id: user.username }
     let!(:user) { FactoryGirl.create(:user) }
 
-    context "when user is not logged in" do
-      it_behaves_like "login required"
+    context 'when user is not logged in' do
+      it_behaves_like 'login required'
     end
 
-    context "when user is logged in with invalid user" do
-      let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+    context 'when user is logged in with invalid user' do
+      let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
       before { login_as(invalid_user) }
 
-      it_behaves_like "valid user required"
+      it_behaves_like 'valid user required'
     end
 
-    context "when user is logged in with valid user" do
+    context 'when user is logged in with valid user' do
       before { login_as(user) }
 
-      it "succeeds to render" do
+      it 'succeeds to render' do
         subject
         expect(response).to be_ok
         expect(assigns[:blog]).to be_a_kind_of(Blog)
@@ -64,7 +64,7 @@ describe BlogsController, type: :controller do
     end
   end
 
-  describe "#create" do
+  describe '#create' do
     subject do
       post :create, user_id: user.username, blog: { title: title, content: content, user_id: user.id }
     end
@@ -73,34 +73,34 @@ describe BlogsController, type: :controller do
     let(:title) { '今日の進捗' }
     let(:content) { '進捗どうですか？' }
 
-    context "when user is not logged in" do
-      it_behaves_like "login required"
+    context 'when user is not logged in' do
+      it_behaves_like 'login required'
     end
 
-    context "when user is logged in with invalid user" do
-      let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+    context 'when user is logged in with invalid user' do
+      let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
       before { login_as(invalid_user) }
 
-      it_behaves_like "valid user required"
+      it_behaves_like 'valid user required'
     end
 
-    context "when user is logged in with valid user" do
+    context 'when user is logged in with valid user' do
       before { login_as(user) }
 
-      context "when hidden form's user_id is invalid" do
-        let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+      context 'when hidden form user_id is invalid' do
+        let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
 
         subject do
           post :create, user_id: user.username, blog: { title: title, content: content, user_id: invalid_user.id }
         end
 
-        it_behaves_like "valid user required"
+        it_behaves_like 'valid user required'
       end
 
-      context "when hidden form's user_id is valid" do
+      context 'when hidden form user_id is valid' do
         let(:blog) { Blog.last }
 
-        it "creates a blog" do
+        it 'creates a blog' do
           expect {
             subject
           }.to change {
@@ -116,25 +116,25 @@ describe BlogsController, type: :controller do
     end
   end
 
-  describe "#edit" do
+  describe '#edit' do
     subject { get :edit, user_id: blog.user.username, id: blog.id }
     let!(:blog) { FactoryGirl.create(:blog) }
 
-    context "when user is not logged in" do
-      it_behaves_like "login required"
+    context 'when user is not logged in' do
+      it_behaves_like 'login required'
     end
 
-    context "when user is logged in with invalid user" do
-      let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+    context 'when user is logged in with invalid user' do
+      let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
       before { login_as(invalid_user) }
 
-      it_behaves_like "valid user required"
+      it_behaves_like 'valid user required'
     end
 
-    context "when user is logged in with valid user" do
+    context 'when user is logged in with valid user' do
       before { login_as(blog.user) }
 
-      it "succeeds to render" do
+      it 'succeeds to render' do
         subject
         expect(response).to be_ok
         expect(assigns[:blog]).to eq(blog)
@@ -142,7 +142,7 @@ describe BlogsController, type: :controller do
     end
   end
 
-  describe "#update" do
+  describe '#update' do
     subject do
       patch :update, user_id: user.username, id: blog.id,
         blog: { title: new_title, content: new_content, user_id: user.id }
@@ -155,33 +155,33 @@ describe BlogsController, type: :controller do
     let(:old_content) { '進捗どうですか？' }
     let(:new_content) { '進捗してますか？' }
 
-    context "when user is not logged in" do
-      it_behaves_like "login required"
+    context 'when user is not logged in' do
+      it_behaves_like 'login required'
     end
 
-    context "when user is logged in with invalid user" do
-      let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+    context 'when user is logged in with invalid user' do
+      let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
       before { login_as(invalid_user) }
 
-      it_behaves_like "valid user required"
+      it_behaves_like 'valid user required'
     end
 
-    context "when user is logged in with valid user" do
+    context 'when user is logged in with valid user' do
       before { login_as(user) }
 
-      context "when hidden form's user_id is invalid" do
-        let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+      context 'when hidden form user_id is invalid' do
+        let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
 
         subject do
           patch :update, user_id: user.username, id: blog.id,
             blog: { title: new_title, content: new_content, user_id: invalid_user.id }
         end
 
-        it_behaves_like "valid user required"
+        it_behaves_like 'valid user required'
       end
 
-      context "when hidden form's user_id is valid" do
-        it "updates a blog" do
+      context 'when hidden form user_id is valid' do
+        it 'updates a blog' do
           subject
           blog.reload
           expect(blog.title).to eq(new_title)
@@ -193,7 +193,7 @@ describe BlogsController, type: :controller do
     end
   end
 
-  describe "destroy" do
+  describe 'destroy' do
     subject do
       delete :destroy, user_id: user.username, id: blog.id
     end
@@ -201,21 +201,21 @@ describe BlogsController, type: :controller do
     let!(:user) { FactoryGirl.create(:user) }
     let!(:blog) { FactoryGirl.create(:blog, user_id: user.id) }
 
-    context "when user is not logged in" do
-      it_behaves_like "login required"
+    context 'when user is not logged in' do
+      it_behaves_like 'login required'
     end
 
-    context "when user is logged in with invalid user" do
-      let!(:invalid_user) { FactoryGirl.create(:user, username: "invalid") }
+    context 'when user is logged in with invalid user' do
+      let!(:invalid_user) { FactoryGirl.create(:user, username: 'invalid') }
       before { login_as(invalid_user) }
 
-      it_behaves_like "valid user required"
+      it_behaves_like 'valid user required'
     end
 
-    context "when user is logged in with valid user" do
+    context 'when user is logged in with valid user' do
       before { login_as(user) }
 
-      it "deletes a blog" do
+      it 'deletes a blog' do
         expect {
           subject
         }.to change {
