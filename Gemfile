@@ -36,7 +36,7 @@ group :development, :test do
   gem 'capybara', '~> 2.4.1'
   gem 'factory_girl', '~> 4.4.0'
   gem 'pry-rails', '~> 0.3.2'
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'shoulda-matchers', '~> 2.6.2'
   gem 'spring', '~> 1.1.3'
   gem 'webrat', '~> 0.7.3'

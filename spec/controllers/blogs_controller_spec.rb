@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe BlogsController do
+describe BlogsController, type: :controller do
   shared_examples_for "login required" do
     it "redirects to root_path" do
       subject

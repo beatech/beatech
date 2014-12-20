@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe TwitterAccountsController do
+describe TwitterAccountsController, type: :controller do
   describe "#destroy" do
     let!(:user) { FactoryGirl.create(:user) }
 
@@ -28,7 +28,7 @@ describe TwitterAccountsController do
           delete :destroy, id: twitter_account.id
         }.to_not change {
           TwitterAccount.count
-        }.from(1).to(0)
+        }.from(1)
       end
     end
   end

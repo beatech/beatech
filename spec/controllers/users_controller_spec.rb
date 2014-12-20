@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe UsersController do
+describe UsersController, type: :controller do
   describe "#create" do
     context "given valid params" do
       let(:user) do
