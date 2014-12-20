@@ -13,89 +13,89 @@
 
 ActiveRecord::Schema.define(version: 20141210145027) do
 
-  create_table "achievements", force: true do |t|
+  create_table "achievements", force: :cascade do |t|
     t.date     "date"
-    t.text     "text"
-    t.integer  "user_id"
+    t.text     "text",       limit: 65535
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "achievements", ["user_id"], name: "index_achievements_on_user_id", using: :btree
 
-  create_table "blogs", force: true do |t|
-    t.string   "title"
-    t.text     "content"
-    t.integer  "user_id"
+  create_table "blogs", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.text     "content",    limit: 65535
+    t.integer  "user_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "comments", force: true do |t|
-    t.text     "content"
-    t.integer  "user_id"
-    t.integer  "blog_id"
+  create_table "comments", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "user_id",    limit: 4
+    t.integer  "blog_id",    limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "contest2nds", force: true do |t|
-    t.string   "name"
-    t.string   "team"
-    t.integer  "order"
-    t.integer  "a_score"
-    t.integer  "a_bp"
-    t.integer  "b_score"
-    t.integer  "b_bp"
-    t.integer  "c_score"
-    t.integer  "c_bp"
-    t.string   "music"
-    t.integer  "notes"
-    t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
+  create_table "contest2nds", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "team",       limit: 255
+    t.integer  "order",      limit: 4
+    t.integer  "a_score",    limit: 4
+    t.integer  "a_bp",       limit: 4
+    t.integer  "b_score",    limit: 4
+    t.integer  "b_bp",       limit: 4
+    t.integer  "c_score",    limit: 4
+    t.integer  "c_bp",       limit: 4
+    t.string   "music",      limit: 255
+    t.integer  "notes",      limit: 4
+    t.string   "url",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
 
-  create_table "contest3rds", force: true do |t|
-    t.integer  "a_score"
-    t.integer  "a_clear"
-    t.integer  "b_score"
-    t.integer  "b_clear"
-    t.integer  "c_score"
-    t.integer  "c_clear"
-    t.string   "name"
-    t.string   "music"
-    t.integer  "order"
-    t.string   "team"
-    t.string   "movie_url"
+  create_table "contest3rds", force: :cascade do |t|
+    t.integer  "a_score",    limit: 4
+    t.integer  "a_clear",    limit: 4
+    t.integer  "b_score",    limit: 4
+    t.integer  "b_clear",    limit: 4
+    t.integer  "c_score",    limit: 4
+    t.integer  "c_clear",    limit: 4
+    t.string   "name",       limit: 255
+    t.string   "music",      limit: 255
+    t.integer  "order",      limit: 4
+    t.string   "team",       limit: 255
+    t.string   "movie_url",  limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "difficulty"
+    t.integer  "difficulty", limit: 4
   end
 
   add_index "contest3rds", ["team"], name: "index_contest3rds_on_team", using: :btree
 
-  create_table "contestdate3rds", force: true do |t|
-    t.integer  "order"
-    t.string   "place"
+  create_table "contestdate3rds", force: :cascade do |t|
+    t.integer  "order",      limit: 4
+    t.string   "place",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "contestdates", force: true do |t|
-    t.integer  "order"
-    t.string   "place"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "contestdates", force: :cascade do |t|
+    t.integer  "order",      limit: 4
+    t.string   "place",      limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "entries", force: true do |t|
-    t.string   "title"
-    t.string   "url"
-    t.integer  "menu_id"
-    t.text     "content"
-    t.integer  "entry_type"
+  create_table "entries", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "url",        limit: 255
+    t.integer  "menu_id",    limit: 4
+    t.text     "content",    limit: 65535
+    t.integer  "entry_type", limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,74 +104,74 @@ ActiveRecord::Schema.define(version: 20141210145027) do
   add_index "entries", ["updated_at"], name: "index_entries_on_updated_at", using: :btree
   add_index "entries", ["url"], name: "index_entries_on_url", using: :btree
 
-  create_table "master_games", force: true do |t|
-    t.string   "title"
-    t.string   "voter"
-    t.string   "top"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "master_games", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "voter",      limit: 255
+    t.string   "top",        limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
-  create_table "master_musics", force: true do |t|
-    t.string   "title"
-    t.integer  "game"
-    t.string   "voter"
-    t.integer  "number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "author"
-    t.string   "url"
+  create_table "master_musics", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.integer  "game",       limit: 4
+    t.string   "voter",      limit: 255
+    t.integer  "number",     limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.string   "author",     limit: 255
+    t.string   "url",        limit: 255
   end
 
-  create_table "master_scores", force: true do |t|
-    t.string   "account"
-    t.integer  "game"
+  create_table "master_scores", force: :cascade do |t|
+    t.string   "account",        limit: 255
+    t.integer  "game",           limit: 4
     t.float    "score",          limit: 24
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
-    t.string   "url"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "url",            limit: 255
     t.float    "standard_score", limit: 24
-    t.integer  "user_id"
+    t.integer  "user_id",        limit: 4
   end
 
-  create_table "master_users", force: true do |t|
-    t.string   "name"
-    t.string   "account"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
+  create_table "master_users", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "account",    limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "user_id",    limit: 4
   end
 
-  create_table "menus", force: true do |t|
-    t.string   "title"
-    t.string   "section"
-    t.integer  "position"
+  create_table "menus", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "section",    limit: 255
+    t.integer  "position",   limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "menus", ["section"], name: "index_menus_on_section", using: :btree
 
-  create_table "twitter_accounts", force: true do |t|
-    t.decimal  "uid",         precision: 10, scale: 0
-    t.string   "screen_name"
-    t.integer  "user_id"
+  create_table "twitter_accounts", force: :cascade do |t|
+    t.decimal  "uid",                     precision: 10
+    t.string   "screen_name", limit: 255
+    t.integer  "user_id",     limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "twitter_accounts", ["user_id"], name: "index_twitter_accounts_on_user_id", using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "username"
-    t.string   "password_digest"
-    t.string   "name"
-    t.integer  "year"
-    t.integer  "repeated_year"
-    t.integer  "grade"
-    t.text     "bio"
-    t.text     "profile"
-    t.string   "profile_image"
+  create_table "users", force: :cascade do |t|
+    t.string   "username",        limit: 255
+    t.string   "password_digest", limit: 255
+    t.string   "name",            limit: 255
+    t.integer  "year",            limit: 4
+    t.integer  "repeated_year",   limit: 4
+    t.integer  "grade",           limit: 4
+    t.text     "bio",             limit: 65535
+    t.text     "profile",         limit: 65535
+    t.string   "profile_image",   limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.0'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'bootstrap-kaminari-views', '~> 0.0.3'
@@ -19,7 +19,7 @@ gem 'omniauth-twitter', '~> 1.0.1'
 gem 'redcarpet', '~> 3.1.2'
 gem 'sass-rails', '~> 4.0.1'
 gem 'therubyracer', '~> 0.12.1', platforms: :ruby
-gem 'twitter', '~> 5.1.1'
+gem 'twitter', '~> 5.13.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn', '~> 4.8.3'
 
@@ -36,7 +36,7 @@ group :development, :test do
   gem 'capybara', '~> 2.4.1'
   gem 'factory_girl', '~> 4.4.0'
   gem 'pry-rails', '~> 0.3.2'
-  gem 'rspec-rails', '~> 2.14.2'
+  gem 'rspec-rails', '~> 3.1.0'
   gem 'shoulda-matchers', '~> 2.6.2'
   gem 'spring', '~> 1.1.3'
   gem 'webrat', '~> 0.7.3'

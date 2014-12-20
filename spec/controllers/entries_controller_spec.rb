@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe EntriesController do
+describe EntriesController, type: :controller do
   describe '#show' do
     let!(:entry) { FactoryGirl.create(:entry) }
 
