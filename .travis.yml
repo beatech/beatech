@@ -15,4 +15,6 @@ after_success:
   - "openssl aes-256-cbc -K $encrypted_7a5e0dfbb465_key -iv $encrypted_7a5e0dfbb465_iv -in config.enc -out ~/.ssh/config -d"
   - "chmod 600 ~/.ssh/id_beatech"
   - "chmod 644 ~/.ssh/config"
+  - "eval \"$(ssh-agent)\""
+  - "ssh-add"
   - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
