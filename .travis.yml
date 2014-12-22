@@ -12,4 +12,7 @@ script:
   - "RAILS_ENV=production bundle exec rake assets:precompile"
 after_success:
   - "openssl aes-256-cbc -K $encrypted_7a5e0dfbb465_key -iv $encrypted_7a5e0dfbb465_iv -in id_beatech.enc -out ~/.ssh/id_beatech -d"
+  - "openssl aes-256-cbc -K $encrypted_7a5e0dfbb465_key -iv $encrypted_7a5e0dfbb465_iv -in config.enc -out ~/.ssh/config -d"
+  - "chmod 600 ~/.ssh/id_beatech"
+  - "chmod 644 ~/.ssh/config"
   - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
