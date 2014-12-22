@@ -16,5 +16,5 @@ after_success:
   - "chmod 600 ~/.ssh/id_beatech"
   - "chmod 644 ~/.ssh/config"
   - "eval \"$(ssh-agent)\""
-  - "ssh-add"
+  - "ssh-add ~/.ssh/id_beatech"
   - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
