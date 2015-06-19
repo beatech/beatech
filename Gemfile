@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.0'
+gem 'rails', '4.2.2'
 
 gem 'bcrypt-ruby', '~> 3.1.2'
 gem 'bootstrap-kaminari-views', '~> 0.0.3'
@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.0.1'
 gem 'dotenv-rails', '~> 1.0.2'
 gem 'exception_notification', '~> 4.0.1'
 gem 'google-analytics-rails'
-gem 'hamlit', '~> 0.1'
+gem 'hamlit', '~> 1.6'
 gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails', '~> 3.1.1'
 gem 'kaminari', '~> 0.16.1'
