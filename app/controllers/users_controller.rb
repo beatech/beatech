@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include UsersHelper
-  before_filter :admin_required, only: :destroy
+  before_action :admin_required, only: :destroy
 
   def title
     '部員紹介'
