@@ -16,9 +16,9 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
 
     # soundcloud
     # postprocess: generate iframe tag
-    full_document.gsub!(/\[soundcloud url=&quot;(.+?)&quot; params=&quot;(.+?)&quot; width=&quot;(.+?)&quot; height=&quot;(.+?)&quot;( (.+?)="(.+?)")*\ \/\]/) do |text|
+    full_document.gsub!(/\[soundcloud url=&quot;(.+?)&quot; params=&quot;(.+?)&quot; width=&quot;(.+?)&quot; height=&quot;(.+?)&quot;( (.+?)=&quot;(.+?)&quot;)*\ \/\]/) do |text|
       # $1: url, $2: params, $3: width, $4: height
-      content_tag(:iframe, '', width: $3, height: $4, src: "https://w.soundcloud.com/player/?url=#{$1}&#{$2}",
+      content_tag(:iframe, '', width: $3, height: $4, src: "https://w.soundcloud.com/player/?url=#{CGI.escape($1)}&#{$2}",
                   scrolling: 'no', frameborder: 'no')
     end
 
