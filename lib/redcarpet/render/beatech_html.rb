@@ -14,6 +14,14 @@ class Redcarpet::Render::BeatechHTML < Redcarpet::Render::HTML
                   frameborder: 0, allowfullscreen: true)
     end
 
+    # soundcloud
+    # postprocess: generate iframe tag
+    full_document.gsub!(/\[soundcloud url=&quot;(.+?)&quot; params=&quot;(.+?)&quot; width=&quot;(.+?)&quot; height=&quot;(.+?)&quot;( (.+?)="(.+?)")*\ \/\]/) do |text|
+      # $1: url, $2: params, $3: width, $4: height
+      content_tag(:iframe, '', width: $3, height: $4, src: "https://w.soundcloud.com/player/?url=#{$1}&#{$2}",
+                  scrolling: 'no', frameborder: 'no')
+    end
+
     # autolink (original implementation because recarpet's one is broken)
     full_document.gsub!(/([^'"])(https?:\/\/[0-9a-zA-Z.\/?=&_]+)/, '\1<a href="\2">\2</a>')
 
