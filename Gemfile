@@ -22,6 +22,7 @@ gem 'therubyracer', '~> 0.12.2', platforms: :ruby
 gem 'twitter', '~> 5.13.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'unicorn', '~> 4.8.3'
+gem 'whenever', :require => false
 
 group :development do
   gem 'silencer', '~> 0.6.0'
