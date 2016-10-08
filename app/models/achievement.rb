@@ -8,6 +8,6 @@ class Achievement < ActiveRecord::Base
   validates :user_id, presence: true
 
   def self.latest_twitter_status_id
-    self.where.not(:twitter_status_id => nil).order(:twitter_status_id => 'desc').first.twitter_status_id
+    Achievement.maximum(:twitter_status_id)
   end
 end
