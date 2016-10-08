@@ -5,8 +5,10 @@ namespace :users do
       config.bearer_token = ENV['BEARER_TOKEN']
     end
 
+    # Update profile images silently
     ActiveRecord::Base.record_timestamps = false
-    User.all.each do |user|
+
+    User.find_each do |user|
       twitter_account = user.twitter_accounts.first
       if twitter_account.present?
         print "#{user.name}: "
