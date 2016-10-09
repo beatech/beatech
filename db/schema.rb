@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161008084739) do
+ActiveRecord::Schema.define(version: 20161008093702) do
 
   create_table "achievements", force: :cascade do |t|
     t.date     "date"
-    t.text     "text",       limit: 65535
-    t.integer  "user_id",    limit: 4
+    t.text     "text",              limit: 65535
+    t.integer  "user_id",           limit: 4
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "twitter_status_id", limit: 255
   end
 
   add_index "achievements", ["user_id"], name: "index_achievements_on_user_id", using: :btree
